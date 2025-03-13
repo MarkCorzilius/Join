@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    height: 100vh;
+}
+
+
+/* Sidebar (linke Navigation) */
+#sidebar {
+    width: 150px;
+    /* Feste Breite */
+    background-color: rgb(42, 54, 71);
+    /* Hintergrundfarbe der Sidebar */
+    float: left;
+    /* Positionierung links */
+    min-height: 100vh;
+    /* Optional: volle Höhe des Viewports */
+    /* padding: 10px; */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.main-button {}
+
+
+#sidebar .nav-button {
+    width: 100%;
+    /* Buttons füllen die Breite der Sidebar */
+    background-color: rgb(42, 54, 71);
+    /* gleiche Farbe wie die Sidebar */
+    color: #fff;
+    /* Weißer Text */
+    border: none;
+    /* Kein Rahmen */
+    padding: 10px;
+    /* Innenabstand */
+    margin-bottom: 10px;
+    /* Abstand zwischen den Buttons */
+    text-align: center;
+    /* Text linksbündig */
+    cursor: pointer;
+    /* Zeigt an, dass es klickbar ist */
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    /* Weicher Übergang beim Hover */
+}
+
+#sidebar .nav-button:hover {
+    background-color: rgb(9, 25, 49);
+    /* Hover-Farbe */
+}
+
+/* Inhaltsbereich neben der Sidebar */
+#content {
+    margin-left: 150px;
+    /* Platz schaffen für die Sidebar */
+    padding: 20px;
+    box-sizing: border-box;
+}

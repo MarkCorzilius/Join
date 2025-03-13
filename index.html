@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
     <script src="https://www.w3schools.com/lib/w3.js"></script>
     <!-- <script src="script.js"></script> -->
     <script src="js/add_task.js"></script>
@@ -14,13 +16,17 @@
 </head>
 
 <body>
-    hellou welt, wie gehts?
     <header id="headerTemplates" w3-include-html="./templates/header.html"></header>
     <main id="main">
-        <div id="summaryTemplates" w3-include-html="./templates/summary.html"></div>
-        <div id="boardTemplates" w3-include-html="./templates/board.html"></div>
-        <div id="addTaskTemplates" w3-include-html="./templates/add_task.html"></div>
-        <div id="contactsTemplates" w3-include-html="./templates/contacts.html"></div>
+        <!-- Sidebar-Navigation -->
+        <aside id="sidebar">
+            <div class="main-button" id="summaryTemplates" w3-include-html="./templates/summary.html"></div>
+            <div class="main-button"  class="main-button"id="boardTemplates" w3-include-html="./templates/board.html"></div>
+            <div class="main-button" id="addTaskTemplates" w3-include-html="./templates/add_task.html"></div>
+            <div class="main-button" id="contactsTemplates" w3-include-html="./templates/contacts.html"></div>
+        </aside>
+
+ 
 
         <div id="desktopTemplates" w3-include-html="./templates/desktop.html"></div>
         <div id="mobileTemplates" w3-include-html="./templates/mobile.html"></div>
