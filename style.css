@@ -4,6 +4,16 @@ body {
 }
 
 
+.d-none {
+    display: none;
+}
+
+
+.d-flex {
+    display: flex;
+}
+
+
 /* Sidebar (linke Navigation) */
 #sidebar {
     width: 150px;
@@ -16,7 +26,7 @@ body {
     /* Optional: volle Höhe des Viewports */
     /* padding: 10px; */
     box-sizing: border-box;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     justify-content: center;
 }

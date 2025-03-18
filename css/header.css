@@ -4,7 +4,8 @@
     /* Dunkler Hintergrund */
     color: #fff;
     /* Weißer Text */
-    padding: 20px;
+    padding: 16px;
+    height: 38px;
     display: flex;
     align-items: center;
     justify-content: space-between;

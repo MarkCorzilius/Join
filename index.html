@@ -7,19 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
+
+
     <script src="https://www.w3schools.com/lib/w3.js"></script>
     <!-- <script src="script.js"></script> -->
     <script src="js/add_task.js"></script>
+    <script src="js/register.js"></script>
+    <script src="js/login.js"></script>
 
 </head>
 
 <body>
-    <header id="headerTemplates" w3-include-html="./templates/header.html"></header>
+    <header class="d-none" id="headerTemplates" w3-include-html="./templates/header.html"></header>
     <main id="main">
         <!-- Sidebar-Navigation -->
-        <aside id="sidebar">
+        <aside class="d-none" id="sidebar">
             <div class="main-button" id="summaryTemplates" w3-include-html="./templates/summary.html"></div>
             <div class="main-button"  class="main-button"id="boardTemplates" w3-include-html="./templates/board.html"></div>
             <div class="main-button" id="addTaskTemplates" w3-include-html="./templates/add_task.html"></div>
@@ -30,11 +36,11 @@
 
         <div id="desktopTemplates" w3-include-html="./templates/desktop.html"></div>
         <div id="mobileTemplates" w3-include-html="./templates/mobile.html"></div>
-        <div id="loginTemplates" w3-include-html="./templates/login.html"></div>
-        <div id="registerTemplates" w3-include-html="./templates/register.html"></div>
+        <div class="register-templates d-none" id="registerTemplates" w3-include-html="./templates/register.html"></div>
+        <div class="login-templates" id="loginTemplates" w3-include-html="./templates/login.html"></div>
         <div id="taskFormTemplates" w3-include-html="./templates/task_form.html"></div>
     </main>
-    <footer id="footerTemplates" w3-include-html="./templates/footer.html"></footer>
+    <footer class="d-none" id="footerTemplates" w3-include-html="./templates/footer.html"></footer>
 
     <script src="script.js"></script>
 </body>
