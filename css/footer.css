@@ -16,13 +16,13 @@
     margin: 0 0 10px 0;
 }
 
-.footer-container ul.footer-links {
+/* .footer-container ul.footer-links {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
-}
+} */
 
 .footer-container ul.footer-links li {
     margin: 0 10px;

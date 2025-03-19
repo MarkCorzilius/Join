@@ -1,11 +1,12 @@
 
 /* Grundlayout: Körper, Reset & zentrierter Bereich */
-body {
+/* body {
   margin: 0;
   font-family: sans-serif;
+  font-family: 'PT Sans', sans-serif;
   background-color: #f0f4f7;
   color: #333;
-}
+} */
 
 
 /* Kopfzeile mit Back-Pfeil und Titel */
