@@ -1,33 +1,39 @@
 <head>
-    <meta charset="UTF-8">
-    <title>Deine Seite</title>
-    <!-- <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet"> -->
+  <meta charset="UTF-8" />
+  <title>Deine Seite</title>
+  <!-- <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet"> -->
 
-    <link rel="stylesheet" href="/style.css">
-    <!-- <script src="/js/sidebar.js"></script> -->
+  <link rel="stylesheet" href="/style.css" />
+  <!-- <script src="/js/sidebar.js"></script> -->
 </head>
-
 
 <!-- Sidebar-Navigation -->
 <aside class="sidebar" id="sidebar">
-    <div class="sidebar-logo">
-        <img src="/img/join-logo-white.svg" alt="Join Logo" />
-    </div>
+  <div class="sidebar-logo">
+    <img src="/img/join-logo-white.svg" alt="Join Logo" />
+  </div>
 
-    <div class="sidebar-button">
-        <div class="main-button" id="summaryTemplates" w3-include-html="./templates/summary.html"></div>
-        <div class="main-button" id="addTaskTemplates" w3-include-html="./templates/add_task.html"></div>
-        <div class="main-button" id="boardTemplates" w3-include-html="./templates/board.html"></div>
-        <div class="main-button" id="contactsTemplates" w3-include-html="./templates/contacts.html"></div>
-    </div>
+  <div class="sidebar-button">
+    <button class="nav-button" onclick="buttonClicked(this); renderPages(0);">
+      <img src="../img/sidebar_summary.png" alt="summary" />
+      <p>Summary</p>
+    </button>
+    <button class="nav-button" onclick="buttonClicked(this); renderPages(1);">
+      <img src="../img/add_task_sidebar.png" alt="tasks" />
+      <p>Add Task</p>
+    </button>
+    <button class="nav-button" onclick="buttonClicked(this); renderPages(2);">
+      <img src="../img/sidebar_board.png" alt="board" />
+      <p>Board</p>
+    </button>
+    <button class="nav-button" onclick="buttonClicked(this); renderPages(3);">
+      <img src="../img/sidebar_contact.png" alt="contacts" />
+      <p>Contacts</p>
+    </button>
+  </div>
 
-    <ul class="legal-notice">
-        <li>
-            <a href="#">Privacy Policy</a>
-        </li>
-        <li>
-            <a href="#">Legal notice</a>
-        </li>
-    </ul>
-
+  <div class="sidebar-footer">
+    <button class="nav-button" onclick="buttonClicked(this); renderPages(4);">Privacy Policy</button>
+    <button class="nav-button" onclick="buttonClicked(this); renderPages(5);">Legal Notice</button>
+  </div>
 </aside>
