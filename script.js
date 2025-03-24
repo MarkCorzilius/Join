@@ -3,12 +3,12 @@ window.onload = function () {
 };
 
 const allPages = [
-  '<div w3-include-html="./templates/summary.html"></div>',
-  '<div w3-include-html="./templates/add_task.html"></div>',
-  '<div w3-include-html="./templates/board.html"></div>',
-  '<div w3-include-html="./templates/contacts.html"></div>',
-  '<div w3-include-html="./templates/privacy_policy.html"></div>',
-  '<div w3-include-html="./templates/legal_notice.html"></div>',
+  '<div class="included-page-div" w3-include-html="./templates/summary.html"></div>',
+  '<div class="included-page-div" w3-include-html="./templates/add_task.html"></div>',
+  '<div class="included-page-div" w3-include-html="./templates/board.html"></div>',
+  '<div class="included-page-div" w3-include-html="./templates/contacts.html"></div>',
+  '<div class="included-page-div" w3-include-html="./templates/privacy_policy.html"></div>',
+  '<div class="included-page-div" w3-include-html="./templates/legal_notice.html"></div>',
 ];
 
 function renderPages(page) {

@@ -3,23 +3,3 @@
   align-items: center;
   padding: 64px 0px 40px;
 }
-
-.light-grey-bg {
-  background-color: rgb(246 247 248);
-}
-
-#content {
-  z-index: 10;
-  width: 100%;
-  height: calc(100vh - 80px);
-  margin-top: 80px;
-  display: flex;
-  justify-content: center;
-  padding-top: 64px;
-  box-sizing: border-box;
-}
-
-#main {
-  display: grid !important;
-  grid-template-columns: 200px 1fr !important;
-}
