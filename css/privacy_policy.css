@@ -1,0 +1,25 @@
+.privacyPolicyMain {
+  display: flex;
+  justify-content: center;
+  margin-left: 80px;
+  margin-right: 100px;
+  margin-bottom: 50px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.section {
+    margin-bottom: 50px;
+}
+
+.pageTitle {
+    font-size: 61px;
+    font-weight: 700;
+}
+
+.pageSubTitle {
+    font-size: 27px;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
