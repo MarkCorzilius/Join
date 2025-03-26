@@ -7,7 +7,6 @@
   <!-- <script src="/js/sidebar.js"></script> -->
 </head>
 
-<!-- Sidebar-Navigation -->
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-logo">
     <img src="/img/join-logo-white.svg" alt="Join Logo" />
@@ -26,10 +25,12 @@
       <img src="../img/sidebar_board.png" alt="board" />
       <p>Board</p>
     </button>
-    <button class="nav-button" onclick="buttonClicked(this); renderPages(3);">
+
+    <button class="nav-button" onclick="buttonClicked(this); renderPages(3); setTimeout(renderContacts, 300);">
       <img src="../img/sidebar_contact.png" alt="contacts" />
       <p>Contacts</p>
     </button>
+    
   </div>
 
   <div class="sidebar-footer">

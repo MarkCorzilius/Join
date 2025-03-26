@@ -1,1 +1,118 @@
-Where are my CONTACTS?
+<div class="contacts-container">
+    <!-- <div class="contacts">
+        <button class="add-contact-btn" onclick="openAddContactOverlay()">
+            Add new contact
+            <img src="/img/person_add.png" alt="">
+            
+        </button>
+
+    </div> -->
+    <div class="contacts">
+        <button class="add-contact-btn" onclick="openAddContactOverlay()">
+            Add new contact
+            <img src="/img/person_add.png" alt="">
+        </button>
+        <!-- Diesen Container leeren und füllen wir dynamisch -->
+        <div class="contacts-list"></div>
+    </div>
+
+
+    <!-- <div class="contact-info">
+        <div class="contact-header">
+            <h1>Contacts</h1>
+            <p>Better with a team</p>
+        </div>
+    </div> -->
+    <!-- Rechte Seite: Kontakt-Detailbereich -->
+    <div class="contact-info" id="contactDetailContainer">
+        <div class="contact-header">
+            <h1>Contacts</h1>
+            <p>Better with a team</p>
+        </div>
+
+        <div class="contact-detail-view d-none" id="contactDetailView">
+            <!-- <div class="detail-avatar-name">
+                <div class="contact-detail-avatar" id="detailAvatar"></div>
+                <div class="edit-delete">
+                    <h2  id="detailName">Name</h2>
+                    <img src="/img/edit_contacts.png" alt="">
+                    <img src="/img/delete-contact.png" alt="">
+                </div>
+            </div>
+
+            <div class="email-phone">
+                <p>Contact Information</p>
+
+                <p >Email</p>
+                <p id="detailEmail">Email</p>
+
+                <p >Phone</p>
+                <p id="detailPhone">Phone</p>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+
+<!-- :::::::::  OVERLAY ::::::::::::::: -->
+
+
+<div id="addContactOverlay" class="overlay d-none"  onclick="if(event.target===this){ closeAddContactOverlay(); }">
+    <div class="overlay-content">
+        <div class="overlay-left">
+            <img src="/img/join-logo-white.svg" alt="Join Logo" class="overlay-logo">
+            <h2>Add contact</h2>
+            <p>Tasks are better with a team!</p>
+        </div>
+
+        <div class="overlay-right">
+            <div class="overlay-close" onclick="closeAddContactOverlay()">×</div>
+
+            <div class="new-contact-details">
+                <div class="overlay-avatar">
+                    <img src="/img/person.png" alt="User Avatar" />
+                </div>
+
+                <form onsubmit="saveNewContact(); return false;">
+                    <div class="overlay-input-group">
+                        <label for="contactName">Name</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="contactName" placeholder="Name" required />
+                            <!-- <span class="icon">&#128100;</span> -->
+                            <img src="/img/person_input.png" alt="">
+                        </div>
+                    </div>
+
+                    <div class="overlay-input-group">
+                        <label for="contactEmail">Email</label>
+                        <div class="input-wrapper">
+                            <input type="email" id="contactEmail" placeholder="Email" required />
+                            <!-- <span class="icon">&#9993;</span> -->
+                             <img src="/img/mail_input.png" alt="">
+                        </div>
+                    </div>
+
+                    <div class="overlay-input-group">
+                        <label for="contactPhone">Phone</label>
+                        <div class="input-wrapper">
+                            <input type="tel" id="contactPhone" placeholder="Phone" />
+                            <!-- <span class="icon">&#128222;</span> -->
+                             <img src="/img/call_input.png" alt="">
+                        </div>
+                    </div>
+
+                    <div class="overlay-buttons">
+                        <button type="button" class="btn-cancel" onclick="closeAddContactOverlay()">
+                            Cancel
+                            <img src="/img/cancel.png" alt="">
+                        </button>
+                        <button type="submit" class="btn-save">
+                            Create contact
+                            <img src="/img/check.png" alt="">
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

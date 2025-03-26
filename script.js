@@ -1,5 +1,6 @@
 window.onload = function () {
   w3.includeHTML();
+  // renderContacts(); // rendere die alphabetisch gruppierte Kontaktliste
 };
 
 const allPages = [

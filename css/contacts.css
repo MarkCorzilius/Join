@@ -1,0 +1,476 @@
+.contacts-container {
+    display: flex;
+
+}
+
+
+.contacts {
+    width: 40%;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+    border-right: 1px solid #ddd;
+    padding: 24px 36px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.contacts-list h2 {
+    padding-left: 16px;
+}
+
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-left: 16px;
+    height: 60px;
+    border-radius: 8px;
+}
+
+
+.contact-item:hover {
+    cursor: pointer;
+    background-color: #f6f7f8;
+}
+
+
+.contact-item.clicked-color:hover {
+    background-color: rgb(9, 25, 49);
+}
+
+
+.contact-initials {
+    width: 40px;
+    height: 40px;
+    background-color: #ccc;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 10px;
+    border: solid 2px white;
+}
+
+
+.contact-name {
+    font-size: 16px;
+    margin: 0;
+    font-weight: 600;
+}
+
+
+.color-white {
+    color: white;
+}
+
+
+.contact-details {
+    margin: 0;
+    font-weight: 600;
+    margin: 0;
+    font-size: 14px;
+}
+
+
+.contact-email {
+    margin: 0;
+    font-size: 14px;
+    color: rgb(128, 189, 247);
+}
+
+
+.contact-info {
+    width: 60%;
+    height: calc(100vh - 80px);
+    background-color: rgb(246, 247, 248);
+    padding: 80px 48px;
+    box-sizing: border-box;
+
+}
+
+
+.contact-header {
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    height: 36px;
+}
+
+
+.contact-header p {
+    margin: 0;
+    height: 36px;
+    padding-left: 12px;
+    border-left: 3px solid rgb(41, 171, 226);
+    color: rgb(42, 54, 71);
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+}
+
+
+.contact-header h1 {
+    padding: 0 12px 0 0;
+    margin: 0;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    font-size: 48px;
+}
+
+
+.contact-detail-view {
+    transform: translateX(100%);
+    /* Startet rechts außerhalb */
+    transition: transform 0.3s ease-out;
+}
+
+.contact-detail-view.slide-in {
+    transform: translateX(0);
+}
+
+
+.add-contact-btn {
+    display: inline-block;
+    background-color: rgb(42, 54, 71);
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    height: 48px;
+    font-weight: bold;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.add-contact-btn:hover {
+    background-color: rgb(41, 171, 226);
+}
+
+
+.add-contact-btn img {
+    margin-left: 12px;
+    width: 24px;
+    height: 24px;
+}
+
+
+.contact-header {
+    margin-bottom: 20px;
+}
+
+
+.edit-delete {
+    margin: 0 0 0 36px;
+}
+
+
+.detail-avatar-name {
+    display: flex;
+    align-items: center;
+}
+
+
+.detail-avatar-name img {
+    width: 66px;
+    cursor: pointer;
+}
+
+
+.detail-avatar-name img:hover {
+    color: rgb(41, 171, 226);
+    ;
+}
+
+
+.email {
+    color: rgb(128, 189, 247);
+}
+
+
+.phone {
+    color: #666;
+}
+
+
+.contact-detail-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #fff;
+    font-size: 24px;
+    border: solid 2px white;
+}
+
+
+#detailName {
+    margin-bottom: 8px;
+    font-size: 36px;
+    font-weight: 300;
+}
+
+
+/* =========================
+   OVERLAY-BASIS
+   ========================= */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    /* Standardzustand: overlay ist rechts außerhalb des Bildschirms */
+    /* transform: translateX(100%);
+    transition: transform 0.3s ease-out; */
+}
+
+
+/* Wenn das Overlay sichtbar sein soll, füge die Klasse "show" hinzu */
+.overlay.show {
+    opacity: 1;
+}
+
+
+/* Wenn das Overlay angezeigt wird, erhält es die Klasse .show */
+/* .overlay.show {
+    transform: translateX(0);
+} */
+
+
+.overlay-content {
+    display: flex;
+    width: 70%;
+    max-width: 900px;
+    min-height: 400px;
+    background-color: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+
+
+    /* Standardzustand des Overlay-Contents: Er ist rechts außerhalb */
+    transform: translateX(100%);
+    transition: transform 0.3s ease-out;
+}
+
+
+/* Wenn die Klasse .slide-in hinzugefügt wird, fährt der Content rein */
+.overlay-content.slide-in {
+    transform: translateX(0);
+}
+
+
+/* =========================
+     LINKER BEREICH
+     ========================= */
+.overlay-left {
+    background-color: rgb(42, 54, 71);
+    color: #fff;
+    width: 40%;
+    padding: 40px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.overlay-left img {
+    width: 48px;
+    height: 48px;
+}
+
+
+.overlay-left h2 {
+    margin: 12px 0;
+    font-size: 36px;
+}
+
+
+.overlay-left p {
+    margin: 0;
+    font-size: 16px;
+}
+
+
+/* =========================
+     RECHTER BEREICH
+     ========================= */
+.overlay-right {
+    width: 60%;
+    padding: 40px;
+    box-sizing: border-box;
+    position: relative;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+}
+
+
+.overlay-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 24px;
+    color: rgb(69, 79, 94);
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.overlay-close:hover {
+    background-color: rgb(220 220 220);
+}
+
+
+.new-contact-details {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-around;
+}
+
+
+.overlay-avatar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+
+.overlay-avatar img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #ccc;
+}
+
+
+/* =========================
+     FORMULAR-STYLING
+     ========================= */
+.overlay-input-group {
+    margin-bottom: 20px;
+}
+
+
+.overlay-input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+
+.input-wrapper {
+    position: relative;
+}
+
+
+.input-wrapper input {
+    width: 100%;
+    padding: 10px 40px 10px 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+
+.input-wrapper img {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    object-fit: none;
+    pointer-events: none;
+}
+
+
+/* =========================
+     BUTTONS
+     ========================= */
+.overlay-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+
+.overlay-buttons img {
+    width: 12px;
+    height: 12px;
+    padding-left: 4px;
+
+    /* transition: filter 0.3s ease;
+    filter: grayscale(100%); */
+}
+
+
+/* .btn-cancel:hover img {
+    filter: grayscale(100%) brightness(0) invert(1) sepia(1) saturate(1000%) hue-rotate(170deg);
+} */
+
+
+
+.btn-cancel {
+    background-color: white;
+    border: solid 1px;
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    height: 40px;
+    font-size: 16px;
+}
+
+
+.btn-cancel:hover {
+    color: rgb(41, 171, 226);
+}
+
+
+.btn-save {
+    background-color: rgb(42, 54, 71);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    height: 40px;
+    font-size: 16px;
+}
+
+
+.btn-save:hover {
+    background-color: rgb(41, 171, 226);
+}

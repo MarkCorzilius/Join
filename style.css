@@ -1,6 +1,6 @@
 body {
     font-family: 'PT Sans', sans-serif;
-    background-color: rgb(246,247,248);
+    /* background-color: rgb(246,247,248); */
     margin: 0;
     height: 100vh;
 }
@@ -18,4 +18,20 @@ li {
 
 .d-flex {
     display: flex;
+}
+
+
+#main {
+    display: flex;
+    flex-direction: row;
+}
+
+
+#content {
+    margin-top: 80px;
+    /* margin-left: 200px; */
+    width: calc(100vw - 200px);
+    /* height: calc(100vh - 80px); */
+    box-sizing: border-box;
+    overflow: auto;
 }
