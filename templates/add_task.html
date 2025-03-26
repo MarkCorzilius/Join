@@ -4,15 +4,15 @@
     <div class="question-blocks">
       <div class="task-left-block">
         <div class="title-field-space">
-          <label class="field-label-required">Title</label>
-          <input class="title-field" type="text" />
+          <label required class="field-label-required">Title</label>
+          <input class="title-field" placeholder="Enter a title" type="text" />
         </div>
         <div class="title-field-space">
           <label class="field-label" for="description">Description</label>
           <textarea class="description-area" id="description" name="description" placeholder="Enter a description"></textarea>
         </div>
         <div class="title-field-space">
-          <label class="field-label-required due-date-title">Due date</label>
+          <label required class="field-label-required due-date-title">Due date</label>
           <input class="due-date-field" type="date" />
         </div>
       </div>
@@ -23,35 +23,41 @@
           <div class="priority-buttons">
             <button class="priority-button">
               <p>Urgent</p>
-              <img src="./img/priority_low.png" alt="low" />
+              <img class="priority-pngs" src="./img/priority_low.png" alt="low" />
             </button>
             <button class="priority-button">
               <p>Medium</p>
-              <img src="./img/priority_medium.png" alt="medium" />
+              <img class="priority-pngs" src="./img/priority_medium.png" alt="medium" />
             </button>
             <button class="priority-button">
               <p>Low</p>
-              <img src="./img/priority_urgent.png" alt="urgent" />
+              <img class="priority-pngs" src="./img/priority_urgent.png" alt="urgent" />
             </button>
           </div>
         </div>
         <div class="assignment-section">
           <label class="field-label" for="contacts">Assigned to</label>
-          <select id="contacts" name="contacts">
-            <option value="" disabled selected>Select contacts</option>
-            <option value="work">Work</option>
-            <option value="personal">Personal</option>
-            <option value="urgent">Urgent</option>
-          </select>
+          <div class="contacts-selection-wrapper">
+            <select id="contacts" name="contacts">
+              <option value="" disabled selected hidden>Select contacts</option>
+              <option value="work">Mark Corzilius</option>
+              <option value="personal">Igor Boger</option>
+              <option value="urgent">Victoria Latza</option>
+            </select>
+            <img class="select-arrow" src="./img/dropdown-arrow-down.png" alt="open" />
+          </div>
         </div>
         <div class="category-section">
-          <label class="field-label-required">Category</label>
-          <select id="category" name="category">
-            <option value="" disabled selected>Select task category</option>
-            <option value="work">Work</option>
-            <option value="personal">Personal</option>
-            <option value="urgent">Urgent</option>
-          </select>
+          <label required class="field-label-required">Category</label>
+          <div class="category-selection-wrapper">
+            <select id="category" name="category">
+              <option value="" disabled selected hidden>Select task category</option>
+              <option value="work">Work</option>
+              <option value="personal">Personal</option>
+              <option value="urgent">Urgent</option>
+            </select>
+            <img class="select-arrow" src="./img/dropdown-arrow-down.png" alt="open" />
+          </div>
         </div>
         <div class="subtasks-section">
           <label class="field-label" for="subtask">Subtasks</label>
@@ -60,6 +66,19 @@
             <img class="subtask-button" src="./img/add.png" alt="" />
           </div>
         </div>
+      </div>
+    </div>
+    <div class="add-task-footer">
+      <p class="requirement-warning">This field is required</p>
+      <div class="footer-buttons-wrapper">
+        <button class="clear-all-button">
+          <p>Clear</p>
+          <img src="./img/close.png" alt="close" />
+        </button>
+        <button class="create-task-button">
+          <p>Create Task</p>
+          <img src="./img/check.png" alt="check" />
+        </button>
       </div>
     </div>
   </div>
