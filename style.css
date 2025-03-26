@@ -6,13 +6,13 @@ body {
 }
 
 a {
-    color: #29ABE2;
-    text-decoration: none;
+  color: #29ABE2;
+  text-decoration: none;
 }
 
 a:hover {
-    color: #15556e;
-
+  color: #15556e;
+  
 }
 
 li {
@@ -38,22 +38,13 @@ li {
 
 
 #content {
-    /* margin-left: 200px; */
-    /* height: calc(100vh - 80px); */
-
-    /* margin-top: 80px;
-    width: calc(100vw - 200px);
-    box-sizing: border-box;
-    overflow: auto; */
-
-
-    z-index: 10;
-    width: 100%;
-    height: calc(100vh - 80px);
-    margin-top: 80px;
-    display: flex;
-    /* padding-top: 64px; */
-    box-sizing: border-box;
+  z-index: 10;
+  width: 100%;
+  height: calc(100vh - 80px);
+  margin-top: 80px;
+  display: flex;
+  padding-top: 64px;
+  box-sizing: border-box;
 }
 
 
@@ -67,13 +58,13 @@ li {
 }
 
 input {
-    text-indent: 20px;
-    font-size: 16px;
+  text-indent: 20px;
+  font-size: 16px;
 }
 
 textarea {
-    text-indent: 20px;
-    font-size: 16px;
+  text-indent: 20px;
+  font-size: 16px;
 }
 
 button {
