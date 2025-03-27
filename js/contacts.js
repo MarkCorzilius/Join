@@ -38,6 +38,7 @@ const bgImages = [
 
 
 function renderContacts() {
+    loadFromLocalStorage();
     contactsArray.sort((a, b) => a.name.localeCompare(b.name));
     const container = document.querySelector('.contacts-list');
     if (!container) return;
@@ -128,7 +129,7 @@ function generateContactDetails(bg, initials, name, email, phone) {
         <div class="edit-delete">
           <h2 id="detailName">${name}</h2>
           <img src="/img/edit_contacts.png" alt="">
-          <img src="/img/delete-contact.png" alt="">
+          <img src="/img/delete-contact.png" alt="" onclick="deleteContact('${email}')">
         </div>
       </div>
       <div class="email-phone">
@@ -176,9 +177,14 @@ function closeAddContactOverlay() {
 }
 
 
-document.getElementById("addContactOverlay").addEventListener("click", function (e) {
-    if (e.target === this) {
-        closeAddContactOverlay();
+document.addEventListener("DOMContentLoaded", function () {
+    const overlay = document.getElementById("addContactOverlay");
+    if (overlay) {
+        overlay.addEventListener("click", function (e) {
+            if (e.target === this) {
+                closeAddContactOverlay();
+            }
+        });
     }
 });
 
@@ -187,16 +193,40 @@ function saveNewContact() {
     const name = document.getElementById('contactName').value.trim();
     const email = document.getElementById('contactEmail').value.trim();
     const phone = document.getElementById('contactPhone').value.trim();
-    if (!name || !email) {
-        alert("Bitte Name und E-Mail angeben!");
-        return;
-    }
-    const newContact = { name, email, phone };
-    contactsArray.push(newContact);
+    if (!validateContactInput(name, email, phone)) return;
+    if (contactExists(email)) return;
+    newContactPushToArray(name, email, phone);
+    saveToLocalStorage();  // Kontakte speichern
     renderContacts();
     closeAddContactOverlay();
     deleteValue();
 }
+
+
+function validateContactInput(name, email, phone) {
+    if (!name || !email || !phone) {
+        alert("Bitte Name, E-Mail und Telefonnummer angeben!");
+        return false;
+    }
+    return true;
+}
+
+
+function contactExists(email) {
+    const exists = contactsArray.some(contact => contact.email.toLowerCase() === email.toLowerCase());
+    if (exists) {
+        alert("Kontakt existiert bereits!");
+        return true;
+    }
+    return false;
+}
+
+
+function newContactPushToArray(name, email, phone) {
+    const newContact = { name, email, phone };
+    contactsArray.push(newContact);
+}
+
 
 
 function deleteValue() {
@@ -205,3 +235,40 @@ function deleteValue() {
     document.getElementById('contactPhone').value = '';
 }
 
+
+function deleteContact(email) {
+    // Optional: Bestätigung vom Nutzer einholen
+    // if (!confirm("Möchten Sie diesen Kontakt wirklich löschen?")) return;
+
+    // Entferne den Kontakt aus dem Array
+    contactsArray = contactsArray.filter(contact =>
+        contact.email.toLowerCase() !== email.toLowerCase()
+    );
+
+    // Aktualisiere den Local Storage
+    saveToLocalStorage();
+
+    // Neu rendern der Kontaktliste
+    renderContacts();
+
+    // Falls die Detailansicht den gelöschten Kontakt zeigt, ausblenden
+    let detailView = document.getElementById("contactDetailView");
+    if (detailView) {
+        detailView.classList.add("d-none");
+        detailView.innerHTML = "";
+    }
+}
+
+
+function saveToLocalStorage() {
+    localStorage.setItem("contacts", JSON.stringify(contactsArray));
+}
+
+
+function loadFromLocalStorage() {
+    const savedContacts = localStorage.getItem("contacts");
+    if (savedContacts) {
+        contactsArray = JSON.parse(savedContacts);
+    }
+    // renderContacts();
+}

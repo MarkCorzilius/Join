@@ -5,15 +5,21 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: center; */
   box-sizing: border-box;
   /* font-family: 'PT Sans', sans-serif; */
+  padding: 40px 0;
 }
 
+
+.sidebar-logo {
+  margin-left: 40px;
+}
+
+
 .sidebar-logo img {
-  padding-top: 48px;
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
 }
 
 .sidebar-button {
@@ -44,7 +50,7 @@
   text-align: center;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease-in-out;
   /* font-family: 'PT Sans', sans-serif; */
   display: flex;
   justify-content: left;
@@ -52,6 +58,12 @@
   gap: 8px;
   padding-left: 40px;
 }
+
+
+.nav-button p {
+  margin: 0;
+}
+
 
 .nav-button svg {
   margin-right: 16px;
@@ -74,4 +86,34 @@
   justify-content: center;
   flex-direction: column;
   width: 100%;
+}
+
+
+.sidebar-footer button {
+  color: rgb(168, 168, 168);
+  text-decoration: none;
+  transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
+}
+
+
+.sidebar-footer .nav-button:hover {
+  background-color: transparent;
+  color: rgb(41, 171, 226);
+  transform: scale(1.01);
+  font-weight: bold;
+}
+
+
+
+.sidebar-footer .clicked-color {
+  transition: color 0.1s ease-in-out;
+}
+
+
+.sidebar-footer .clicked-color:hover {
+  background-color: rgb(9, 25, 49);
+  color: rgb(168, 168, 168);
+  transform: scale(1.00);
+  font-weight: normal;
+  cursor: default;
 }

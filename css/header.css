@@ -55,12 +55,12 @@
     font-weight: bold;
     cursor: pointer;
     font-family: 'PT Sans', sans-serif;
-    transition: transform 0.2s ease;
-  }
-  
-  .help-icon:hover {
-    transform: scale(1.1); 
-  }
+    transition: transform 0.2s ease-in-out;
+}
+
+.help-icon:hover {
+    transform: scale(1.1);
+}
 
 
 .user-initials {
