@@ -89,7 +89,7 @@
 
 .add-task-main {
   display: flex;
-  justify-content: center;
+  margin-left: 100px;
 }
 
 .add-task-main-wrapper {
@@ -161,6 +161,7 @@
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+  cursor: pointer;
 }
 
 #category {
@@ -172,6 +173,7 @@
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+  cursor: pointer;
 }
 
 #subtask {
