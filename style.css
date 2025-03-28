@@ -46,6 +46,7 @@ li {
   /* padding-top: 64px; */          /*  Besser direkt in  .add-task-main  */      
   box-sizing: border-box;
   overflow: auto;
+  background-color: rgb(246 247 248);
 }
 
 
