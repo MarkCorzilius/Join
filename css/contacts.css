@@ -267,7 +267,7 @@
 } */
 
 
-.overlay-content {
+.overlay-add-content {
     display: flex;
     width: 70%;
     max-width: 900px;
@@ -278,14 +278,37 @@
     position: relative;
 
 
-    /* Standardzustand des Overlay-Contents: Er ist rechts außerhalb */
+    /* Standardzustand des Overlay-add-Contents: Er ist rechts außerhalb */
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
 }
 
 
 /* Wenn die Klasse .slide-in hinzugefügt wird, fährt der Content rein */
-.overlay-content.slide-in {
+.overlay-add-content.slide-in {
+    transform: translateX(0);
+}
+
+
+.overlay-edit-content {
+    display: flex;
+    width: 70%;
+    max-width: 900px;
+    min-height: 400px;
+    background-color: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+
+
+    /* Standardzustand des Overlay-add-Contents: Er ist rechts außerhalb */
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+
+/* Wenn die Klasse .slide-in hinzugefügt wird, fährt der Content rein */
+.overlay-edit-content.slide-in {
     transform: translateX(0);
 }
 
@@ -325,6 +348,24 @@
 }
 
 .overlay-left p::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 30%;
+    height: 3px;
+    background-color: rgb(41, 171, 226);
+}
+
+
+.edit-pseudo-element {
+    margin: 0;
+    font-size: 16px;
+    padding: 0 0 8px 0;
+    position: relative;
+}
+
+.edit-pseudo-element::after {
     content: "";
     position: absolute;
     left: 0;
@@ -384,10 +425,19 @@
 }
 
 
-.overlay-avatar {
+.overlay-edit-avatar {
+    background-color: pink;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
     display: flex;
+    align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    font-weight: bold;
+    color: #fff;
+    font-size: 24px;
+    border: solid 2px white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -534,4 +584,25 @@
 .btn-save:hover {
     background-color: rgb(41, 171, 226);
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+
+.overlay-contact-succesfully-created {
+    position: fixed;
+    bottom: 10%;
+    right: 15%;
+    /* max-height: 80%;
+    max-width: 80%; */
+    object-fit: contain;
+    background-color: rgba(0, 0, 0, 0);
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+
+}
+
+
+.overlay-contact-succesfully-created.show {
+    transform: translateX(0);
+    opacity: 1;
 }

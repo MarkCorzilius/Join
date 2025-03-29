@@ -2,12 +2,13 @@
     height: calc(100vh - 80px);
     /* 80px z. B. für einen festen Header */
     overflow-y: auto;
+    /* hier wird nur  privacyPolicyMain gescrollt*/
 
     display: flex;
     justify-content: center;
-    /* margin-left: 80px;
-    margin-right: 100px;
-    margin-bottom: 50px; */
+    /* margin-left: 80px; */
+    /* margin-right: 100px; */
+    /* margin-bottom: 50px; */
     padding: 0 80px;
     font-size: 16px;
     font-weight: 400;

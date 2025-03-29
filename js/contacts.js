@@ -37,6 +37,10 @@ const bgImages = [
 ];
 
 
+// Globaler Speicher für den aktuell bearbeiteten Kontakt
+let currentContact = null;
+
+
 function renderContacts() {
     loadFromLocalStorage();
     contactsArray.sort((a, b) => a.name.localeCompare(b.name));
@@ -128,7 +132,7 @@ function generateContactDetails(bg, initials, name, email, phone) {
         </div>
         <div class="edit-delete">
           <h2 id="detailName">${name}</h2>
-          <img src="/img/edit_contacts.png" alt="">
+          <img src="/img/edit_contacts.png" alt="" onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}')">
           <img src="/img/delete-contact.png" alt="" onclick="deleteContact('${email}')">
         </div>
       </div>
@@ -160,27 +164,27 @@ function contactItemClicked(itemElement) {
 
 
 function openAddContactOverlay() {
-    const overlay = document.getElementById('addContactOverlay');
-    overlay.classList.remove("d-none");
-    setTimeout(() => overlay.classList.add("show"), 10);
-    const overlayContent = overlay.querySelector(".overlay-content");
-    setTimeout(() => overlayContent.classList.add("slide-in"), 10);
+    const addContactOverlay = document.getElementById('addContactOverlay');
+    addContactOverlay.classList.remove("d-none");
+    setTimeout(() => addContactOverlay.classList.add("show"), 10);
+    const overlayAddContent = addContactOverlay.querySelector(".overlay-add-content");
+    setTimeout(() => overlayAddContent.classList.add("slide-in"), 10);
 }
 
 
 function closeAddContactOverlay() {
-    const overlay = document.getElementById('addContactOverlay');
-    const overlayContent = overlay.querySelector(".overlay-content");
-    overlayContent.classList.remove("slide-in");
-    overlay.classList.remove("show");
-    setTimeout(() => overlay.classList.add("d-none"), 300);
+    const addContactOverlay = document.getElementById('addContactOverlay');
+    const overlayAddContent = addContactOverlay.querySelector(".overlay-add-content");
+    overlayAddContent.classList.remove("slide-in");
+    addContactOverlay.classList.remove("show");
+    setTimeout(() => addContactOverlay.classList.add("d-none"), 300);
 }
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    const overlay = document.getElementById("addContactOverlay");
-    if (overlay) {
-        overlay.addEventListener("click", function (e) {
+    const addContactOverlay = document.getElementById("addContactOverlay");
+    if (addContactOverlay) {
+        addContactOverlay.addEventListener("click", function (e) {
             if (e.target === this) {
                 closeAddContactOverlay();
             }
@@ -196,10 +200,64 @@ function saveNewContact() {
     if (!validateContactInput(name, email, phone)) return;
     if (contactExists(email)) return;
     newContactPushToArray(name, email, phone);
-    saveToLocalStorage();  // Kontakte speichern
+    saveToLocalStorage();
     renderContacts();
     closeAddContactOverlay();
     deleteValue();
+    overlayForContactSuccesfullyCreated();
+}
+
+
+// function overlayForContactSuccesfullyCreated() {
+//     const contactSuccesfullyCreated = document.getElementById('contactSuccesfullyCreated');
+//     contactSuccesfullyCreated.classList.remove("d-none");
+//     setTimeout(() => contactSuccesfullyCreated.classList.add("show"), 10);
+//     const overlaySuccesfullyCreated = contactSuccesfullyCreated.querySelector(".overlay-add-content");
+//     setTimeout(() => overlaySuccesfullyCreated.classList.add("slide-in"), 10);
+
+
+//     // const addContactOverlay = document.getElementById('addContactOverlay');
+//     // const overlayAddContent = addContactOverlay.querySelector(".overlay-add-content");
+//     // overlayAddContent.classList.remove("slide-in");
+//     // addContactOverlay.classList.remove("show");
+//     setTimeout(() => contactSuccesfullyCreated.classList.add("d-none"), 300);
+
+// }
+
+
+// function overlayForContactSuccesfullyCreated() {
+//     const overlay = document.getElementById("contactSuccesfullyCreated");
+//     // Overlay sichtbar machen
+//     overlay.classList.remove("d-none");
+//     // Kurz warten, damit der Browser den Startzustand erkennt
+//     setTimeout(() => overlay.classList.add("show"), 10);
+//     // Nach ca. 2 Sekunden Overlay wieder schließen
+//     setTimeout(() => {
+//         overlay.classList.remove("show");
+//         // Nach der Übergangszeit wieder ausblenden
+//         setTimeout(() => overlay.classList.add("d-none"), 500);
+//     }, 2000);
+// }
+
+
+function overlayForContactSuccesfullyCreated() {
+    const overlay = document.getElementById("contactSuccesfullyCreated");
+    const detailContainer = document.getElementById("contactDetailContainer");
+
+    const containerRect = detailContainer.getBoundingClientRect();
+    const computedStyle = getComputedStyle(detailContainer);
+    // Den linken Padding-Wert ermitteln (z. B. "48px" -> 48)
+    const paddingLeft = parseFloat(computedStyle.paddingLeft);
+    
+    // Setze den linken Offset des Overlays so, dass er den Padding berücksichtigt
+    overlay.style.left = (containerRect.left + paddingLeft) + "px";
+    
+    overlay.classList.remove("d-none");
+    setTimeout(() => overlay.classList.add("show"), 10);
+    setTimeout(() => {
+        overlay.classList.remove("show");
+        setTimeout(() => overlay.classList.add("d-none"), 500);
+    }, 2000);
 }
 
 
@@ -260,6 +318,104 @@ function deleteContact(email) {
 }
 
 
+function editContact(name, email, phone, initials, bg) {
+    // Speichere den aktuellen Kontakt (als Kopie) in einer globalen Variable
+    currentContact = { name, email, phone };
+
+    // Öffne das Edit-Overlay
+    let editOverlay = document.getElementById("editContactOverlay");
+    editOverlay.classList.remove("d-none");
+    setTimeout(() => editOverlay.classList.add("show"), 10);
+    const overlayContent = editOverlay.querySelector(".overlay-edit-content");
+    setTimeout(() => overlayContent.classList.add("slide-in"), 10);
+
+    // Fülle die Eingabefelder
+    document.getElementById("editName").value = name;
+    document.getElementById("editEmail").value = email;
+    document.getElementById("editPhone").value = phone;
+    let editAvatar = document.getElementById("editAvatar");
+    // editAvatar.style.backgroundColor = bg;
+    // editAvatar.style.backgroundImage = url(${bg});
+    editAvatar.style.backgroundImage = `url(${bg})`;
+
+    editAvatar.innerHTML = `
+        ${initials}
+    `;
+}
+
+
+function saveEditedContact() {
+    if (!currentContact) return;
+
+    // Neue Werte aus den Edit-Feldern auslesen
+    const newName = document.getElementById("editName").value.trim();
+    const newEmail = document.getElementById("editEmail").value.trim();
+    const newPhone = document.getElementById("editPhone").value.trim();
+
+    if (!validateContactInput(newName, newEmail, newPhone)) return;
+
+    updateContact(newName, newEmail, newPhone);
+
+    // Kontakte im Local Storage speichern und Liste neu rendern
+    saveToLocalStorage();
+    renderContacts();
+
+    updateDetailView(newName, newEmail, newPhone);
+
+    closeEditContactOverlay();
+    currentContact = null;
+}
+
+
+function updateContact(newName, newEmail, newPhone) {
+    // Kontakt im Array anhand der ursprünglichen Email aktualisieren
+    contactsArray = contactsArray.map(contact => {
+        if (contact.email.toLowerCase() === currentContact.email.toLowerCase()) {
+            return { name: newName, email: newEmail, phone: newPhone };
+        }
+        return contact;
+    });
+}
+
+
+function updateDetailView(newName, newEmail, newPhone) {
+    // Aktualisiere die Detailansicht, wenn sie sichtbar ist
+    let detailView = document.getElementById("contactDetailView");
+    if (!detailView.classList.contains("d-none")) {
+        const vars = getContactVars({ name: newName });
+        detailView.innerHTML = generateContactDetails(vars.bg, vars.initials, newName, newEmail, newPhone);
+        // Optional: erneuter Slide-Effekt
+        slideEfekt();
+    }
+}
+
+
+
+function deleteContactForEdit() {
+    if (!currentContact) return;
+    if (!confirm("Möchten Sie diesen Kontakt wirklich löschen?")) return;
+
+    // Entferne den Kontakt aus dem Array
+    contactsArray = contactsArray.filter(contact =>
+        contact.email.toLowerCase() !== currentContact.email.toLowerCase()
+    );
+
+    saveToLocalStorage();
+    renderContacts();
+    closeEditContactOverlay();
+    currentContact = null;
+}
+
+
+function closeEditContactOverlay(email) {
+    const editContactOverlay = document.getElementById('editContactOverlay');
+    const overlayEditContent = editContactOverlay.querySelector(".overlay-edit-content");
+    overlayEditContent.classList.remove("slide-in");
+    editContactOverlay.classList.remove("show");
+    setTimeout(() => editContactOverlay.classList.add("d-none"), 300);
+}
+
+
 function saveToLocalStorage() {
     localStorage.setItem("contacts", JSON.stringify(contactsArray));
 }
@@ -270,5 +426,4 @@ function loadFromLocalStorage() {
     if (savedContacts) {
         contactsArray = JSON.parse(savedContacts);
     }
-    // renderContacts();
 }
