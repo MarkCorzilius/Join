@@ -29,17 +29,18 @@
 
 .header-title {
     margin: 0;
-    font-size: 16px;
-    color: #333;
-    font-weight: 500;
-    font-family: 'PT Sans', sans-serif;
+    padding-left: 50px;
+    font-size: 20px;
+    color: #000000;
+    font-weight: 400;
+     /*font-family: 'PT Sans', sans-serif; */
 }
 
 
 .header-right {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
 }
 
 
@@ -61,7 +62,7 @@
 .user-initials {
     width: 36px;
     height: 36px;
-    color: rgb(41, 171, 226);
+    color: #29ABE2;
     border-radius: 50%;
     border: solid 2px rgb(42, 54, 71);
     display: flex;
