@@ -49,10 +49,11 @@
 
 .description-area {
   width: 440px;
-  height: 168px;
+  height: 150px;
   resize: none;
   border: 1px solid rgb(209 209 209);
   border-radius: 10px;
+  padding-top: 18px;
 }
 
 .title-field {
@@ -65,6 +66,7 @@
 .add-task-page-title {
   font-size: 61px;
   margin: 0;
+  padding-top: 40px;
 }
 
 .due-date-field {
@@ -162,6 +164,7 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   cursor: pointer;
+  padding-left: 16px;
 }
 
 #category {
@@ -174,6 +177,7 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   cursor: pointer;
+  padding-left: 16px;
 }
 
 #subtask {

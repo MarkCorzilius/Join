@@ -6,74 +6,81 @@ body {
 }
 
 a {
-  color: #29ABE2;
+  color: #29abe2;
   text-decoration: none;
 }
 
 a:hover {
   color: #15556e;
-  
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }
 
 .d-none {
-    display: none;
+  display: none;
 }
 
 .d-flex {
-    display: flex;
+  display: flex;
 }
-
 
 #main {
-    /* display: flex;
-    flex-direction: row; */
-
-    display: grid !important;
-    grid-template-columns: 200px 1fr !important;
+  display: grid !important;
+  grid-template-columns: 200px 1fr !important;
 }
 
-
 #content {
-  /* z-index: 10; */                /*  ?   */
-  /* width: 100%; */                /*  ?   */
-  /* height: calc(100vh - 80px);*/  /*  ?   */
+  /* z-index: 10; */ /*  ?   */
+  /* width: 100%; */ /*  ?   */
+  /* height: calc(100vh - 80px);*/ /*  ?   */
   margin-top: 80px;
-  /* display: flex; */              /*  ?   */
-  /* padding-top: 64px; */          /*  Besser direkt in  .add-task-main  */      
+  /* display: flex; */ /*  ?   */
+  /* padding-top: 64px; */ /*  Besser direkt in  .add-task-main  */
   box-sizing: border-box;
   overflow: auto;
   background-color: rgb(246 247 248);
 }
 
-
 .light-grey-bg {
-    background-color: rgb(246 247 248);
+  background-color: rgb(246 247 248);
 }
 
-
 .included-page-div {
-    width: 100%;
+  width: 100%;
 }
 
 input {
-  text-indent: 20px;             
   font-size: 16px;
 }
 
+input[type="date"] {
+  text-indent: 8px;
+}
+
+input[type="text"] {
+  text-indent: 16px;
+}
+
 textarea {
-  text-indent: 20px;
+  text-indent: 16px;
   font-size: 16px;
 }
 
 button {
-    border: none;
-    outline: none;
+  border: none;
+  outline: none;
 }
 
 p {
   margin: 0;
+}
+
+input[type="date"] {
+  opacity: 1; /* 50% visible by default */
+}
+
+input[type="date"]:valid {
+  opacity: 0.5; /* Fully visible when a date is selected */
 }
