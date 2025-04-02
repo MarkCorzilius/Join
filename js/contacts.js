@@ -323,11 +323,11 @@ function editContact(name, email, phone, initials, bg) {
     currentContact = { name, email, phone };
 
     // Öffne das Edit-Overlay
-    let editOverlay = document.getElementById("editContactOverlay");
-    editOverlay.classList.remove("d-none");
-    setTimeout(() => editOverlay.classList.add("show"), 10);
-    const overlayContent = editOverlay.querySelector(".overlay-edit-content");
-    setTimeout(() => overlayContent.classList.add("slide-in"), 10);
+    let editContactOverlay = document.getElementById("editContactOverlay");
+    editContactOverlay.classList.remove("d-none");
+    setTimeout(() => editContactOverlay.classList.add("show"), 10);
+    const overlayEditContactOverlay = editContactOverlay.querySelector(".overlay-edit-content");
+    setTimeout(() => overlayEditContactOverlay.classList.add("slide-in"), 10);
 
     // Fülle die Eingabefelder
     document.getElementById("editName").value = name;
@@ -388,7 +388,6 @@ function updateDetailView(newName, newEmail, newPhone) {
         slideEfekt();
     }
 }
-
 
 
 function deleteContactForEdit() {

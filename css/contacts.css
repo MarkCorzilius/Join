@@ -93,7 +93,6 @@
     background-color: rgb(246, 247, 248);
     padding: 80px 48px;
     box-sizing: border-box;
-
 }
 
 
@@ -267,6 +266,27 @@
 
 .overlay-add-content.slide-in {
     transform: translateX(0);
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+
+.overlay.show {
+    opacity: 1;
 }
 
 
@@ -557,4 +577,58 @@
 .overlay-contact-succesfully-created.show {
     transform: translateX(0);
     opacity: 1;
+}
+
+
+@media (max-width: 1000px) {
+    .contact-info {
+        height: calc(100vh - 180px);
+    }
+
+    .contacts {
+        height: calc(100vh - 180px);
+    }
+}
+
+
+@media (max-width: 800px) {
+    .contact-info {
+        display: none;
+    }
+
+    .contacts {
+        width: 100%;
+    }
+
+
+    .add-contact-btn {
+        width: 48px;
+        height: 48px;
+        position: absolute;
+        bottom: 120px;
+        right: 30px;
+        border-radius: 50%;
+        margin: 0;
+        padding: 0;
+        z-index: 1;
+    }
+
+    .add-contact-btn p {
+        display: none;
+    }
+
+    .add-contact-btn img {
+        margin: 0;
+    }
+}
+
+
+@media (max-width: 450px) {
+    .contact-info {
+        height: calc(100vh - 160px);
+    }
+
+    .contacts {
+        height: calc(100vh - 160px);
+    }
 }

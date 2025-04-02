@@ -2,7 +2,7 @@
 
     <div class="contacts">
         <button class="add-contact-btn" onclick="openAddContactOverlay()">
-            Add new contact
+            <p>Add new contact</p>
             <img src="/img/person_add.png" alt="">
         </button>
         <div class="contacts-list"></div>
@@ -85,66 +85,6 @@
 
 <!-- :::::::::  OVERLAY edit Contact ::::::::::::::: -->
 
-
-<!-- <div id="editContactOverlay" class="overlay" onclick="if(event.target===this){ closeEditContactOverlay(); }"> -->
-<!-- <div id="editContactOverlay" class="overlay d-none">
-    <div class="overlay-edit-content">
-        <div class="overlay-left">
-            <img src="/img/join-logo-white.svg" alt="Join Logo" class="overlay-logo">
-            <h2 class="edit-pseudo-element">Edit contact</h2>
-        </div>
-
-        <div class="overlay-right">
-            <div class="overlay-close" onclick="closeEditContactOverlay()">
-                <img src="/img/close.png" alt="">
-            </div>
-
-            <div class="new-contact-details">
-                <div class="overlay-avatar">
-                    <img src="/img/person.png" alt="User Avatar" />
-                </div>
-
-                <form onsubmit="saveEditetContact(); return false;">
-                    <div class="overlay-input-group">
-                        <label for="contactName">Name</label>
-                        <div class="input-wrapper">
-                            <input type="text" id="editName" required />
-                            <img src="/img/person_input.png" alt="">
-                        </div>
-                    </div>
-
-                    <div class="overlay-input-group">
-                        <label for="contactEmail">Email</label>
-                        <div class="input-wrapper">
-                            <input type="email" id="editEmail" required />
-                            <img src="/img/mail_input.png" alt="">
-                        </div>
-                    </div>
-
-                    <div class="overlay-input-group">
-                        <label for="contactPhone">Phone</label>
-                        <div class="input-wrapper">
-                            <input type="tel" id="editPhone" required />
-                            <img src="/img/call_input.png" alt="">
-                        </div>
-                    </div>
-
-                    <div class="overlay-buttons">
-                        <button type="button" class="btn-cancel" onclick="deleteContact('email')">
-                            Delete
-                        </button>
-                        <button type="submit" class="btn-save">
-                            Save
-                            <img src="/img/check.png" alt="">
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-
 <div id="editContactOverlay" class="overlay d-none">
     <div class="overlay-edit-content">
         <div class="overlay-left">
@@ -157,8 +97,6 @@
             </div>
             <div class="new-contact-details">
                 <div class="overlay-edit-avatar" id="editAvatar">
-                    <!-- Hier kannst du später auch den bg und initials übernehmen, z. B. über JavaScript -->
-                    <!-- <img src="/img/person.png" alt="User Avatar"> -->
                 </div>
                 <form onsubmit="saveEditedContact(); return false;">
                     <div class="overlay-input-group">
