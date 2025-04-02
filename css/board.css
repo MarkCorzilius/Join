@@ -4,6 +4,16 @@
   padding: 64px 0px 40px;
 }
 
+.board-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding-left: 100px;
+}
+
 .search-container {
   display: flex;
   align-items: center;
@@ -77,6 +87,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   padding: 40px 64px;
 }
 
