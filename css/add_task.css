@@ -202,8 +202,12 @@
 .add-task-footer {
   display: flex;
   align-items: center;
+  position: fixed;
   justify-content: space-between;
-  margin-top: 80px;
+  bottom: 80px;
+  left: 200px;
+  width: calc(100% - 200px);
+  position: fixed;
 }
 .footer-buttons-wrapper {
   display: flex;

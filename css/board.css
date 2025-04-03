@@ -4,16 +4,6 @@
   padding: 64px 0px 40px;
 }
 
-.board-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  box-sizing: border-box;
-  padding-left: 100px;
-}
-
 .search-container {
   display: flex;
   align-items: center;
@@ -91,6 +81,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
   box-sizing: border-box;
   padding: 40px 64px;
 }
@@ -111,8 +102,11 @@
 }
 
 .board-all-tasks-section {
-  display: flex;
-  gap: 40px;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-content: space-between;
+  gap: 35px;
+  width: 100%;
 }
 
 .board-column-control {

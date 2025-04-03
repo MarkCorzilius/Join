@@ -1,9 +1,9 @@
 function clearBtnToBlue() {
-  document.getElementById("clearBtn").src = "./img/clear_btn_hovered.png";
+  document.getElementById("clearBtn").src = "../img/clear_btn_hovered.png";
 }
 
 function clearBtnToBlack() {
-  document.getElementById("clearBtn").src = "./img/close.png";
+  document.getElementById("clearBtn").src = "../img/close.png";
 }
 
 function setActivePriority(button, color) {
