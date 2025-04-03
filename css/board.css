@@ -66,6 +66,10 @@
   width: 160px;
 }
 
+.add-task-button:hover {
+  background-color: rgb(41, 171, 226);
+}
+
 .add-task-buttons-wrapper {
   display: flex;
   align-items: center;
@@ -117,4 +121,23 @@
   justify-content: space-between;
   width: 244px;
   margin-bottom: 8px;
+}
+
+.empty-column {
+  height: 48px;
+  width: 246px;
+  border: 1px dotted rgba(168, 168, 168, 1);
+  background-color: rgba(231, 231, 231, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(168, 168, 168, 1);
+  border-radius: 10px;
+}
+
+.tasks-box {
+  width: 252px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
 }
