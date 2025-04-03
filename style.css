@@ -26,12 +26,12 @@ li {
   display: flex;
 }
 
-#main {
+.main {
   display: grid !important;
   grid-template-columns: 200px 1fr !important;
 }
 
-#content {
+.content {
   /* z-index: 10; */ /*  ?   */
   /* width: 100%; */ /*  ?   */
   /* height: calc(100vh - 80px);*/ /*  ?   */

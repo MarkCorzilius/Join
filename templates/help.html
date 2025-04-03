@@ -1,30 +1,97 @@
+<!DOCTYPE html>
+<!-- <html lang="en"> -->
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join</title>
+    <!-- <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="/img/join-logo.svg" />
 
-    <div class="helpMain">
-        <h1>Welcome to the Help Page for Join</h1>
-        <p>Your guide to using our Kanban project management tool. Here, we provide an overview of the functions of Join and how you can uplift your workflow to the next level!</p>
-        
-        <h2>What is Join?</h2>
-        <p>Join is a Kanban-based project management tool designed and built by a group of dedicated students as part of their web development bootcamp at the Developer Akademie.</p>
-        <p>Kanban, a Japanese term meaning “billboard,” is a highly effective method to visualize work-in-progress and maximize efficiency. Join leverages Kanban principles to help users manage tasks and projects in an intuitive, visual interface.</p>
-        <p><strong>Note:</strong> Join is designed as an educational exercise and is not intended for extensive business usage. While we strive for the best user experience, we cannot guarantee consistent availability, reliability, or accuracy.</p>
-        
-        <h2>How to Use It</h2>
-        <ol>
-            <li><strong>Exploring the Board</strong>: When you log in, you'll see a default board with four lists: <em>To Do, In Progress, Await Feedback, Done</em>.</li>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/sidebar.css" />
+    <link rel="stylesheet" href="/css/register.css" />
+    <link rel="stylesheet" href="/css/login.css" />
+
+    <link rel="stylesheet" href="/css/add_task.css" />
+    <link rel="stylesheet" href="/css/summary.css" />
+    <link rel="stylesheet" href="/css/board.css" />
+    <link rel="stylesheet" href="/css/contacts.css" />
+
+    <link rel="stylesheet" href="/css/privacy_policy.css" />
+    <link rel="stylesheet" href="/css/legal_notice.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+
+    <script src="/script.js" defer></script>
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+    <!-- <script src="script.js"></script> -->
+    <script src="/js/remoteStorage.js"></script>
+    <script src="/js/sidebar.js"></script>
+    <script src="/js/add_task.js"></script>
+    <script src="/js/register.js"></script>
+    <script src="/js/login.js"></script>
+    <script src="/js/contacts.js"></script>
+  </head>
+
+  <body onload="renderHeader(); renderSideBar()">
+    <header id="headerContainer"></header>
+    <main class="main">
+      <div id="sidebarContainer"></div>
+      <div class="content">
+        <div class="helpMain">
+          <h1>Welcome to the Help Page for Join</h1>
+          <p>
+            Your guide to using our Kanban project management tool. Here, we provide an overview of the functions of Join and how you can uplift your workflow
+            to the next level!
+          </p>
+
+          <h2>What is Join?</h2>
+          <p>
+            Join is a Kanban-based project management tool designed and built by a group of dedicated students as part of their web development bootcamp at the
+            Developer Akademie.
+          </p>
+          <p>
+            Kanban, a Japanese term meaning “billboard,” is a highly effective method to visualize work-in-progress and maximize efficiency. Join leverages
+            Kanban principles to help users manage tasks and projects in an intuitive, visual interface.
+          </p>
+          <p>
+            <strong>Note:</strong> Join is designed as an educational exercise and is not intended for extensive business usage. While we strive for the best
+            user experience, we cannot guarantee consistent availability, reliability, or accuracy.
+          </p>
+
+          <h2>How to Use It</h2>
+          <ol>
+            <li>
+              <strong>Exploring the Board</strong>: When you log in, you'll see a default board with four lists:
+              <em>To Do, In Progress, Await Feedback, Done</em>.
+            </li>
             <li><strong>Creating Contacts</strong>: Add contacts in the “Contacts” section by clicking “New Contact” and filling in the details.</li>
-            <li><strong>Adding Cards</strong>: Click the “+” button under a list to create a task. You can include task details like title, description, due date, and assignees.</li>
+            <li>
+              <strong>Adding Cards</strong>: Click the “+” button under a list to create a task. You can include task details like title, description, due date,
+              and assignees.
+            </li>
             <li><strong>Moving Cards</strong>: Drag and drop tasks between lists to track progress.</li>
             <li><strong>Editing & Deleting Tasks</strong>: Click a card to modify its details or delete it using the “Delete” button.</li>
             <li><strong>Filtering & Searching</strong>: Use the search bar to find tasks by assignee, due date, or status.</li>
             <li><strong>Customizing Your Board</strong>: Rename lists, add new columns, or change the order of existing ones.</li>
             <li><strong>Notifications & Task Reminders</strong>: Get notified about updates and assigned tasks.</li>
-        </ol>
-        
-        <h2>Troubleshooting & FAQ</h2>
-        <ul>
-            <li><strong>Q: I can't log in. What should I do?</strong><br>A: Ensure your internet connection is stable. If the issue persists, try resetting your password.</li>
-            <li><strong>Q: How can I invite teammates?</strong><br>A: Go to the Contacts section, click “New Contact,” and enter their details.</li>
-            <li><strong>Q: Can I recover deleted tasks?</strong><br>A: No, deleted tasks are permanently removed, so be careful when deleting.</li>
-        </ul>
-    </div>
+          </ol>
 
+          <h2>Troubleshooting & FAQ</h2>
+          <ul>
+            <li>
+              <strong>Q: I can't log in. What should I do?</strong><br />A: Ensure your internet connection is stable. If the issue persists, try resetting your
+              password.
+            </li>
+            <li><strong>Q: How can I invite teammates?</strong><br />A: Go to the Contacts section, click “New Contact,” and enter their details.</li>
+            <li><strong>Q: Can I recover deleted tasks?</strong><br />A: No, deleted tasks are permanently removed, so be careful when deleting.</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
