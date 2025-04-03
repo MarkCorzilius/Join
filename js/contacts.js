@@ -107,11 +107,59 @@ function openContactItem(name, email, phone) {
     const initials = getInitials(name);
     const bg = getBackgroundForName(name);
     let contactDetailView = document.getElementById("contactDetailView");
-    contactDetailView.classList.remove("d-none");
-    contactDetailView.innerHTML = '';
     contactDetailView.innerHTML = generateContactDetails(bg, initials, name, email, phone);
     slideEfekt();
+    goToContactInfoForMobile();
 }
+
+
+function goToContactInfoForMobile() {
+    if (document.documentElement.clientWidth < 800) {
+        let contacts = document.getElementById("contacts");
+        let contactDetailContainer = document.getElementById("contactDetailContainer");
+        let backErow = document.getElementById("backErow");
+        if (contacts && contactDetailContainer && backErow) {
+            contacts.classList.add("d-none");                   
+            contactDetailContainer.style.display = "flex";        
+            backErow.classList.remove("d-none");                  
+        }
+    }
+}
+
+
+function backToContacts() {
+    if (document.documentElement.clientWidth < 800) {
+        let contacts = document.getElementById("contacts");
+        let contactDetailContainer = document.getElementById("contactDetailContainer");
+        let backErow = document.getElementById("backErow");
+        if (contacts && contactDetailContainer && backErow) {
+            contacts.classList.remove("d-none"); 
+            contactDetailContainer.style.display = "none";
+            backErow.classList.add("d-none");
+        }
+    }
+}
+
+
+window.addEventListener("resize", function () {
+    const browserWidth = document.documentElement.clientWidth;
+    let contacts = document.getElementById("contacts");
+    let contactDetailContainer = document.getElementById("contactDetailContainer");
+    let backErow = document.getElementById("backErow");
+    if (!contacts || !contactDetailContainer || !backErow) return;
+
+    if (browserWidth >= 800) {
+        // Desktop-Ansicht: Beide Bereiche anzeigen, Rück-Button verstecken
+        contacts.classList.remove("d-none");
+        contactDetailContainer.style.display = "flex";
+        backErow.classList.add("d-none");
+    } else {
+        // Mobile-Ansicht (Standard): Kontakte anzeigen, Detailbereich und Rück-Button ausblenden
+        contacts.classList.remove("d-none");
+        contactDetailContainer.style.display = "none";
+        backErow.classList.add("d-none");
+    }
+});
 
 
 function slideEfekt() {
@@ -208,50 +256,13 @@ function saveNewContact() {
 }
 
 
-// function overlayForContactSuccesfullyCreated() {
-//     const contactSuccesfullyCreated = document.getElementById('contactSuccesfullyCreated');
-//     contactSuccesfullyCreated.classList.remove("d-none");
-//     setTimeout(() => contactSuccesfullyCreated.classList.add("show"), 10);
-//     const overlaySuccesfullyCreated = contactSuccesfullyCreated.querySelector(".overlay-add-content");
-//     setTimeout(() => overlaySuccesfullyCreated.classList.add("slide-in"), 10);
-
-
-//     // const addContactOverlay = document.getElementById('addContactOverlay');
-//     // const overlayAddContent = addContactOverlay.querySelector(".overlay-add-content");
-//     // overlayAddContent.classList.remove("slide-in");
-//     // addContactOverlay.classList.remove("show");
-//     setTimeout(() => contactSuccesfullyCreated.classList.add("d-none"), 300);
-
-// }
-
-
-// function overlayForContactSuccesfullyCreated() {
-//     const overlay = document.getElementById("contactSuccesfullyCreated");
-//     // Overlay sichtbar machen
-//     overlay.classList.remove("d-none");
-//     // Kurz warten, damit der Browser den Startzustand erkennt
-//     setTimeout(() => overlay.classList.add("show"), 10);
-//     // Nach ca. 2 Sekunden Overlay wieder schließen
-//     setTimeout(() => {
-//         overlay.classList.remove("show");
-//         // Nach der Übergangszeit wieder ausblenden
-//         setTimeout(() => overlay.classList.add("d-none"), 500);
-//     }, 2000);
-// }
-
-
 function overlayForContactSuccesfullyCreated() {
     const overlay = document.getElementById("contactSuccesfullyCreated");
     const detailContainer = document.getElementById("contactDetailContainer");
-
     const containerRect = detailContainer.getBoundingClientRect();
     const computedStyle = getComputedStyle(detailContainer);
-    // Den linken Padding-Wert ermitteln (z. B. "48px" -> 48)
     const paddingLeft = parseFloat(computedStyle.paddingLeft);
-    
-    // Setze den linken Offset des Overlays so, dass er den Padding berücksichtigt
     overlay.style.left = (containerRect.left + paddingLeft) + "px";
-    
     overlay.classList.remove("d-none");
     setTimeout(() => overlay.classList.add("show"), 10);
     setTimeout(() => {
@@ -286,7 +297,6 @@ function newContactPushToArray(name, email, phone) {
 }
 
 
-
 function deleteValue() {
     document.getElementById('contactName').value = '';
     document.getElementById('contactEmail').value = '';
@@ -295,21 +305,12 @@ function deleteValue() {
 
 
 function deleteContact(email) {
-    // Optional: Bestätigung vom Nutzer einholen
     // if (!confirm("Möchten Sie diesen Kontakt wirklich löschen?")) return;
-
-    // Entferne den Kontakt aus dem Array
     contactsArray = contactsArray.filter(contact =>
         contact.email.toLowerCase() !== email.toLowerCase()
     );
-
-    // Aktualisiere den Local Storage
     saveToLocalStorage();
-
-    // Neu rendern der Kontaktliste
     renderContacts();
-
-    // Falls die Detailansicht den gelöschten Kontakt zeigt, ausblenden
     let detailView = document.getElementById("contactDetailView");
     if (detailView) {
         detailView.classList.add("d-none");
@@ -319,25 +320,17 @@ function deleteContact(email) {
 
 
 function editContact(name, email, phone, initials, bg) {
-    // Speichere den aktuellen Kontakt (als Kopie) in einer globalen Variable
     currentContact = { name, email, phone };
-
-    // Öffne das Edit-Overlay
     let editContactOverlay = document.getElementById("editContactOverlay");
     editContactOverlay.classList.remove("d-none");
     setTimeout(() => editContactOverlay.classList.add("show"), 10);
     const overlayEditContactOverlay = editContactOverlay.querySelector(".overlay-edit-content");
     setTimeout(() => overlayEditContactOverlay.classList.add("slide-in"), 10);
-
-    // Fülle die Eingabefelder
     document.getElementById("editName").value = name;
     document.getElementById("editEmail").value = email;
     document.getElementById("editPhone").value = phone;
     let editAvatar = document.getElementById("editAvatar");
-    // editAvatar.style.backgroundColor = bg;
-    // editAvatar.style.backgroundImage = url(${bg});
     editAvatar.style.backgroundImage = `url(${bg})`;
-
     editAvatar.innerHTML = `
         ${initials}
     `;

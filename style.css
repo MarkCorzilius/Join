@@ -45,7 +45,7 @@ li {
   /*  Besser direkt in  .add-task-main  */
   box-sizing: border-box;
   overflow: auto;
-  background-color: rgb(246 247 248);
+  /* background-color: rgb(246 247 248); */
 }
 
 .light-grey-bg {
