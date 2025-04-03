@@ -38,20 +38,7 @@
   </head>
 
   <body onload="">
-    <header id="headerContainer">
-      <header class="header">
-        <div class="header-container">
-          <div class="header-left">
-            <!-- <img src="./img/join-logo.svg" alt="Join Logo" class="header-logo"> -->
-            <h1 class="header-title">Kanban Project Management Tool</h1>
-          </div>
-          <div class="header-right">
-            <a href="./templates/help.html"><img class="help-icon" src="/img/help.png" alt="Go to help" onclick="openHelp()" /></a>
-            <div class="user-initials">SM</div>
-          </div>
-        </div>
-      </header>
-    </header>
+    <header id="headerContainer"></header>
     <main class="main">
       <div id="sidebarContainer">
         <aside class="sidebar" id="sidebar">
@@ -80,7 +67,7 @@
             >
 
             <a href="./templates/contacts.html">
-              <button class="nav-button">
+              <button class="nav-button" onclick="setTimeout(renderContacts, 300)">
                 <img src="./img/sidebar_contact.png" alt="contacts" />
                 <p>Contacts</p>
               </button></a
