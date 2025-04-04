@@ -64,7 +64,7 @@ function headerTemplate() {
         <h1 class="header-title">Kanban Project Management Tool</h1>
       </div>
       <div class="header-right">
-        <a href="../templates/help.html"><img class="help-icon" src="../img/help.png" alt="Go to help" onclick="openHelp()" /></a>
+        <a href="../templates/help.html"><img id="helpIcon" class="help-icon" src="../img/help.png" alt="Go to help onclick="hideHelpIcon()"></a>
         <div class="user-initials">SM</div>
       </div>
     </div>
