@@ -19,14 +19,14 @@ li {
 }
 
 .d-none {
-  display: none;
+  display: none !important;
 }
 
 .d-flex {
-  display: flex;
+  display: flex !important;
 }
 
-#main {
+.main {
   display: grid !important;
   grid-template-columns: 200px 1fr !important;
 }

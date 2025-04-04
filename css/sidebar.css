@@ -11,12 +11,10 @@
   padding: 40px 0;
 }
 
-
 .sidebar-logo {
   display: flex;
   justify-content: center;
 }
-
 
 .sidebar-logo img {
   width: 80px;
@@ -60,17 +58,14 @@
   padding-left: 40px;
 }
 
-
 .nav-button img {
   width: 24px;
   height: 24px;
 }
 
-
 .nav-button p {
   margin: 0;
 }
-
 
 .nav-button svg {
   margin-right: 16px;
@@ -95,13 +90,11 @@
   width: 100%;
 }
 
-
 .sidebar-footer button {
   color: rgb(168, 168, 168);
   text-decoration: none;
   transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
 }
-
 
 .sidebar-footer .nav-button:hover {
   background-color: transparent;
@@ -110,17 +103,14 @@
   font-weight: bold;
 }
 
-
-
 .sidebar-footer .clicked-color {
   transition: color 0.1s ease-in-out;
 }
 
-
 .sidebar-footer .clicked-color:hover {
   background-color: rgb(9, 25, 49);
   color: rgb(168, 168, 168);
-  transform: scale(1.00);
+  transform: scale(1);
   font-weight: normal;
   cursor: default;
 }

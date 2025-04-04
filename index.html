@@ -11,24 +11,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="./img/join-logo.svg" />
 
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="css/header.css" />
-    <link rel="stylesheet" href="css/sidebar.css" />
-    <link rel="stylesheet" href="css/register.css" />
-    <link rel="stylesheet" href="css/login.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/sidebar.css" />
+    <link rel="stylesheet" href="./css/register.css" />
+    <link rel="stylesheet" href="./css/login.css" />
 
-    <link rel="stylesheet" href="css/add_task.css" />
-    <link rel="stylesheet" href="/css/summary.css" />
-    <link rel="stylesheet" href="css/board.css" />
-    <link rel="stylesheet" href="/css/contacts.css" />
+    <link rel="stylesheet" href="./css/add_task.css" />
+    <link rel="stylesheet" href="./css/summary.css" />
+    <link rel="stylesheet" href="./css/board.css" />
+    <link rel="stylesheet" href="./css/contacts.css" />
 
     <link rel="stylesheet" href="css/privacy_policy.css" />
     <link rel="stylesheet" href="css/legal_notice.css" />
     <link rel="stylesheet" href="css/footer.css" />
     <link rel="stylesheet" href="css/help.css" />
 
+    <script src="./script.js" defer></script>
     <script src="https://www.w3schools.com/lib/w3.js"></script>
-    <!-- <script src="script.js"></script> -->
+
     <script src="js/remoteStorage.js"></script>
     <script src="js/sidebar.js"></script>
     <script src="js/add_task.js"></script>
@@ -39,14 +40,50 @@
     <script src="js/help.js"></script>
   </head>
 
-  <body onload="onloadFunc()">
-    <header class="" id="headerTemplates" w3-include-html="./templates/header.html"></header>
-    <main id="main">
-      <div id="sidebarTemplates" w3-include-html="./templates/sidebar.html"></div>
-      <div id="content"></div>
-    </main>
-    <footer class="d-none" id="footerTemplates" w3-include-html="./templates/footer.html"></footer>
+  <body onload="">
+    <header id="headerContainer"></header>
+    <main class="main">
+      <div id="sidebarContainer">
+        <aside class="sidebar" id="sidebar">
+          <div class="sidebar-logo">
+            <img src="./img/join-logo-white.svg" alt="Join Logo" />
+          </div>
 
-    <script src="script.js"></script>
+          <div class="sidebar-button">
+            <a href="./templates/summary.html">
+              <button class="nav-button">
+                <img src="./img/sidebar_summary.png" alt="summary" />
+                <p>Summary</p>
+              </button></a
+            >
+            <a href="./templates/add_task.html">
+              <button class="nav-button">
+                <img src="./img/add_task_sidebar.png" alt="tasks" />
+                <p>Add Task</p>
+              </button></a
+            >
+            <a href="./templates/board.html">
+              <button class="nav-button">
+                <img src="./img/sidebar_board.png" alt="board" />
+                <p>Board</p>
+              </button></a
+            >
+
+            <a href="./templates/contacts.html">
+              <button class="nav-button" onclick="setTimeout(renderContacts, 300)">
+                <img src="./img/sidebar_contact.png" alt="contacts" />
+                <p>Contacts</p>
+              </button></a
+            >
+          </div>
+
+          <div class="sidebar-footer">
+            <a href="./templates/privacy_policy.html"> <button class="nav-button">Privacy Policy</button></a>
+            <a href="./templates/legal_notice.html"> <button class="nav-button">Legal Notice</button></a>
+          </div>
+        </aside>
+      </div>
+      <div class="content"></div>
+    </main>
   </body>
 </html>

@@ -3,37 +3,45 @@
   <title>Deine Seite</title>
   <!-- <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet"> -->
 
-  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="../style.css" />
   <!-- <script src="/js/sidebar.js"></script> -->
 </head>
 
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-logo">
-    <img src="./img/join-logo-white.svg" alt="Join Logo" />
+    <img src="../img/join-logo-white.svg" alt="Join Logo" />
   </div>
 
   <div class="sidebar-button">
-    <button class="nav-button" onclick="buttonClicked(this); renderPages(0);">
-      <img src="./img/sidebar_summary.png" alt="summary" />
-      <p>Summary</p>
-    </button>
-    <button class="nav-button" onclick="buttonClicked(this); renderPages(1);">
-      <img src="./img/add_task_sidebar.png" alt="tasks" />
-      <p>Add Task</p>
-    </button>
-    <button class="nav-button" onclick="buttonClicked(this); renderPages(2);">
-      <img src="./img/sidebar_board.png" alt="board" />
-      <p>Board</p>
-    </button>
+    <a href="../templates/summary.html" target="_blank">
+      <button class="nav-button">
+        <img src="../img/sidebar_summary.png" alt="summary" />
+        <p>Summary</p>
+      </button></a
+    >
+    <a href="../templates/add_task.html" target="_blank">
+      <button class="nav-button">
+        <img src="../img/add_task_sidebar.png" alt="tasks" />
+        <p>Add Task</p>
+      </button></a
+    >
+    <a href="../templates/board.html" target="_blank">
+      <button class="nav-button">
+        <img src="../img/sidebar_board.png" alt="board" />
+        <p>Board</p>
+      </button></a
+    >
 
-    <button class="nav-button" onclick="buttonClicked(this); renderPages(3); setTimeout(renderContacts, 300);">
-      <img src="./img/sidebar_contact.png" alt="contacts" />
-      <p>Contacts</p>
-    </button>
+    <a href="../templates/contacts.html" target="_blank">
+      <button class="nav-button" onclick="setTimeout(renderContacts, 300)">
+        <img src="../img/sidebar_contact.png" alt="contacts" />
+        <p>Contacts</p>
+      </button></a
+    >
   </div>
 
   <div class="sidebar-footer">
-    <button class="nav-button" onclick="buttonClicked(this); renderPages(4);">Privacy Policy</button>
-    <button class="nav-button" onclick="buttonClicked(this); renderPages(5);">Legal Notice</button>
+    <a href="../templates/privacy_policy.html" target="_blank"> <button class="nav-button">Privacy Policy</button></a>
+    <a href="../templates/legal_notice.html" target="_blank"> <button class="nav-button">Legal Notice</button></a>
   </div>
 </aside>

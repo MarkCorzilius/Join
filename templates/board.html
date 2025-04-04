@@ -1,55 +1,123 @@
-<div class="board-wrapper">
-  <div class="board">
-    <div class="board-upper-line">
-      <p class="board-title">Board</p>
-      <div class="add-task-buttons-wrapper">
-        <div class="search-container">
-          <input type="text" class="search-tasks-input" placeholder="Search..." />
-          <div class="search-loop">
-            <div class="vertical-bar"></div>
-            <img class="search-loop-img" src="./img/search.png" alt="Search Loop Image" class="loop-image" />
+<!DOCTYPE html>
+<!-- <html lang="en"> -->
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join</title>
+    <!-- <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="../img/join-logo.svg" />
+
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/sidebar.css" />
+    <link rel="stylesheet" href="../css/board.css" />
+
+    <script src="../script.js" defer></script>
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+    <script src="../js/sidebar.js"></script>
+  </head>
+
+  <body onload="renderHeader()">
+    <header id="headerContainer"></header>
+    <main class="main">
+      <div id="sidebarContainer">
+        <aside class="sidebar" id="sidebar">
+          <div class="sidebar-logo">
+            <img src="../img/join-logo-white.svg" alt="Join Logo" />
+          </div>
+          <div class="sidebar-button">
+            <a href="../templates/summary.html">
+              <button class="nav-button">
+                <img src="../img/sidebar_summary.png" alt="summary" />
+                <p>Summary</p>
+              </button></a
+            >
+            <a href="../templates/add_task.html">
+              <button class="nav-button">
+                <img src="../img/add_task_sidebar.png" alt="tasks" />
+                <p>Add Task</p>
+              </button></a
+            >
+            <a href="../templates/board.html">
+              <button class="nav-button clicked-color">
+                <img src="../img/sidebar_board.png" alt="board" />
+                <p>Board</p>
+              </button></a
+            >
+
+            <a href="../templates/contacts.html">
+              <button class="nav-button" onclick="setTimeout(renderContacts, 300)">
+                <img src="../img/sidebar_contact.png" alt="contacts" />
+                <p>Contacts</p>
+              </button></a
+            >
+          </div>
+
+          <div class="sidebar-footer">
+            <a href="../templates/privacy_policy.html"> <button class="nav-button">Privacy Policy</button></a>
+            <a href="../templates/legal_notice.html"> <button class="nav-button">Legal Notice</button></a>
+          </div>
+        </aside>
+      </div>
+      <div class="content">
+        <div class="board">
+          <div class="board-upper-line">
+            <p class="board-title">Board</p>
+            <div class="add-task-buttons-wrapper">
+              <div class="search-container">
+                <input type="text" class="search-tasks-input" placeholder="Search..." />
+                <div class="search-loop">
+                  <div class="vertical-bar"></div>
+                  <img class="search-loop-img" src="../img/search.png" alt="Search Loop Image" class="loop-image" />
+                </div>
+              </div>
+              <button class="add-task-button">
+                <p class="add-task-button-text">Add Task</p>
+                <img src="../img/add-white.png" alt="add" />
+              </button>
+            </div>
+          </div>
+          <div class="board-all-tasks-section">
+            <div class="board-section-column">
+              <div class="board-column-control">
+                <p class="board-section-title">To do</p>
+                <img src="../img/add_task_in_board.png" alt="" />
+              </div>
+              <div class="tasks-container">
+                <div class="empty-column">
+                  <span>No tasks To do</span>
+                </div>
+              </div>
+            </div>
+            <div class="board-section-column">
+              <div class="board-column-control">
+                <p class="board-section-title">In progress</p>
+                <img src="../img/add_task_in_board.png" alt="" />
+              </div>
+              <div class="tasks-container">
+                <div class="tasks-box"></div>
+              </div>
+            </div>
+            <div class="board-section-column">
+              <div class="board-column-control">
+                <p class="board-section-title">Await feedback</p>
+                <img src="../img/add_task_in_board.png" alt="" />
+              </div>
+              <div class="tasks-container"></div>
+            </div>
+            <div class="board-section-column">
+              <div class="board-column-control">
+                <p class="board-section-title">Done</p>
+              </div>
+              <div class="tasks-container"></div>
+            </div>
           </div>
         </div>
-        <button class="add-task-button">
-          <p class="add-task-button-text">Add Task</p>
-          <img src="./img/add-white.png" alt="add" />
-        </button>
       </div>
-    </div>
-    <div class="board-all-tasks-section">
-      <div class="board-section-column">
-        <div class="board-column-control">
-          <p class="board-section-title">To do</p>
-          <img src="./img/add_task_in_board.png" alt="" />
-        </div>
-        <div class="tasks-container">
-          <div class="empty-column">
-            <span>No tasks To do</span>
-          </div>
-        </div>
-      </div>
-      <div class="board-section-column">
-        <div class="board-column-control">
-          <p class="board-section-title">In progress</p>
-          <img src="./img/add_task_in_board.png" alt="" />
-        </div>
-        <div class="tasks-container">
-          <div class="tasks-box"></div>
-        </div>
-      </div>
-      <div class="board-section-column">
-        <div class="board-column-control">
-          <p class="board-section-title">Await feedback</p>
-          <img src="./img/add_task_in_board.png" alt="" />
-        </div>
-        <div class="tasks-container"></div>
-      </div>
-      <div class="board-section-column">
-        <div class="board-column-control">
-          <p class="board-section-title">Done</p>
-        </div>
-        <div class="tasks-container"></div>
-      </div>
-    </div>
-  </div>
-</div>
+    </main>
+  </body>
+</html>
