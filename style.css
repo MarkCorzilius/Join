@@ -31,16 +31,21 @@ li {
   grid-template-columns: 200px 1fr !important;
 }
 
-.content {
-  /* z-index: 10; */ /*  ?   */
-  /* width: 100%; */ /*  ?   */
-  /* height: calc(100vh - 80px);*/ /*  ?   */
+#content {
+  /* z-index: 10; */
+  /*  ?   */
+  /* width: 100%; */
+  /*  ?   */
+  /* height: calc(100vh - 80px);*/
+  /*  ?   */
   margin-top: 80px;
-  /* display: flex; */ /*  ?   */
-  /* padding-top: 64px; */ /*  Besser direkt in  .add-task-main  */
+  /* display: flex; */
+  /*  ?   */
+  /* padding-top: 64px; */
+  /*  Besser direkt in  .add-task-main  */
   box-sizing: border-box;
   overflow: auto;
-  background-color: rgb(246 247 248);
+  /* background-color: rgb(246 247 248); */
 }
 
 .light-grey-bg {
@@ -78,9 +83,18 @@ p {
 }
 
 input[type="date"] {
-  opacity: 1; /* 50% visible by default */
+  opacity: 1;
+  /* 50% visible by default */
 }
 
 input[type="date"]:valid {
-  opacity: 0.5; /* Fully visible when a date is selected */
+  opacity: 0.5;
+  /* Fully visible when a date is selected */
+}
+
+
+@media (max-width: 1000px) {
+  #content {
+    width: 100vw;
+  }
 }

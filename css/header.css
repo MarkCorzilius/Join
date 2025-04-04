@@ -27,13 +27,20 @@
 }
 
 
+.header-logo {
+    display: none;
+    width: 40px;
+    height: 40px;
+}
+
+
 .header-title {
     margin: 0;
     padding-left: 50px;
     font-size: 20px;
     color: #000000;
     font-weight: 400;
-     /*font-family: 'PT Sans', sans-serif; */
+    /*font-family: 'PT Sans', sans-serif; */
 }
 
 
@@ -78,4 +85,28 @@
     /* background-color: rgb(168, 168, 168); */
     background-color: rgb(221 221 221);
 
+}
+
+
+
+@media (max-width: 1000px) {
+    .header {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .header-title {
+        display: none;
+    }
+
+    .help-icon {
+        display: none;
+    }
+
+    .header-logo {
+        display: flex;
+    }
 }

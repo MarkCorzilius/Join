@@ -38,6 +38,7 @@ function sideBarTemplate() {
       </button></a
     >
 
+
     <a href="../templates/contacts.html">
       <button class="nav-button" onclick="setTimeout(renderContacts, 300)">
         <img src="../img/sidebar_contact.png" alt="contacts" />

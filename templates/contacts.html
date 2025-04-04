@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!-- <html lang="en"> -->
 <html lang="de">
@@ -10,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="../img/join-logo.svg" />
+
 
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="../css/header.css" />
@@ -93,8 +95,13 @@
               <p>Better with a team</p>
             </div>
 
-            <div class="contact-detail-view d-none" id="contactDetailView"></div>
-          </div>
+<div id="addContactOverlay" class="add-contact-overlay d-none"
+    onclick="if(event.target===this){ closeAddContactOverlay(); }">
+    <div class="overlay-add-content">
+        <div class="overlay-left">
+            <img src="/img/join-logo-white.svg" alt="Join Logo" class="overlay-logo">
+            <h2>Add contact</h2>
+            <p>Tasks are better with a team!</p>
         </div>
 
         <!-- :::::::::  OVERLAY add new Contact ::::::::::::::: -->
@@ -223,6 +230,7 @@
             <div class="overlay-left">
               <img src="../img/join-logo-white.svg" alt="Join Logo" class="overlay-logo" />
               <h2 class="edit-pseudo-element">Edit contact</h2>
+
             </div>
             <div class="overlay-right">
               <div class="overlay-close" onclick="closeEditContactOverlay()">
@@ -230,8 +238,10 @@
               </div>
               <div class="new-contact-details">
                 <div class="overlay-edit-avatar" id="editAvatar">
+
                   <!-- Hier kannst du später auch den bg und initials übernehmen, z. B. über JavaScript -->
                   <!-- <img src="/img/person.png" alt="User Avatar"> -->
+
                 </div>
                 <form onsubmit="saveEditedContact(); return false;">
                   <div class="overlay-input-group">
