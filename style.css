@@ -31,7 +31,7 @@ li {
   grid-template-columns: 200px 1fr !important;
 }
 
-#content {
+.content {
   /* z-index: 10; */
   /*  ?   */
   /* width: 100%; */
@@ -45,7 +45,7 @@ li {
   /*  Besser direkt in  .add-task-main  */
   box-sizing: border-box;
   overflow: auto;
-  /* background-color: rgb(246 247 248); */
+  background-color: rgb(246 247 248);
 }
 
 .light-grey-bg {
@@ -91,7 +91,6 @@ input[type="date"]:valid {
   opacity: 0.5;
   /* Fully visible when a date is selected */
 }
-
 
 @media (max-width: 1000px) {
   #content {

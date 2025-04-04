@@ -96,61 +96,58 @@ function getBackgroundForName(name) {
 }
 
 function openContactItem(name, email, phone) {
-    const initials = getInitials(name);
-    const bg = getBackgroundForName(name);
-    let contactDetailView = document.getElementById("contactDetailView");
-    contactDetailView.innerHTML = generateContactDetails(bg, initials, name, email, phone);
-    slideEfekt();
-    goToContactInfoForMobile();
+  const initials = getInitials(name);
+  const bg = getBackgroundForName(name);
+  let contactDetailView = document.getElementById("contactDetailView");
+  contactDetailView.innerHTML = generateContactDetails(bg, initials, name, email, phone);
+  slideEfekt();
+  goToContactInfoForMobile();
 }
-
 
 function goToContactInfoForMobile() {
-    if (document.documentElement.clientWidth < 800) {
-        let contacts = document.getElementById("contacts");
-        let contactDetailContainer = document.getElementById("contactDetailContainer");
-        let backErow = document.getElementById("backErow");
-        if (contacts && contactDetailContainer && backErow) {
-            contacts.classList.add("d-none");                   
-            contactDetailContainer.style.display = "flex";        
-            backErow.classList.remove("d-none");                  
-        }
-    }
-}
-
-
-function backToContacts() {
-    if (document.documentElement.clientWidth < 800) {
-        let contacts = document.getElementById("contacts");
-        let contactDetailContainer = document.getElementById("contactDetailContainer");
-        let backErow = document.getElementById("backErow");
-        if (contacts && contactDetailContainer && backErow) {
-            contacts.classList.remove("d-none"); 
-            contactDetailContainer.style.display = "none";
-            backErow.classList.add("d-none");
-        }
-    }
-}
-
-
-window.addEventListener("resize", function () {
-    const browserWidth = document.documentElement.clientWidth;
+  if (document.documentElement.clientWidth < 800) {
     let contacts = document.getElementById("contacts");
     let contactDetailContainer = document.getElementById("contactDetailContainer");
     let backErow = document.getElementById("backErow");
-    if (!contacts || !contactDetailContainer || !backErow) return;
-
-    if (browserWidth >= 800) {
-        // Desktop-Ansicht: Beide Bereiche anzeigen, Rück-Button verstecken
-        contacts.classList.remove("d-none");
-        contactDetailContainer.style.display = "flex";
-        backErow.classList.add("d-none");
-    } else {
-        // Mobile-Ansicht (Standard): Kontakte anzeigen, Detailbereich und Rück-Button ausblenden
-        contacts.classList.remove("d-none");
-        contactDetailContainer.style.display = "none";
-        backErow.classList.add("d-none");
+    if (contacts && contactDetailContainer && backErow) {
+      contacts.classList.add("d-none");
+      contactDetailContainer.style.display = "flex";
+      backErow.classList.remove("d-none");
     }
+  }
+}
+
+function backToContacts() {
+  if (document.documentElement.clientWidth < 800) {
+    let contacts = document.getElementById("contacts");
+    let contactDetailContainer = document.getElementById("contactDetailContainer");
+    let backErow = document.getElementById("backErow");
+    if (contacts && contactDetailContainer && backErow) {
+      contacts.classList.remove("d-none");
+      contactDetailContainer.style.display = "none";
+      backErow.classList.add("d-none");
+    }
+  }
+}
+
+window.addEventListener("resize", function () {
+  const browserWidth = document.documentElement.clientWidth;
+  let contacts = document.getElementById("contacts");
+  let contactDetailContainer = document.getElementById("contactDetailContainer");
+  let backErow = document.getElementById("backErow");
+  if (!contacts || !contactDetailContainer || !backErow) return;
+
+  if (browserWidth >= 800) {
+    // Desktop-Ansicht: Beide Bereiche anzeigen, Rück-Button verstecken
+    contacts.classList.remove("d-none");
+    contactDetailContainer.style.display = "flex";
+    backErow.classList.add("d-none");
+  } else {
+    // Mobile-Ansicht (Standard): Kontakte anzeigen, Detailbereich und Rück-Button ausblenden
+    contacts.classList.remove("d-none");
+    contactDetailContainer.style.display = "none";
+    backErow.classList.add("d-none");
+  }
 });
 
 function slideEfekt() {
@@ -314,32 +311,30 @@ function deleteValue() {
 }
 
 function deleteContact(email) {
-    // if (!confirm("Möchten Sie diesen Kontakt wirklich löschen?")) return;
-    contactsArray = contactsArray.filter(contact =>
-        contact.email.toLowerCase() !== email.toLowerCase()
-    );
-    saveToLocalStorage();
-    renderContacts();
-    let detailView = document.getElementById("contactDetailView");
-    if (detailView) {
-        detailView.classList.add("d-none");
-        detailView.innerHTML = "";
-    }
+  // if (!confirm("Möchten Sie diesen Kontakt wirklich löschen?")) return;
+  contactsArray = contactsArray.filter((contact) => contact.email.toLowerCase() !== email.toLowerCase());
+  saveToLocalStorage();
+  renderContacts();
+  let detailView = document.getElementById("contactDetailView");
+  if (detailView) {
+    detailView.classList.add("d-none");
+    detailView.innerHTML = "";
+  }
 }
 
 function editContact(name, email, phone, initials, bg) {
-    currentContact = { name, email, phone };
-    let editContactOverlay = document.getElementById("editContactOverlay");
-    editContactOverlay.classList.remove("d-none");
-    setTimeout(() => editContactOverlay.classList.add("show"), 10);
-    const overlayEditContactOverlay = editContactOverlay.querySelector(".overlay-edit-content");
-    setTimeout(() => overlayEditContactOverlay.classList.add("slide-in"), 10);
-    document.getElementById("editName").value = name;
-    document.getElementById("editEmail").value = email;
-    document.getElementById("editPhone").value = phone;
-    let editAvatar = document.getElementById("editAvatar");
-    editAvatar.style.backgroundImage = `url(${bg})`;
-    editAvatar.innerHTML = `
+  currentContact = { name, email, phone };
+  let editContactOverlay = document.getElementById("editContactOverlay");
+  editContactOverlay.classList.remove("d-none");
+  setTimeout(() => editContactOverlay.classList.add("show"), 10);
+  const overlayEditContactOverlay = editContactOverlay.querySelector(".overlay-edit-content");
+  setTimeout(() => overlayEditContactOverlay.classList.add("slide-in"), 10);
+  document.getElementById("editName").value = name;
+  document.getElementById("editEmail").value = email;
+  document.getElementById("editPhone").value = phone;
+  let editAvatar = document.getElementById("editAvatar");
+  editAvatar.style.backgroundImage = `url(${bg})`;
+  editAvatar.innerHTML = `
         ${initials}
     `;
 }
@@ -391,19 +386,18 @@ function deleteContactForEdit() {
   if (!currentContact) return;
   if (!confirm("Möchten Sie diesen Kontakt wirklich löschen?")) return;
 
-function deleteContactForEdit() {
+  function deleteContactForEdit() {
     if (!currentContact) return;
     if (!confirm("Möchten Sie diesen Kontakt wirklich löschen?")) return;
 
     // Entferne den Kontakt aus dem Array
-    contactsArray = contactsArray.filter(contact =>
-        contact.email.toLowerCase() !== currentContact.email.toLowerCase()
-    );
+    contactsArray = contactsArray.filter((contact) => contact.email.toLowerCase() !== currentContact.email.toLowerCase());
 
     saveToLocalStorage();
     renderContacts();
     closeEditContactOverlay();
     currentContact = null;
+  }
 }
 
 function closeEditContactOverlay(email) {
