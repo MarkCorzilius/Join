@@ -93,7 +93,7 @@ input[type="date"]:valid {
 }
 
 @media (max-width: 1000px) {
-  #content {
+  .content {
     width: 100vw;
   }
 }

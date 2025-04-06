@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <!-- <html lang="en"> -->
 <html lang="de">
-  <head>
+
+<head>
+    <base href="http://127.0.0.1:5500/">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join</title>
     <!-- <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="../img/join-logo.svg" />
 
     <link rel="stylesheet" href="../style.css" />
@@ -34,207 +38,159 @@
     <script src="../js/add_task.js"></script>
     <script src="../js/register.js"></script>
     <script src="../js/login.js"></script>
-  </head>
+</head>
 
-  <body onload="w3.includeHTML(); setTimeout(renderContacts, 300);">
+<body onload="w3.includeHTML(); setTimeout(renderContacts, 300);">
     <header w3-include-html="../templates/header.html" id="headerContainer"></header>
     <main class="main">
-      <div w3-include-html="../templates/sidebar.html" id="sidebarContainer"></div>
-      <div class="content">
-        <div class="contacts-container">
-          <div class="contacts">
-            <button class="add-contact-btn" onclick="openAddContactOverlay()">
-              Add new contact
-              <img src="../img/person_add.png" alt="" />
-            </button>
-            <div class="contacts-list"></div>
-          </div>
-          <div class="contact-info" id="contactDetailContainer">
-            <div class="contact-header">
-              <h1>Contacts</h1>
-              <p>Better with a team</p>
-            </div>
+        <div w3-include-html="../templates/sidebar.html" id="sidebarContainer"></div>
+        <div class="content">
+            <div class="contacts-container">
 
-            <div class="contact-detail-view d-none" id="contactDetailView"></div>
-          </div>
-        </div>
+                <button class="back-erow d-none" id="backErow" onclick="backToContacts()">
+                    <img src="/img/back_erow.png" alt="">
+                </button>
 
-        <!-- :::::::::  OVERLAY add new Contact ::::::::::::::: -->
-
-        <div id="addContactOverlay" class="add-contact-overlay d-none" onclick="if(event.target===this){ closeAddContactOverlay(); }">
-          <div class="overlay-add-content">
-            <div class="overlay-left">
-              <img src="./img/join-logo-white.svg" alt="Join Logo" class="overlay-logo" />
-              <h2>Add contact</h2>
-              <p>Tasks are better with a team!</p>
-            </div>
-
-            <div class="overlay-right">
-              <div class="overlay-close" onclick="closeAddContactOverlay()">
-                <img src="./img/close.png" alt="" />
-              </div>
-
-              <div class="new-contact-details">
-                <div class="overlay-avatar">
-                  <img src="./img/person.png" alt="User Avatar" />
+                <div class="contacts" id="contacts">
+                    <button class="add-contact-btn" onclick="openAddContactOverlay()">
+                        <p>Add new contact</p>
+                        <img src="/img/person_add.png" alt="">
+                    </button>
+                    <div class="contacts-list"></div>
                 </div>
 
-                <form onsubmit="saveNewContact(); return false;">
-                  <div class="overlay-input-group">
-                    <label for="contactName">Name</label>
-                    <div class="input-wrapper">
-                      <input type="text" id="contactName" placeholder="Name" required />
-                      <img src="./img/person_input.png" alt="" />
+                <div class="contact-info" id="contactDetailContainer">
+                    <div class="contact-header">
+                        <h1>Contacts</h1>
+                        <p>Better with a team</p>
                     </div>
-                  </div>
 
-                  <div class="overlay-input-group">
-                    <label for="contactEmail">Email</label>
-                    <div class="input-wrapper">
-                      <input type="email" id="contactEmail" placeholder="Email" required />
-                      <img src="./img/mail_input.png" alt="" />
+                    <div class="contact-detail-view d-none" id="contactDetailView">
+
                     </div>
-                  </div>
-
-                  <div class="overlay-input-group">
-                    <label for="contactPhone">Phone</label>
-                    <div class="input-wrapper">
-                      <input type="tel" id="contactPhone" placeholder="Phone" required />
-                      <img src="./img/call_input.png" alt="" />
-                    </div>
-                  </div>
-
-                  <div class="overlay-buttons">
-                    <button type="button" class="btn-cancel" onclick="closeAddContactOverlay()">
-                      Cancel
-                      <img src="./img/cancel.png" alt="" />
-                    </button>
-                    <button type="submit" class="btn-save">
-                      Create contact
-                      <img src="./img/check.png" alt="" />
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- :::::::::  OVERLAY edit Contact ::::::::::::::: -->
-
-        <!-- <div id="editContactOverlay" class="overlay" onclick="if(event.target===this){ closeEditContactOverlay(); }"> -->
-        <!-- <div id="editContactOverlay" class="overlay d-none">
-          <div class="overlay-edit-content">
-              <div class="overlay-left">
-                  <img src="/img/join-logo-white.svg" alt="Join Logo" class="overlay-logo">
-                  <h2 class="edit-pseudo-element">Edit contact</h2>
-              </div>
-      
-              <div class="overlay-right">
-                  <div class="overlay-close" onclick="closeEditContactOverlay()">
-                      <img src="/img/close.png" alt="">
-                  </div>
-      
-                  <div class="new-contact-details">
-                      <div class="overlay-avatar">
-                          <img src="/img/person.png" alt="User Avatar" />
-                      </div>
-      
-                      <form onsubmit="saveEditetContact(); return false;">
-                          <div class="overlay-input-group">
-                              <label for="contactName">Name</label>
-                              <div class="input-wrapper">
-                                  <input type="text" id="editName" required />
-                                  <img src="/img/person_input.png" alt="">
-                              </div>
-                          </div>
-      
-                          <div class="overlay-input-group">
-                              <label for="contactEmail">Email</label>
-                              <div class="input-wrapper">
-                                  <input type="email" id="editEmail" required />
-                                  <img src="/img/mail_input.png" alt="">
-                              </div>
-                          </div>
-      
-                          <div class="overlay-input-group">
-                              <label for="contactPhone">Phone</label>
-                              <div class="input-wrapper">
-                                  <input type="tel" id="editPhone" required />
-                                  <img src="/img/call_input.png" alt="">
-                              </div>
-                          </div>
-      
-                          <div class="overlay-buttons">
-                              <button type="button" class="btn-cancel" onclick="deleteContact('email')">
-                                  Delete
-                              </button>
-                              <button type="submit" class="btn-save">
-                                  Save
-                                  <img src="/img/check.png" alt="">
-                              </button>
-                          </div>
-                      </form>
-                  </div>
-              </div>
-          </div>
-      </div> -->
-
-        <div id="editContactOverlay" class="overlay d-none">
-          <div class="overlay-edit-content">
-            <div class="overlay-left">
-              <img src="/img/join-logo-white.svg" alt="Join Logo" class="overlay-logo" />
-              <h2 class="edit-pseudo-element">Edit contact</h2>
-            </div>
-            <div class="overlay-right">
-              <div class="overlay-close" onclick="closeEditContactOverlay()">
-                <img src="/img/close.png" alt="" />
-              </div>
-              <div class="new-contact-details">
-                <div class="overlay-edit-avatar" id="editAvatar">
-                  <!-- Hier kannst du später auch den bg und initials übernehmen, z. B. über JavaScript -->
-                  <!-- <img src="/img/person.png" alt="User Avatar"> -->
                 </div>
-                <form onsubmit="saveEditedContact(); return false;">
-                  <div class="overlay-input-group">
-                    <label for="editName">Name</label>
-                    <div class="input-wrapper">
-                      <input type="text" id="editName" required />
-                      <img src="/img/person_input.png" alt="" />
-                    </div>
-                  </div>
-                  <div class="overlay-input-group">
-                    <label for="editEmail">Email</label>
-                    <div class="input-wrapper">
-                      <input type="email" id="editEmail" required />
-                      <img src="/img/mail_input.png" alt="" />
-                    </div>
-                  </div>
-                  <div class="overlay-input-group">
-                    <label for="editPhone">Phone</label>
-                    <div class="input-wrapper">
-                      <input type="tel" id="editPhone" required />
-                      <img src="/img/call_input.png" alt="" />
-                    </div>
-                  </div>
-                  <div class="overlay-buttons">
-                    <button type="button" class="btn-cancel" onclick="deleteContactForEdit()">Delete</button>
-                    <button type="submit" class="btn-save">
-                      Save
-                      <img src="/img/check.png" alt="" />
-                    </button>
-                  </div>
-                </form>
-              </div>
             </div>
-          </div>
+
+            <!-- :::::::::  OVERLAY add new Contact ::::::::::::::: -->
+
+            <div id="addContactOverlay" class="add-contact-overlay d-none"
+                onclick="if(event.target===this){ closeAddContactOverlay(); }">
+                <div class="overlay-add-content">
+                    <div class="overlay-left">
+                        <img src="../img/join-logo-white.svg" alt="Join Logo" class="overlay-logo" />
+                        <h2>Add contact</h2>
+                        <p>Tasks are better with a team!</p>
+                    </div>
+
+                    <div class="overlay-right">
+                        <div class="overlay-close" onclick="closeAddContactOverlay()">
+                            <img src="../img/close.png" alt="" />
+                        </div>
+
+                        <div class="new-contact-details">
+                            <div class="overlay-avatar">
+                                <img src="../img/person.png" alt="User Avatar" />
+                            </div>
+
+                            <form onsubmit="saveNewContact(); return false;">
+                                <div class="overlay-input-group">
+                                    <label for="contactName">Name</label>
+                                    <div class="input-wrapper">
+                                        <input type="text" id="contactName" placeholder="Name" required />
+                                        <img src="../img/person_input.png" alt="" />
+                                    </div>
+                                </div>
+
+                                <div class="overlay-input-group">
+                                    <label for="contactEmail">Email</label>
+                                    <div class="input-wrapper">
+                                        <input type="email" id="contactEmail" placeholder="Email" required />
+                                        <img src="../img/mail_input.png" alt="" />
+                                    </div>
+                                </div>
+
+                                <div class="overlay-input-group">
+                                    <label for="contactPhone">Phone</label>
+                                    <div class="input-wrapper">
+                                        <input type="tel" id="contactPhone" placeholder="Phone" required />
+                                        <img src="../img/call_input.png" alt="" />
+                                    </div>
+                                </div>
+
+                                <div class="overlay-buttons">
+                                    <button type="button" class="btn-cancel" onclick="closeAddContactOverlay()">
+                                        Cancel
+                                        <img src="../img/cancel.png" alt="" />
+                                    </button>
+                                    <button type="submit" class="btn-save">
+                                        Create contact
+                                        <img src="../img/check.png" alt="" />
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- :::::::::  OVERLAY edit Contact ::::::::::::::: -->
+
+            <div id="editContactOverlay" class="overlay d-none">
+                <div class="overlay-edit-content">
+                    <div class="overlay-left">
+                        <img src="/img/join-logo-white.svg" alt="Join Logo" class="overlay-logo" />
+                        <h2 class="edit-pseudo-element">Edit contact</h2>
+                    </div>
+                    <div class="overlay-right">
+                        <div class="overlay-close" onclick="closeEditContactOverlay()">
+                            <img src="/img/close.png" alt="" />
+                        </div>
+                        <div class="new-contact-details">
+                            <div class="overlay-edit-avatar" id="editAvatar">
+                            </div>
+                            <form onsubmit="saveEditedContact(); return false;">
+                                <div class="overlay-input-group">
+                                    <label for="editName">Name</label>
+                                    <div class="input-wrapper">
+                                        <input type="text" id="editName" required />
+                                        <img src="/img/person_input.png" alt="" />
+                                    </div>
+                                </div>
+                                <div class="overlay-input-group">
+                                    <label for="editEmail">Email</label>
+                                    <div class="input-wrapper">
+                                        <input type="email" id="editEmail" required />
+                                        <img src="/img/mail_input.png" alt="" />
+                                    </div>
+                                </div>
+                                <div class="overlay-input-group">
+                                    <label for="editPhone">Phone</label>
+                                    <div class="input-wrapper">
+                                        <input type="tel" id="editPhone" required />
+                                        <img src="/img/call_input.png" alt="" />
+                                    </div>
+                                </div>
+                                <div class="overlay-buttons">
+                                    <button type="button" class="btn-cancel"
+                                        onclick="deleteContactForEdit()">Delete</button>
+                                    <button type="submit" class="btn-save">
+                                        Save
+                                        <img src="/img/check.png" alt="" />
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- :::::::::  FIXED IMG / OVERLAY contact-succesfully-created ::::::::::::::: -->
+
+            <img class="overlay-contact-succesfully-created" id="contactSuccesfullyCreated"
+                src="/img/contact-succesfully-created.png" alt="" srcset="" />
         </div>
-
-        <!-- :::::::::  FIXED IMG / OVERLAY contact-succesfully-created ::::::::::::::: -->
-
-        <img class="overlay-contact-succesfully-created" id="contactSuccesfullyCreated" src="/img/contact-succesfully-created.png" alt="" srcset="" />
-      </div>
     </main>
-  </body>
-  <script src="../script.js"></script>
+</body>
+<script src="../script.js"></script>
+
 </html>

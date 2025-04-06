@@ -64,6 +64,7 @@
 }
 
 .nav-button p {
+  color: rgb(168, 168, 168);
   margin: 0;
 }
 
@@ -77,6 +78,8 @@
 
 .nav-button:hover {
   background-color: rgb(47 65 90);
+  /* color: rgb(225,255,255); */
+  color: rgb(168, 168, 168);
 }
 
 .clicked-color:hover {
@@ -90,7 +93,7 @@
   width: 100%;
 }
 
-.sidebar-footer button {
+.sidebar-footer a {
   color: rgb(168, 168, 168);
   text-decoration: none;
   transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
@@ -118,7 +121,7 @@
 
 @media (max-width: 1000px) {
 
-  #sidebarTemplates {
+  #sidebarContainer {
     position: fixed;
     bottom: 0;
     right: 0;
@@ -156,7 +159,7 @@
     border-radius: 12px;
   }
 
-  .sidebar-footer button {
+  .sidebar-footer a {
     display: none;
   }
 }
@@ -182,7 +185,7 @@
 
   .nav-button {
     width: 25%;
-    margin: 6px;
+    margin: 4px;
     padding: 8px;
   }
 }
