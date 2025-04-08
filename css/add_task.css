@@ -92,11 +92,11 @@
 .add-task-main {
   display: flex;
   margin-left: 100px;
+  height: 100%;
 }
 
-.add-task-main-wrapper {
-  display: flex;
-  flex-direction: column;
+.contant-in-main {
+  position: relative;
 }
 
 .priority-buttons {
@@ -202,12 +202,10 @@
 .add-task-footer {
   display: flex;
   align-items: center;
-  position: fixed;
   justify-content: space-between;
-  bottom: 80px;
-  left: 200px;
-  width: calc(100% - 200px);
-  position: fixed;
+  width: 100%;
+  position: absolute;
+  bottom: 40px;
 }
 .footer-buttons-wrapper {
   display: flex;
