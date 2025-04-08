@@ -3,9 +3,3 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-(function () {
-    const baseElement = document.createElement("base");
-    baseElement.href = window.location.origin + "/";  // immer vom Root aus
-    document.head.insertBefore(baseElement, document.head.firstChild);
-})();
-
