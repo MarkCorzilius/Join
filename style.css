@@ -18,12 +18,20 @@ li {
   list-style: none;
 }
 
-.d-none {
+/* .d-none {
   display: none !important;
 }
 
 .d-flex {
   display: flex !important;
+} */
+
+.d-none {
+  display: none;
+}
+
+.d-flex {
+  display: flex;
 }
 
 .main {
