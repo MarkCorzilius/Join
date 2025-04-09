@@ -10,10 +10,18 @@
 }
 
 .separation-line-summary {
-  width: 2px;
-  height: 73px;
+  width: 3px;
+  height: 59px;
   background-color: rgb(42 170 226);
   display: inline-block;
+}
+
+.separation-line-summary-vertical {
+  width: 90px;
+  height: 3px;
+  background-color: rgb(42 170 226);
+  display: inline-block;
+  display: none;
 }
 
 .summary-page-title {
@@ -29,6 +37,7 @@
 
 .summary-subtitle {
   font-size: 27px;
+  font-weight: 400;
 }
 
 .summary-info-box {
@@ -150,6 +159,8 @@
 
 #theUser {
   color: rgb(42 170 226);
+  font-size: 64px;
+  font-weight: 700;
 }
 
 .summary-main-wrapper {
@@ -161,8 +172,11 @@
 
 .greeting-user {
   gap: 3px;
-  font-size: 48px;
-  font-weight: 700;
+  /* hat keinen Effekt */
+  font-size: 47px;
+  /* siehe Figma */
+  font-weight: 500;
+  /* siehe Figma */
 }
 
 .card-info {
@@ -180,4 +194,83 @@
 .card-text {
   font-weight: 400;
   font-size: 16px;
+}
+
+@media (min-width: 1920px) {
+  .content {
+      max-width: 1920px;
+  }
+}
+
+@media (max-width: 1250px) {
+  #theUser {
+    font-size: 42px;
+    font-weight: 700;
+  }
+
+  .greeting-user {
+    font-size: 42px;
+  }
+
+  .summary-main-wrapper {
+    gap: 25px;
+  }
+
+  .summary-content-wrapper {
+    padding-left: 25px;
+  }
+}
+
+@media (max-width: 1000px) {
+
+  .greeting-user {
+    display: none;
+  }
+
+  .summary-content-wrapper {
+    padding-left: 50px;
+    margin-bottom: 150px;
+  }
+
+  .separation-line-summary {
+    display: none;
+  }
+
+  .separation-line-summary-vertical {
+    display: inline;
+    margin-top: 10px;
+  }
+
+  .summary-header-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 50px;
+  }
+
+  .summary-page-title {
+    font-size: 47px;
+    font-weight: 700;
+    margin-bottom: 0px;
+  }
+
+  .summary-subtitle {
+    font-weight: 400;
+    font-size: 20px;
+  }
+
+  .to-do-box, .done-box {
+    width: 186px;
+    height: 110px;
+  }
+
+  .info-box-second-line {
+    width: 396px;
+    height: 110px
+  }
+
+  .all-tasks-box {
+    width: 116px;
+    heigth: 116px;
+  }
 }
