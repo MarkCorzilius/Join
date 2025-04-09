@@ -1,134 +1,150 @@
 <!DOCTYPE html>
 <!-- <html lang="en"> -->
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Join</title>
-    <!-- <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet"> -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
-    <link rel="icon" type="image/x-icon" href="../img/join-logo.svg" />
 
-    <link rel="stylesheet" href="../style.css" />
-    <link rel="stylesheet" href="../css/header.css" />
-    <link rel="stylesheet" href="../css/sidebar.css" />
-    <link rel="stylesheet" href="../css/help.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join</title>
+  <!-- <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet"> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="../img/join-logo.svg" />
 
-    <script src="../script.js" defer></script>
-    <script src="https://www.w3schools.com/lib/w3.js"></script>
-    <script src="../js/sidebar.js"></script>
-    <script src="../js/help.js"></script>
-  </head>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../css/header.css" />
+  <link rel="stylesheet" href="../css/sidebar.css" />
+  <link rel="stylesheet" href="../css/help.css" />
 
-  <body onload="w3.includeHTML()">
-    <header w3-include-html="../templates/header.html" id="headerContainer"></header>
-    <main class="main">
-      <div w3-include-html="../templates/sidebar.html" id="sidebarContainer"></div>
-      <div class="content">
-        <div class="helpMain">
-          <div class="headerHelp">
-            <div>
-              <h1 class="pageTitle">Welcome</h1>
-              <h1 class="pageTitle">Join Help Page</h1>
-            </div>
-            <a href="../templates/summary.html"><img class="arrowLeft" src="../img/arrow_left.png" alt="Go back to Summary" /></a>
-          </div>
-          <p>
-            Your guide to using our Kanban project management tool. Here, we provide an overview of the functions of
-            <span class="linkToSummary">Join</span> and how you can uplift your workflow to the next level!
-          </p>
+  <script src="../script.js" defer></script>
+  <script src="https://www.w3schools.com/lib/w3.js"></script>
+  <script src="../js/sidebar.js"></script>
+  <script src="../js/help.js"></script>
+</head>
 
-          <h2 class="pageSubTitle">What is Join?</h2>
+<body onload="w3.includeHTML()">
+  <header w3-include-html="../templates/header.html" id="headerContainer"></header>
+  <main class="main">
+    <div w3-include-html="../templates/sidebar.html" id="sidebarContainer"></div>
+    <div class="content">
+      <div class="helpMain">
+        <div class="headerHelp">
+          <a href="../templates/summary.html"><img class="arrowLeft" src="../img/arrow_left.png"
+              alt="Go back to Summary" /></a>
           <div>
-            <span class="linkToSummary">Join</span> is a Kanban-based project management tool designed and built by a group of dedicated students as part of
-            their web development bootcamp at the Developer Akademie.
-          </div>
-          <br /><br />
-          <div>
-            Kanban, a Japanese term meaning “billboard,” is a highly effective method to visualize work-in-progress and maximize efficiency.
-            <span class="linkToSummary">Join</span> leverages Kanban principles to help users manage tasks and projects in an intuitive, visual interface.
-          </div>
-          <br /><br />
-          <div>
-            <strong>Note:</strong> <span class="linkToSummary">Join</span> is designed as an educational exercise and is not intended for extensive business
-            usage. While we strive for the best user experience, we cannot guarantee consistent availability, reliability, or accuracy.
+            <h1 class="pageTitle">Welcome</h1>
+            <h1 class="pageTitleTwo">Join Help Page</h1>
           </div>
 
-          <h2 class="pageSubTitle">How to Use It</h2>
-          <div>
-            <div class="howTo">
-              <div class="number">1.</div>
-              <div class="howToDescription">
-                <div class="howToTitle">Exploring the Board</div>
-                When you log in, you'll see a default board with four lists: <em>To Do, In Progress, Await Feedback, Done.</em>
-              </div>
-            </div>
-            <div class="howTo">
-              <div class="number">2.</div>
-              <div class="howToDescription">
-                <div class="howToTitle">Creating Contacts</div>
-                Add contacts in the Contacts-section by clicking “New Contact” and filling in the details.
-              </div>
-            </div>
-            <div class="howTo">
-              <div class="number">3.</div>
-              <div class="howToDescription">
-                <div class="howToTitle">Adding Cards</div>
-                Click the “+” button under a list to create a task. You can include task details like: <em>Title, Description, Due date, and Assignees.</em>
-              </div>
-            </div>
-            <div class="howTo">
-              <div class="number">4.</div>
-              <div class="howToDescription">
-                <div class="howToTitle">Moving Cards</div>
-                Drag and drop tasks between lists to track progress.
-              </div>
-            </div>
-            <div class="howTo">
-              <div class="number">5.</div>
-              <div class="howToDescription">
-                <div class="howToTitle">Editing & Deleting Tasks</div>
-                Click a card to modify its details or delete it using the Delete-button.
-              </div>
-            </div>
-            <div class="howTo">
-              <div class="number">6.</div>
-              <div class="howToDescription">
-                <div class="howToTitle">Filtering & Searching</div>
-                Use the search bar to find tasks by: <em>Assignee, Due date, or Status.</em>
-              </div>
-            </div>
-            <div class="howTo">
-              <div class="number">7.</div>
-              <div class="howToDescription">
-                <div class="howToTitle">Customizing Your Board</div>
-                Rename lists, add new columns, or change the order of existing ones.
-              </div>
-            </div>
-            <div class="howTo">
-              <div class="number">8.</div>
-              <div class="howToDescription">
-                <div class="howToTitle">Notifications & Task Reminders</div>
-                Get notified about updates and assigned tasks.
-              </div>
-            </div>
-          </div>
-
-          <h2 class="pageSubTitle">Troubleshooting & FAQ</h2>
-          <ul class="paddingBottom">
-            <li>
-              <strong>Q: I can't log in. What should I do?</strong><br />A: Ensure your internet connection is stable. If the issue persists, try resetting your
-              password.
-            </li>
-            <br /><br />
-            <li><strong>Q: How can I invite teammates?</strong><br />A: Go to the Contacts-section, click “New Contact,” and enter their details.</li>
-            <br /><br />
-            <li><strong>Q: Can I recover deleted tasks?</strong><br />A: No, deleted tasks are permanently removed, so be careful when deleting.</li>
-          </ul>
         </div>
+        <p>
+          Your guide to using our Kanban project management tool. Here, we provide an overview of the functions of
+          <span class="linkToSummary">Join</span> and how you can uplift your workflow to the next level!
+        </p>
+
+        <h2 class="pageSubTitle">What is Join?</h2>
+        <div>
+          <span class="linkToSummary">Join</span> is a Kanban-based project management tool designed and built by a
+          group of dedicated students as part of
+          their web development bootcamp at the Developer Akademie.
+        </div>
+        <br /><br />
+        <div>
+          Kanban, a Japanese term meaning “billboard,” is a highly effective method to visualize work-in-progress and
+          maximize efficiency.
+          <span class="linkToSummary">Join</span> leverages Kanban principles to help users manage tasks and projects in
+          an intuitive, visual interface.
+        </div>
+        <br /><br />
+        <div>
+          <strong>Note:</strong> <span class="linkToSummary">Join</span> is designed as an educational exercise and is
+          not intended for extensive business
+          usage. While we strive for the best user experience, we cannot guarantee consistent availability, reliability,
+          or accuracy.
+        </div>
+
+        <h2 class="pageSubTitle">How to Use It</h2>
+        <div>
+          <div class="howTo">
+            <div class="number">1.</div>
+            <div class="howToDescription">
+              <div class="howToTitle">Exploring the Board</div>
+              When you log in, you'll see a default board with four lists: <em>To Do, In Progress, Await Feedback,
+                Done.</em>
+            </div>
+          </div>
+          <div class="howTo">
+            <div class="number">2.</div>
+            <div class="howToDescription">
+              <div class="howToTitle">Creating Contacts</div>
+              Add contacts in the Contacts-section by clicking “New Contact” and filling in the details.
+            </div>
+          </div>
+          <div class="howTo">
+            <div class="number">3.</div>
+            <div class="howToDescription">
+              <div class="howToTitle">Adding Cards</div>
+              Click the “+” button under a list to create a task. You can include task details like: <em>Title,
+                Description, Due date, and Assignees.</em>
+            </div>
+          </div>
+          <div class="howTo">
+            <div class="number">4.</div>
+            <div class="howToDescription">
+              <div class="howToTitle">Moving Cards</div>
+              Drag and drop tasks between lists to track progress.
+            </div>
+          </div>
+          <div class="howTo">
+            <div class="number">5.</div>
+            <div class="howToDescription">
+              <div class="howToTitle">Editing & Deleting Tasks</div>
+              Click a card to modify its details or delete it using the Delete-button.
+            </div>
+          </div>
+          <div class="howTo">
+            <div class="number">6.</div>
+            <div class="howToDescription">
+              <div class="howToTitle">Filtering & Searching</div>
+              Use the search bar to find tasks by: <em>Assignee, Due date, or Status.</em>
+            </div>
+          </div>
+          <div class="howTo">
+            <div class="number">7.</div>
+            <div class="howToDescription">
+              <div class="howToTitle">Customizing Your Board</div>
+              Rename lists, add new columns, or change the order of existing ones.
+            </div>
+          </div>
+          <div class="howTo">
+            <div class="number">8.</div>
+            <div class="howToDescription">
+              <div class="howToTitle">Notifications & Task Reminders</div>
+              Get notified about updates and assigned tasks.
+            </div>
+          </div>
+        </div>
+
+        <h2 class="pageSubTitle">Troubleshooting & FAQ</h2>
+        <ul class="paddingBottom">
+          <li>
+            <strong>Q: I can't log in. What should I do?</strong><br />A: Ensure your internet connection is stable. If
+            the issue persists, try resetting your
+            password.
+          </li>
+          <br /><br />
+          <li><strong>Q: How can I invite teammates?</strong><br />A: Go to the Contacts-section, click “New Contact,”
+            and enter their details.</li>
+          <br /><br />
+          <li><strong>Q: Can I recover deleted tasks?</strong><br />A: No, deleted tasks are permanently removed, so be
+            careful when deleting.</li>
+        </ul>
       </div>
-    </main>
-  </body>
+    </div>
+  </main>
+</body>
+
 </html>
