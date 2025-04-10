@@ -50,13 +50,17 @@
 .info-box-first-line {
   display: flex;
   align-items: center;
-  gap: 18px;
+  justify-content: space-between;
+  /* gap: 18px; */
+  width: 560px;
 }
 
 .info-box-third-line {
   display: flex;
   align-items: center;
-  gap: 13px;
+  /* gap: 13px; */
+  width: 560px;
+  justify-content: space-between;
 }
 
 .todays-data {
@@ -72,7 +76,8 @@
   justify-content: center;
   gap: 18px;
   border-radius: 30px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1); /* Light grey shadow on all sides */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1);
+  /* Light grey shadow on all sides */
   transition: box-shadow 0.2s ease-in-out;
   background-color: rgb(255 255 255);
 }
@@ -90,7 +95,8 @@
   justify-content: center;
   gap: 18px;
   border-radius: 30px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1); /* Light grey shadow on all sides */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1);
+  /* Light grey shadow on all sides */
   transition: box-shadow 0.2s ease-in-out;
   background-color: rgb(255 255 255);
 }
@@ -102,7 +108,8 @@
   align-items: center;
   justify-content: center;
   gap: 61px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1); /* Light grey shadow on all sides */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1);
+  /* Light grey shadow on all sides */
   transition: box-shadow 0.2s ease-in-out;
   background-color: rgb(255 255 255);
   border-radius: 30px;
@@ -146,7 +153,8 @@
   gap: 13px;
   width: 168px;
   height: 168px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1); /* Light grey shadow on all sides */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1);
+  /* Light grey shadow on all sides */
   transition: box-shadow 0.2s ease-in-out;
   background-color: rgb(255 255 255);
   border-radius: 30px;
@@ -196,9 +204,25 @@
   font-size: 16px;
 }
 
+.deadline-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-icon {
+  width: 69px;
+  height: 69px;
+}
+
+.card-icon-small {
+  width: 60px;
+  height: 60px;
+}
+
 @media (min-width: 1920px) {
   .content {
-      max-width: 1920px;
+    max-width: 1920px;
   }
 }
 
@@ -259,7 +283,8 @@
     font-size: 20px;
   }
 
-  .to-do-box, .done-box {
+  .to-do-box,
+  .done-box {
     width: 186px;
     height: 110px;
   }
@@ -271,6 +296,42 @@
 
   .all-tasks-box {
     width: 116px;
-    heigth: 116px;
+    height: 116px;
+  }
+
+  .card-number,
+  .all-tasks-amount {
+    font-size: 47px;
+  }
+
+  .card-text {
+    font-size: 14px;
+  }
+
+  .card-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .todays-data {
+    font-size: 16px;
+  }
+
+  .all-tasks-types {
+    font-size: 14px;
+  }
+
+  .sep-line-third-box {
+    height: 68px;
+  }
+
+  
+
+  .info-box-second-line {
+    gap: 34px;
+  }
+
+  .all-tasks-box {
+    gap: 0px;
   }
 }
