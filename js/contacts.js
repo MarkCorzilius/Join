@@ -32,8 +32,10 @@ const bgImages = [
   "../img/variante15.png",
 ];
 
-// Globaler Speicher für den aktuell bearbeiteten Kontakt
+
 let currentContact = null;
+let detailViewOpen = false;
+
 
 function renderContacts() {
   loadFromLocalStorage();
@@ -76,14 +78,14 @@ function getContactVars(c) {
 
 function generateContactHTML(c, vars) {
   return `<div class="contact-item" onclick="openContactItem('${c.name}', '${c.email}', '${c.phone}'); contactItemClicked(this)">
-    <div class="contact-initials" style="background-image:url('${vars.bg}'); background-size:cover; background-position:center;">
-            ${vars.initials}
-        </div>
-        <div class="contact-details">
-            <p class="contact-name">${c.name}</p>
-            <p class="contact-email">${c.email}</p>
-        </div>
-    </div>`;
+  <div class="contact-initials" style="background-image:url('${vars.bg}'); background-size:cover; background-position:center;">
+          ${vars.initials}
+      </div>
+      <div class="contact-details">
+          <p class="contact-name">${c.name}</p>
+          <p class="contact-email">${c.email}</p>
+      </div>
+  </div>`;
 }
 
 function getBackgroundForName(name) {
@@ -102,17 +104,19 @@ function openContactItem(name, email, phone) {
   contactDetailView.innerHTML = generateContactDetails(bg, initials, name, email, phone);
   slideEfekt();
   goToContactInfoForMobile();
+  detailViewOpen = true;
 }
 
 function goToContactInfoForMobile() {
   if (document.documentElement.clientWidth < 800) {
     let contacts = document.getElementById("contacts");
     let contactDetailContainer = document.getElementById("contactDetailContainer");
-    let backErow = document.getElementById("backErow");
-    if (contacts && contactDetailContainer && backErow) {
+    let backArrow = document.getElementById("backArrow");
+    if (contacts && contactDetailContainer && backArrow) {
       contacts.classList.add("d-none");
-      contactDetailContainer.style.display = "flex";
-      backErow.classList.remove("d-none");
+      contactDetailContainer.classList.add("d-flex");
+      contactDetailContainer.classList.remove("d-none");
+      backArrow.classList.remove("d-none");
     }
   }
 }
@@ -121,34 +125,49 @@ function backToContacts() {
   if (document.documentElement.clientWidth < 800) {
     let contacts = document.getElementById("contacts");
     let contactDetailContainer = document.getElementById("contactDetailContainer");
-    let backErow = document.getElementById("backErow");
-    if (contacts && contactDetailContainer && backErow) {
+    let backArrow = document.getElementById("backArrow");
+    if (contacts && contactDetailContainer && backArrow) {
       contacts.classList.remove("d-none");
-      contactDetailContainer.style.display = "none";
-      backErow.classList.add("d-none");
+      contactDetailContainer.classList.remove("d-flex");
+      contactDetailContainer.classList.add("d-none");
+      backArrow.classList.add("d-none");
+      detailViewOpen = false;
     }
   }
 }
+
 
 window.addEventListener("resize", function () {
   const browserWidth = document.documentElement.clientWidth;
   let contacts = document.getElementById("contacts");
   let contactDetailContainer = document.getElementById("contactDetailContainer");
-  let backErow = document.getElementById("backErow");
-  if (!contacts || !contactDetailContainer || !backErow) return;
+  let backArrow = document.getElementById("backArrow");
+  if (!contacts || !contactDetailContainer || !backArrow) return;
 
   if (browserWidth >= 800) {
-    // Desktop-Ansicht: Beide Bereiche anzeigen, Rück-Button verstecken
+    // Desktop: Beide Bereiche anzeigen, Rück-Button verstecken
     contacts.classList.remove("d-none");
-    contactDetailContainer.style.display = "flex";
-    backErow.classList.add("d-none");
+    contactDetailContainer.classList.remove("d-none");
+    contactDetailContainer.classList.add("d-flex");
+    backArrow.classList.add("d-none");
   } else {
-    // Mobile-Ansicht (Standard): Kontakte anzeigen, Detailbereich und Rück-Button ausblenden
-    contacts.classList.remove("d-none");
-    contactDetailContainer.style.display = "none";
-    backErow.classList.add("d-none");
+    // Mobile: Unterschiedliche Zustände abhängig vom detailViewOpen-Zustand
+    if (detailViewOpen) {
+      // Detailbereich ist offen: Kontakte ausblenden, Detailbereich anzeigen, Rück-Button sichtbar machen
+      contacts.classList.add("d-none");
+      contactDetailContainer.classList.remove("d-none");
+      contactDetailContainer.classList.add("d-flex");
+      backArrow.classList.remove("d-none");
+    } else {
+      // Detailbereich ist geschlossen: Kontakte anzeigen, Detailbereich ausblenden, Rück-Button ausblenden
+      contacts.classList.remove("d-none");
+      contactDetailContainer.classList.remove("d-flex");
+      contactDetailContainer.classList.add("d-none");
+      backArrow.classList.add("d-none");
+    }
   }
 });
+
 
 function slideEfekt() {
   let contactDetailView = document.getElementById("contactDetailView");
@@ -161,24 +180,24 @@ function slideEfekt() {
 
 function generateContactDetails(bg, initials, name, email, phone) {
   return `
-      <div class="detail-avatar-name">
-        <div class="contact-detail-avatar" id="detailAvatar" style="background-image: url('${bg}'); background-size: cover; background-position: center;">
-          ${initials}
-        </div>
-        <div class="edit-delete">
-          <h2 id="detailName">${name}</h2>
-          <img src="/img/edit_contacts.png" alt="" onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}')">
-          <img src="/img/delete-contact.png" alt="" onclick="deleteContact('${email}')">
-        </div>
+    <div class="detail-avatar-name">
+      <div class="contact-detail-avatar" id="detailAvatar" style="background-image: url('${bg}'); background-size: cover; background-position: center;">
+        ${initials}
       </div>
-      <div class="email-phone">
-        <p>Contact Information</p>
-        <b>Email</b>
-        <p class="email" id="detailEmail">${email}</p>
-        <b>Phone</b>
-        <p class="phone" id="detailPhone">${phone}</p>
+      <div class="edit-delete">
+        <h2 id="detailName">${name}</h2>
+        <img src="/img/edit_contacts.png" alt="" onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}')">
+        <img src="/img/delete-contact.png" alt="" onclick="deleteContact('${email}')">
       </div>
-    `;
+    </div>
+    <div class="email-phone">
+      <p>Contact Information</p>
+      <b>Email</b>
+      <p class="email" id="detailEmail">${email}</p>
+      <b>Phone</b>
+      <p class="phone" id="detailPhone">${phone}</p>
+    </div>
+  `;
 }
 
 function contactItemClicked(itemElement) {
@@ -233,34 +252,6 @@ function saveNewContact() {
   overlayForContactSuccesfullyCreated();
 }
 
-// function overlayForContactSuccesfullyCreated() {
-//     const contactSuccesfullyCreated = document.getElementById('contactSuccesfullyCreated');
-//     contactSuccesfullyCreated.classList.remove("d-none");
-//     setTimeout(() => contactSuccesfullyCreated.classList.add("show"), 10);
-//     const overlaySuccesfullyCreated = contactSuccesfullyCreated.querySelector(".overlay-add-content");
-//     setTimeout(() => overlaySuccesfullyCreated.classList.add("slide-in"), 10);
-
-//     // const addContactOverlay = document.getElementById('addContactOverlay');
-//     // const overlayAddContent = addContactOverlay.querySelector(".overlay-add-content");
-//     // overlayAddContent.classList.remove("slide-in");
-//     // addContactOverlay.classList.remove("show");
-//     setTimeout(() => contactSuccesfullyCreated.classList.add("d-none"), 300);
-
-// }
-
-// function overlayForContactSuccesfullyCreated() {
-//     const overlay = document.getElementById("contactSuccesfullyCreated");
-//     // Overlay sichtbar machen
-//     overlay.classList.remove("d-none");
-//     // Kurz warten, damit der Browser den Startzustand erkennt
-//     setTimeout(() => overlay.classList.add("show"), 10);
-//     // Nach ca. 2 Sekunden Overlay wieder schließen
-//     setTimeout(() => {
-//         overlay.classList.remove("show");
-//         // Nach der Übergangszeit wieder ausblenden
-//         setTimeout(() => overlay.classList.add("d-none"), 500);
-//     }, 2000);
-// }
 
 function overlayForContactSuccesfullyCreated() {
   const overlay = document.getElementById("contactSuccesfullyCreated");
@@ -268,10 +259,8 @@ function overlayForContactSuccesfullyCreated() {
 
   const containerRect = detailContainer.getBoundingClientRect();
   const computedStyle = getComputedStyle(detailContainer);
-  // Den linken Padding-Wert ermitteln (z. B. "48px" -> 48)
   const paddingLeft = parseFloat(computedStyle.paddingLeft);
 
-  // Setze den linken Offset des Overlays so, dass er den Padding berücksichtigt
   overlay.style.left = containerRect.left + paddingLeft + "px";
 
   overlay.classList.remove("d-none");
@@ -335,8 +324,8 @@ function editContact(name, email, phone, initials, bg) {
   let editAvatar = document.getElementById("editAvatar");
   editAvatar.style.backgroundImage = `url(${bg})`;
   editAvatar.innerHTML = `
-        ${initials}
-    `;
+      ${initials}
+  `;
 }
 
 function saveEditedContact() {
