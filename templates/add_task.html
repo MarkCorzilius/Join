@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/sidebar.css" />
     <link rel="stylesheet" href="../css/add_task.css" />
+    <link rel="stylesheet" href="../css/add_task-responsive.css" />
+
 
     <script src="../script.js" defer></script>
     <script src="https://www.w3schools.com/lib/w3.js"></script>
@@ -33,25 +35,25 @@
               <div class="question-blocks">
                 <div class="task-left-block">
                   <div class="title-field-space">
-                    <label required class="field-label-required">Title</label>
-                    <input class="title-field" placeholder="Enter a title" type="text" />
+                    <label required class="field-label-required task-subtitle">Title</label>
+                    <input class="title-field task-txt" placeholder="Enter a title" type="text" />
                   </div>
                   <div class="title-field-space">
-                    <label class="field-label" for="description">Description</label>
-                    <textarea class="description-area" id="description" name="description" placeholder="Enter a description"></textarea>
+                    <label class="field-label" for="description task-subtitle">Description</label>
+                    <textarea class="description-area task-txt" id="description" name="description" placeholder="Enter a description"></textarea>
                   </div>
                   <div class="title-field-space">
-                    <label required class="field-label-required due-date-title">Due date</label>
-                    <input class="due-date-field" type="date" />
+                    <label required class="field-label-required due-date-title task-subtitle">Due date</label>
+                    <input class="due-date-field task-txt" type="date" />
                   </div>
                 </div>
                 <div class="vertical-line"></div>
                 <div class="task-right-block">
                   <div class="priority-section">
-                    <label class="field-label">Priority</label>
+                    <label class="field-label task-subtitle">Priority</label>
                     <div class="priority-buttons">
                       <button onclick="setActivePriority(this, 'rgb(255 61 0)')" class="priority-button">
-                        <p>Urgent</p>
+                        <p class="task-txt">Urgent</p>
                         <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <g clip-path="url(#clip0_156_1009)">
                             <path
@@ -71,7 +73,7 @@
                         </svg>
                       </button>
                       <button onclick="setActivePriority(this, 'rgb(255 168 0)')" class="priority-button">
-                        <p>Medium</p>
+                        <p class="task-txt">Medium</p>
                         <svg width="21" height="8" viewBox="0 0 21 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <g clip-path="url(#clip0_156_1038)">
                             <path
@@ -91,7 +93,7 @@
                         </svg>
                       </button>
                       <button onclick="setActivePriority(this, 'rgb(123 225 41)')" class="priority-button">
-                        <p>Low</p>
+                        <p class="task-txt">Low</p>
                         <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path
                             d="M10.3555 9.69779C10.1209 9.69819 9.89234 9.62335 9.70349 9.48427L0.800382 2.91453C0.684543 2.82898 0.586704 2.72146 0.512448 2.59812C0.438193 2.47478 0.388977 2.33803 0.367609 2.19569C0.324455 1.90821 0.397354 1.61537 0.57027 1.3816C0.743187 1.14782 1.00196 0.992265 1.28965 0.949143C1.57734 0.906021 1.8704 0.978866 2.10434 1.15165L10.3555 7.23414L18.6066 1.15165C18.7224 1.0661 18.854 1.00418 18.9938 0.969432C19.1336 0.934685 19.2788 0.927791 19.4213 0.949143C19.5637 0.970495 19.7006 1.01967 19.824 1.09388C19.9474 1.16808 20.055 1.26584 20.1407 1.3816C20.2263 1.49735 20.2883 1.62882 20.323 1.7685C20.3578 1.90818 20.3647 2.05334 20.3433 2.19569C20.322 2.33803 20.2727 2.47478 20.1985 2.59812C20.1242 2.72146 20.0264 2.82898 19.9106 2.91453L11.0075 9.48427C10.8186 9.62335 10.5901 9.69819 10.3555 9.69779Z"
@@ -105,48 +107,93 @@
                       </button>
                     </div>
                   </div>
-                  <div class="assignment-section">
-                    <label class="field-label" for="contacts">Assigned to</label>
-                    <div class="select-menu">
-                      <div class="select-btn">
-                        <span class="select-btn-text">Select contacts</span>
-                        <img class="select-btn-img" src="../img/dropdown-arrow-down.png" alt="arrow" />
+                  <div class="contacts-section">
+                  <label required class="field-label-required task-subtitle">Contacts</label>
+                  <div class="dropdown-wrapper">
+                    <div class="assignment-toggle-buttons">
+                    <div id="closedState" onclick="openContactAssignmentInput()" class="dropdown-btn">
+                      <span class="task-txt">Select contacts to assign</span>
+                      <div class="dropdown-icon-wrapper">
+                        <img class="dropdown-icon" src="../img/dropdown-arrow-down.png" alt="dropdown arrow">
                       </div>
-                      <ul id="assignContactsBox" class="options">
-                        <li class="option">
-                          <span>Mark Corzilius</span>
-                          <img src="../img/check.png" alt="check box" />
-                        </li>
-                        <li class="option">
-                          <span>Igor Boger</span>
-                          <img src="../img/check.png" alt="check box" />
-                        </li>
-                      </ul>
+                    </div>
+                    <div style="display: none;" id="searchState">
+                      <input type="text">
+                      <div onclick="closeContactAssignment()" class="arrow-up-wrapper">
+                        <img src="../img/dropdown-arrow-up.png" alt="dropdown arrow">
+                      </div>
+                    </div>
+                    </div>
+                    <div id="contactOptions" class="options">
+                      <div onclick="styleChosenContact(this)" class="option">
+                        <div>
+                        <img src="../img/variante12.png" alt="profile icon">
+                        <span>Mark Corzilius (You)</span>
+                        </div>
+                        <svg class="select-box unchecked" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect x="4" y="4" width="16" height="16" rx="3" stroke="#2A3647" stroke-width="2"/>
+                          </svg>
+                        <svg class="select-box checked" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 11V17C20 18.6569 18.6569 20 17 20H7C5.34315 20 4 18.6569 4 17V7C4 5.34315 5.34315 4 7 4H15" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M8 12L12 16L20 4.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                      </div>
+                      <div onclick="styleChosenContact(this)" class="option">
+                        <div>
+                        <img src="../img/variante4.png" alt="profile icon">
+                        <span>Igor Boger</span>
+                        </div>
+                        <svg class="select-box unchecked" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect x="4" y="4" width="16" height="16" rx="3" stroke="#2A3647" stroke-width="2"/>
+                          </svg>
+                        <svg class="select-box checked" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 11V17C20 18.6569 18.6569 20 17 20H7C5.34315 20 4 18.6569 4 17V7C4 5.34315 5.34315 4 7 4H15" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M8 12L12 16L20 4.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                      </div>
+                    </div>
                     </div>
                   </div>
                   <div class="category-section">
-                    <label required class="field-label-required">Category</label>
-                    <div class="category-selection-wrapper">
-                      <select id="category" name="category">
-                        <option value="" disabled selected hidden>Select task category</option>
-                        <option value="work">Work</option>
-                        <option value="personal">Personal</option>
-                        <option value="urgent">Urgent</option>
-                      </select>
-                      <img class="select-arrow" src="../img/dropdown-arrow-down.png" alt="open" />
+                    <label class="field-label" for="description task-subtitle">Category</label>
+                      <div onclick="toggleCategoryOptions()" class="dropdown-btn-category">
+                        <button class="category-btn">
+                          <span id="categoryChoiceInsert" class="task-txt">Select task category</span>
+                          <div class="category-dropdown-wrapper">
+                          <img id="categoryArrow" src="../img/dropdown-arrow-down.png" alt="dropdown arrow">
+                          </div>
+                        </button>
+                      </div>
+                      <div style="display: none;" class="category-options">
+                        <span onclick="chooseCategory(this)" class="category-option">Technical Task</span>
+                        <span onclick="chooseCategory(this)" class="category-option">User Story</span>
+                      </div>
+                  </div>
+
+                  <div class="subtask-section">
+                  <label class="field-label" for="description task-subtitle">Subtask</label>
+                  <div class="subtask-input-wrapper">
+                  <input onblur="showMainBtn()" onfocus="showActionBtns()" id="subtaskInput" placeholder="Add new subtask" minlength="1" type="text">
+                  <div id="subtaskMainBtn" class="subtask-btn-wrapper subtask-main-btn">
+                    <img src="../img/add.png" alt="write">
+                  </div>
+                  <div id="focusBtns" class="subtask-focus-btns">
+                    <div class="subtask-btn-wrapper">
+                      <img src="../img/subtask_del.png" alt="del">
+                    </div>
+                    <div class="subtask-btns-separator"></div>
+                    <div onclick="addSubtask()" class="subtask-btn-wrapper">
+                      <img src="../img/subtask_add.png" alt="add">
                     </div>
                   </div>
-                  <div class="subtasks-section">
-                    <label class="field-label" for="subtask">Subtasks</label>
-                    <div id="subtask">
-                      <input type="text" id="subtask" name="subtask" placeholder="Add new subtask" />
-                      <img class="subtask-button" src="../img/add.png" alt="" />
-                    </div>
                   </div>
+                  <div id="subtaskContainer">w</div>
+                </div>
+
                 </div>
               </div>
               <div class="add-task-footer">
-                <p class="requirement-warning">This field is required</p>
+                <p class="requirement-warning task-txt">This field is required</p>
                 <div class="footer-buttons-wrapper">
                   <button onmouseleave="clearBtnToBlack()" onmouseover="clearBtnToBlue()" class="clear-all-button">
                     <p>Clear</p>

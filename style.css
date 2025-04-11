@@ -92,6 +92,10 @@ input[type="date"]:valid {
   /* Fully visible when a date is selected */
 }
 
+#sidebarContainer {
+  z-index: 999;
+}
+
 @media (max-width: 1000px) {
   .content {
     width: 100vw;

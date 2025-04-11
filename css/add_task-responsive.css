@@ -1,0 +1,150 @@
+@media (min-width: 1001px) and (max-width: 1350px) {
+    .vertical-line {
+        margin: 0 32px
+    }
+
+    .title-field {
+        width: 320px;
+    }
+
+    .description-area {
+        width: 320px;
+    }
+
+    .due-date-field {
+        width: 320px;
+    }
+
+    .dropdown-wrapper {
+        width: 320px;
+    }
+
+    .dropdown-btn {
+        width: 320px;
+    }
+
+    #searchState {
+        width: 320px;
+    }
+
+    .priority-button {
+        gap: 4px;
+        font-size: 16px;
+        width: 96px;
+        height: 48px;
+    }
+
+    .priority-btn svg {
+        height: 14px;
+        width: auto;
+    }
+
+    .category-section {
+        width: 320px;
+    }
+
+    #subtaskInput {
+        width: 320px;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .question-blocks {
+        flex-direction: column;
+    }
+
+    .vertical-line {
+        display: none;
+    }
+
+    .add-task-main {
+        margin-left: 0;
+        justify-content: center;
+        height: calc(100vh - 180px);
+    }
+
+    .add-task-page-title {
+        width: 100%;
+        position: sticky;
+        top: 0;
+        background-color: rgb(246 247 248);
+        font-size: 51px; 
+    }
+
+    .footer-buttons-wrapper {
+        position: fixed;
+        bottom: 100px;
+        background-color: rgb(246 247 248);
+        z-index: 999; 
+        width: 80vw;
+        padding: 30px 0 30px;
+        justify-content: flex-end;
+    }
+
+    .add-task-footer {
+        position: static;   
+    }
+
+    .requirement-warning {
+        position: static;
+        padding-bottom: 120px;
+    }
+
+    .task-right-block {
+        width: 100%;
+    }
+
+    .title-field {
+        width: 80vw;
+    }
+
+    .description-area {
+        width: 80vw;
+    }
+
+    .due-date-field {
+        width: 80vw;
+    }
+
+    .priority-section {
+        margin-top: 24px;
+    }
+
+    .dropdown-btn {
+        width: 80vw;
+    }
+
+    .category-btn {
+        width: 80vw;
+    }
+
+    #subtaskInput {
+        width: 80vw;
+    }
+  }
+
+
+  @media (max-width: 550px) {
+    .add-task-page-title {
+        font-size: 48px;
+    }
+
+    .priority-button {
+        gap: 4px;
+        font-size: 16px;
+        width: 96px;
+        height: 48px;
+    }
+
+    .create-task-button {
+        font-size: 16px;
+        width: 140px;
+        height: 50px;
+    }
+
+    .clear-all-button {
+        font-size: 16px;
+        width: 90px;
+        height: 50px;
+    }
+  }
