@@ -17,14 +17,14 @@
     <link rel="stylesheet" href="../css/add_task.css" />
     <link rel="stylesheet" href="../css/add_task-responsive.css" />
 
-
+    <script src="../js/remoteStorage.js"></script>
     <script src="../script.js" defer></script>
     <script src="https://www.w3schools.com/lib/w3.js"></script>
     <script src="../js/sidebar.js"></script>
     <script src="../js/add_task.js"></script>
   </head>
 
-  <body onload="w3.includeHTML()">
+  <body onload="w3.includeHTML(); getFirebaseData()">
     <header w3-include-html="../templates/header.html" id="headerContainer"></header>
     <main class="main">
       <div w3-include-html="../templates/sidebar.html" id="sidebarContainer"></div>
@@ -175,7 +175,7 @@
                   <div class="subtask-section">
                   <span class="field-label" for="description task-subtitle">Subtask</span>
                   <div class="subtask-input-wrapper">
-                  <input onfocus="showActionBtns()" id="subtaskInput" placeholder="Add new subtask" minlength="1" type="text">
+                  <input onfocus="showActionBtns()" class="task-txt" id="subtaskInput" placeholder="Add new subtask" minlength="1" type="text">
                   <div onclick="showActionBtns()" id="subtaskMainBtn" class="subtask-btn-wrapper subtask-main-btn">
                     <img src="../img/add.png" alt="write">
                   </div>

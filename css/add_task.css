@@ -316,6 +316,7 @@
 
 .content-in-main {
   position: relative;
+  width: 80vw;
 }
 
 .select-box {
