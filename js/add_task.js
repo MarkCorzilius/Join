@@ -63,9 +63,9 @@ function changePriorityBtnColor(button) {
   const svg = button.nextElementSibling;
 
   if (button.classList.contains('active')) {
-    svg.setAtribute('fill', 'white');
+    svg.setAttribute('fill', 'white');
   } else {
-    svg.setAtribute('fill', 'auto');
+    svg.setAttribute('fill', 'auto');
   }
 }
 
@@ -101,6 +101,7 @@ function showActionBtns() {
 
   mainBtn.style.display = 'none';
   focusBtns.style.display = 'flex';
+
 }
 
 function showMainBtn() {
@@ -115,6 +116,31 @@ function addSubtask() {
   const valueRef = document.getElementById('subtaskInput').value;
   const outputDiv = document.getElementById('subtaskContainer');
 
-  outputDiv.innerHTML += valueRef;
+  outputDiv.innerHTML += `                    
+                    <div id="subtaskTemplate" class="subtask-template">
+                      <div class="subtask-title">
+                        <p>•</p>
+                        <span>Trial subtask</span>
+                      </div>
+                      <div class="control-subtask">
+                        <div id="subtaskNormalState">
+                        <img src="../img/subtask_pencil.png" alt="edit">
+                        <div class="subtask-separator"></div>
+                        <img src="../img/subtask_trash.png" alt="delete">
+                        </div>
+                        <div id="subtaskEditState" style="display: none;">
+                          <div class="subtask-icon-wrapper">
+                          <img src="../img/subtask_trash.png" alt="delete">
+                          </div>
+                          <div class="subtask-separator"></div>
+                          <div class="subtask-icon-wrapper">
+                          <img src="../img/subtask_edit_confirm.png" alt="confirm">
+                          </div>
+                        </div>
+                      </div>
+                    </div>`;
+
   document.getElementById('subtaskInput').value = '';
+
+  showMainBtn();
 }
