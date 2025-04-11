@@ -68,6 +68,11 @@ input {
   font-size: 16px;
 }
 
+input:focus {
+  outline: none;
+  border: 1px solid rgb(41, 171, 226);
+}
+
 input[type="date"] {
   text-indent: 8px;
 }
@@ -79,6 +84,11 @@ input[type="text"] {
 textarea {
   text-indent: 16px;
   font-size: 16px;
+}
+
+textarea:focus {
+  border: 1px solid rgb(41, 171, 226);
+  outline: none;
 }
 
 button {
@@ -98,6 +108,10 @@ input[type="date"] {
 input[type="date"]:valid {
   opacity: 0.5;
   /* Fully visible when a date is selected */
+}
+
+#sidebarContainer {
+  z-index: 999;
 }
 
 @media (max-width: 1000px) {
