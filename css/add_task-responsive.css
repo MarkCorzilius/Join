@@ -161,3 +161,17 @@
         display: block;
     }
   }
+
+  @media (max-width: 400px) {
+    .priority-button {
+        width: 84px;
+    }
+
+    .task-txt {
+        font-size: 12px;
+    }
+
+    .priority-buttons {
+        gap: 4px;
+    }
+  }

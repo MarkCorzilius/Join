@@ -40,20 +40,14 @@ li {
 }
 
 .content {
-  /* z-index: 10; */
-  /*  ?   */
-  /* width: 100%; */
-  /*  ?   */
-  /* height: calc(100vh - 80px);*/
-  /*  ?   */
   margin-top: 80px;
-  /* display: flex; */
-  /*  ?   */
-  /* padding-top: 64px; */
-  /*  Besser direkt in  .add-task-main  */
   box-sizing: border-box;
   overflow: auto;
   background-color: rgb(246 247 248);
+}
+
+.content::-webkit-scrollbar {
+  display: none;
 }
 
 .light-grey-bg {
