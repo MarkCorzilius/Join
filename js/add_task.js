@@ -6,7 +6,7 @@ function clearBtnToBlack() {
   document.getElementById("clearBtn").src = "../img/close.png";
 }
 
-function setActivePriority(button, color) {
+function setActivePriority(button, color, id) {
   document.querySelectorAll(".priority-button").forEach((btn) => {
     btn.classList.remove("active");
     btn.style.backgroundColor = "";
@@ -16,7 +16,34 @@ function setActivePriority(button, color) {
   button.style.backgroundColor = color;
   button.style.color = "white";
 
-  changePriorityBtnColor(button);
+  changePriorityBtnColor(id); 
+}
+
+function changePriorityBtnColor(id) {
+  const svgRef = document.querySelectorAll('.priority-icon');
+  for (let i = 0; i < svgRef.length; i++) {
+    const icon = svgRef[i];
+    icon.classList.remove('clicked-priority-color');
+
+    if (icon.classList.contains(`priority-icon-${id}`)) {
+      icon.classList.add('clicked-priority-color');
+    }
+    
+  }
+}
+
+function resetPriorityBtn() {
+  const inactiveBtns = [document.getElementsByClassName('priority-button')[0], document.getElementsByClassName('priority-button')[2]];
+  const medium = document.getElementsByClassName('priority-button')[1];
+
+  inactiveBtns.forEach(btn => {
+    btn.style.backgroundColor = 'white';
+    btn.style.color = 'black';
+  });
+  medium.classList.add('active');
+  medium.style.backgroundColor = 'rgb(255, 168, 1)';
+  medium.style.color = 'white';
+  changePriorityBtnColor(1);
 }
 
 function styleChosenContact(element) {
@@ -57,16 +84,6 @@ function closeContactAssignment() {
   searchRef.style.display = 'none';
   optionsRef.style.display = 'none';
   wrapperRef.style.marginBottom = '0';
-}
-
-function changePriorityBtnColor(button) {
-  const svg = button.nextElementSibling;
-
-  if (button.classList.contains('active')) {
-    svg.setAttribute('fill', 'white');
-  } else {
-    svg.setAttribute('fill', 'auto');
-  }
 }
 
 function toggleCategoryOptions() {
@@ -120,7 +137,7 @@ function addSubtask() {
                     <div id="subtaskTemplate" class="subtask-template">
                       <div class="subtask-title">
                         <p>•</p>
-                        <span>Trial subtask</span>
+                        <span>${valueRef}</span>
                       </div>
                       <div class="control-subtask">
                         <div id="subtaskNormalState">
@@ -143,4 +160,18 @@ function addSubtask() {
   document.getElementById('subtaskInput').value = '';
 
   showMainBtn();
+}
+
+function emptyTaskDocument() {
+  const title = document.querySelector('.title-field');
+  const description = document.querySelector('.description-area');
+  const date = document.querySelector('.due-date-field');
+  const subtaskInput = document.getElementById('subtaskInput');
+
+  title.value = '';
+  description.value = '';
+  date.value = '';
+  subtaskInput.value = '';
+  resetPriorityBtn();
+  
 }
