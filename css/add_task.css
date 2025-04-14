@@ -152,7 +152,7 @@
   align-items: center;
   justify-content: space-between;
   width: 1010px;
-  position: absolute;
+  position: fixed;
   bottom: 40px;
 }
 .footer-buttons-wrapper {
@@ -219,7 +219,7 @@
 .dropdown-wrapper {
   display: flex;
   flex-direction: column;
-  width: 80vw;
+  width: 440px;
   position: relative;
 }
 
@@ -512,7 +512,10 @@
 #subtaskContainer {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 440px;
+  max-height: 160px;
+  overflow-y: scroll;
+  box-sizing: border-box;
 }
 
 .subtask-template {
@@ -556,6 +559,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  height: 40px;
 }
 
 .subtask-template:hover #subtaskNormalState {

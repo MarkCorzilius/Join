@@ -175,7 +175,7 @@
                   <div class="subtask-section">
                   <span class="field-label" for="description task-subtitle">Subtask</span>
                   <div class="subtask-input-wrapper">
-                  <input onfocus="showActionBtns()" class="task-txt" id="subtaskInput" placeholder="Add new subtask" minlength="1" type="text">
+                  <input onfocus="showActionBtns()" onkeydown="checkShift(event)" class="task-txt" id="subtaskInput" placeholder="Add new subtask" minlength="1" type="text">
                   <div onclick="showActionBtns()" id="subtaskMainBtn" class="subtask-btn-wrapper subtask-main-btn">
                     <img src="../img/add.png" alt="write">
                   </div>

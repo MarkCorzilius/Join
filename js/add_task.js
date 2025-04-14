@@ -131,6 +131,7 @@ function showMainBtn() {
 
 function addSubtask() {
   const valueRef = document.getElementById('subtaskInput').value;
+  const input = document.getElementById('subtaskInput');
   const outputDiv = document.getElementById('subtaskContainer');
 
   outputDiv.innerHTML += `                    
@@ -160,6 +161,16 @@ function addSubtask() {
   document.getElementById('subtaskInput').value = '';
 
   showMainBtn();
+  scrollToCreatedSubtask();
+  setTimeout(() => {
+    input.focus();
+  }, 0);
+  
+}
+
+function scrollToCreatedSubtask() {
+  const container = document.getElementById('subtaskContainer');
+  container.scrollTop = container.scrollHeight;
 }
 
 function emptyTaskDocument() {
@@ -173,5 +184,22 @@ function emptyTaskDocument() {
   date.value = '';
   subtaskInput.value = '';
   resetPriorityBtn();
+  resetCategory();
+  resetSubtasks();
   
+}
+
+function resetCategory() {
+  document.getElementById('categoryChoiceInsert').innerText = 'Select task category';
+}
+
+function resetSubtasks() {
+  const subtasks = document.getElementById('subtaskContainer');
+  subtasks.innerHTML = '';
+}
+
+function checkShift(event) {
+  if (event.key === 'Enter') {
+    addSubtask();
+  }
 }

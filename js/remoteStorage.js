@@ -49,7 +49,7 @@ function saveActivePriority() {
 
 function saveCategory() {
   const containerRef = document.getElementById('categoryChoiceInsert');
-  if (!containerRef.innerText == 'Select task category') {
+  if (containerRef.innerText !== 'Select task category') {
     const category = containerRef.innerText;
     return category;
   } else {
@@ -61,14 +61,16 @@ function saveCategory() {
 function saveSubtasks() {
   const subtaskContainer = document.getElementById('subtaskContainer');
   const subtaskTitles = document.querySelectorAll('.subtask-titles');
-  if (!subtaskContainer == null) {
-    for (let i = 0; i < subtaskTitles.length; i++) {
-      const subtaskTitle = subtaskTitles[i];
-      subtasks += subtaskTitle;
+
+  if (!subtaskContainer) return null;
+
+  const subtasks = {};
+
+  for (let i = 0; i < subtaskTitles.length; i++) {
+    const titleText = subtaskTitles[i].innerText.trim();
+    if (titleText !== '') {
+      subtasks[`subtask-${i + 1}`] = titleText;
     }
-    const subtasks = {}
-    return subtasks;
-  } else {
-    return null;
+    return Object.keys(subtasks).length > 0 ? subtasks : null; 
   }
-}
+  }

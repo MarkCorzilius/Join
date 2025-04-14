@@ -3,6 +3,14 @@
         margin: 0 32px
     }
 
+    .task-right-block {
+        width: 320px;
+    }
+
+    .subtask-template {
+        width: 320px;
+    }
+
     .title-field {
         width: 320px;
     }
@@ -50,6 +58,7 @@
     .add-task-footer {
         width: 710px;
     }
+
   }
 
   @media (max-width: 1000px) {
@@ -78,6 +87,10 @@
         background-color: rgb(246 247 248);
         font-size: 51px; 
         z-index: 999;
+    }
+
+    #subtaskContainer {
+        width: 80vw;
     }
 
     .footer-buttons-wrapper {
