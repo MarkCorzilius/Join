@@ -46,11 +46,19 @@
     #subtaskInput {
         width: 320px;
     }
+
+    .add-task-footer {
+        width: 710px;
+    }
   }
 
   @media (max-width: 1000px) {
     .question-blocks {
         flex-direction: column;
+    }
+
+    .content-in-main {
+        width: 80vw;
     }
 
     .vertical-line {

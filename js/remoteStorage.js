@@ -23,7 +23,7 @@ function extractTaskValues() {
 }
 
 function getTaskData() {
-  extractTaskValues();
+  const {titleValue, descriptionValue, dateValue} =  extractTaskValues();
 
   const dataSafe = {
     title: titleValue,

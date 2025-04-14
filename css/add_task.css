@@ -151,7 +151,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: 1010px;
   position: absolute;
   bottom: 40px;
 }
@@ -219,7 +219,7 @@
 .dropdown-wrapper {
   display: flex;
   flex-direction: column;
-  width: 440px;
+  width: 80vw;
   position: relative;
 }
 
@@ -316,7 +316,6 @@
 
 .content-in-main {
   position: relative;
-  width: 80vw;
 }
 
 .select-box {
