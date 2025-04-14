@@ -137,7 +137,7 @@ function addSubtask() {
                     <div id="subtaskTemplate" class="subtask-template">
                       <div class="subtask-title">
                         <p>•</p>
-                        <span>${valueRef}</span>
+                        <span class="subtask-titles">${valueRef}</span>
                       </div>
                       <div class="control-subtask">
                         <div id="subtaskNormalState">

@@ -24,7 +24,7 @@
     <script src="../js/add_task.js"></script>
   </head>
 
-  <body onload="w3.includeHTML(); getFirebaseData(); resetPriorityBtn()">
+  <body onload="w3.includeHTML(); resetPriorityBtn()">
     <header w3-include-html="../templates/header.html" id="headerContainer"></header>
     <main class="main">
       <div w3-include-html="../templates/sidebar.html" id="sidebarContainer"></div>
@@ -36,15 +36,15 @@
                 <div class="task-left-block">
                   <div class="title-field-space">
                     <span required class="field-label-required task-subtitle">Title</span>
-                    <input class="title-field task-txt" placeholder="Enter a title" type="text" />
+                    <input id="taskTitle" class="title-field task-txt" placeholder="Enter a title" type="text" />
                   </div>
                   <div class="title-field-space">
                     <span class="field-label" for="description task-subtitle">Description</span>
                     <textarea class="description-area task-txt" id="description" name="description" placeholder="Enter a description"></textarea>
                   </div>
                   <div class="title-field-space">
-                    <span required class="field-label-required due-date-title task-subtitle">Due date</span>
-                    <input class="due-date-field task-txt" type="date" />
+                    <span class="field-label-required due-date-title task-subtitle">Due date</span>
+                    <input id="taskDate" required class="due-date-field task-txt" type="date" />
                   </div>
                 </div>
                 <div class="vertical-line"></div>
@@ -52,7 +52,7 @@
                   <div class="priority-section">
                     <span class="field-label task-subtitle">Priority</span>
                     <div class="priority-buttons">
-                      <button onclick="setActivePriority(this, 'rgb(255, 61, 0)', 0)" class="priority-button">
+                      <button onclick="setActivePriority(this, 'rgb(255, 61, 0)', 0)" class="priority-button urgent">
                         <p class="task-txt">Urgent</p>
                         <svg class="priority-icon priority-icon-0" width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <g clip-path="url(#clip0_156_1009)">
@@ -72,7 +72,7 @@
                           </defs>
                         </svg>
                       </button>
-                      <button onclick="setActivePriority(this, 'rgb(255, 168, 1)', 1)" class="priority-button">
+                      <button onclick="setActivePriority(this, 'rgb(255, 168, 1)', 1)" class="priority-button medium">
                         <p class="task-txt">Medium</p>
                         <svg class="priority-icon priority-icon-1" width="21" height="8" viewBox="0 0 21 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <g clip-path="url(#clip0_156_1038)">
@@ -92,7 +92,7 @@
                           </defs>
                         </svg>
                       </button>
-                      <button onclick="setActivePriority(this, 'rgb(123, 225, 41)', 2)" class="priority-button">
+                      <button onclick="setActivePriority(this, 'rgb(123, 225, 41)', 2)" class="priority-button low">
                         <p class="task-txt">Low</p>
                         <svg class="priority-icon priority-icon-2" width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path
@@ -203,7 +203,7 @@
                     <p>Clear</p>
                     <img id="clearBtn" src="../img/close.png" alt="close" />
                   </button>
-                  <button class="create-task-button">
+                  <button onclick="getTaskData()" class="create-task-button">
                     <p>Create Task</p>
                     <img src="../img/check.png" alt="check" />
                   </button>
