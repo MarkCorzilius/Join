@@ -55,6 +55,10 @@
         width: 320px;
     }
 
+    .subtask-template-edit-state {
+        width: 320px;
+    }
+
     .add-task-footer {
         width: 710px;
     }
@@ -149,6 +153,18 @@
     }
 
     .category-options {
+        width: 80vw;
+    }
+
+    .task-edit-state {
+        width: 80vw;
+    }
+
+    .subtask-template-edit-state {
+        width: 100%;
+    }
+
+    .subtask-edit-input {
         width: 80vw;
     }
 

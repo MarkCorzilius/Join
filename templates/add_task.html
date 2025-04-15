@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="../css/add_task.css" />
     <link rel="stylesheet" href="../css/add_task-responsive.css" />
 
-    <script src="../js/remoteStorage.js"></script>
+    <script src="../js/add_task_remote_storage.js"></script>
     <script src="../script.js" defer></script>
     <script src="https://www.w3schools.com/lib/w3.js"></script>
     <script src="../js/sidebar.js"></script>
@@ -36,7 +36,7 @@
                 <div class="task-left-block">
                   <div class="title-field-space">
                     <span required class="field-label-required task-subtitle">Title</span>
-                    <input id="taskTitle" class="title-field task-txt" placeholder="Enter a title" type="text" />
+                    <input onkeydown="blurOnEnter(event)" id="taskTitle" class="title-field task-txt" placeholder="Enter a title" type="text" />
                   </div>
                   <div class="title-field-space">
                     <span class="field-label" for="description task-subtitle">Description</span>
@@ -44,7 +44,7 @@
                   </div>
                   <div class="title-field-space">
                     <span class="field-label-required due-date-title task-subtitle">Due date</span>
-                    <input id="taskDate" required class="due-date-field task-txt" type="date" />
+                    <input onkeydown="blurOnEnter(event)" id="taskDate" required class="due-date-field task-txt" type="date" />
                   </div>
                 </div>
                 <div class="vertical-line"></div>
@@ -118,7 +118,7 @@
                       </div>
                     </div>
                     <div style="display: none;" id="searchState">
-                      <input type="text">
+                      <input onkeydown="blurOnEnter(event)" type="text">
                       <div onclick="closeContactAssignment()" class="arrow-up-wrapper">
                         <img src="../img/dropdown-arrow-up.png" alt="dropdown arrow">
                       </div>
@@ -175,12 +175,12 @@
                   <div class="subtask-section">
                   <span class="field-label" for="description task-subtitle">Subtask</span>
                   <div class="subtask-input-wrapper">
-                  <input onfocus="showActionBtns()" onkeydown="checkShift(event)" class="task-txt" id="subtaskInput" placeholder="Add new subtask" minlength="1" type="text">
+                  <input onfocus="showActionBtns()" onkeydown="checkShiftSubtask(event)" class="task-txt" id="subtaskInput" placeholder="Add new subtask" minlength="1" type="text">
                   <div onclick="showActionBtns()" id="subtaskMainBtn" class="subtask-btn-wrapper subtask-main-btn">
                     <img src="../img/add.png" alt="write">
                   </div>
                   <div id="focusBtns" class="subtask-focus-btns">
-                    <div class="subtask-btn-wrapper">
+                    <div onclick="emptySubtaskInput()" class="subtask-btn-wrapper">
                       <img src="../img/subtask_del.png" alt="del">
                     </div>
                     <div class="subtask-btns-separator"></div>

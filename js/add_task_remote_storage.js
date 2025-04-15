@@ -71,6 +71,6 @@ function saveSubtasks() {
     if (titleText !== '') {
       subtasks[`subtask-${i + 1}`] = titleText;
     }
-    return Object.keys(subtasks).length > 0 ? subtasks : null; 
   }
+  return Object.keys(subtasks).length > 0 ? subtasks : null; 
   }

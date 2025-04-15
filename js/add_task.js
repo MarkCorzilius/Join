@@ -1,3 +1,5 @@
+let subtaskId = null;
+
 function clearBtnToBlue() {
   document.getElementById("clearBtn").src = "../img/clear_btn_hovered.png";
 }
@@ -135,33 +137,41 @@ function addSubtask() {
   const outputDiv = document.getElementById('subtaskContainer');
 
   outputDiv.innerHTML += `                    
-                    <div id="subtaskTemplate" class="subtask-template">
-                      <div class="subtask-title">
-                        <p>•</p>
-                        <span class="subtask-titles">${valueRef}</span>
+                                        <div id="subtaskTemplate${subtaskId}">
+                      <div class="subtask-template" id="taskNormalState${subtaskId}">
+                       <div class="subtask-title">
+                         <p>•</p>
+                         <span id="subtaskTitle${subtaskId}" class="subtask-titles">${valueRef}</span>
+                       </div>
+                       <div class="control-subtask">
+                         <div class="subtask-edit-icons">
+                         <img onclick="editTask(${subtaskId})" src="../img/subtask_pencil.png" alt="edit">
+                         <div class="subtask-separator"></div>
+                         <img onclick="deleteTask(${subtaskId})" src="../img/subtask_trash.png" alt="delete">
+                         </div>
+                       </div>
                       </div>
-                      <div class="control-subtask">
-                        <div id="subtaskNormalState">
-                        <img src="../img/subtask_pencil.png" alt="edit">
-                        <div class="subtask-separator"></div>
-                        <img src="../img/subtask_trash.png" alt="delete">
-                        </div>
-                        <div id="subtaskEditState" style="display: none;">
-                          <div class="subtask-icon-wrapper">
+
+                    <div id="taskEditState${subtaskId}" style="display: none;">
+                      <div class="subtask-template-edit-state" class="subtask-edit-input-wrapper">
+                        <input id="subtaskEditInput${subtaskId}" class="subtask-edit-input" type="text">
+                        <div class="subtask-icons-on-edit">
+                          <div onclick="deleteSubtaskEditState(${subtaskId})" id="deleteSubtaskEditState${subtaskId}" class="subtask-icon-wrapper">
                           <img src="../img/subtask_trash.png" alt="delete">
                           </div>
                           <div class="subtask-separator"></div>
-                          <div class="subtask-icon-wrapper">
+                          <div onkeydown="postSubtaskOnEnter(event)" onclick="updateTask(${subtaskId})" class="subtask-icon-wrapper">
                           <img src="../img/subtask_edit_confirm.png" alt="confirm">
                           </div>
-                        </div>
+                          </div>
                       </div>
-                    </div>`;
+                    </div>
+                  </div>`;
 
   document.getElementById('subtaskInput').value = '';
-
   showMainBtn();
-  scrollToCreatedSubtask();
+  scrollToCreatedSubtask()
+  subtaskId += 1;
   setTimeout(() => {
     input.focus();
   }, 0);
@@ -198,8 +208,88 @@ function resetSubtasks() {
   subtasks.innerHTML = '';
 }
 
-function checkShift(event) {
+function checkShiftSubtask(event) {
+  const input = document.getElementById('subtaskInput');
+  if (input.value.length !== 0) {
+    if (event.key === 'Enter') {
+      addSubtask();
+    }
+  } else {
+    blurOnEnter(event);
+  }
+}
+
+function blurOnEnter(event) {
   if (event.key === 'Enter') {
-    addSubtask();
+    event.target.blur();
+  }
+}
+
+function deleteTask(subtaskId) {
+  const task = document.getElementById('subtaskTemplate' + subtaskId);
+  if (task) {
+    task.remove();
+  }
+}
+
+function emptySubtaskInput() {
+  const subtaskInput = document.getElementById('subtaskInput');
+
+  subtaskInput.value = "";
+}
+
+function editTask(subtaskId) {
+  const subtask = document.getElementById('subtaskTemplate' + subtaskId);
+  const taskNormalState = document.getElementById('taskNormalState' + subtaskId);
+  const taskEditState = document.getElementById('taskEditState' + subtaskId);
+  const titleHTML = document.getElementById('subtaskTitle' + subtaskId);
+  const titleValue = titleHTML.innerText;
+  const subtaskEditInput = document.getElementById('subtaskEditInput' + subtaskId);
+
+  if (subtask) {
+    taskNormalState.style.display = 'none';
+    taskEditState.style.display = 'flex';
+    subtaskEditInput.value = titleValue;
+    subtaskEditInput.focus();
+  }
+}
+
+function deleteSubtaskEditState(subtaskId) {
+  const delBtn = document.getElementById('deleteSubtaskEditState' + subtaskId);
+  const task = document.getElementById('subtaskTemplate' + subtaskId);
+  if (task) {
+    task.remove();
+  }
+}
+
+function updateTask(subtaskId) {
+  const activeTitle = document.getElementById('subtaskTitle' + subtaskId);
+  const editTitle = document.getElementById('subtaskEditInput' + subtaskId);
+
+  if (activeTitle && editTitle) {
+    activeTitle.innerText = editTitle.value;
+    exitSubtaskEditState(subtaskId);
+  }
+}
+
+function exitSubtaskEditState(subtaskId) {
+  const subtask = document.getElementById('subtaskTemplate' + subtaskId);
+  const taskNormalState = document.getElementById('taskNormalState' + subtaskId);
+  const taskEditState = document.getElementById('taskEditState' + subtaskId);
+
+  if (subtask) {
+    taskNormalState.style.display = 'flex';
+    taskEditState.style.display = 'none';
+  }
+}
+
+function postSubtaskOnEnter(event) {
+  const taskInput = document.getElementById('taskEditInput' + subtaskId);
+  if (taskInput.value.length !== 0) {
+    if (event.key === 'Enter') {
+      updateTask(subtaskId);
+    }
+  } else {
+    deleteSubtaskEditState(subtaskId);
   }
 }

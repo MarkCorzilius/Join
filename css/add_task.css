@@ -535,15 +535,8 @@
   border-radius: 10px;
 }
 
-#subtaskEditState {
+.subtask-edit-icons {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-}
-
-#subtaskNormalState {
-  display: none;
   align-items: center;
   justify-content: center;
   gap: 4px;
@@ -569,6 +562,67 @@
 .subtask-icon-wrapper:hover {
   border-radius: 50%;
   background-color: rgb(228, 228, 228);
+}
+
+#taskNormalState {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+#taskEditState {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.subtask-edit-input-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.subtask-edit-input {
+  width: 440px;
+  height: 40px;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgb(41, 171, 226);
+
+}
+
+.subtask-edit-input:focus {
+  border-bottom: 1px solid rgb(41, 171, 226);
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.subtask-icons-on-edit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.subtask-template-edit-state {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  margin-top: 16px;
+  height: 40px;
+  box-sizing: border-box;
+  position: relative;
+
 }
 
 .clicked-priority-color path {
