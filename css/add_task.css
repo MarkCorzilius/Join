@@ -247,10 +247,17 @@
   width: 24px;
 }
 
+.dropdown-icon-wrapper {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .dropdown-icon-wrapper:hover {
   border-radius: 50%;
   background-color: rgb(228, 228, 228);
-
 }
 
 .options {
@@ -398,6 +405,13 @@
 .category-btn-and-options {
   position: relative;
 }
+.category-dropdown-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+}
 
 .category-dropdown-wrapper:hover {
   border-radius: 50%;
@@ -502,11 +516,14 @@
 .subtask-main-btn {
   display: flex;
   align-items: center;
+  justify-content: center;
   position: absolute;
   right: 10px;
   top: 50%;
   transform: translateY(-45%);
   padding: 4px;
+  height: 20px;
+  width: 20px;
 }
 
 #subtaskContainer {
@@ -557,6 +574,14 @@
 
 .subtask-template:hover #subtaskNormalState {
   display: flex;
+}
+
+.subtask-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
 }
 
 .subtask-icon-wrapper:hover {
