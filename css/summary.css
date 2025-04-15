@@ -78,13 +78,8 @@
   border-radius: 30px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1);
   /* Light grey shadow on all sides */
-  transition: box-shadow 0.2s ease-in-out;
   background-color: rgb(255 255 255);
-}
-
-.to-do-box:hover,
-.done-box:hover {
-  background-color: rgb(243, 243, 243);
+  transition: transform 0.2s ease-in-out;
 }
 
 .done-box {
@@ -99,6 +94,22 @@
   /* Light grey shadow on all sides */
   transition: box-shadow 0.2s ease-in-out;
   background-color: rgb(255 255 255);
+  transition: transform 0.2s ease-in-out;
+}
+
+.done-box:hover, .to-do-box:hover, .info-box-second-line:hover, .all-tasks-box:hover {
+  background-color: rgb(42 54 71);
+  cursor: pointer;
+  color: white;
+  transform: scale(1.1);
+}
+
+.done-box:hover .card-icon {
+  display: none;
+}
+
+.done-box:hover .card-icon-light {
+  display: inline;
 }
 
 .info-box-second-line {
@@ -110,13 +121,9 @@
   gap: 61px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1);
   /* Light grey shadow on all sides */
-  transition: box-shadow 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
   background-color: rgb(255 255 255);
   border-radius: 30px;
-}
-
-.info-box-second-line:hover {
-  background-color: rgb(243, 243, 243);
 }
 
 .task-importancy {
@@ -155,14 +162,10 @@
   height: 168px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px -2px 5px rgba(0, 0, 0, 0.1);
   /* Light grey shadow on all sides */
-  transition: box-shadow 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
   background-color: rgb(255 255 255);
   border-radius: 30px;
   cursor: pointer;
-}
-
-.all-tasks-box:hover {
-  background-color: rgb(243, 243, 243);
 }
 
 #theUser {
@@ -209,9 +212,16 @@
   gap: 10px;
 }
 
-.card-icon {
+.card-icon, .card-icon-light {
   width: 69px;
   height: 69px;
+}
+
+.card-icon-light {
+  background-color: transparent;
+  border-radius: 50%;
+  display: block;
+  display: none;
 }
 
 .card-icon-small {
