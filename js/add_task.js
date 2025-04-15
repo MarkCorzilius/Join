@@ -154,13 +154,13 @@ function addSubtask() {
 
                     <div id="taskEditState${subtaskId}" style="display: none;">
                       <div class="subtask-template-edit-state" class="subtask-edit-input-wrapper">
-                        <input id="subtaskEditInput${subtaskId}" class="subtask-edit-input" type="text">
+                        <input onkeydown="postSubtaskOnEnter(event, ${subtaskId})" id="subtaskEditInput${subtaskId}" class="subtask-edit-input" type="text">
                         <div class="subtask-icons-on-edit">
                           <div onclick="deleteSubtaskEditState(${subtaskId})" id="deleteSubtaskEditState${subtaskId}" class="subtask-icon-wrapper">
                           <img src="../img/subtask_trash.png" alt="delete">
                           </div>
                           <div class="subtask-separator"></div>
-                          <div onkeydown="postSubtaskOnEnter(event)" onclick="updateTask(${subtaskId})" class="subtask-icon-wrapper">
+                          <div onclick="updateTask(${subtaskId})" class="subtask-icon-wrapper">
                           <img src="../img/subtask_edit_confirm.png" alt="confirm">
                           </div>
                           </div>
@@ -249,7 +249,7 @@ function editTask(subtaskId) {
   if (subtask) {
     taskNormalState.style.display = 'none';
     taskEditState.style.display = 'flex';
-    subtaskEditInput.value = titleValue;
+    subtaskEditInput.value = titleValue.trim();
     subtaskEditInput.focus();
   }
 }
@@ -265,9 +265,10 @@ function deleteSubtaskEditState(subtaskId) {
 function updateTask(subtaskId) {
   const activeTitle = document.getElementById('subtaskTitle' + subtaskId);
   const editTitle = document.getElementById('subtaskEditInput' + subtaskId);
+  let editTitleValue = editTitle.value;
 
   if (activeTitle && editTitle) {
-    activeTitle.innerText = editTitle.value;
+    activeTitle.innerText = editTitleValue.trim();
     exitSubtaskEditState(subtaskId);
   }
 }
@@ -283,8 +284,8 @@ function exitSubtaskEditState(subtaskId) {
   }
 }
 
-function postSubtaskOnEnter(event) {
-  const taskInput = document.getElementById('taskEditInput' + subtaskId);
+function postSubtaskOnEnter(event, subtaskId) {
+  const taskInput = document.getElementById('subtaskEditInput' + subtaskId);
   if (taskInput.value.length !== 0) {
     if (event.key === 'Enter') {
       updateTask(subtaskId);
