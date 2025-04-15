@@ -95,13 +95,12 @@ p {
 }
 
 input[type="date"] {
-  opacity: 1;
+  opacity: 0.5;
   /* 50% visible by default */
 }
 
 input[type="date"]:valid {
-  opacity: 0.5;
-  /* Fully visible when a date is selected */
+  opacity: 1;
 }
 
 #sidebarContainer {

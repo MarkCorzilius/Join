@@ -113,7 +113,7 @@
   background-color: white;
   width: 136px;
   height: 56px;
-  cursor: pointer;
+  cursor: pointer !important;
   transition: box-shadow 0.2s ease-in-out;
 }
 
@@ -151,8 +151,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  position: absolute;
+  width: 1010px;
+  position: fixed;
   bottom: 40px;
 }
 .footer-buttons-wrapper {
@@ -247,10 +247,17 @@
   width: 24px;
 }
 
+.dropdown-icon-wrapper {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .dropdown-icon-wrapper:hover {
   border-radius: 50%;
   background-color: rgb(228, 228, 228);
-
 }
 
 .options {
@@ -316,7 +323,6 @@
 
 .content-in-main {
   position: relative;
-  width: 80vw;
 }
 
 .select-box {
@@ -398,6 +404,13 @@
 
 .category-btn-and-options {
   position: relative;
+}
+.category-dropdown-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
 }
 
 .category-dropdown-wrapper:hover {
@@ -503,17 +516,23 @@
 .subtask-main-btn {
   display: flex;
   align-items: center;
+  justify-content: center;
   position: absolute;
   right: 10px;
   top: 50%;
   transform: translateY(-45%);
   padding: 4px;
+  height: 20px;
+  width: 20px;
 }
 
 #subtaskContainer {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 440px;
+  max-height: 160px;
+  overflow-y: scroll;
+  box-sizing: border-box;
 }
 
 .subtask-template {
@@ -533,15 +552,8 @@
   border-radius: 10px;
 }
 
-#subtaskEditState {
+.subtask-edit-icons {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-}
-
-#subtaskNormalState {
-  display: none;
   align-items: center;
   justify-content: center;
   gap: 4px;
@@ -557,13 +569,87 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  height: 40px;
 }
 
 .subtask-template:hover #subtaskNormalState {
   display: flex;
 }
 
+.subtask-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+}
+
 .subtask-icon-wrapper:hover {
   border-radius: 50%;
   background-color: rgb(228, 228, 228);
+}
+
+#taskNormalState {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+#taskEditState {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.subtask-edit-input-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.subtask-edit-input {
+  width: 440px;
+  height: 40px;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgb(41, 171, 226);
+
+}
+
+.subtask-edit-input:focus {
+  border-bottom: 1px solid rgb(41, 171, 226);
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.subtask-icons-on-edit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.subtask-template-edit-state {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  margin-top: 16px;
+  height: 40px;
+  box-sizing: border-box;
+  position: relative;
+
+}
+
+.clicked-priority-color path {
+fill: white;
 }
