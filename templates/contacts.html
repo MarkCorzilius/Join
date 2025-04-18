@@ -28,15 +28,15 @@
 
     <script src="https://www.w3schools.com/lib/w3.js"></script>
 
+    <script src="../js/contacts_remote_storage.js"></script>
     <script src="../js/contacts.js"></script>
-    <script src="../js/remoteStorage.js"></script>
     <script src="../js/sidebar.js"></script>
     <script src="../js/add_task.js"></script>
     <script src="../js/register.js"></script>
     <script src="../js/login.js"></script>
   </head>
 
-  <body onload="w3.includeHTML(); setTimeout(renderContacts, 300);">
+  <body onload="w3.includeHTML(); setTimeout(renderContacts, 300); saveBasicContacts()">
     <header w3-include-html="../templates/header.html" id="headerContainer"></header>
     <main class="main">
       <div w3-include-html="../templates/sidebar.html" id="sidebarContainer"></div>
@@ -114,7 +114,7 @@
                       Cancel
                       <img src="../img/cancel.png" alt="" />
                     </button>
-                    <button type="submit" class="btn-save">
+                    <button onclick="saveNewContactToDataBase()" type="submit" class="btn-save">
                       Create contact
                       <img src="../img/check.png" alt="" />
                     </button>
