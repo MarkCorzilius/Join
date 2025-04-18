@@ -1,57 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Join - Login</title>
-    <link rel="stylesheet" href="../css/register.css" />
-  </head>
 
-  <body class="log-in">
-    <header class="login-header">
-      <div class="logo-container">
-        <img src="../img/join-logo.svg" alt="Join Logo" />
-      </div>
-      <div class="signup-container">
-        <span>Not a Join user?</span>
-        <a href="#" onclick="signIn()">Sign in</a>
-      </div>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <title>Join - Login</title>
+  <link rel="stylesheet" href="../css/register.css" />
+</head>
 
-    <!-- Hauptbereich mit Login-Box -->
-    <main class="login-main">
-      <div class="login-box">
-        <h2>Log in</h2>
-        <form onsubmit="addUser(); return false;">
-          <!-- Email -->
-          <div class="input-field">
-            <label for="email">Email</label>
-            <input type="email" id="loginEmail" placeholder="Email" autocomplete="username" required />
+<body class="log-in">
+  <header class="login-header">
+    <div class="logo-container">
+      <img src="../img/join-logo.svg" alt="Join Logo" />
+    </div>
+    <div class="signup-container">
+      <span>Not a Join user?</span>
+      <a href="#" onclick="signIn()">Sign in</a>
+    </div>
+  </header>
+
+  <!-- Hauptbereich mit Login-Box -->
+  <main class="login-main">
+    <div class="login-box">
+      <h2>Log in</h2>
+      <form onsubmit="addUser(); return false;">
+
+        <!-- Email -->
+        <div class="input-field">
+          <label for="email">Email</label>
+          <input type="email" id="loginEmail" placeholder="Email" autocomplete="username" required />
+        </div>
+
+        <!-- Password -->
+        <div class="input-field">
+          <label for="password">Password</label>
+          <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password" required />
+        </div>
+
+        <!-- Remember me & Forgot password -->
+        <div class="options">
+          <div class="remember-me">
+            <input type="checkbox" id="rememberMe" />
+            <label for="rememberMe">Remember me</label>
           </div>
-
-          <!-- Password -->
-          <div class="input-field">
-            <label for="password">Password</label>
-            <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password" required />
+          <div class="forgot-password">
+            <a href="#">Forgot my password?</a>
           </div>
+        </div>
 
-          <!-- Remember me & Forgot password -->
-          <div class="options">
-            <div class="remember-me">
-              <input type="checkbox" id="rememberMe" />
-              <label for="rememberMe">Remember me</label>
-            </div>
-            <div class="forgot-password">
-              <a href="#">Forgot my password?</a>
-            </div>
-          </div>
+        <!-- Login-Buttons -->
+        <div class="buttons">
+          <button type="submit" class="login-btn">Log In</button>
+          <button type="button" class="guest-btn">Guest Log In</button>
+        </div>
+      </form>
+    </div>
+  </main>
+</body>
 
-          <!-- Login-Buttons -->
-          <div class="buttons">
-            <button type="submit" class="login-btn">Log In</button>
-            <button type="button" class="guest-btn">Guest Log In</button>
-          </div>
-        </form>
-      </div>
-    </main>
-  </body>
 </html>

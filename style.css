@@ -40,6 +40,7 @@ li {
 }
 
 .content {
+  height: calc(100vh - 80px);
   margin-top: 80px;
   box-sizing: border-box;
   overflow: auto;
