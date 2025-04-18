@@ -105,7 +105,7 @@ function openContactItem(name, email, phone) {
   slideEfekt();
   goToContactInfoForMobile();
   detailViewOpen = true;
-}
+ }
 
 function goToContactInfoForMobile() {
   if (document.documentElement.clientWidth < 800) {
