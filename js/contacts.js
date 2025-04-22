@@ -37,7 +37,8 @@ let currentContact = null;
 let detailViewOpen = false;
 
 
-function renderContacts() {
+async function renderContacts() {
+  await saveBasicContacts();
   loadFromLocalStorage();
   contactsArray.sort((a, b) => a.name.localeCompare(b.name));
   const container = document.querySelector(".contacts-list");

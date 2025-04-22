@@ -62,7 +62,7 @@ async function getNewContactData() {
 async function saveNewContactToDataBase() {
     const {nameValue, emailValue, phoneValue} = await getNewContactData();
     const filled = inputsFilledOut({nameValue, emailValue, phoneValue});
-    const safeKey = sanitizeEmail(contact.email);
+    const safeKey = sanitizeEmail(emailValue);
     const path = 'contacts/' + safeKey;
     if (!filled) return;
 
@@ -71,7 +71,7 @@ async function saveNewContactToDataBase() {
         alert("contact already exists");
         return;
     }
-    postContacts(path, {nameValue, emailValue, phoneValue});
+    putContacts(path, {nameValue, emailValue, phoneValue});
 
 }
 
@@ -94,4 +94,9 @@ async function doesContactExists({emailValue}) {
         }
     }
     return false;
+    }
+
+
+    async function editContactInFireBase() {
+        
     }
