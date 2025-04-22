@@ -22,14 +22,22 @@ async function postContacts(path='', data={}) {
     return await response.json();
 }
 
-function sanitizeEmail(email) {
-    return email.replace(/[@.]/g, "_");
-}
-
 async function getContacts(path="") {
     let response = await fetch(BASE_URL + path + '.json');
     return response.json();
 }
+
+async function deleteContactFireBase(path="") {
+    let response = await fetch(BASE_URL + path + '.json', {
+        method: "DELETE",
+    });
+    return await response.json();
+}
+
+function sanitizeEmail(email) {
+    return email.replace(/[@.]/g, "_");
+}
+
 
 async function isDuplicateEmail(path='') {
     const response = await fetch(BASE_URL + path + ".json");
@@ -112,7 +120,3 @@ async function doesContactExists({emailValue}) {
             contactsArray.push(contact);
         }
     }
-
-
-    //go through firebase contacts
-    //push to array

@@ -29,6 +29,7 @@ let detailViewOpen = false;
 
 
 async function renderContacts() {
+  contactsArray = [];
   await saveContactsToArray();
   contactsArray.sort((a, b) => a.name.localeCompare(b.name));
   const container = document.querySelector(".contacts-list");
@@ -290,10 +291,11 @@ function deleteValue() {
   document.getElementById("contactPhone").value = "";
 }
 
-function deleteContact(email) {
-  // if (!confirm("Möchten Sie diesen Kontakt wirklich löschen?")) return;
+async function deleteContact(email) {
+  const deletedContact = contactsArray.find((contact) => contact.email.toLowerCase() === email.toLowerCase());
   contactsArray = contactsArray.filter((contact) => contact.email.toLowerCase() !== email.toLowerCase());
-  saveToLocalStorage();
+  const deletedContactKey = sanitizeEmail(deletedContact.email);
+  await deleteContactFireBase(deletedContactKey);
   renderContacts();
   let detailView = document.getElementById("contactDetailView");
   if (detailView) {
