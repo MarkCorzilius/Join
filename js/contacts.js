@@ -1,13 +1,4 @@
 let contactsArray = [
-  { name: "Anja Schulz", email: "schulz@hotmail.com", phone: "+49 170 1234567" },
-  { name: "Anton Greber", email: "greber@hotmail.com", phone: "+49 171 2345678" },
-  { name: "Stafanie Weimer", email: "stefanie@gmail.com", phone: "+49 172 3456789" },
-  { name: "Benedikt Ziegler", email: "benedikt@gmail.com", phone: "+49 173 4567890" },
-  { name: "Igor Boger", email: "igor@gmail.com", phone: "+49 174 5678901" },
-  { name: "Alex Müller", email: "alex@gmail.com", phone: "+49 175 6789012" },
-  { name: "Gerd Fischter", email: "gerd@gmail.com", phone: "+49 176 7890123" },
-  { name: "Eva Fischer", email: "fischer@gmail.com", phone: "+49 177 8901234" },
-  { name: "Margrid Sieger", email: "margrid@gmail.com", phone: "+49 178 9012345" },
 ];
 
 const bgImages = [
@@ -38,8 +29,7 @@ let detailViewOpen = false;
 
 
 async function renderContacts() {
-  await saveBasicContacts();
-  loadFromLocalStorage();
+  await saveContactsToArray();
   contactsArray.sort((a, b) => a.name.localeCompare(b.name));
   const container = document.querySelector(".contacts-list");
   if (!container) return;

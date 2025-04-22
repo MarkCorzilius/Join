@@ -26,6 +26,11 @@ function sanitizeEmail(email) {
     return email.replace(/[@.]/g, "_");
 }
 
+async function getContacts(path="") {
+    let response = await fetch(BASE_URL + path + '.json');
+    return response.json();
+}
+
 async function isDuplicateEmail(path='') {
     const response = await fetch(BASE_URL + path + ".json");
     const data = await response.json();
@@ -71,7 +76,9 @@ async function saveNewContactToDataBase() {
         alert("contact already exists");
         return;
     }
-    putContacts(path, {nameValue, emailValue, phoneValue});
+    contactsArray = [];
+    putContacts(path, {name: nameValue, email: emailValue, phone: phoneValue});
+    contactsArray.push({name: nameValue, email: emailValue, phone: phoneValue});
 
 }
 
@@ -96,7 +103,16 @@ async function doesContactExists({emailValue}) {
     return false;
     }
 
+    async function saveContactsToArray() {
+        const response = await fetch(BASE_URL + 'contacts/' + '.json');
+        const data = await response.json();
 
-    async function editContactInFireBase() {
-        
+        for (const contact of Object.values(data)) {
+            console.log(contact);
+            contactsArray.push(contact);
+        }
     }
+
+
+    //go through firebase contacts
+    //push to array
