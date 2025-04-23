@@ -178,7 +178,7 @@ function generateContactDetails(bg, initials, name, email, phone) {
       </div>
       <div class="edit-delete">
         <h2 id="detailName">${name}</h2>
-        <img src="/img/edit_contacts.png" alt="" onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}')">
+        <img src="/img/edit_contacts.png" alt="" onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}') ">
         <img src="/img/delete-contact.png" alt="" onclick="deleteContact('${email}')">
       </div>
     </div>
@@ -212,6 +212,7 @@ function openAddContactOverlay() {
 }
 
 function closeAddContactOverlay() {
+  emptyContactForm();
   const addContactOverlay = document.getElementById("addContactOverlay");
   const overlayAddContent = addContactOverlay.querySelector(".overlay-add-content");
   overlayAddContent.classList.remove("slide-in");
@@ -291,18 +292,6 @@ function deleteValue() {
   document.getElementById("contactPhone").value = "";
 }
 
-async function deleteContact(email) {
-  const deletedContact = contactsArray.find((contact) => contact.email.toLowerCase() === email.toLowerCase());
-  contactsArray = contactsArray.filter((contact) => contact.email.toLowerCase() !== email.toLowerCase());
-  const deletedContactKey = sanitizeEmail(deletedContact.email);
-  await deleteContactFireBase(deletedContactKey);
-  renderContacts();
-  let detailView = document.getElementById("contactDetailView");
-  if (detailView) {
-    detailView.classList.add("d-none");
-    detailView.innerHTML = "";
-  }
-}
 
 function editContact(name, email, phone, initials, bg) {
   currentContact = { name, email, phone };
@@ -321,36 +310,10 @@ function editContact(name, email, phone, initials, bg) {
   `;
 }
 
-function saveEditedContact() {
-  if (!currentContact) return;
+function updateContactArray(newName, newEmail, newPhone) {
 
-  // Neue Werte aus den Edit-Feldern auslesen
-  const newName = document.getElementById("editName").value.trim();
-  const newEmail = document.getElementById("editEmail").value.trim();
-  const newPhone = document.getElementById("editPhone").value.trim();
-
-  if (!validateContactInput(newName, newEmail, newPhone)) return;
-
-  updateContact(newName, newEmail, newPhone);
-
-  // Kontakte im Local Storage speichern und Liste neu rendern
-  saveToLocalStorage();
-  renderContacts();
-
-  updateDetailView(newName, newEmail, newPhone);
-
-  closeEditContactOverlay();
-  currentContact = null;
-}
-
-function updateContact(newName, newEmail, newPhone) {
-  // Kontakt im Array anhand der ursprünglichen Email aktualisieren
-  contactsArray = contactsArray.map((contact) => {
-    if (contact.email.toLowerCase() === currentContact.email.toLowerCase()) {
-      return { name: newName, email: newEmail, phone: newPhone };
-    }
-    return contact;
-  });
+    contactsArray = contactsArray.filter((contact) => contact.email.toLowerCase() !== currentContact.email.toLowerCase());
+    contactsArray.push({ email: newEmail, name: newName, phone: newPhone});
 }
 
 function updateDetailView(newName, newEmail, newPhone) {
@@ -361,24 +324,6 @@ function updateDetailView(newName, newEmail, newPhone) {
     detailView.innerHTML = generateContactDetails(vars.bg, vars.initials, newName, newEmail, newPhone);
     // Optional: erneuter Slide-Effekt
     slideEfekt();
-  }
-}
-
-function deleteContactForEdit() {
-  if (!currentContact) return;
-  if (!confirm("Möchten Sie diesen Kontakt wirklich löschen?")) return;
-
-  function deleteContactForEdit() {
-    if (!currentContact) return;
-    if (!confirm("Möchten Sie diesen Kontakt wirklich löschen?")) return;
-
-    // Entferne den Kontakt aus dem Array
-    contactsArray = contactsArray.filter((contact) => contact.email.toLowerCase() !== currentContact.email.toLowerCase());
-
-    saveToLocalStorage();
-    renderContacts();
-    closeEditContactOverlay();
-    currentContact = null;
   }
 }
 
@@ -399,4 +344,13 @@ function loadFromLocalStorage() {
   if (savedContacts) {
     contactsArray = JSON.parse(savedContacts);
   }
+}
+
+function emptyContactForm() {
+  const nameInput = document.getElementById('contactName');
+  nameInput.value = "";
+  const emailInput = document.getElementById('contactEmail');
+  emailInput.value = "";
+  const phoneInput = document.getElementById('contactPhone');
+  phoneInput.value = "";
 }

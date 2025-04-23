@@ -83,10 +83,11 @@ async function saveNewContactToDataBase() {
     if (exists) {
         alert("contact already exists");
         return;
+    } else {
+        contactsArray = [];
+        putContacts(path, {name: nameValue, email: emailValue, phone: phoneValue});
+        contactsArray.push({name: nameValue, email: emailValue, phone: phoneValue});
     }
-    contactsArray = [];
-    putContacts(path, {name: nameValue, email: emailValue, phone: phoneValue});
-    contactsArray.push({name: nameValue, email: emailValue, phone: phoneValue});
 
 }
 
@@ -116,7 +117,80 @@ async function doesContactExists({emailValue}) {
         const data = await response.json();
 
         for (const contact of Object.values(data)) {
-            console.log(contact);
             contactsArray.push(contact);
         }
     }
+
+
+    async function deleteContact(email) {
+        const deletedContact = contactsArray.find((contact) => contact.email.toLowerCase() === email.toLowerCase());
+        contactsArray = contactsArray.filter((contact) => contact.email.toLowerCase() !== email.toLowerCase());
+        const deletedContactKey = sanitizeEmail(deletedContact.email);
+        await deleteContactFireBase('contacts/' + deletedContactKey);
+        renderContacts();
+        backToContacts();
+        hideContactDetailView();
+      }
+
+      async function deleteContactForEdit() {
+        if (!currentContact) return;
+        if (!confirm("Möchten Sie diesen Kontakt wirklich löschen?")) return;
+    
+        const deletedContact = contactsArray.find((contact) => contact.email.toLowerCase() === currentContact.email.toLowerCase());
+        const deletedContactEmail = deletedContact.email;
+        console.log(deletedContact.email);
+        const deletedContactKey = sanitizeEmail(deletedContactEmail);
+        console.log(deletedContactKey);
+        contactsArray = contactsArray.filter((contact) => contact.email.toLowerCase() !== currentContact.email.toLowerCase());
+        await deleteContactFireBase('contacts/' + deletedContactKey);
+        renderContacts();
+        closeEditContactOverlay();
+        hideContactDetailView();
+        currentContact = null;
+      }
+
+    function hideContactDetailView() {
+        let detailView = document.getElementById("contactDetailView");
+        if (detailView) {
+          detailView.classList.add("d-none");
+          detailView.innerHTML = "";
+        }
+      }
+
+      async function saveEditedContact() {
+        if (!currentContact) return;
+      
+        const newName = document.getElementById("editName").value.trim();
+        const newEmail = document.getElementById("editEmail").value.trim();
+        const newPhone = document.getElementById("editPhone").value.trim();
+      
+        if (!validateContactInput(newName, newEmail, newPhone)) return;
+      
+        updateContactArray(newName, newEmail, newPhone);
+        await updateEditedContactInFireBase(currentContact.email, {newName, newEmail, newPhone});
+        renderContacts();
+      
+        updateDetailView(newName, newEmail, newPhone);
+      
+        closeEditContactOverlay();
+        currentContact = null;
+      }
+
+      async function updateEditedContactInFireBase(email, {newName, newEmail, newPhone}) {
+        const contactKey = sanitizeEmail(email);
+        await deleteContactFireBase('contacts/' + contactKey);
+        const newContactKey = sanitizeEmail(newEmail);
+        await putContacts('contacts/' + newContactKey, {name: newName, email: newEmail, phone: newPhone});
+      }
+
+      
+
+
+      //2. edit contact ✅
+      //3. empty contact form on cancel btn ✅
+      //4. adjust form btns for lower width
+      //5. adjust forms media query
+      //6. spinning while pages load
+      //7. help page while lower media query
+    
+      //8. render contacts inside add-task-page on add-task-page load
