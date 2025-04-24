@@ -1,13 +1,4 @@
 let contactsArray = [
-  { name: "Anja Schulz", email: "schulz@hotmail.com", phone: "+49 170 1234567" },
-  { name: "Anton Greber", email: "greber@hotmail.com", phone: "+49 171 2345678" },
-  { name: "Stafanie Weimer", email: "stefanie@gmail.com", phone: "+49 172 3456789" },
-  { name: "Benedikt Ziegler", email: "benedikt@gmail.com", phone: "+49 173 4567890" },
-  { name: "Igor Boger", email: "igor@gmail.com", phone: "+49 174 5678901" },
-  { name: "Alex Müller", email: "alex@gmail.com", phone: "+49 175 6789012" },
-  { name: "Gerd Fischter", email: "gerd@gmail.com", phone: "+49 176 7890123" },
-  { name: "Eva Fischer", email: "fischer@gmail.com", phone: "+49 177 8901234" },
-  { name: "Margrid Sieger", email: "margrid@gmail.com", phone: "+49 178 9012345" },
 ];
 
 const bgImages = [
@@ -37,8 +28,9 @@ let currentContact = null;
 let detailViewOpen = false;
 
 
-function renderContacts() {
-  loadFromLocalStorage();
+async function renderContacts() {
+  contactsArray = [];
+  await saveContactsToArray();
   contactsArray.sort((a, b) => a.name.localeCompare(b.name));
   const container = document.querySelector(".contacts-list");
   if (!container) return;
@@ -186,7 +178,7 @@ function generateContactDetails(bg, initials, name, email, phone) {
       </div>
       <div class="edit-delete">
         <h2 id="detailName">${name}</h2>
-        <img src="/img/edit_contacts.png" alt="" onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}')">
+        <img src="/img/edit_contacts.png" alt="" onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}') ">
         <img src="/img/delete-contact.png" alt="" onclick="deleteContact('${email}')">
       </div>
     </div>
@@ -220,6 +212,7 @@ function openAddContactOverlay() {
 }
 
 function closeAddContactOverlay() {
+  emptyContactForm();
   const addContactOverlay = document.getElementById("addContactOverlay");
   const overlayAddContent = addContactOverlay.querySelector(".overlay-add-content");
   overlayAddContent.classList.remove("slide-in");
@@ -299,17 +292,6 @@ function deleteValue() {
   document.getElementById("contactPhone").value = "";
 }
 
-function deleteContact(email) {
-  // if (!confirm("Möchten Sie diesen Kontakt wirklich löschen?")) return;
-  contactsArray = contactsArray.filter((contact) => contact.email.toLowerCase() !== email.toLowerCase());
-  saveToLocalStorage();
-  renderContacts();
-  let detailView = document.getElementById("contactDetailView");
-  if (detailView) {
-    detailView.classList.add("d-none");
-    detailView.innerHTML = "";
-  }
-}
 
 function editContact(name, email, phone, initials, bg) {
   currentContact = { name, email, phone };
@@ -328,36 +310,10 @@ function editContact(name, email, phone, initials, bg) {
   `;
 }
 
-function saveEditedContact() {
-  if (!currentContact) return;
+function updateContactArray(newName, newEmail, newPhone) {
 
-  // Neue Werte aus den Edit-Feldern auslesen
-  const newName = document.getElementById("editName").value.trim();
-  const newEmail = document.getElementById("editEmail").value.trim();
-  const newPhone = document.getElementById("editPhone").value.trim();
-
-  if (!validateContactInput(newName, newEmail, newPhone)) return;
-
-  updateContact(newName, newEmail, newPhone);
-
-  // Kontakte im Local Storage speichern und Liste neu rendern
-  saveToLocalStorage();
-  renderContacts();
-
-  updateDetailView(newName, newEmail, newPhone);
-
-  closeEditContactOverlay();
-  currentContact = null;
-}
-
-function updateContact(newName, newEmail, newPhone) {
-  // Kontakt im Array anhand der ursprünglichen Email aktualisieren
-  contactsArray = contactsArray.map((contact) => {
-    if (contact.email.toLowerCase() === currentContact.email.toLowerCase()) {
-      return { name: newName, email: newEmail, phone: newPhone };
-    }
-    return contact;
-  });
+    contactsArray = contactsArray.filter((contact) => contact.email.toLowerCase() !== currentContact.email.toLowerCase());
+    contactsArray.push({ email: newEmail, name: newName, phone: newPhone});
 }
 
 function updateDetailView(newName, newEmail, newPhone) {
@@ -368,24 +324,6 @@ function updateDetailView(newName, newEmail, newPhone) {
     detailView.innerHTML = generateContactDetails(vars.bg, vars.initials, newName, newEmail, newPhone);
     // Optional: erneuter Slide-Effekt
     slideEfekt();
-  }
-}
-
-function deleteContactForEdit() {
-  if (!currentContact) return;
-  if (!confirm("Möchten Sie diesen Kontakt wirklich löschen?")) return;
-
-  function deleteContactForEdit() {
-    if (!currentContact) return;
-    if (!confirm("Möchten Sie diesen Kontakt wirklich löschen?")) return;
-
-    // Entferne den Kontakt aus dem Array
-    contactsArray = contactsArray.filter((contact) => contact.email.toLowerCase() !== currentContact.email.toLowerCase());
-
-    saveToLocalStorage();
-    renderContacts();
-    closeEditContactOverlay();
-    currentContact = null;
   }
 }
 
@@ -406,4 +344,13 @@ function loadFromLocalStorage() {
   if (savedContacts) {
     contactsArray = JSON.parse(savedContacts);
   }
+}
+
+function emptyContactForm() {
+  const nameInput = document.getElementById('contactName');
+  nameInput.value = "";
+  const emailInput = document.getElementById('contactEmail');
+  emailInput.value = "";
+  const phoneInput = document.getElementById('contactPhone');
+  phoneInput.value = "";
 }
