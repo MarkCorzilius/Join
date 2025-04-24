@@ -36,7 +36,10 @@
     <script src="../js/login.js"></script>
   </head>
 
-  <body onload="w3.includeHTML(); setTimeout(renderContacts, 300); ">
+  <body onload="w3.includeHTML(); renderContacts()">
+    <div class="spinner-overlay">
+      <div class="spinner"></div>
+    </div>
     <header w3-include-html="../templates/header.html" id="headerContainer"></header>
     <main class="main">
       <div w3-include-html="../templates/sidebar.html" id="sidebarContainer"></div>
@@ -72,19 +75,18 @@
               <img src="../img/join-logo-white.svg" alt="Join Logo" class="overlay-logo" />
               <h2>Add contact</h2>
               <p>Tasks are better with a team!</p>
+              <div class="overlay-close-responsive" onclick="closeAddContactOverlay()">
+                <img src="../img/close-white.png" alt="close overlay" />
+              </div>
             </div>
 
             <div class="overlay-right">
-              <div class="overlay-close" onclick="closeAddContactOverlay()">
-                <img src="../img/close.png" alt="" />
-              </div>
-
               <div class="new-contact-details">
                 <div class="overlay-avatar">
                   <img src="../img/person.png" alt="User Avatar" />
                 </div>
 
-                <form onsubmit="saveNewContact(); return false;">
+                <form class="new-contact-inputs" onsubmit="saveNewContact(); return false;">
                   <div class="overlay-input-group">
                     <label for="contactName">Name</label>
                     <div class="input-wrapper">
@@ -110,12 +112,9 @@
                   </div>
 
                   <div class="overlay-buttons">
-                    <button type="button" class="btn-cancel" onclick="closeAddContactOverlay()">
-                      Cancel
-                      <img src="../img/cancel.png" alt="" />
-                    </button>
+                    <img onmouseover="makeCancelBtnLight()" onmouseout="makeCancelBtnDark()" class="btn-cancel" onclick="closeAddContactOverlay()" id="overlayCancelIcon" src="../img/full-cancel-btn.png" alt="cancel">
                     <button onclick="saveNewContactToDataBase()" type="submit" class="btn-save">
-                      Create contact
+                      <p>Create Contact</p>
                       <img src="../img/check.png" alt="" />
                     </button>
                   </div>
@@ -130,42 +129,45 @@
         <div id="editContactOverlay" class="overlay d-none">
           <div class="overlay-edit-content">
             <div class="overlay-left">
-              <img src="/img/join-logo-white.svg" alt="Join Logo" class="overlay-logo" />
+              <img src="../img/join-logo-white.svg" alt="Join Logo" class="overlay-logo" />
               <h2 class="edit-pseudo-element">Edit contact</h2>
+              <div class="overlay-close-responsive" onclick="closeEditContactOverlay()">
+                <img src="../img/close-white.png" alt="close overlay" />
+              </div>
             </div>
             <div class="overlay-right">
               <div class="overlay-close" onclick="closeEditContactOverlay()">
-                <img src="/img/close.png" alt="" />
+                <img src="../img/close.png" alt="" />
               </div>
               <div class="new-contact-details">
                 <div class="overlay-edit-avatar" id="editAvatar"></div>
-                <form onsubmit="saveEditedContact(); return false;">
+                <form class="edit-overlay-inputs" onsubmit="saveEditedContact(); return false;">
                   <div class="overlay-input-group">
                     <label for="editName">Name</label>
                     <div class="input-wrapper">
                       <input type="text" id="editName" required />
-                      <img src="/img/person_input.png" alt="" />
+                      <img src="../img/person_input.png" alt="" />
                     </div>
                   </div>
                   <div class="overlay-input-group">
                     <label for="editEmail">Email</label>
                     <div class="input-wrapper">
                       <input type="email" id="editEmail" required />
-                      <img src="/img/mail_input.png" alt="" />
+                      <img src="../img/mail_input.png" alt="" />
                     </div>
                   </div>
                   <div class="overlay-input-group">
                     <label for="editPhone">Phone</label>
                     <div class="input-wrapper">
                       <input type="tel" id="editPhone" required />
-                      <img src="/img/call_input.png" alt="" />
+                      <img src="../img/call_input.png" alt="" />
                     </div>
                   </div>
                   <div class="overlay-buttons">
                     <button type="button" class="btn-cancel" onclick="deleteContactForEdit()">Delete</button>
                     <button type="submit" class="btn-save">
                       Save
-                      <img src="/img/check.png" alt="" />
+                      <img src="../img/check.png" alt="" />
                     </button>
                   </div>
                 </form>

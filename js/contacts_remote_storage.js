@@ -190,7 +190,7 @@ async function doesContactExists({emailValue}) {
       //3. empty contact form on cancel btn ✅
       //4. adjust form btns for lower width
       //5. adjust forms media query
-      //6. spinning while pages load
-      //7. help page while lower media query
+      //6. spinning while pages load ✅
+      //7. help page while lower media query✅
     
       //8. render contacts inside add-task-page on add-task-page load

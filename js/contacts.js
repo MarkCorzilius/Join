@@ -29,29 +29,36 @@ let detailViewOpen = false;
 
 
 async function renderContacts() {
-  contactsArray = [];
-  await saveContactsToArray();
-  contactsArray.sort((a, b) => a.name.localeCompare(b.name));
-  const container = document.querySelector(".contacts-list");
-  if (!container) return;
-
-  const groups = {};
-  contactsArray.forEach((c) => {
-    const letter = c.name[0].toUpperCase();
-    (groups[letter] = groups[letter] || []).push(c);
-  });
-
-  container.innerHTML = Object.keys(groups)
-    .sort()
-    .map((letter) => {
-      let html = `<h2>${letter}</h2>`;
-      groups[letter].forEach((c) => {
-        const vars = getContactVars(c);
-        html += generateContactHTML(c, vars);
-      });
-      return html;
-    })
-    .join("");
+  document.querySelector('.spinner-overlay').style.display = "block";
+  try {
+    contactsArray = [];
+    await saveContactsToArray();
+    contactsArray.sort((a, b) => a.name.localeCompare(b.name));
+    const container = document.querySelector(".contacts-list");
+    if (!container) return;
+  
+    const groups = {};
+    contactsArray.forEach((c) => {
+      const letter = c.name[0].toUpperCase();
+      (groups[letter] = groups[letter] || []).push(c);
+    });
+  
+    container.innerHTML = Object.keys(groups)
+      .sort()
+      .map((letter) => {
+        let html = `<h2>${letter}</h2>`;
+        groups[letter].forEach((c) => {
+          const vars = getContactVars(c);
+          html += generateContactHTML(c, vars);
+        });
+        return html;
+      })
+      .join("");
+  } catch (error) {
+    console.log('rendering contacts failed');
+  } finally {
+    document.querySelector('.spinner-overlay').style.display = 'none';
+  }
 }
 
 function getInitials(name) {
@@ -353,4 +360,16 @@ function emptyContactForm() {
   emailInput.value = "";
   const phoneInput = document.getElementById('contactPhone');
   phoneInput.value = "";
+}
+
+function makeCancelBtnLight() {
+  setTimeout(() => {
+    document.getElementById('overlayCancelIcon').src = '../img/full-cancel-btn-hovered.png';
+  }, 100);
+}
+
+function makeCancelBtnDark() {
+  setTimeout(() => {
+    document.getElementById('overlayCancelIcon').src = '../img/full-cancel-btn.png';
+  }, 100);
 }
