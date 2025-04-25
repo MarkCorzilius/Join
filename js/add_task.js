@@ -49,32 +49,40 @@ function resetPriorityBtn() {
   medium.style.color = 'white';
   changePriorityBtnColor(1);
 }
-function resetContacts() {
-  const checked = element.querySelector('.checked');
-  const unchecked = element.querySelector('.unchecked');
 
-    const contacts = document.querySelectorAll('.option');
+function resetContactCheckedBtn() {
+  const selections = document.querySelectorAll('.select-box');
+  const checked = document.querySelectorAll('.checked');
+  const unchecked = document.querySelectorAll('.unchecked');
 
-    for (let i = 0; i < contacts.length; i++) {
-      const contact = contacts[i];
-      if (contact.classList.contains('.selected-contact')) {
-        contact.classList.remove('.selected-contact');
+  for (let i = 0; i < checked.length; i++) {
+    const check = checked[i];
+    check.style.display = 'none';
+  }
+
+  for (let i = 0; i < unchecked.length; i++) {
+    const uncheck = unchecked[i];
+  uncheck.style.display = 'inline';
+  }
+}
+
+  function resetContacts() {
+    const options = document.querySelectorAll('.option');
+    const checked = document.querySelector('.checked');
+    const unchecked = document.querySelector('.unchecked');
+
+    for (let i = 0; i < options.length; i++) {
+      const option = options[i];
+    
+      if (option.classList.contains('selected-contact')) {
+        option.classList.remove('selected-contact');
+        resetContactCheckedBtn();
         checked.style.display ='none';
         unchecked.style.display = 'inline';
-      }
     }
     chosenContacts = [];
     visualizeChosenContacts();
-  }
-
-function resetContacts() {
-  const contacts = document.querySelectorAll('.option');
-
-  for (let i = 0; i < contacts.length; i++) {
-    const contact = contacts[i];
-    if (contact.classList.contains('.selected-contact')) {
-      contact.classList.remove('.selected-contact');
-    }
+    closeContactAssignment();
   }
 }
 

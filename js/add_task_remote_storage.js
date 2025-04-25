@@ -28,6 +28,19 @@ function restrictAddingTask() {
   }
 }
 
+function isNotInTheFuture(inputDate) {
+  const currentDate = new Date();
+  console.log(currentDate);
+  const inputDateObject = new Date(inputDate);
+  console.log(inputDateObject);
+
+  if (currentDate > inputDateObject) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function extractTaskValues() {
   const title = document.getElementById('taskTitle');
   const titleValue = title.value;
@@ -35,13 +48,19 @@ function extractTaskValues() {
   const descriptionValue = description.value;
   const date = document.getElementById('taskDate');
   const dateValue = date.value;
-
-  return { titleValue, descriptionValue, dateValue};
+  if (isNotInTheFuture(dateValue)) {
+    return false;
+  } else {
+    return { titleValue, descriptionValue, dateValue};
+ }
 }
 
 function getTaskData() {
+  if (!extractTaskValues()) {
+    alert('chosen date is not in the future!');
+    return;
+  };
   const {titleValue, descriptionValue, dateValue} =  extractTaskValues();
-
   const dataSafe = {
     title: titleValue,
     description: descriptionValue,
@@ -52,10 +71,8 @@ function getTaskData() {
     subtasks: saveSubtasks(),
   }
   if (!restrictAddingTask()) {
-  console.log("Form not valid. Not sending data.");
   return; 
 } else {
-  console.log("Form valid. Sending data...");
     postData('tasks', dataSafe);
     emptyTaskDocument();
 }
