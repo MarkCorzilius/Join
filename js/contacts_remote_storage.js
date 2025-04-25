@@ -20,7 +20,7 @@ async function postContacts(path='', data={}) {
         body: JSON.stringify(data)
     });
     return await response.json();
-}
+} 
 
 async function getContacts(path="") {
     let response = await fetch(BASE_URL + path + '.json');
@@ -46,8 +46,8 @@ async function isDuplicateEmail(path='') {
 }
 
 async function saveBasicContacts() {
-    for (let i = 0; i < contactsArray.length; i++) {
-        const contact = contactsArray[i];
+    for (let i = 0; i < basicContacts.length; i++) {
+        const contact = basicContacts[i];
         const safeKey = sanitizeEmail(contact.email);
         const path = 'contacts/' + safeKey;
 
@@ -183,14 +183,20 @@ async function doesContactExists({emailValue}) {
         await putContacts('contacts/' + newContactKey, {name: newName, email: newEmail, phone: newPhone});
       }
 
-      
+      async function saveContactIconInFireBase(contact, initial, bg) {
+        let response = await fetch(BASE_URL + 'contacts/' + '.json');
+        let data = await response.json();
+        const sanitizedEmail = sanitizeEmail(contact.email);
 
-
-      //2. edit contact ✅
-      //3. empty contact form on cancel btn ✅
-      //4. adjust form btns for lower width
-      //5. adjust forms media query
-      //6. spinning while pages load ✅
-      //7. help page while lower media query✅
+        for (const key in data) {
+            if (sanitizedEmail === key) {
+                    const existingContact = data[key].icon;
+                    if (existingContact.initial === initial && existingContact.bg === bg) return;
+                    await putContacts('contacts/' + sanitizedEmail + '/icon', {initial, bg});
+                } else {
+                    continue;
+                }
+        }    
+      }
     
       //8. render contacts inside add-task-page on add-task-page load

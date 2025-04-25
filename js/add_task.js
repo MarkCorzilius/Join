@@ -1,5 +1,7 @@
 let subtaskId = null;
 
+let chosenContacts = [];
+
 function clearBtnToBlue() {
   document.getElementById("clearBtn").src = "../img/clear_btn_hovered.png";
 }
@@ -47,19 +49,94 @@ function resetPriorityBtn() {
   medium.style.color = 'white';
   changePriorityBtnColor(1);
 }
+function resetContacts() {
+  const checked = element.querySelector('.checked');
+  const unchecked = element.querySelector('.unchecked');
 
-function styleChosenContact(element) {
+    const contacts = document.querySelectorAll('.option');
+
+    for (let i = 0; i < contacts.length; i++) {
+      const contact = contacts[i];
+      if (contact.classList.contains('.selected-contact')) {
+        contact.classList.remove('.selected-contact');
+        checked.style.display ='none';
+        unchecked.style.display = 'inline';
+      }
+    }
+    chosenContacts = [];
+    visualizeChosenContacts();
+  }
+
+function resetContacts() {
+  const contacts = document.querySelectorAll('.option');
+
+  for (let i = 0; i < contacts.length; i++) {
+    const contact = contacts[i];
+    if (contact.classList.contains('.selected-contact')) {
+      contact.classList.remove('.selected-contact');
+    }
+  }
+}
+
+function styleChosenContact(element, initial, bg, name) {
   element.classList.toggle('selected-contact');
 
-  const checked = element.querySelector('.checked')
-  const unchecked = element.querySelector('.unchecked')
+  const checked = element.querySelector('.checked');
+  const unchecked = element.querySelector('.unchecked');
 
   if (element.classList.contains('selected-contact')) {
+    
     checked.style.display ='inline';
     unchecked.style.display = 'none';
+    addContactToArray(initial, bg, name);
+    visualizeChosenContacts();
+    
   } else {
     checked.style.display ='none';
     unchecked.style.display = 'inline';
+    deleteContactFromArray(initial, bg, name);
+    visualizeChosenContacts();
+  }
+}
+
+function visualizeChosenContacts() {
+  const container = document.getElementById('chosenContactsBox');
+  container.innerHTML = "";
+  for (let i = 0; i < chosenContacts.length; i++) {
+    const contact = chosenContacts[i];
+    container.innerHTML += `<div class="initial" style="background-image:url('${contact.bg}')">${contact.initial}</div>`;
+    
+  }
+}
+
+function addContactToArray(initial, bg, name) {
+  chosenContacts.push({name, initial, bg});
+
+}
+
+function deleteContactFromArray(initial, bg, name) {
+  const index = chosenContacts.findIndex(contact =>
+    contact.initial === initial && 
+    contact.bg === bg &&
+    contact.name === name
+  );
+  if (index != -1) {
+    chosenContacts.splice(index, 1);
+  }
+}
+
+function searchForContacts() {
+  const input = document.getElementById('searchContacts').value.toLowerCase();
+  const contacts = document.querySelectorAll('.option');
+
+  for (let i = 0; i < contacts.length; i++) {
+    const name = contacts[i].querySelector('.contact-name').innerText.toLowerCase();
+
+    if (name.includes(input)) {
+      contacts[i].style.display = 'flex';
+    } else {
+      contacts[i].style.display = 'none';
+    }
   }
 }
 
@@ -68,11 +145,13 @@ function openContactAssignmentInput() {
   const searchState = document.getElementById('searchState');
   const optionsRef = document.getElementById('contactOptions');
   const wrapperRef = document.querySelector('.dropdown-wrapper');
+  const container = document.getElementById('chosenContactsBox');
 
   closedRef.style.display = 'none';
   searchState.style.display = 'flex';
   optionsRef.style.display = 'flex';
   wrapperRef.style.marginBottom = '210px';
+  container.style.display = 'none';
 }
 
 function closeContactAssignment() {
@@ -80,12 +159,13 @@ function closeContactAssignment() {
   const searchRef = document.getElementById('searchState');
   const optionsRef = document.getElementById('contactOptions');
   const wrapperRef = document.querySelector('.dropdown-wrapper');
-  
+  const container = document.getElementById('chosenContactsBox');
 
   closedRef.style.display = 'flex';
   searchRef.style.display = 'none';
   optionsRef.style.display = 'none';
   wrapperRef.style.marginBottom = '0';
+  container.style.display = 'flex';
 }
 
 function toggleCategoryOptions() {
@@ -196,6 +276,7 @@ function emptyTaskDocument() {
   resetPriorityBtn();
   resetCategory();
   resetSubtasks();
+  resetContacts();
   
 }
 

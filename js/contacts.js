@@ -1,3 +1,56 @@
+const basicContacts = [
+  {
+    name: "Alice Johnson",
+    email: "alice.johnson@example.com",
+    phone: "+1 555-123-4567"
+  },
+  {
+    name: "Bob Smith",
+    email: "bob.smith@example.com",
+    phone: "+1 555-987-6543"
+  },
+  {
+    name: "Charlie Lee",
+    email: "charlie.lee@example.com",
+    phone: "+1 555-222-3344"
+  },
+  {
+    name: "Diana Adams",
+    email: "diana.adams@example.com",
+    phone: "+1 555-444-7788"
+  },
+  {
+    name: "Ethan Wright",
+    email: "ethan.wright@example.com",
+    phone: "+1 555-666-1122"
+  },
+  {
+    name: "Fiona Green",
+    email: "fiona.green@example.com",
+    phone: "+1 555-321-7654"
+  },
+  {
+    name: "George Harris",
+    email: "george.harris@example.com",
+    phone: "+1 555-888-9900"
+  },
+  {
+    name: "Hannah Clark",
+    email: "hannah.clark@example.com",
+    phone: "+1 555-111-2233"
+  },
+  {
+    name: "Ian Baker",
+    email: "ian.baker@example.com",
+    phone: "+1 555-444-5566"
+  },
+  {
+    name: "Julia Carter",
+    email: "julia.carter@example.com",
+    phone: "+1 555-999-0001"
+  }
+];
+
 let contactsArray = [
 ];
 
@@ -32,6 +85,7 @@ async function renderContacts() {
   document.querySelector('.spinner-overlay').style.display = "block";
   try {
     contactsArray = [];
+    await saveBasicContacts();
     await saveContactsToArray();
     contactsArray.sort((a, b) => a.name.localeCompare(b.name));
     const container = document.querySelector(".contacts-list");
@@ -69,10 +123,10 @@ function getInitials(name) {
 }
 
 function getContactVars(c) {
-  return {
-    initials: getInitials(c.name),
-    bg: getBackgroundForName(c.name),
-  };
+    let initials = getInitials(c.name);
+    let bg = getBackgroundForName(c.name);
+    saveContactIconInFireBase(c, initials, bg);
+    return {initials, bg};
 }
 
 function generateContactHTML(c, vars) {
@@ -340,17 +394,6 @@ function closeEditContactOverlay(email) {
   overlayEditContent.classList.remove("slide-in");
   editContactOverlay.classList.remove("show");
   setTimeout(() => editContactOverlay.classList.add("d-none"), 300);
-}
-
-function saveToLocalStorage() {
-  localStorage.setItem("contacts", JSON.stringify(contactsArray));
-}
-
-function loadFromLocalStorage() {
-  const savedContacts = localStorage.getItem("contacts");
-  if (savedContacts) {
-    contactsArray = JSON.parse(savedContacts);
-  }
 }
 
 function emptyContactForm() {
