@@ -1,3 +1,8 @@
+body {
+  position: relative;
+  box-sizing: border-box;
+}
+
 .taskbar {
   display: flex;
   align-items: center;
@@ -36,6 +41,11 @@
   width: 100%;
   padding: 9px 0px 9px;
   background: transparent;
+  border: none !important;
+}
+
+.new-board-task {
+  cursor: pointer;
 }
 
 .search-loop-img {
@@ -134,4 +144,27 @@
   display: flex;
   align-items: center;
   justify-content: left;
+}
+
+#createTaskInBoardOverlay {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  background-color: rgba(42, 54, 71, 0.744);
+}
+
+#overlayDialogBoard {
+  background-color: white;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 20px;
+  height: 80vh;
+  height: 80dvh;
+  width: 80vw;
+  width: 80dvw;
+  
 }
