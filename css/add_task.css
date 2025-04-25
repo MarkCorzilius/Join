@@ -52,6 +52,9 @@
   border: 1px solid rgb(209 209 209);
   border-radius: 10px;
   padding-top: 18px;
+  text-indent: 0 !important;
+  padding-left: 20px;
+  box-sizing: border-box;
 }
 
 .title-field {
@@ -59,6 +62,7 @@
   width: 440px;
   border: 1px solid rgb(209 209 209);
   border-radius: 10px;
+  box-sizing: border-box;
 }
 
 .add-task-page-title {
@@ -375,6 +379,11 @@
   position: absolute;
   right: 10px;
   border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .arrow-up-wrapper:hover {

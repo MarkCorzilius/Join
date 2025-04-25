@@ -1,5 +1,8 @@
 @media (min-width: 1001px) and (max-width: 1350px) {
     
+    .content {
+        overflow: auto;
+    }
     .vertical-line {
         margin: 0 32px
     }
@@ -9,6 +12,10 @@
     }
 
     .subtask-template {
+        width: 320px;
+    }
+
+    #subtaskContainer {
         width: 320px;
     }
 

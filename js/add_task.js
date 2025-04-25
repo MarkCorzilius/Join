@@ -160,6 +160,7 @@ function openContactAssignmentInput() {
   optionsRef.style.display = 'flex';
   wrapperRef.style.marginBottom = '210px';
   container.style.display = 'none';
+  document.querySelector('.content').style.overflow = 'hidden';
 }
 
 function closeContactAssignment() {
@@ -174,6 +175,9 @@ function closeContactAssignment() {
   optionsRef.style.display = 'none';
   wrapperRef.style.marginBottom = '0';
   container.style.display = 'flex';
+  document.querySelector('.content').style.overflow = 'auto';
+
+
 }
 
 function toggleCategoryOptions() {
@@ -182,13 +186,17 @@ function toggleCategoryOptions() {
   const optionsRef = document.querySelector('.category-options');
   optionsRef.style.display = optionsRef.style.display === 'flex' ? 'none' : 'flex';
 
+
   if (optionsRef.style.display === 'flex') {
     section.style.marginBottom = '100px';
     arrow.src = '../img/dropdown-arrow-up.png';
     document.getElementById('categoryChoiceInsert').innerText = 'Select task category';
+    document.querySelector('.content').style.overflow = 'hidden';
   } else {
     section.style.marginBottom = 'auto';
     arrow.src = '../img/dropdown-arrow-down.png';
+    document.querySelector('.content').style.overflow = 'auto';
+
   }
 }
 
