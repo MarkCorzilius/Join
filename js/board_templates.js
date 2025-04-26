@@ -1,4 +1,29 @@
-function taksDialogTemplate() {
+function emptyColumnTemplate() {
+    return `                <div class="empty-column">
+                  <span>No tasks To do</span>
+                </div>`;
+}
+
+function toDoTemplate(task) {
+    return `                <div class="task-body">
+                  <div class="task-category">${renderCategory(task)}</div>
+                  <h3 class="task-title">${task.title}</h2>
+                    <p class="task-description">${task.description}</p>
+                    <div class="progress-section">
+                      <div class="progress-container">
+                       <div class="progress-bar" id="progressBar"></div>
+                      </div>
+                      <span class="tasks-done"> 0/${renderSubtasksAmount(task)} Subtasks</span>
+                    </div>
+                    <div class="user-task-footer">
+                      <div class="contacts-assigned">${renderInitials(task)}</div>
+                      <img class='priority-icon' src="${renderPriorityIcon(task)}">
+                    </div>
+                </div>`;
+}
+
+
+function tasksDialogTemplate() {
     return `      <div id="overlayDialogBoard" onclick="event.stopPropagation()">
         <div class="content-in-main">
           <h1 class="add-task-page-title">Add Task</h1>

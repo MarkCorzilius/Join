@@ -26,7 +26,7 @@
     <script src="../js/sidebar.js"></script>
   </head>
 
-  <body onload="w3.includeHTML(); renderTaskDialog()">
+  <body onload="w3.includeHTML(); renderTaskDialog(); fetchTasks(); renderToDoTasks()">
 
     <div id="createTaskInBoardOverlay" onclick="closeTaskOverlay()">
     </div>
@@ -58,10 +58,7 @@
                 <p class="board-section-title">To do</p>
                 <img onclick="openTaskOverlay()" onmouseover="hoveredAddTaskIcon(0)" onmouseout="normalAddTaskIcon(0)" class="new-board-task" src="../img/add_task_in_board.png" alt="" />
               </div>
-              <div class="tasks-container">
-                <div class="empty-column">
-                  <span>No tasks To do</span>
-                </div>
+              <div id="tasksContainer">
               </div>
             </div>
             <div class="board-section-column">
@@ -69,7 +66,7 @@
                 <p class="board-section-title">In progress</p>
                 <img onclick="openTaskOverlay()" onmouseover="hoveredAddTaskIcon(1)" onmouseout="normalAddTaskIcon(1)" class="new-board-task" src="../img/add_task_in_board.png" alt="" />
               </div>
-              <div class="tasks-container">
+              <div id="tasksContainer">
                 <div class="tasks-box"></div>
               </div>
             </div>
@@ -78,13 +75,13 @@
                 <p class="board-section-title">Await feedback</p>
                 <img onclick="openTaskOverlay()" onmouseover="hoveredAddTaskIcon(2)" onmouseout="normalAddTaskIcon(2)" class="new-board-task" src="../img/add_task_in_board.png" alt="" />
               </div>
-              <div class="tasks-container"></div>
+              <div id="tasksContainer"></div>
             </div>
             <div class="board-section-column">
               <div class="board-column-control">
                 <p class="board-section-title">Done</p>
               </div>
-              <div class="tasks-container"></div>
+              <div id="tasksContainer"></div>
             </div>
           </div>
         </div>
