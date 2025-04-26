@@ -17,7 +17,7 @@ function toDoTemplate(task) {
                     </div>
                     <div class="user-task-footer">
                       <div class="contacts-assigned">${renderInitials(task)}</div>
-                      <img class='priority-icon' src="${renderPriorityIcon(task)}">
+                      <img class='priority-png' src="${renderPriorityIcon(task)}">
                     </div>
                 </div>`;
 }
