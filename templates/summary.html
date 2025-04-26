@@ -28,34 +28,37 @@
     <header w3-include-html="../templates/header.html" id="headerContainer"></header>
     <main class="main">
       <div w3-include-html="../templates/sidebar.html" id="sidebarContainer"></div>
-      <div class="content">
+      
         <div class="summary-content-wrapper">
           <div class="summary-header-wrapper">
             <h1 class="summary-page-title">Join 360</h1>
             <div class="separation-line-summary"></div>
-            <p class="summary-subtitle">Key Matrics at a Glance</p>
+            <p class="summary-subtitle">Key Metrics at a Glance</p>
+            <div class="separation-line-summary-vertical"></div>
           </div>
           <div class="summary-main-wrapper">
             <div class="summary-info-box">
               <div class="info-box-first-line">
-                <div class="to-do-box">
-                  <img src="../img/pencil.png" alt="in work" />
+                <a class="to-do-box" href="../templates/board.html">
+                  <img class="card-icon" src="../img/pencil.png" alt="in work" />
+                  <img class="pencil-light" src="../img/pencil_light.png" alt="in work" />
                   <div class="card-info">
                     <p class="card-number">1</p>
                     <p class="card-text">To Do</p>
                   </div>
-                </div>
-                <div class="done-box">
-                  <img src="../img/done.png" alt="done" />
+                </a>
+                <a class="done-box" href="../templates/board.html">
+                  <img class="card-icon" src="../img/done.png" alt="done" />
+                  <img class="card-icon-light" src="../img/card_icon_light.png" alt="done" />
                   <div class="card-info">
                     <p class="card-number">1</p>
                     <p class="card-text">Done</p>
                   </div>
-                </div>
+                </a>
               </div>
-              <div class="info-box-second-line">
+              <a class="info-box-second-line" href="../templates/board.html">
                 <div class="task-importancy">
-                  <img src="../img/importancy.png" alt="importancy" />
+                  <img class="card-icon-small" src="../img/importancy.png" alt="importancy" />
                   <div class="card-info">
                     <p class="card-number">1</p>
                     <p class="card-text">Urgent</p>
@@ -63,43 +66,43 @@
                 </div>
                 <div class="sep-line-third-box"></div>
                 <div class="deadline-box">
-                  <p class="todays-data">October 16th 2025</p>
-                  <p>Upcoming Deadline</p>
+                  <p class="todays-data">October 16, 2025</p>
+                  <p class="card-text">Upcoming Deadline</p>
                 </div>
-              </div>
+              </a>
               <div class="info-box-third-line">
-                <div class="all-tasks-box">
+                <a class="all-tasks-box" href="../templates/board.html">
                   <p class="all-tasks-amount">5</p>
                   <div class="all-tasks-types">
                     <p>Tasks</p>
                     <p>in Board</p>
                   </div>
-                </div>
-                <div class="all-tasks-box">
+                </a>
+                <a class="all-tasks-box" href="../templates/board.html">
                   <p class="all-tasks-amount">2</p>
                   <div class="all-tasks-types">
                     <p>Tasks</p>
                     <p>in Progress</p>
                   </div>
-                </div>
-                <div class="all-tasks-box">
+                </a>
+                <a class="all-tasks-box" href="../templates/board.html">
                   <p class="all-tasks-amount">2</p>
                   <div class="all-tasks-types">
                     <p>Awaiting</p>
                     <p>Feedback</p>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
-            <div class="greeting-user">
-              <span>
+            <div>
+              <span class="greeting-user">
                 Good morning, <br />
                 <div id="theUser">Mark Corzilius</div>
               </span>
             </div>
           </div>
         </div>
-      </div>
+      
     </main>
   </body>
 </html>

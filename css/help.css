@@ -41,10 +41,11 @@
 .headerHelp {
   display: flex;
   justify-content: space-between;
+  flex-direction: row-reverse;
 }
 
 .arrowLeft {
-  margin-top: 50px;
+  margin-top: 38px;
   padding: 5px;
   width: 21px;
   height: 21px;
@@ -56,4 +57,59 @@
   border-radius: 50%;
   background-color: rgb(221 221 221);
   transform: scale(1.1);
+}
+
+.pageTitle {
+  font-size: 61px;
+  font-weight: 700;
+}
+
+.pageTitleTwo {
+  font-size: 55px;
+  font-weight: 700;
+  margin-top: 0px;
+}
+
+.pageSubTitle {
+  font-size: 27px;
+  font-weight: 700;
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+
+@media (min-width: 1920px) {
+  .helpMain {
+      max-width: 1920px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .helpMain {
+     padding-left: 20px;
+     padding-right: 30px;
+  }
+}
+ 
+@media (max-width: 630px) {
+  .pageTitle {
+      font-size: 40px;
+      margin-bottom: 20px;
+  }
+  .pageTitleTwo {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 400px) {
+  .headerHelp {
+    flex-direction: column;  
+  }
+
+  .arrowLeft {
+    padding-left: 240px;
+  }
+
+  .number {
+    padding-right: 15px;
+  }
 }
