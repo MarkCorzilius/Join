@@ -1,21 +1,3 @@
-const BASE_URL = 'https://join-fce4c-default-rtdb.europe-west1.firebasedatabase.app/';
-
-async function postData(path="", data={}) {
-  let response = await fetch(BASE_URL + path + '.json', {
-    method: 'POST',
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data)
-  });
-  return await response.json();
-};
-
-async function getContactsData(path="") {
-  let response = await fetch(BASE_URL + path + '.json');
-  return response.json();
-}
-
 function restrictAddingTask() {
   const title = document.getElementById('taskTitle');
   const date = document.getElementById('taskDate');
@@ -122,7 +104,7 @@ function saveSubtasks() {
 
     for (const contact of Object.values(contacts)) {
       const sanitizedEmail = sanitizeEmail(contact.email);
-      const currentIcon = await getContactsData('contacts/' + sanitizedEmail + '/icon');
+      const currentIcon = await getData('contacts/' + sanitizedEmail + '/icon');
       
       contactsContainer.innerHTML += contactsTemplate(contact.name, currentIcon.bg, currentIcon.initial);
     }

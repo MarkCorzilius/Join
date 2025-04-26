@@ -11,17 +11,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="../img/join-logo.svg" />
 
+
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/sidebar.css" />
     <link rel="stylesheet" href="../css/board.css" />
+    <link rel="stylesheet" href="../css/board-responsive.css" />
+
+    <script src="../js/database.js"></script>
+    <script src="../js/add_task.js"></script>
+    <script src="../js/add_task_remote_storage.js"></script>
 
     <script src="../script.js" defer></script>
+    <script src="../js/board.js" defer></script>
+    <script src="../js/board_templates.js"></script>
     <script src="https://www.w3schools.com/lib/w3.js"></script>
     <script src="../js/sidebar.js"></script>
   </head>
 
-  <body onload="w3.includeHTML()">
+  <body onload="w3.includeHTML(); renderTaskDialog(); fetchTasks(); renderToDoTasks()">
+
+    <div id="createTaskInBoardOverlay" onclick="closeTaskOverlay()">
+    </div>
+
     <header w3-include-html="../templates/header.html" id="headerContainer"></header>
     <main class="main">
       <div w3-include-html="../templates/sidebar.html" id="sidebarContainer"></div>
@@ -31,13 +43,13 @@
             <p class="board-title">Board</p>
             <div class="add-task-buttons-wrapper">
               <div class="search-container">
-                <input type="text" class="search-tasks-input" placeholder="Search..." />
+                <input onblur="bluredSearchContainer()" onfocus="focusedSearchContainer()" type="text" class="search-tasks-input" placeholder="Search..." />
                 <div class="search-loop">
                   <div class="vertical-bar"></div>
                   <img class="search-loop-img" src="../img/search.png" alt="Search Loop Image" class="loop-image" />
                 </div>
               </div>
-              <button class="add-task-button">
+              <button onclick="openTaskOverlay()" class="add-task-button">
                 <p class="add-task-button-text">Add Task</p>
                 <img src="../img/add-white.png" alt="add" />
               </button>
@@ -47,35 +59,32 @@
             <div class="board-section-column">
               <div class="board-column-control">
                 <p class="board-section-title">To do</p>
-                <img src="../img/add_task_in_board.png" alt="" />
+                <img onclick="openTaskOverlay()" onmouseover="hoveredAddTaskIcon(0)" onmouseout="normalAddTaskIcon(0)" class="new-board-task" src="../img/add_task_in_board.png" alt="" />
               </div>
-              <div class="tasks-container">
-                <div class="empty-column">
-                  <span>No tasks To do</span>
-                </div>
+              <div id="tasksContainer">
               </div>
             </div>
             <div class="board-section-column">
               <div class="board-column-control">
                 <p class="board-section-title">In progress</p>
-                <img src="../img/add_task_in_board.png" alt="" />
+                <img onclick="openTaskOverlay()" onmouseover="hoveredAddTaskIcon(1)" onmouseout="normalAddTaskIcon(1)" class="new-board-task" src="../img/add_task_in_board.png" alt="" />
               </div>
-              <div class="tasks-container">
+              <div id="tasksContainer">
                 <div class="tasks-box"></div>
               </div>
             </div>
             <div class="board-section-column">
               <div class="board-column-control">
                 <p class="board-section-title">Await feedback</p>
-                <img src="../img/add_task_in_board.png" alt="" />
+                <img onclick="openTaskOverlay()" onmouseover="hoveredAddTaskIcon(2)" onmouseout="normalAddTaskIcon(2)" class="new-board-task" src="../img/add_task_in_board.png" alt="" />
               </div>
-              <div class="tasks-container"></div>
+              <div id="tasksContainer"></div>
             </div>
             <div class="board-section-column">
               <div class="board-column-control">
                 <p class="board-section-title">Done</p>
               </div>
-              <div class="tasks-container"></div>
+              <div id="tasksContainer"></div>
             </div>
           </div>
         </div>
