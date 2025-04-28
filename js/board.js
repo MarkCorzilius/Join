@@ -1,3 +1,4 @@
+let currentColumn = 0;
 
 function focusedSearchContainer() {
     const container = document.querySelector('.search-container');
@@ -27,13 +28,15 @@ function closeTaskOverlay() {
     overlay.style.display = 'none';
 }
 
-function openTaskOverlay() {
+function openTaskOverlay(column) {
     if (window.innerWidth < 700) {
         window.location.href = '../templates/add_task.html';
     } else {
         const overlay = document.getElementById('createTaskInBoardOverlay');
         overlay.style.display = 'flex';
+        currentColumn = column;
     }
+    fetchContacts();
 }
 
 function renderTaskDialog() {
@@ -118,5 +121,35 @@ window.onresize = function handlePageRedirect() {
 
     if (isOVerlayOpen && window.innerWidth < 700) {
         window.location.href = '../templates/add_task.html';
+    }
+}
+
+
+async function createTaskInBoardFireBase() {
+    const column = checkTargetColumn();
+    if (!extractTaskValues()) {
+        alert('chosen date is not in the future!');
+        return;
+      };
+      const dataSafe = taskDataStorage();
+      if (!restrictAddingTask()) {
+      return; 
+    } else {
+        postData('board/' + column, dataSafe);
+        emptyTaskDocument();
+    }
+
+}
+
+function checkTargetColumn() {
+    switch (currentColumn) {
+        case 0:
+            return 'toDo/';
+        case 1:
+            return 'InProgress/';
+        case 2:
+            return 'awaitFeedback/';
+        default: 'toDo/';
+            break;
     }
 }

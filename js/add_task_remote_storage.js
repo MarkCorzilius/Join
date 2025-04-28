@@ -37,11 +37,7 @@ function extractTaskValues() {
  }
 }
 
-function getTaskData() {
-  if (!extractTaskValues()) {
-    alert('chosen date is not in the future!');
-    return;
-  };
+function taskDataStorage() {
   const {titleValue, descriptionValue, dateValue} =  extractTaskValues();
   const dataSafe = {
     title: titleValue,
@@ -52,6 +48,15 @@ function getTaskData() {
     category: saveCategory(),
     subtasks: saveSubtasks(),
   }
+  return dataSafe;
+}
+
+function getTaskData() {
+  if (!extractTaskValues()) {
+    alert('chosen date is not in the future!');
+    return;
+  };
+  const dataSafe = taskDataStorage();
   if (!restrictAddingTask()) {
   return; 
 } else {
@@ -129,6 +134,3 @@ function saveSubtasks() {
   function sanitizeEmail(email) {
     return email.replace(/[@.]/g, "_");
 }
-
-// on click on contact –> get initial;
-//while select –> chosen contacts display none;

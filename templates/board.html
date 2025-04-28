@@ -23,11 +23,11 @@
     <link rel="stylesheet" href="../css/board-responsive.css" />
 
     <script src="../js/database.js"></script>
-    <script src="../js/add_task.js"></script>
     <script src="../js/add_task_remote_storage.js"></script>
+    <script src="../js/add_task.js"></script>
 
     <script src="../script.js" defer></script>
-    <script src="../js/board.js" defer></script>
+    <script src="../js/board.js"></script>
     <script src="../js/board_templates.js"></script>
     <script src="https://www.w3schools.com/lib/w3.js"></script>
     <script src="../js/sidebar.js"></script>
@@ -35,7 +35,7 @@
 
   <body onload="w3.includeHTML(); renderTaskDialog(); fetchTasks(); renderToDoTasks()">
 
-    <div id="createTaskInBoardOverlay" style="display: none;" onclick="closeTaskOverlay()">
+    <div id="createTaskInBoardOverlay" style="display: none ;" onclick="closeTaskOverlay()">
     </div>
 
     <header w3-include-html="../templates/header.html" id="headerContainer"></header>
@@ -53,7 +53,7 @@
                   <img class="search-loop-img" src="../img/search.png" alt="Search Loop Image" class="loop-image" />
                 </div>
               </div>
-              <button onclick="openTaskOverlay()" class="add-task-button">
+              <button onclick="openTaskOverlay(0)" class="add-task-button">
                 <p class="add-task-button-text">Add Task</p>
                 <img src="../img/add-white.png" alt="add" />
               </button>
@@ -63,7 +63,7 @@
             <div class="board-section-column">
               <div class="board-column-control">
                 <p class="board-section-title">To do</p>
-                <img onclick="openTaskOverlay()" onmouseover="hoveredAddTaskIcon(0)" onmouseout="normalAddTaskIcon(0)" class="new-board-task" src="../img/add_task_in_board.png" alt="" />
+                <img onclick="openTaskOverlay(0)" onmouseover="hoveredAddTaskIcon(0)" onmouseout="normalAddTaskIcon(0)" class="new-board-task" src="../img/add_task_in_board.png" alt="" />
               </div>
               <div id="tasksContainer">
               </div>
@@ -71,7 +71,7 @@
             <div class="board-section-column">
               <div class="board-column-control">
                 <p class="board-section-title">In progress</p>
-                <img onclick="openTaskOverlay()" onmouseover="hoveredAddTaskIcon(1)" onmouseout="normalAddTaskIcon(1)" class="new-board-task" src="../img/add_task_in_board.png" alt="" />
+                <img onclick="openTaskOverlay(1)" onmouseover="hoveredAddTaskIcon(1)" onmouseout="normalAddTaskIcon(1)" class="new-board-task" src="../img/add_task_in_board.png" alt="" />
               </div>
               <div id="tasksContainer">
                 <div class="tasks-box"></div>
@@ -80,7 +80,7 @@
             <div class="board-section-column">
               <div class="board-column-control">
                 <p class="board-section-title">Await feedback</p>
-                <img onclick="openTaskOverlay()" onmouseover="hoveredAddTaskIcon(2)" onmouseout="normalAddTaskIcon(2)" class="new-board-task" src="../img/add_task_in_board.png" alt="" />
+                <img onclick="openTaskOverlay(2)" onmouseover="hoveredAddTaskIcon(2)" onmouseout="normalAddTaskIcon(2)" class="new-board-task" src="../img/add_task_in_board.png" alt="" />
               </div>
               <div id="tasksContainer"></div>
             </div>

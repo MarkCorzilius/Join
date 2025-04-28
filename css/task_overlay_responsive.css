@@ -75,6 +75,12 @@
     .add-task-footer {
         width: 70vw;
         position: absolute;
+        z-index: 999;
+        bottom: 0;
+    }
+
+    #subtaskContainer {
+        max-height: 90px;
     }
 
     .question-blocks {
@@ -107,7 +113,8 @@
     }
 
     .add-task-page-title {
-        padding-top: 32px;
+        padding-top: 20px;
+        padding-bottom: 30px;
     }
 
     .content-in-main {

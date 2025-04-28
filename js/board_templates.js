@@ -178,7 +178,7 @@ function tasksDialogTemplate() {
                 <p>Clear</p>
                 <img id="clearBtn" src="../img/close.png" alt="close" />
               </button>
-              <button onclick="getTaskData()" class="create-task-button">
+              <button onclick="createTaskInBoardFireBase()" class="create-task-button">
                 <p>Create Task</p>
                 <img src="../img/check.png" alt="check" />
               </button>
