@@ -28,8 +28,12 @@ function closeTaskOverlay() {
 }
 
 function openTaskOverlay() {
-    const overlay = document.getElementById('createTaskInBoardOverlay');
-    overlay.style.display = 'flex';
+    if (window.innerWidth < 700) {
+        window.location.href = '../templates/add_task.html';
+    } else {
+        const overlay = document.getElementById('createTaskInBoardOverlay');
+        overlay.style.display = 'flex';
+    }
 }
 
 function renderTaskDialog() {
@@ -106,4 +110,13 @@ function renderInitials(task) {
       <div class="contact-initial" style="background-image: url('${contact.bg}'); background-size: cover; background-position: center;">
         ${contact.initial}
       </div>`).join('');
+}
+
+window.onresize = function handlePageRedirect() {
+    const overlay = document.getElementById('createTaskInBoardOverlay');
+    const isOVerlayOpen = overlay && overlay.style.display !== 'none';
+
+    if (isOVerlayOpen && window.innerWidth < 700) {
+        window.location.href = '../templates/add_task.html';
+    }
 }

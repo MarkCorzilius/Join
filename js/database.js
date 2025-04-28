@@ -33,3 +33,14 @@ async function deleteData(path="") {
     });
     return await response.json();
 }
+
+function sanitizeEmail(email) {
+    return email.replace(/[@.]/g, "_");
+}
+
+
+async function isDuplicateEmail(path='') {
+    const response = await fetch(BASE_URL + path + ".json");
+    const data = await response.json();
+    return data !== null;
+}

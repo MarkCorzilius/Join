@@ -26,7 +26,12 @@ function toDoTemplate(task) {
 function tasksDialogTemplate() {
     return `      <div id="overlayDialogBoard" onclick="event.stopPropagation()">
         <div class="content-in-main">
+         <div class="task-overlay-header">
           <h1 class="add-task-page-title">Add Task</h1>
+          <div class="task-form-close-wrapper" onclick="closeTaskOverlay()">
+            <img class="task-form-close" src="../img/close.png">
+          </div>
+         </div>
           <div class="question-blocks">
             <div class="task-left-block">
               <div class="title-field-space">

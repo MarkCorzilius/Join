@@ -1,0 +1,259 @@
+@media (min-width: 1000px) and (max-width: 9999px) {
+    .priority-button {
+        box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3);
+    }
+
+    .task-right-block {
+        width: 32vw;
+    }
+
+    .subtask-template {
+        width: 32vw;
+    }
+
+    #subtaskContainer {
+        width: 32vw;
+    }
+
+    .title-field {
+        width: 32vw;
+    }
+
+    .description-area {
+        width: 32vw;
+    }
+
+    .due-date-field {
+        width: 32vw;
+    }
+
+    .dropdown-wrapper {
+        width: 32vw;
+    }
+
+    .dropdown-btn {
+        width: 32vw;
+    }
+
+    #searchState {
+        width: 32vw;
+    }
+
+    .priority-button {
+        gap: 4px;
+        font-size: 16px;
+        width: 96px;
+        height: 48px;
+    }
+
+    .priority-btn svg {
+        height: 14px;
+        width: auto;
+    }
+
+    .category-section {
+        width: 32vw;
+    }
+
+    #subtaskInput {
+        width: 32vw;
+    }
+
+    .subtask-template-edit-state {
+        width: 32vw;
+    }
+
+    .subtask-input-wrapper {
+        width: 32vw;
+    }
+
+    .vertical-line {
+        margin: 0 40px;
+        height: 450px;
+    }
+
+    .add-task-footer {
+        width: 70vw;
+        position: absolute;
+    }
+
+    .question-blocks {
+        width: 70vw;
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .task-form-close-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        height: 30px;
+        width: 30px;
+        margin-top: 20px;
+        box-sizing: border-box;
+    }
+
+    .task-form-close-wrapper:hover {
+        border-radius: 50%;
+        background-color: rgb(212, 212, 212);
+    }
+
+    .task-overlay-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .add-task-page-title {
+        padding-top: 32px;
+    }
+
+    .content-in-main {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 100%;
+        align-items: center;
+      }
+
+}
+
+@media (max-width: 1000px) {
+    .question-blocks {
+        flex-direction: column;
+    }
+
+    .task-overlay-header {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 28px;
+        margin-bottom: 32px;
+        height: 100px;
+        position: sticky;
+        top: 0;
+        z-index: 999;
+        background-color: white;
+    }
+
+    .add-task-page-title {
+        padding: 0;
+
+    }
+
+    .content-in-main {
+        width: 100%;
+    }
+
+    .task-form-close-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        height: 30px;
+        width: 30px;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+
+    .task-form-close-wrapper:hover {
+        border-radius: 50%;
+        background-color: rgb(212, 212, 212);
+    }
+
+    .priority-button {
+        box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3);
+    }
+
+    .task-right-block {
+        width: 100%;
+    }
+
+    .subtask-template {
+        width: 100%;
+    }
+
+    #subtaskContainer {
+        width: 100%;
+    }
+
+    .title-field {
+        width: 100%;
+    }
+
+    .description-area {
+        width: 100%;
+    }
+
+    .due-date-field {
+        width: 100%;
+    }
+
+    .dropdown-wrapper {
+        width: 100%;
+    }
+
+    .dropdown-btn {
+        width: 100%;
+    }
+
+    #searchState {
+        width: 100%;
+    }
+
+    .priority-button {
+        gap: 4px;
+        font-size: 16px;
+        width: 96px;
+        height: 48px;
+    }
+
+    .priority-btn svg {
+        height: 14px;
+        width: auto;
+    }
+
+    .category-section {
+        width: 100%;
+    }
+
+    #subtaskInput {
+        width: 100%;
+    }
+
+    .subtask-template-edit-state {
+        width: 100%;
+    }
+
+    .vertical-line {
+        display: none;
+    }
+
+    .task-left-block, .task-right-block {
+        width: 100%;
+    }
+
+    .add-task-footer {
+        width: 100%;
+        position: sticky;
+        bottom: 0;
+        z-index: 999;
+        background-color: white;
+        padding-top: 40px;
+        padding-bottom: 24px;
+    }
+
+    #subtaskContainer {
+        margin-bottom: 56px;
+    }
+
+    .subtask-input-wrapper {
+        width: 100%;
+    }
+
+    #overlayDialogBoard {
+        padding: 0 32px 0 !important;
+    }
+
+}

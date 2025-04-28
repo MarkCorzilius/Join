@@ -299,7 +299,6 @@ function saveNewContact() {
   if (!validateContactInput(name, email, phone)) return;
   if (contactExists(email)) return;
   newContactPushToArray(name, email, phone);
-  saveToLocalStorage();
   renderContacts();
   closeAddContactOverlay();
   deleteValue();

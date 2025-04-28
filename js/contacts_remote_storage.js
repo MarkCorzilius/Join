@@ -1,50 +1,3 @@
-const BASE_URL = 'https://join-fce4c-default-rtdb.europe-west1.firebasedatabase.app/';
-
-async function putContacts(path='', data={}) {
-    let response = await fetch(BASE_URL + path + '.json', {
-        method: 'PUT',
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data)
-    });
-    return await response.json();
-}
-
-async function postContacts(path='', data={}) {
-    let response = await fetch(BASE_URL + path + '.json', {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data)
-    });
-    return await response.json();
-} 
-
-async function getContacts(path="") {
-    let response = await fetch(BASE_URL + path + '.json');
-    return response.json();
-}
-
-async function deleteContactFireBase(path="") {
-    let response = await fetch(BASE_URL + path + '.json', {
-        method: "DELETE",
-    });
-    return await response.json();
-}
-
-function sanitizeEmail(email) {
-    return email.replace(/[@.]/g, "_");
-}
-
-
-async function isDuplicateEmail(path='') {
-    const response = await fetch(BASE_URL + path + ".json");
-    const data = await response.json();
-    return data !== null;
-}
-
 async function saveBasicContacts() {
     for (let i = 0; i < basicContacts.length; i++) {
         const contact = basicContacts[i];
@@ -53,7 +6,7 @@ async function saveBasicContacts() {
 
         const exists = await isDuplicateEmail(path);
         if (!exists) {
-            await putContacts(path, contact);
+            await putData(path, contact);
         } else {
             continue;
         }
@@ -85,7 +38,7 @@ async function saveNewContactToDataBase() {
         return;
     } else {
         contactsArray = [];
-        putContacts(path, {name: nameValue, email: emailValue, phone: phoneValue});
+        putData(path, {name: nameValue, email: emailValue, phone: phoneValue});
         contactsArray.push({name: nameValue, email: emailValue, phone: phoneValue});
     }
 
@@ -126,7 +79,7 @@ async function doesContactExists({emailValue}) {
         const deletedContact = contactsArray.find((contact) => contact.email.toLowerCase() === email.toLowerCase());
         contactsArray = contactsArray.filter((contact) => contact.email.toLowerCase() !== email.toLowerCase());
         const deletedContactKey = sanitizeEmail(deletedContact.email);
-        await deleteContactFireBase('contacts/' + deletedContactKey);
+        await deleteData('contacts/' + deletedContactKey);
         renderContacts();
         backToContacts();
         hideContactDetailView();
@@ -142,7 +95,7 @@ async function doesContactExists({emailValue}) {
         const deletedContactKey = sanitizeEmail(deletedContactEmail);
         console.log(deletedContactKey);
         contactsArray = contactsArray.filter((contact) => contact.email.toLowerCase() !== currentContact.email.toLowerCase());
-        await deleteContactFireBase('contacts/' + deletedContactKey);
+        await deleteData('contacts/' + deletedContactKey);
         renderContacts();
         closeEditContactOverlay();
         hideContactDetailView();
@@ -178,9 +131,9 @@ async function doesContactExists({emailValue}) {
 
       async function updateEditedContactInFireBase(email, {newName, newEmail, newPhone}) {
         const contactKey = sanitizeEmail(email);
-        await deleteContactFireBase('contacts/' + contactKey);
+        await deleteData('contacts/' + contactKey);
         const newContactKey = sanitizeEmail(newEmail);
-        await putContacts('contacts/' + newContactKey, {name: newName, email: newEmail, phone: newPhone});
+        await putData('contacts/' + newContactKey, {name: newName, email: newEmail, phone: newPhone});
       }
 
       async function saveContactIconInFireBase(contact, initial, bg) {
@@ -192,7 +145,7 @@ async function doesContactExists({emailValue}) {
             if (sanitizedEmail === key) {
                     const existingContact = data[key].icon;
                     if (existingContact.initial === initial && existingContact.bg === bg) return;
-                    await putContacts('contacts/' + sanitizedEmail + '/icon', {initial, bg});
+                    await putData('contacts/' + sanitizedEmail + '/icon', {initial, bg});
                 } else {
                     continue;
                 }
