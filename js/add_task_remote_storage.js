@@ -94,7 +94,7 @@ function saveSubtasks() {
   for (let i = 0; i < subtaskTitles.length; i++) {
     const titleText = subtaskTitles[i].innerText.trim();
     if (titleText !== '') {
-      subtasks[`subtask-${i + 1}`] = titleText;
+      subtasks[`subtask-${i + 1}`] = {title: titleText, state: false}
     }
   }
   return Object.keys(subtasks).length > 0 ? subtasks : null; 

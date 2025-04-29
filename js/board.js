@@ -1,5 +1,21 @@
 let currentColumn = 0;
 
+async function boardOnLoad() {
+    w3.includeHTML(); 
+    renderTaskDialog(); 
+    await fetchTasks(); 
+    renderToDoTasks();
+    renderTasksInProgress();
+    renderTasksAwaitFeedback();
+}
+
+async function renderAllTasks() {
+    await fetchTasks();
+    renderToDoTasks();
+    renderTasksInProgress();
+    renderTasksAwaitFeedback();
+}
+
 function focusedSearchContainer() {
     const container = document.querySelector('.search-container');
 
@@ -37,6 +53,7 @@ function openTaskOverlay(column) {
         currentColumn = column;
     }
     fetchContacts();
+    resetOverlayPriorityBtn();
 }
 
 function renderTaskDialog() {
@@ -48,7 +65,9 @@ function renderTaskDialog() {
 
 
 async function fetchTasks() {
+
     const tasks = await getData('tasks/');
+    if (!tasks || Object.keys(tasks).length === 0) return;
     const existingTasks = await getData('board/toDo/');
     const existingValues = existingTasks ? Object.values(existingTasks) : [];
 
@@ -60,28 +79,63 @@ async function fetchTasks() {
     }
 }
 
+async function renderTasksInProgress() {
+    const container = document.getElementById('tasksContainer-1');
+    container.innerHTML = "";
+    const rawTasks = await getData('board/InProgress/');
+    const tasks = rawTasks ? Object.values(rawTasks) : [];
+    if (tasks.length === 0) {
+        container.innerHTML = emptyColumnTemplate('In Progress');
+        return;
+    }
+    
+    for (let i = 0; i < tasks.length; i++) {
+        const task = tasks[i];
+
+        container.innerHTML += taskTemplate(task);
+    }
+}
+
+async function renderTasksAwaitFeedback() {
+    const container = document.getElementById('tasksContainer-2');
+    container.innerHTML = '';
+    const rawTasks = await getData('board/awaitFeedback/');
+    const tasks = rawTasks ? Object.values(rawTasks) : [];
+
+    if (tasks.length === 0) {
+        container.innerHTML = emptyColumnTemplate('Await Feedback');
+        return;
+    }
+
+    for (let i = 0; i < tasks.length; i++) {
+        const task = tasks[i];
+
+        container.innerHTML += taskTemplate(task);
+    }
+}
+
 async function renderToDoTasks() {
     const rawTasks = await getData('board/toDo/');
-    const container = document.getElementById('tasksContainer');
+    const container = document.getElementById('tasksContainer-0');
     container.innerHTML = "";
-    const tasks = Object.values(rawTasks);
+    const tasks = Object.values(rawTasks ?? {});
 
-    if (tasks.length == 0) {
-        container.innerHTML = emptyColumnTemplate();
+    if (tasks.length === 0) {
+        container.innerHTML = emptyColumnTemplate('To Do');
         return;
     }
 
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];   
-        container.innerHTML += toDoTemplate(task);
+        container.innerHTML += taskTemplate(task);
     }
 }
 
 function renderCategory(task) {
     switch (task.category) {
-        case 'User Story':
+        case "User Story":
            return `<img src="../img/user-story.png">`; 
-        case 'Technical Task':
+        case "Technical Task":
            return `<img src="../img/technical-task.png">`;
         default: 
            return '';
@@ -138,6 +192,7 @@ async function createTaskInBoardFireBase() {
         postData('board/' + column, dataSafe);
         emptyTaskDocument();
     }
+    await renderAllTasks();
 
 }
 
@@ -153,3 +208,106 @@ function checkTargetColumn() {
             break;
     }
 }
+
+function closeTaskInfoOverlay() {
+    const overlay = document.getElementById('taskInfoOverlay');
+
+    overlay.classList.remove('active');
+}
+
+function openTaskInfoOverlay(task) {
+    const overlay = document.getElementById('taskInfoOverlay');
+    overlay.classList.add('active');
+
+    renderDetailedTask(task);
+    console.log(task);
+}
+
+function toggleDeleteBtn(event) {
+    const img = event.target;
+    if (event.type === 'mouseover') {
+        img.src = '../img/delete_task_hovered.png';
+    } else if (event.type === 'mouseout') {
+        img.src = '../img/delete_task.png';
+    }
+}
+
+function toggleEditBtn(event) {
+    const img = event.target;
+    if (event.type === 'mouseover') {
+        img.src = '../img/edit_task_hovered.png';
+    } else if (event.type === 'mouseout') {
+        img.src = '../img/edit_task.png';
+    }
+}
+
+function renderDetailedTask(task) {
+    const overlay = document.getElementById('taskInfoOverlay');
+    overlay.innerHTML = '';
+    overlay.innerHTML = taskDetailTemplate(task);
+}
+
+function encodeTask(task) {
+    return JSON.stringify(task).replace(/"/g, '&quot;');
+}
+
+function formatDate(dateString) {
+    const [year, month, day] = dateString.split('-');
+    return `${day}/${month}/${year}`;
+
+}
+
+function capitalize(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+
+function loopTaskContacts(task) {
+    let templateHTML = '';
+    const contacts = task.contacts;
+    for (let i = 0; i < contacts.length; i++) {
+        const contact = contacts[i];
+        templateHTML += `<div class="task-overlay-contact"> <div style="background-image: url('${contact.bg}')" class="initial">${contact.initial}</div> <p>${contact.name}</p> </div>`;
+    }
+    return templateHTML;
+}
+
+function loopTaskSubtasks(task) {
+    let templateHTML = '';
+    const rawSubtasks = task.subtasks;
+    const subtasks = Object.values(rawSubtasks);
+
+    for (let i = 0; i < subtasks.length; i++) {
+        const subtask = subtasks[i];
+        templateHTML += `<div class="overlay-subtask-template"><img src="../img/checkbox_unchecked_unhovered.png"><p>${subtask.title}</p></div>`;
+    }
+    console.log(templateHTML);
+    return templateHTML;
+}
+
+function setActiveOverlayPriority(button, color, id) {
+    document.querySelectorAll(".overlay-priority-button").forEach((btn) => {
+      btn.classList.remove("active");
+      btn.style.backgroundColor = "";
+      btn.style.color = "";
+    });
+    button.classList.add("active");
+    button.style.backgroundColor = color;
+    button.style.color = "white";
+  
+    changePriorityBtnColor(id); 
+  }
+
+  function resetOverlayPriorityBtn() {
+    const inactiveBtns = [document.getElementsByClassName('overlay-priority-button')[0], document.getElementsByClassName('overlay-priority-button')[2]];
+    const medium = document.getElementsByClassName('overlay-priority-button')[1];
+  
+    inactiveBtns.forEach(btn => {
+      btn.style.backgroundColor = 'white';
+      btn.style.color = 'black';
+    });
+    medium.classList.add('active');
+    medium.style.backgroundColor = 'rgb(255, 168, 1)';
+    medium.style.color = 'white';
+    changePriorityBtnColor(1);
+  }
