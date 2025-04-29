@@ -17,6 +17,8 @@
     height: 100%;
     padding: 0 20px;
     box-sizing: border-box;
+    position: relative;
+    /* 🛠 WICHTIG für Dropdown */
 }
 
 
@@ -87,6 +89,50 @@
 
 }
 
+.user-dropdown {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 80px;
+    right: 12px;
+    background-color: rgb(42, 54, 71);
+    color: rgb(168, 168, 168);
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 16px 0 16px 16px;
+    z-index: 100;
+    padding: 10px;
+    width: 130px;
+    display: block;
+    /* wichtig: nicht d-none, sondern einfach block! */
+}
+
+.user-dropdown.show {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+
+.user-dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.user-dropdown ul li {
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+
+.user-dropdown ul li:hover {
+    background-color: rgb(47 65 90);
+}
 
 
 @media (max-width: 1000px) {
@@ -104,6 +150,14 @@
 
     .help-icon {
         display: none;
+    }
+
+    .user-dropdown {
+        width: 100px;
+    }
+
+    .user-dropdown ul li {
+        font-size: 12px;
     }
 
     .header-logo {

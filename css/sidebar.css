@@ -40,7 +40,7 @@
 }
 
 .nav-button {
-  width: 100%;
+  /* width: 100%; */
   background-color: rgb(42, 54, 71);
   color: #fff;
   border: none;
@@ -57,6 +57,10 @@
   gap: 8px;
   padding-left: 40px;
 }
+
+/* .auth-only {
+  outline: 1px dashed red;
+} */
 
 .nav-button img {
   width: 24px;
@@ -96,7 +100,7 @@
 .sidebar-footer a {
   color: rgb(168, 168, 168);
   text-decoration: none;
-  transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
+  transition: color 0.2s ease-in-out, font-weight 0.2s ease-in-out;
 }
 
 .sidebar-footer .nav-button:hover {
