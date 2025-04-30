@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <!-- <html lang="en"> -->
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Join</title>
-    <!-- <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet"> -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
-    <link rel="icon" type="image/x-icon" href="../img/join-logo.svg" />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join</title>
+  <!-- <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet"> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="../img/join-logo.svg" />
 
     <link rel="stylesheet" href="../style.css" />
-    <!-- <link rel="stylesheet" href="../css/header.css" />  -->
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/sidebar.css" />
     <link rel="stylesheet" href="../css/summary.css" />
@@ -22,6 +24,7 @@
     <script src="../js/summary.js"></script>
     <script src="https://www.w3schools.com/lib/w3.js"></script>
     <script src="../js/sidebar.js"></script>
+    <script src="../js/header.js" defer></script>
   </head>
 
   <body onload="w3.includeHTML()">
@@ -104,5 +107,12 @@
         </div>
       
     </main>
+    <script>
+    w3.includeHTML(() => {
+      // Nach Sidebar-Loading: Sidebar-Skript manuell starten
+      if (typeof setupSidebar === "function") setupSidebar();
+      if (typeof setupHeader === "function") setupHeader();
+    });
+  </script>
   </body>
 </html>
