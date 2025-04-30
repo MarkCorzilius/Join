@@ -20,15 +20,15 @@
     <link rel="stylesheet" href="../css/sidebar.css" />
     <link rel="stylesheet" href="../css/add_task-responsive.css" />
 
-    <script src="../js/database.js"></script>
+    <script src="../js/database.js" defer></script>
     <script src="../js/add_task_remote_storage.js"></script>
-    <script src="../script.js" defer></script>
+    <script src="../script.js"></script>
     <script src="https://www.w3schools.com/lib/w3.js"></script>
     <script src="../js/sidebar.js"></script>
     <script src="../js/add_task.js"></script>
   </head>
 
-  <body onload="w3.includeHTML(); resetPriorityBtn(); fetchContacts()">
+  <body onload="taskPageOnLoad()">
     <header w3-include-html="../templates/header.html" id="headerContainer"></header>
     <main class="main">
       <div w3-include-html="../templates/sidebar.html" id="sidebarContainer"></div>

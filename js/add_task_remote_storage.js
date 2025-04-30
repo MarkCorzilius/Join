@@ -1,3 +1,5 @@
+
+
 function restrictAddingTask() {
   const title = document.getElementById('taskTitle');
   const date = document.getElementById('taskDate');
@@ -40,6 +42,7 @@ function extractTaskValues() {
 function taskDataStorage() {
   const {titleValue, descriptionValue, dateValue} =  extractTaskValues();
   const dataSafe = {
+    id: taskId,
     title: titleValue,
     description: descriptionValue,
     date: dateValue,
@@ -60,8 +63,10 @@ function getTaskData() {
   if (!restrictAddingTask()) {
   return; 
 } else {
-    postData('tasks', dataSafe);
-    emptyTaskDocument();
+  postData('board/toDo/', dataSafe);
+  taskId += 1;
+  localStorage.setItem('taskId',taskId.toString());
+  emptyTaskDocument();
 }
 }
 

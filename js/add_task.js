@@ -1,6 +1,12 @@
 let subtaskId = null;
-
 let chosenContacts = [];
+
+function taskPageOnLoad() {
+  taskId = Number(localStorage.getItem('taskId')) || 0;
+  w3.includeHTML();
+  resetPriorityBtn();
+  fetchContacts();
+}
 
 function clearBtnToBlue() {
   document.getElementById("clearBtn").src = "../img/clear_btn_hovered.png";
@@ -24,12 +30,12 @@ function setActivePriority(button, color, id) {
 }
 
 function changePriorityBtnColor(id) {
-  const svgRef = document.querySelectorAll('.overlay-priority-icon');
+  const svgRef = document.querySelectorAll('.priority-icon');
   for (let i = 0; i < svgRef.length; i++) {
     const icon = svgRef[i];
     icon.classList.remove('clicked-priority-color');
 
-    if (icon.classList.contains(`overlay-priority-icon-${id}`)) {
+    if (icon.classList.contains(`priority-icon-${id}`)) {
       icon.classList.add('clicked-priority-color');
     }
     
