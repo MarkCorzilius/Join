@@ -196,6 +196,7 @@ async function createTaskInBoardFireBase() {
         localStorage.setItem('taskId',taskId.toString());
         emptyTaskDocument();
     }
+    closeTaskOverlay();
     await renderAllTasks();
 
 }

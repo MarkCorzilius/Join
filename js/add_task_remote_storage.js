@@ -14,9 +14,7 @@ function restrictAddingTask() {
 
 function isNotInTheFuture(inputDate) {
   const currentDate = new Date();
-  console.log(currentDate);
   const inputDateObject = new Date(inputDate);
-  console.log(inputDateObject);
 
   if (currentDate > inputDateObject) {
     return true;
