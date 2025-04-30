@@ -57,11 +57,14 @@ function taskDetailTemplate(task) {
         </div>
         <div class="task-overlay-control">
           <img onclick="deleteTaskInOverlay(${encodeTask(task)})" onmouseover="toggleDeleteBtn(event)" onmouseout="toggleDeleteBtn(event)" id="deleteTask" src="../img/delete_task.png" alt="del">
-          <img onmouseover="toggleEditBtn(event)" onmouseout="toggleEditBtn(event)" id="editTask" src="../img/edit_task.png" alt="edit">
+          <img onclick="openTaskEditStateInOverlay(${encodeTask(task)})" onmouseover="toggleEditBtn(event)" onmouseout="toggleEditBtn(event)" id="editTask" src="../img/edit_task.png" alt="edit">
         </div>
       </div>`;
 }
 
+function editStateOverlayTemplate(task) {
+  
+}
 
 function tasksDialogTemplate() {
     return `      <div id="overlayDialogBoard" onclick="event.stopPropagation()">

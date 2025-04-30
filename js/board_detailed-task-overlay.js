@@ -12,3 +12,10 @@ async function deleteTaskInOverlay(currentTask) {
         }
     }
 }
+
+function openTaskEditStateInOverlay(task) {
+    const overlay = document.getElementById('taskInfoOverlay');
+    overlay.innerHTML = '';
+    overlay.innerHTML = editStateOverlayTemplate(task);
+
+}

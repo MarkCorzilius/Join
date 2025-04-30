@@ -247,8 +247,8 @@ function toggleEditBtn(event) {
 
 function renderDetailedTask(task) {
     const overlay = document.getElementById('taskInfoOverlay');
-    overlay.innerHTML = '';
-    overlay.innerHTML = taskDetailTemplate(task);
+    //overlay.innerHTML = '';
+    //overlay.innerHTML = taskDetailTemplate(task);
 }
 
 function encodeTask(task) {
