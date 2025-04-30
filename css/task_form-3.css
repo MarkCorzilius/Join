@@ -1,0 +1,207 @@
+
+
+.subtask-section {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+#subtaskInput {
+  width: 440px;
+  height: 48px;
+  border-radius: 10px;
+  border: 1px solid rgba(209, 209, 209, 1); 
+  outline: none;
+  box-sizing: border-box;
+  text-indent: 10px;
+}
+
+#subtaskInput:focus {
+  border-color: rgb(41, 171, 226);
+}
+
+.subtask-input-wrapper {
+  position: relative;
+}
+
+.subtask-btns-separator {
+  width: 1px;
+  height: 20px;
+  background-color: rgba(209, 209, 209, 1);
+}
+
+.subtask-focus-btns {
+  display: none;
+  align-items: center;
+  gap: 4px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-40%);
+}
+
+.subtask-btn-wrapper:hover {
+  border-radius: 50%;
+  background-color: rgb(235, 235, 235);
+}
+
+.subtask-main-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-45%);
+  padding: 4px;
+  height: 20px;
+  width: 20px;
+}
+
+#subtaskContainer {
+  display: flex;
+  flex-direction: column;
+  width: 440px;
+  max-height: 160px;
+  overflow-y: scroll;
+  box-sizing: border-box;
+}
+
+.subtask-template {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 16px;
+  height: 40px;
+  box-sizing: border-box;
+  padding: 0 10px;
+}
+
+.subtask-template:hover {
+  background-color: rgb(237, 237, 237);
+  border-radius: 10px;
+}
+
+.subtask-edit-icons {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.subtask-separator {
+  height: 24px;
+  width: 1px;
+  background-color: rgb(194, 193, 193);
+}
+
+.subtask-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+}
+
+.subtask-template:hover .subtask-edit-icons {
+  display: flex;
+}
+
+.subtask-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+}
+
+.subtask-icon-wrapper:hover {
+  border-radius: 50%;
+  background-color: rgb(228, 228, 228);
+}
+
+#taskNormalState {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+#taskEditState {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.subtask-edit-input-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.subtask-edit-input {
+  width: 440px;
+  height: 40px;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgb(41, 171, 226);
+
+}
+
+.subtask-edit-input:focus {
+  border-bottom: 1px solid rgb(41, 171, 226);
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.subtask-icons-on-edit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.subtask-template-edit-state {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  margin-top: 16px;
+  height: 40px;
+  box-sizing: border-box;
+  position: relative;
+
+}
+
+.clicked-priority-color path {
+fill: white;
+}
+
+.initial {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    background-size: cover;
+    background-position: center;
+}
+
+#chosenContactsBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}

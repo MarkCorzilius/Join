@@ -13,33 +13,47 @@
     href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
     rel="stylesheet" />
   <link rel="icon" type="image/x-icon" href="../img/join-logo.svg" />
+  
+    <link rel="stylesheet" href="../css/task_form-1.css" />
+    <link rel="stylesheet" href="../css/task_form-2.css" />
+    <link rel="stylesheet" href="../css/task_form-3.css" />
 
-  <link rel="stylesheet" href="../style.css" />
-  <link rel="stylesheet" href="../css/header.css" />
-  <link rel="stylesheet" href="../css/sidebar.css" />
-  <link rel="stylesheet" href="../css/add_task.css" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/sidebar.css" />
+    <link rel="stylesheet" href="../css/add_task-responsive.css" />
 
-  <script src="../script.js" defer></script>
-  <script src="https://www.w3schools.com/lib/w3.js"></script>
-  <script src="../js/sidebar.js"></script>
-  <script src="../js/header.js"></script>
-  <script src="../js/add_task.js"></script>
-</head>
+    <script src="../js/database.js"></script>
+    <script src="../js/add_task_remote_storage.js"></script>
+    <script src="../script.js" defer></script>
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/header.js"></script>
+    <script src="../js/add_task.js"></script>
+  </head>
 
-<body onload="w3.includeHTML()">
-  <header w3-include-html="../templates/header.html" id="headerContainer"></header>
-  <main class="main">
-    <div w3-include-html="../templates/sidebar.html" id="sidebarContainer"></div>
-    <div class="content">
-      <div class="add-task-page-wrapper">
-        <div class="add-task-main">
-          <div>
-            <h1 class="add-task-page-title">Add Task</h1>
-            <div class="question-blocks">
-              <div class="task-left-block">
-                <div class="title-field-space">
-                  <label required class="field-label-required">Title</label>
-                  <input class="title-field" placeholder="Enter a title" type="text" />
+  <body onload="w3.includeHTML(); resetPriorityBtn(); fetchContacts()">
+    <header w3-include-html="../templates/header.html" id="headerContainer"></header>
+    <main class="main">
+      <div w3-include-html="../templates/sidebar.html" id="sidebarContainer"></div>
+      <div class="content">
+          <div class="add-task-main">
+            <div class="content-in-main">
+              <h1 class="add-task-page-title">Add Task</h1>
+              <div class="question-blocks">
+                <div class="task-left-block">
+                  <div class="title-field-space">
+                    <span required class="field-label-required task-subtitle">Title</span>
+                    <input onkeydown="blurOnEnter(event)" id="taskTitle" class="title-field task-txt" placeholder="Enter a title" type="text" />
+                  </div>
+                  <div class="title-field-space">
+                    <span class="field-label" for="description task-subtitle">Description</span>
+                    <textarea class="description-area task-txt" id="description" name="description" placeholder="Enter a description"></textarea>
+                  </div>
+                  <div class="title-field-space">
+                    <span class="field-label-required due-date-title task-subtitle">Due date</span>
+                    <input onkeydown="blurOnEnter(event)" id="taskDate" required class="due-date-field task-txt" type="date" />
+                  </div>
                 </div>
                 <div class="title-field-space">
                   <label class="field-label" for="description">Description</label>
@@ -104,24 +118,27 @@
                       </svg>
                     </button>
                   </div>
-                </div>
-                <div class="assignment-section">
-                  <label class="field-label" for="contacts">Assigned to</label>
-                  <div class="select-menu">
-                    <div class="select-btn">
-                      <span class="select-btn-text">Select contacts</span>
-                      <img class="select-btn-img" src="../img/dropdown-arrow-down.png" alt="arrow" />
+                  <div class="contacts-section">
+                  <span required class="field-label-required task-subtitle">Contacts</span>
+                  <div class="dropdown-wrapper">
+                    <div class="assignment-toggle-buttons">
+                    <div id="closedState" onclick="openContactAssignmentInput()" class="dropdown-btn">
+                      <span class="task-txt">Select contacts to assign</span>
+                      <div class="dropdown-icon-wrapper">
+                        <img class="dropdown-icon" src="../img/dropdown-arrow-down.png" alt="dropdown arrow">
+                      </div>
                     </div>
-                    <ul id="assignContactsBox" class="options">
-                      <li class="option">
-                        <span>Mark Corzilius</span>
-                        <img src="../img/check.png" alt="check box" />
-                      </li>
-                      <li class="option">
-                        <span>Igor Boger</span>
-                        <img src="../img/check.png" alt="check box" />
-                      </li>
-                    </ul>
+                    <div style="display: none;" id="searchState">
+                      <input id="searchContacts" oninput="searchForContacts()" onkeydown="blurOnEnter(event)" type="text">
+                      <div onclick="closeContactAssignment()" class="arrow-up-wrapper">
+                        <img src="../img/dropdown-arrow-up.png" alt="dropdown arrow">
+                      </div>
+                    </div>
+                    </div>
+                    <div id="contactOptions" class="options">
+                    </div>
+                    </div>
+                    <div id="chosenContactsBox"></div>
                   </div>
                 </div>
                 <div class="category-section">

@@ -1,5 +1,7 @@
 let subtaskId = null;
 
+let chosenContacts = [];
+
 function clearBtnToBlue() {
   document.getElementById("clearBtn").src = "../img/clear_btn_hovered.png";
 }
@@ -48,18 +50,101 @@ function resetPriorityBtn() {
   changePriorityBtnColor(1);
 }
 
-function styleChosenContact(element) {
+function resetContactCheckedBtn() {
+  const selections = document.querySelectorAll('.select-box');
+  const checked = document.querySelectorAll('.checked');
+  const unchecked = document.querySelectorAll('.unchecked');
+
+  for (let i = 0; i < checked.length; i++) {
+    const check = checked[i];
+    check.style.display = 'none';
+  }
+
+  for (let i = 0; i < unchecked.length; i++) {
+    const uncheck = unchecked[i];
+  uncheck.style.display = 'inline';
+  }
+}
+
+  function resetContacts() {
+    const options = document.querySelectorAll('.option');
+    const checked = document.querySelector('.checked');
+    const unchecked = document.querySelector('.unchecked');
+
+    for (let i = 0; i < options.length; i++) {
+      const option = options[i];
+    
+      if (option.classList.contains('selected-contact')) {
+        option.classList.remove('selected-contact');
+        resetContactCheckedBtn();
+        checked.style.display ='none';
+        unchecked.style.display = 'inline';
+    }
+    chosenContacts = [];
+    visualizeChosenContacts();
+    closeContactAssignment();
+  }
+}
+
+function styleChosenContact(element, initial, bg, name) {
   element.classList.toggle('selected-contact');
 
-  const checked = element.querySelector('.checked')
-  const unchecked = element.querySelector('.unchecked')
+  const checked = element.querySelector('.checked');
+  const unchecked = element.querySelector('.unchecked');
 
   if (element.classList.contains('selected-contact')) {
+    
     checked.style.display ='inline';
     unchecked.style.display = 'none';
+    addContactToArray(initial, bg, name);
+    visualizeChosenContacts();
+    
   } else {
     checked.style.display ='none';
     unchecked.style.display = 'inline';
+    deleteContactFromArray(initial, bg, name);
+    visualizeChosenContacts();
+  }
+}
+
+function visualizeChosenContacts() {
+  const container = document.getElementById('chosenContactsBox');
+  container.innerHTML = "";
+  for (let i = 0; i < chosenContacts.length; i++) {
+    const contact = chosenContacts[i];
+    container.innerHTML += `<div class="initial" style="background-image:url('${contact.bg}')">${contact.initial}</div>`;
+    
+  }
+}
+
+function addContactToArray(initial, bg, name) {
+  chosenContacts.push({name, initial, bg});
+
+}
+
+function deleteContactFromArray(initial, bg, name) {
+  const index = chosenContacts.findIndex(contact =>
+    contact.initial === initial && 
+    contact.bg === bg &&
+    contact.name === name
+  );
+  if (index != -1) {
+    chosenContacts.splice(index, 1);
+  }
+}
+
+function searchForContacts() {
+  const input = document.getElementById('searchContacts').value.toLowerCase();
+  const contacts = document.querySelectorAll('.option');
+
+  for (let i = 0; i < contacts.length; i++) {
+    const name = contacts[i].querySelector('.contact-name').innerText.toLowerCase();
+
+    if (name.includes(input)) {
+      contacts[i].style.display = 'flex';
+    } else {
+      contacts[i].style.display = 'none';
+    }
   }
 }
 
@@ -68,11 +153,14 @@ function openContactAssignmentInput() {
   const searchState = document.getElementById('searchState');
   const optionsRef = document.getElementById('contactOptions');
   const wrapperRef = document.querySelector('.dropdown-wrapper');
+  const container = document.getElementById('chosenContactsBox');
 
   closedRef.style.display = 'none';
   searchState.style.display = 'flex';
   optionsRef.style.display = 'flex';
   wrapperRef.style.marginBottom = '210px';
+  container.style.display = 'none';
+  document.querySelector('.content').style.overflow = 'hidden';
 }
 
 function closeContactAssignment() {
@@ -80,12 +168,16 @@ function closeContactAssignment() {
   const searchRef = document.getElementById('searchState');
   const optionsRef = document.getElementById('contactOptions');
   const wrapperRef = document.querySelector('.dropdown-wrapper');
-  
+  const container = document.getElementById('chosenContactsBox');
 
   closedRef.style.display = 'flex';
   searchRef.style.display = 'none';
   optionsRef.style.display = 'none';
   wrapperRef.style.marginBottom = '0';
+  container.style.display = 'flex';
+  document.querySelector('.content').style.overflow = 'auto';
+
+
 }
 
 function toggleCategoryOptions() {
@@ -94,13 +186,17 @@ function toggleCategoryOptions() {
   const optionsRef = document.querySelector('.category-options');
   optionsRef.style.display = optionsRef.style.display === 'flex' ? 'none' : 'flex';
 
+
   if (optionsRef.style.display === 'flex') {
     section.style.marginBottom = '100px';
     arrow.src = '../img/dropdown-arrow-up.png';
     document.getElementById('categoryChoiceInsert').innerText = 'Select task category';
+    document.querySelector('.content').style.overflow = 'hidden';
   } else {
     section.style.marginBottom = 'auto';
     arrow.src = '../img/dropdown-arrow-down.png';
+    document.querySelector('.content').style.overflow = 'auto';
+
   }
 }
 
@@ -196,6 +292,7 @@ function emptyTaskDocument() {
   resetPriorityBtn();
   resetCategory();
   resetSubtasks();
+  resetContacts();
   
 }
 

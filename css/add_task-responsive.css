@@ -1,4 +1,8 @@
 @media (min-width: 1001px) and (max-width: 1350px) {
+    
+    .content {
+        overflow: auto;
+    }
     .vertical-line {
         margin: 0 32px
     }
@@ -8,6 +12,10 @@
     }
 
     .subtask-template {
+        width: 320px;
+    }
+
+    #subtaskContainer {
         width: 320px;
     }
 
@@ -132,6 +140,10 @@
         margin-top: 24px;
     }
 
+    .subtask-section {
+        margin-bottom: 80px;
+      }
+
     .dropdown-btn {
         width: 80vw;
     }
@@ -166,6 +178,10 @@
 
     .subtask-edit-input {
         width: 80vw;
+    }
+
+    .subtask-edit-icons {
+        display: flex;
     }
 
   }

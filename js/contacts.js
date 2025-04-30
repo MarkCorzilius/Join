@@ -1,13 +1,57 @@
+const basicContacts = [
+  {
+    name: "Alice Johnson",
+    email: "alice.johnson@example.com",
+    phone: "+1 555-123-4567"
+  },
+  {
+    name: "Bob Smith",
+    email: "bob.smith@example.com",
+    phone: "+1 555-987-6543"
+  },
+  {
+    name: "Charlie Lee",
+    email: "charlie.lee@example.com",
+    phone: "+1 555-222-3344"
+  },
+  {
+    name: "Diana Adams",
+    email: "diana.adams@example.com",
+    phone: "+1 555-444-7788"
+  },
+  {
+    name: "Ethan Wright",
+    email: "ethan.wright@example.com",
+    phone: "+1 555-666-1122"
+  },
+  {
+    name: "Fiona Green",
+    email: "fiona.green@example.com",
+    phone: "+1 555-321-7654"
+  },
+  {
+    name: "George Harris",
+    email: "george.harris@example.com",
+    phone: "+1 555-888-9900"
+  },
+  {
+    name: "Hannah Clark",
+    email: "hannah.clark@example.com",
+    phone: "+1 555-111-2233"
+  },
+  {
+    name: "Ian Baker",
+    email: "ian.baker@example.com",
+    phone: "+1 555-444-5566"
+  },
+  {
+    name: "Julia Carter",
+    email: "julia.carter@example.com",
+    phone: "+1 555-999-0001"
+  }
+];
+
 let contactsArray = [
-  { name: "Anja Schulz", email: "schulz@hotmail.com", phone: "+49 170 1234567" },
-  { name: "Anton Greber", email: "greber@hotmail.com", phone: "+49 171 2345678" },
-  { name: "Stafanie Weimer", email: "stefanie@gmail.com", phone: "+49 172 3456789" },
-  { name: "Benedikt Ziegler", email: "benedikt@gmail.com", phone: "+49 173 4567890" },
-  { name: "Igor Boger", email: "igor@gmail.com", phone: "+49 174 5678901" },
-  { name: "Alex Müller", email: "alex@gmail.com", phone: "+49 175 6789012" },
-  { name: "Gerd Fischter", email: "gerd@gmail.com", phone: "+49 176 7890123" },
-  { name: "Eva Fischer", email: "fischer@gmail.com", phone: "+49 177 8901234" },
-  { name: "Margrid Sieger", email: "margrid@gmail.com", phone: "+49 178 9012345" },
 ];
 
 const bgImages = [
@@ -37,29 +81,38 @@ let currentContact = null;
 let detailViewOpen = false;
 
 
-function renderContacts() {
-  loadFromLocalStorage();
-  contactsArray.sort((a, b) => a.name.localeCompare(b.name));
-  const container = document.querySelector(".contacts-list");
-  if (!container) return;
-
-  const groups = {};
-  contactsArray.forEach((c) => {
-    const letter = c.name[0].toUpperCase();
-    (groups[letter] = groups[letter] || []).push(c);
-  });
-
-  container.innerHTML = Object.keys(groups)
-    .sort()
-    .map((letter) => {
-      let html = `<h2>${letter}</h2>`;
-      groups[letter].forEach((c) => {
-        const vars = getContactVars(c);
-        html += generateContactHTML(c, vars);
-      });
-      return html;
-    })
-    .join("");
+async function renderContacts() {
+  document.querySelector('.spinner-overlay').style.display = "block";
+  try {
+    contactsArray = [];
+    await saveBasicContacts();
+    await saveContactsToArray();
+    contactsArray.sort((a, b) => a.name.localeCompare(b.name));
+    const container = document.querySelector(".contacts-list");
+    if (!container) return;
+  
+    const groups = {};
+    contactsArray.forEach((c) => {
+      const letter = c.name[0].toUpperCase();
+      (groups[letter] = groups[letter] || []).push(c);
+    });
+  
+    container.innerHTML = Object.keys(groups)
+      .sort()
+      .map((letter) => {
+        let html = `<h2>${letter}</h2>`;
+        groups[letter].forEach((c) => {
+          const vars = getContactVars(c);
+          html += generateContactHTML(c, vars);
+        });
+        return html;
+      })
+      .join("");
+  } catch (error) {
+    console.log('rendering contacts failed');
+  } finally {
+    document.querySelector('.spinner-overlay').style.display = 'none';
+  }
 }
 
 function getInitials(name) {
@@ -70,10 +123,10 @@ function getInitials(name) {
 }
 
 function getContactVars(c) {
-  return {
-    initials: getInitials(c.name),
-    bg: getBackgroundForName(c.name),
-  };
+    let initials = getInitials(c.name);
+    let bg = getBackgroundForName(c.name);
+    saveContactIconInFireBase(c, initials, bg);
+    return {initials, bg};
 }
 
 function generateContactHTML(c, vars) {
@@ -186,7 +239,7 @@ function generateContactDetails(bg, initials, name, email, phone) {
       </div>
       <div class="edit-delete">
         <h2 id="detailName">${name}</h2>
-        <img src="/img/edit_contacts.png" alt="" onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}')">
+        <img src="/img/edit_contacts.png" alt="" onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}') ">
         <img src="/img/delete-contact.png" alt="" onclick="deleteContact('${email}')">
       </div>
     </div>
@@ -220,6 +273,7 @@ function openAddContactOverlay() {
 }
 
 function closeAddContactOverlay() {
+  emptyContactForm();
   const addContactOverlay = document.getElementById("addContactOverlay");
   const overlayAddContent = addContactOverlay.querySelector(".overlay-add-content");
   overlayAddContent.classList.remove("slide-in");
@@ -245,7 +299,6 @@ function saveNewContact() {
   if (!validateContactInput(name, email, phone)) return;
   if (contactExists(email)) return;
   newContactPushToArray(name, email, phone);
-  saveToLocalStorage();
   renderContacts();
   closeAddContactOverlay();
   deleteValue();
@@ -299,17 +352,6 @@ function deleteValue() {
   document.getElementById("contactPhone").value = "";
 }
 
-function deleteContact(email) {
-  // if (!confirm("Möchten Sie diesen Kontakt wirklich löschen?")) return;
-  contactsArray = contactsArray.filter((contact) => contact.email.toLowerCase() !== email.toLowerCase());
-  saveToLocalStorage();
-  renderContacts();
-  let detailView = document.getElementById("contactDetailView");
-  if (detailView) {
-    detailView.classList.add("d-none");
-    detailView.innerHTML = "";
-  }
-}
 
 function editContact(name, email, phone, initials, bg) {
   currentContact = { name, email, phone };
@@ -328,36 +370,10 @@ function editContact(name, email, phone, initials, bg) {
   `;
 }
 
-function saveEditedContact() {
-  if (!currentContact) return;
+function updateContactArray(newName, newEmail, newPhone) {
 
-  // Neue Werte aus den Edit-Feldern auslesen
-  const newName = document.getElementById("editName").value.trim();
-  const newEmail = document.getElementById("editEmail").value.trim();
-  const newPhone = document.getElementById("editPhone").value.trim();
-
-  if (!validateContactInput(newName, newEmail, newPhone)) return;
-
-  updateContact(newName, newEmail, newPhone);
-
-  // Kontakte im Local Storage speichern und Liste neu rendern
-  saveToLocalStorage();
-  renderContacts();
-
-  updateDetailView(newName, newEmail, newPhone);
-
-  closeEditContactOverlay();
-  currentContact = null;
-}
-
-function updateContact(newName, newEmail, newPhone) {
-  // Kontakt im Array anhand der ursprünglichen Email aktualisieren
-  contactsArray = contactsArray.map((contact) => {
-    if (contact.email.toLowerCase() === currentContact.email.toLowerCase()) {
-      return { name: newName, email: newEmail, phone: newPhone };
-    }
-    return contact;
-  });
+    contactsArray = contactsArray.filter((contact) => contact.email.toLowerCase() !== currentContact.email.toLowerCase());
+    contactsArray.push({ email: newEmail, name: newName, phone: newPhone});
 }
 
 function updateDetailView(newName, newEmail, newPhone) {
@@ -371,24 +387,6 @@ function updateDetailView(newName, newEmail, newPhone) {
   }
 }
 
-function deleteContactForEdit() {
-  if (!currentContact) return;
-  if (!confirm("Möchten Sie diesen Kontakt wirklich löschen?")) return;
-
-  function deleteContactForEdit() {
-    if (!currentContact) return;
-    if (!confirm("Möchten Sie diesen Kontakt wirklich löschen?")) return;
-
-    // Entferne den Kontakt aus dem Array
-    contactsArray = contactsArray.filter((contact) => contact.email.toLowerCase() !== currentContact.email.toLowerCase());
-
-    saveToLocalStorage();
-    renderContacts();
-    closeEditContactOverlay();
-    currentContact = null;
-  }
-}
-
 function closeEditContactOverlay(email) {
   const editContactOverlay = document.getElementById("editContactOverlay");
   const overlayEditContent = editContactOverlay.querySelector(".overlay-edit-content");
@@ -397,13 +395,23 @@ function closeEditContactOverlay(email) {
   setTimeout(() => editContactOverlay.classList.add("d-none"), 300);
 }
 
-function saveToLocalStorage() {
-  localStorage.setItem("contacts", JSON.stringify(contactsArray));
+function emptyContactForm() {
+  const nameInput = document.getElementById('contactName');
+  nameInput.value = "";
+  const emailInput = document.getElementById('contactEmail');
+  emailInput.value = "";
+  const phoneInput = document.getElementById('contactPhone');
+  phoneInput.value = "";
 }
 
-function loadFromLocalStorage() {
-  const savedContacts = localStorage.getItem("contacts");
-  if (savedContacts) {
-    contactsArray = JSON.parse(savedContacts);
-  }
+function makeCancelBtnLight() {
+  setTimeout(() => {
+    document.getElementById('overlayCancelIcon').src = '../img/full-cancel-btn-hovered.png';
+  }, 100);
+}
+
+function makeCancelBtnDark() {
+  setTimeout(() => {
+    document.getElementById('overlayCancelIcon').src = '../img/full-cancel-btn.png';
+  }, 100);
 }

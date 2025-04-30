@@ -1,3 +1,8 @@
+body {
+  position: relative;
+  box-sizing: border-box;
+}
+
 .taskbar {
   display: flex;
   align-items: center;
@@ -36,6 +41,11 @@
   width: 100%;
   padding: 9px 0px 9px;
   background: transparent;
+  border: none !important;
+}
+
+.new-board-task {
+  cursor: pointer;
 }
 
 .search-loop-img {
@@ -134,4 +144,111 @@
   display: flex;
   align-items: center;
   justify-content: left;
+}
+
+#createTaskInBoardOverlay {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  background-color: rgba(42, 54, 71, 0.744);
+}
+
+#overlayDialogBoard {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 20px 40px 20px;
+  height: 80vh;
+  width: 80vw;
+  overflow: auto;
+}
+
+.task-body {
+  width: 100%;
+  background-color: white;
+  border-radius: 24px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.08);
+  margin-bottom: 16px;
+}
+
+
+.progress-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.user-task-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#tasksContainer {
+  overflow: auto;
+  max-height: 600px;
+}
+
+.task-description {
+  margin-bottom: 24px;
+  font-weight: 400;
+  color: rgba(168, 168, 168, 1);
+}
+
+.task-title {
+  font-weight: 700;
+  color: rgba(42, 54, 71, 1);
+}
+
+.progress-container {
+  width: 128px;
+  height: 8px;
+  background-color: rgba(244, 244, 244, 1);
+  border-radius: 8px;
+}
+
+.tasks-done {
+  font-size: 12px;
+}
+
+.contact-initial {
+  width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    background-size: cover;
+    background-position: center;
+}
+
+.contacts-assigned {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 112px;
+  overflow-x: auto;
+}
+
+.priority-png {
+  height: 40px;
+  width: auto;
 }

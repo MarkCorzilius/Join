@@ -14,102 +14,105 @@
     rel="stylesheet" />
   <link rel="icon" type="image/x-icon" href="../img/join-logo.svg" />
 
-  <link rel="stylesheet" href="../style.css" />
-  <!-- <link rel="stylesheet" href="../css/header.css" />  -->
-  <link rel="stylesheet" href="../css/header.css" />
-  <link rel="stylesheet" href="../css/sidebar.css" />
-  <link rel="stylesheet" href="../css/summary.css" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/sidebar.css" />
+    <link rel="stylesheet" href="../css/summary.css" />
 
-  <script src="../script.js" defer></script>
-  <script src="https://www.w3schools.com/lib/w3.js"></script>
-  <script src="../js/sidebar.js"></script>
-  <script src="../js/header.js" defer></script>
-</head>
+    <script src="../js/database.js"></script>
+    <script src="../script.js" defer></script>
+    <script src="../js/summary.js"></script>
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/header.js" defer></script>
+  </head>
 
-<body onload="w3.includeHTML()">
-  <header w3-include-html="../templates/header.html" id="headerContainer"></header>
-  <main class="main">
-    <div w3-include-html="../templates/sidebar.html" id="sidebarContainer"></div>
-    <div class="content">
-      <div class="summary-content-wrapper">
-        <div class="summary-header-wrapper">
-          <h1 class="summary-page-title">Join 360</h1>
-          <div class="separation-line-summary"></div>
-          <p class="summary-subtitle">Key Matrics at a Glance</p>
-        </div>
-        <div class="summary-main-wrapper">
-          <div class="summary-info-box">
-            <div class="info-box-first-line">
-              <div class="to-do-box">
-                <img src="../img/pencil.png" alt="in work" />
-                <div class="card-info">
-                  <p class="card-number">1</p>
-                  <p class="card-text">To Do</p>
-                </div>
+  <body onload="w3.includeHTML()">
+    <header w3-include-html="../templates/header.html" id="headerContainer"></header>
+    <main class="main">
+      <div w3-include-html="../templates/sidebar.html" id="sidebarContainer"></div>
+      
+        <div class="summary-content-wrapper">
+          <div class="summary-header-wrapper">
+            <h1 class="summary-page-title">Join 360</h1>
+            <div class="separation-line-summary"></div>
+            <p class="summary-subtitle">Key Metrics at a Glance</p>
+            <div class="separation-line-summary-vertical"></div>
+          </div>
+          <div class="summary-main-wrapper">
+            <div class="summary-info-box">
+              <div class="info-box-first-line">
+                <a class="to-do-box" href="../templates/board.html">
+                  <img class="card-icon" src="../img/pencil.png" alt="in work" />
+                  <img class="pencil-light" src="../img/pencil_light.png" alt="in work" />
+                  <div class="card-info">
+                    <p class="card-number">1</p>
+                    <p class="card-text">To Do</p>
+                  </div>
+                </a>
+                <a class="done-box" href="../templates/board.html">
+                  <img class="card-icon" src="../img/done.png" alt="done" />
+                  <img class="card-icon-light" src="../img/card_icon_light.png" alt="done" />
+                  <div class="card-info">
+                    <p class="card-number">1</p>
+                    <p class="card-text">Done</p>
+                  </div>
+                </a>
               </div>
-              <div class="done-box">
-                <img src="../img/done.png" alt="done" />
-                <div class="card-info">
-                  <p class="card-number">1</p>
-                  <p class="card-text">Done</p>
+              <a class="info-box-second-line" href="../templates/board.html">
+                <div class="task-importancy">
+                  <img class="card-icon-small" src="../img/importancy.png" alt="importancy" />
+                  <div class="card-info">
+                    <p class="card-number">1</p>
+                    <p class="card-text">Urgent</p>
+                  </div>
                 </div>
+                <div class="sep-line-third-box"></div>
+                <div class="deadline-box">
+                  <p class="todays-data">October 16, 2025</p>
+                  <p class="card-text">Upcoming Deadline</p>
+                </div>
+              </a>
+              <div class="info-box-third-line">
+                <a class="all-tasks-box" href="../templates/board.html">
+                  <p class="all-tasks-amount">5</p>
+                  <div class="all-tasks-types">
+                    <p>Tasks</p>
+                    <p>in Board</p>
+                  </div>
+                </a>
+                <a class="all-tasks-box" href="../templates/board.html">
+                  <p class="all-tasks-amount">2</p>
+                  <div class="all-tasks-types">
+                    <p>Tasks</p>
+                    <p>in Progress</p>
+                  </div>
+                </a>
+                <a class="all-tasks-box" href="../templates/board.html">
+                  <p class="all-tasks-amount">2</p>
+                  <div class="all-tasks-types">
+                    <p>Awaiting</p>
+                    <p>Feedback</p>
+                  </div>
+                </a>
               </div>
             </div>
-            <div class="info-box-second-line">
-              <div class="task-importancy">
-                <img src="../img/importancy.png" alt="importancy" />
-                <div class="card-info">
-                  <p class="card-number">1</p>
-                  <p class="card-text">Urgent</p>
-                </div>
-              </div>
-              <div class="sep-line-third-box"></div>
-              <div class="deadline-box">
-                <p class="todays-data">October 16th 2025</p>
-                <p>Upcoming Deadline</p>
-              </div>
-            </div>
-            <div class="info-box-third-line">
-              <div class="all-tasks-box">
-                <p class="all-tasks-amount">5</p>
-                <div class="all-tasks-types">
-                  <p>Tasks</p>
-                  <p>in Board</p>
-                </div>
-              </div>
-              <div class="all-tasks-box">
-                <p class="all-tasks-amount">2</p>
-                <div class="all-tasks-types">
-                  <p>Tasks</p>
-                  <p>in Progress</p>
-                </div>
-              </div>
-              <div class="all-tasks-box">
-                <p class="all-tasks-amount">2</p>
-                <div class="all-tasks-types">
-                  <p>Awaiting</p>
-                  <p>Feedback</p>
-                </div>
-              </div>
+            <div>
+              <span class="greeting-user">
+                Good morning, <br />
+                <div id="theUser">Mark Corzilius</div>
+              </span>
             </div>
           </div>
-          <div class="greeting-user">
-            <span>
-              Good morning, <br />
-              <div id="theUser">Mark Corzilius</div>
-            </span>
-          </div>
         </div>
-      </div>
-    </div>
-  </main>
-  <script>
+      
+    </main>
+    <script>
     w3.includeHTML(() => {
       // Nach Sidebar-Loading: Sidebar-Skript manuell starten
       if (typeof setupSidebar === "function") setupSidebar();
       if (typeof setupHeader === "function") setupHeader();
     });
   </script>
-</body>
-
+  </body>
 </html>
