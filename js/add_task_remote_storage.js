@@ -1,3 +1,5 @@
+
+
 function restrictAddingTask() {
   const title = document.getElementById('taskTitle');
   const date = document.getElementById('taskDate');
@@ -12,9 +14,7 @@ function restrictAddingTask() {
 
 function isNotInTheFuture(inputDate) {
   const currentDate = new Date();
-  console.log(currentDate);
   const inputDateObject = new Date(inputDate);
-  console.log(inputDateObject);
 
   if (currentDate > inputDateObject) {
     return true;
@@ -37,13 +37,10 @@ function extractTaskValues() {
  }
 }
 
-function getTaskData() {
-  if (!extractTaskValues()) {
-    alert('chosen date is not in the future!');
-    return;
-  };
+function taskDataStorage() {
   const {titleValue, descriptionValue, dateValue} =  extractTaskValues();
   const dataSafe = {
+    id: taskId,
     title: titleValue,
     description: descriptionValue,
     date: dateValue,
@@ -52,11 +49,22 @@ function getTaskData() {
     category: saveCategory(),
     subtasks: saveSubtasks(),
   }
+  return dataSafe;
+}
+
+function getTaskData() {
+  if (!extractTaskValues()) {
+    alert('chosen date is not in the future!');
+    return;
+  };
+  const dataSafe = taskDataStorage();
   if (!restrictAddingTask()) {
   return; 
 } else {
-    postData('tasks', dataSafe);
-    emptyTaskDocument();
+  postData('board/toDo/', dataSafe);
+  taskId += 1;
+  localStorage.setItem('taskId',taskId.toString());
+  emptyTaskDocument();
 }
 }
 
@@ -89,7 +97,7 @@ function saveSubtasks() {
   for (let i = 0; i < subtaskTitles.length; i++) {
     const titleText = subtaskTitles[i].innerText.trim();
     if (titleText !== '') {
-      subtasks[`subtask-${i + 1}`] = titleText;
+      subtasks[`subtask-${i + 1}`] = {title: titleText, state: false}
     }
   }
   return Object.keys(subtasks).length > 0 ? subtasks : null; 
@@ -129,6 +137,3 @@ function saveSubtasks() {
   function sanitizeEmail(email) {
     return email.replace(/[@.]/g, "_");
 }
-
-// on click on contact –> get initial;
-//while select –> chosen contacts display none;

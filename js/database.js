@@ -1,3 +1,5 @@
+let taskId = 0;
+
 const BASE_URL = 'https://join-fce4c-default-rtdb.europe-west1.firebasedatabase.app/';
 
 async function postData(path="", data={}) {

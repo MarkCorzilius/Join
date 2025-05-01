@@ -129,7 +129,7 @@ body {
 
 .empty-column {
   height: 48px;
-  width: 246px;
+  width: 98%;
   border: 1px dotted rgba(168, 168, 168, 1);
   background-color: rgba(231, 231, 231, 1);
   display: flex;
@@ -162,15 +162,16 @@ body {
   justify-content: center;
   background-color: white;
   box-sizing: border-box;
-  border-radius: 10px;
+  border-radius: 30px;
   padding: 20px 40px 20px;
-  height: 80vh;
+  height: 90vh;
   width: 80vw;
   overflow: auto;
 }
 
 .task-body {
-  width: 100%;
+  min-width: 240px;
+  width: 244px;
   background-color: white;
   border-radius: 24px;
   padding: 16px;
@@ -181,6 +182,7 @@ body {
   box-sizing: border-box;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.08);
   margin-bottom: 16px;
+  cursor: pointer;
 }
 
 
@@ -237,12 +239,13 @@ body {
     font-weight: bold;
     background-size: cover;
     background-position: center;
+    margin-right: -6px;
+    border: 0.5px solid white;
 }
 
 .contacts-assigned {
   display: flex;
   align-items: center;
-  gap: 10px;
   width: 100%;
   max-width: 112px;
   overflow-x: auto;
@@ -251,4 +254,62 @@ body {
 .priority-png {
   height: 40px;
   width: auto;
+}
+
+#tasksContainer-0,#tasksContainer-1, #tasksContainer-2, #tasksContainer-3 {
+  overflow: auto;
+  width: 244px;
+  max-height: 500px;
+  height: 500px;
+}
+
+.overlay-priority-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 21px;
+  border-radius: 10px;
+  background-color: white;
+  width: 136px;
+  height: 56px;
+  cursor: pointer !important;
+  transition: box-shadow 0.2s ease-in-out;
+  border: 0.2px solid rgb(227, 227, 227)
+}
+
+.overlay-priority-button:not(.active):hover {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.overlay-priority-button svg {
+  fill: black;
+  transition: fill 0.3s ease;
+}
+
+.overlay-priority-button.active svg {
+  fill: white;
+}
+
+.overlay-priority-pngs {
+  size: 21px;
+}
+
+.task-rotate-left {
+  transform: rotate(-30deg);
+}
+
+.task-rotate-right {
+  transform: rotate(30deg);
+}
+
+.dragging {
+  position: absolute;
+}
+
+
+
+.mobile-add-task-btn {
+  display: none;
+  cursor: pointer;
 }

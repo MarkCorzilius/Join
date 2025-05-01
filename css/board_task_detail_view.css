@@ -1,0 +1,199 @@
+.task-detail-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+.detail-task-title {
+    font-size: 61px;
+    margin: 24px 0 32px;
+}
+
+#taskInfoOverlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.2);
+    visibility: hidden;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  #taskInfoOverlay.active {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.3 ease;
+  }
+
+  #taskInfoOverlay.active #taskInfoDialog {
+    transform: translateX(0);
+  }
+  
+  #taskInfoDialog {
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 40px 40px 20px;
+    background-color: white;
+    border-radius: 30px;
+    width: 40vw;
+    height: 90vh;
+    max-width: 600px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+
+
+  .task-prio {
+    display: flex;
+    align-items: center;
+  }
+
+  .prio-and-date-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    width: 70%;
+  }
+
+  .date-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 24px;
+  }
+
+  .prio-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 24px;
+  }
+
+  .task-overlay-description {
+    font-size: 24px;
+    color: rgba(42, 54, 71, 1);
+  }
+
+  .assigned-to {
+    margin-bottom: 24px;
+    font-size: 24px;
+    color: rgba(42, 54, 71, 1);
+  }
+
+  .contacts-assignment {
+    margin-bottom: 24px;
+  }
+
+  .close-btn-wrapper {
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    height: 30px;
+    width: 30px;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  .close-btn-wrapper:hover {
+    background-color: rgb(232, 232, 232);
+    border-radius: 50%;
+  }
+
+  .title-subtask {
+    font-size: 24px;
+    color: rgba(42, 54, 71, 1);
+  }
+
+  .task-overlay-control {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    position: sticky;
+    gap: 10px;
+  }
+
+
+  .task-overlay-info {
+    height: 100%;
+    width: 100%;
+  }
+
+  #deleteTask {
+    height: 24px;
+    width: auto;
+  }
+
+  #editTask {
+    height: 24px;
+    width: auto;
+  }
+
+  .task-overlay-contact {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  #contactsContainer {
+    margin-top: 24px;
+    overflow: auto;
+    max-height: 120px;
+  }
+
+
+.overlay-subtask-template {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6px;
+    cursor: pointer;
+    box-sizing: border-box;
+    padding: 5px 10px 5px;
+}
+
+.overlay-subtask-template:hover {
+    background-color: rgb(209, 209, 209);
+    border-radius: 10px;
+}
+
+#subtasksList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    overflow: auto;
+    max-height: 115px;
+}
+
+#taskDetailedOverlay {
+  overflow: auto;
+  position: relative;
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 40px 40px 20px;
+    background-color: white;
+    border-radius: 30px;
+    width: 40vw;
+    height: 90vh;
+    max-width: 600px;
+}

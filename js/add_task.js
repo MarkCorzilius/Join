@@ -1,6 +1,12 @@
 let subtaskId = null;
-
 let chosenContacts = [];
+
+function taskPageOnLoad() {
+  taskId = Number(localStorage.getItem('taskId')) || 0;
+  w3.includeHTML();
+  resetPriorityBtn();
+  fetchContacts();
+}
 
 function clearBtnToBlue() {
   document.getElementById("clearBtn").src = "../img/clear_btn_hovered.png";

@@ -1,11 +1,11 @@
-function emptyColumnTemplate() {
+function emptyColumnTemplate(text) {
     return `                <div class="empty-column">
-                  <span>No tasks To do</span>
+                  <span>No tasks ${text}</span>
                 </div>`;
 }
 
-function toDoTemplate(task) {
-    return `                <div class="task-body">
+function taskTemplate(task) {
+    return `                <div id="taskBody${task.id}" class="task-body" draggable="true" ondragstart="startDragging(${task.id}, event)" ondrag="dragMove(${task.id}, event)" ondragend="endDragging(${task.id}, event)" onclick="openTaskInfoOverlay(${encodeTask(task)})">
                   <div class="task-category">${renderCategory(task)}</div>
                   <h3 class="task-title">${task.title}</h2>
                     <p class="task-description">${task.description}</p>
@@ -22,6 +22,49 @@ function toDoTemplate(task) {
                 </div>`;
 }
 
+function taskDetailTemplate(task) {
+    return `     <div id="taskInfoDialog" onclick="event.stopPropagation()">
+        <div class="task-overlay-info">
+        <div class="task-detail-header">
+          <div>${renderCategory(task)}</div>
+          <div onclick="closeTaskInfoOverlay()" class="close-btn-wrapper">
+            <img class="task-form-close" src="../img/close.png">
+          </div>
+        </div>
+        <h2 class="detail-task-title">${task.title}</h2>
+        <span class="task-overlay-description">${task.description}</span>
+        <div class="prio-and-date-section">
+        <div class="date-section">
+          <span>Due date:</span>
+          <p>${formatDate(task.date)}</p>
+        </div>
+        <div class="prio-section">
+          <span>Priority:</span>
+          <div class="task-prio">
+            <p>${capitalize(task.priority)}</p>
+            <img src="../img/medium_priority.png" alt="">
+          </div>
+        </div>
+        </div>
+        <div class="contacts-assignment">
+          <span class="assigned-to">Assigned To:</span>
+          <div id="contactsContainer">${loopTaskContacts(task)}</div>
+        </div>
+        <div class="task-overlay-subtasks">
+          <span class="title-subtask">Subtasks</span>
+          <div id="subtasksList">${loopTaskSubtasks(task)}</div>
+        </div>
+        </div>
+        <div class="task-overlay-control">
+          <img onclick="deleteTaskInOverlay(${encodeTask(task)})" onmouseover="toggleDeleteBtn(event)" onmouseout="toggleDeleteBtn(event)" id="deleteTask" src="../img/delete_task.png" alt="del">
+          <img onclick="openTaskEditStateInOverlay(${encodeTask(task)})" onmouseover="toggleEditBtn(event)" onmouseout="toggleEditBtn(event)" id="editTask" src="../img/edit_task.png" alt="edit">
+        </div>
+      </div>`;
+}
+
+function editStateOverlayTemplate(task) {
+  
+}
 
 function tasksDialogTemplate() {
     return `      <div id="overlayDialogBoard" onclick="event.stopPropagation()">
@@ -178,7 +221,7 @@ function tasksDialogTemplate() {
                 <p>Clear</p>
                 <img id="clearBtn" src="../img/close.png" alt="close" />
               </button>
-              <button onclick="getTaskData()" class="create-task-button">
+              <button onclick="createTaskInBoardFireBase()" class="create-task-button">
                 <p>Create Task</p>
                 <img src="../img/check.png" alt="check" />
               </button>

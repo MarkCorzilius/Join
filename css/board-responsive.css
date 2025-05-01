@@ -1,0 +1,78 @@
+@media (min-width: 320px) and (max-width: 1350px) {
+
+    .board-upper-line {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+    }
+
+
+    .board-all-tasks-section {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #tasksContainer-0,#tasksContainer-1, #tasksContainer-2, #tasksContainer-3 {
+        width: 90%;
+        overflow-x: auto;
+        max-height: none;
+        height: fit-content;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .task-body {
+        width: 244px;
+        height: 240px;
+    }
+
+    .empty-column {
+        width: 242px;
+    }
+
+    .board-column-control {
+        margin-bottom: 16px;
+    }
+
+}
+
+@media (max-width: 1000px) {
+    .mobile-add-task-btn {
+        display: flex;
+    }
+
+    .mobile-title-and-btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .add-task-button {
+        display: none;
+    }
+
+    .board {
+        padding: 32px 32px;
+    }
+
+    .content {
+        height: calc(100vh - 160px) !important;
+    }
+
+}
+
+@media (max-width: 450px) {
+    .search-container {
+        width: 260px;
+    }
+
+    .board {
+        padding: 16px 16px;
+    }
+
+    #tasksContainer-0,#tasksContainer-1, #tasksContainer-2, #tasksContainer-3 {
+        width: 100%;
+    }
+}
