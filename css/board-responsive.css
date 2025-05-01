@@ -1,4 +1,4 @@
-@media (min-width: 500px) and (max-width: 1350px) {
+@media (min-width: 320px) and (max-width: 1350px) {
 
     .board-upper-line {
         flex-direction: column;
@@ -61,4 +61,18 @@
         height: calc(100vh - 160px) !important;
     }
 
+}
+
+@media (max-width: 450px) {
+    .search-container {
+        width: 260px;
+    }
+
+    .board {
+        padding: 16px 16px;
+    }
+
+    #tasksContainer-0,#tasksContainer-1, #tasksContainer-2, #tasksContainer-3 {
+        width: 100%;
+    }
 }

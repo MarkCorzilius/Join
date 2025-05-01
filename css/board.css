@@ -170,6 +170,7 @@ body {
 }
 
 .task-body {
+  min-width: 240px;
   width: 244px;
   background-color: white;
   border-radius: 24px;
@@ -310,4 +311,5 @@ body {
 
 .mobile-add-task-btn {
   display: none;
+  cursor: pointer;
 }

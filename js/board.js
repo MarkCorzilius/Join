@@ -318,3 +318,11 @@ function loopTaskSubtasks(task) {
     }
     return templateHTML;
 }
+
+function toggleMobileTaskAddBtn(event) {
+    const img = event.target;
+    const hoverSrc = `../img/mobile_add_task_hovered.png`;
+    const basicSrc = `../img/mobile_add_task_btn.png`;
+
+    img.src = event.type === 'mouseover' ? hoverSrc : basicSrc;
+}
