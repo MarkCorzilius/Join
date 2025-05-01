@@ -258,7 +258,8 @@ body {
 #tasksContainer-0,#tasksContainer-1, #tasksContainer-2, #tasksContainer-3 {
   overflow: auto;
   width: 244px;
-  max-height: 650px;
+  max-height: 500px;
+  height: 500px;
 }
 
 .overlay-priority-button {
@@ -291,4 +292,20 @@ body {
 
 .overlay-priority-pngs {
   size: 21px;
+}
+
+.task-rotate-left {
+  transform: rotate(-30deg);
+}
+
+.task-rotate-right {
+  transform: rotate(30deg);
+}
+
+.task-dragging {
+  opacity: 0.8;
+  transition: transform 0.2s ease;
+}
+
+#taskBoard {
 }

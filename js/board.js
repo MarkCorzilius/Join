@@ -1,20 +1,33 @@
 let currentColumn = 0;
 
 async function boardOnLoad() {
-    taskId = Number(localStorage.getItem('taskId')) || 0;
-    w3.includeHTML(); 
-    renderTaskDialog(); 
-    await fetchTasks(); 
-    renderToDoTasks();
-    renderTasksInProgress();
-    renderTasksAwaitFeedback();
+    document.querySelector('.spinner-overlay').style.display = "flex";
+    try {
+        taskId = Number(localStorage.getItem('taskId')) || 0;
+        w3.includeHTML(); 
+        renderTaskDialog(); 
+        //await fetchTasks(); 
+        await renderAllTasks();
+    } catch (error) {
+        console.log('error in boardOnLoad');
+    } finally {
+        document.querySelector('.spinner-overlay').style.display = "none";
+
+    }
+
 }
 
 async function renderAllTasks() {
-    await fetchTasks();
-    renderToDoTasks();
-    renderTasksInProgress();
-    renderTasksAwaitFeedback();
+    document.querySelector('.spinner-overlay').style.display = "flex";
+    try {
+        await renderToDoTasks();
+        await renderTasksInProgress();
+        await renderTasksAwaitFeedback();
+    } catch (error) {
+        console.log('error in renderAllTasks()');
+    } finally {
+        document.querySelector('.spinner-overlay').style.display = "none";
+    }
 }
 
 function focusedSearchContainer() {
@@ -64,22 +77,22 @@ function renderTaskDialog() {
 
 
 
-async function fetchTasks() {
-
-    const tasks = await getData('tasks/');
-    if (!tasks || Object.keys(tasks).length === 0) return;
-    const existingTasks = await getData('board/toDo/');
-    const existingValues = existingTasks ? Object.values(existingTasks) : [];
-
-    for (const task of Object.values(tasks)) {
-        const alreadyExists = existingValues.some(existing => JSON.stringify(existing) === JSON.stringify(task));
-        if (!alreadyExists) {
-            await postData('board/toDo/', task);
-            taskId += 1;
-            localStorage.setItem('taskId',taskId.toString());
-        }
-    }
-}
+//async function fetchTasks() {
+//
+//    const tasks = await getData('tasks/');
+//    if (!tasks || Object.keys(tasks).length === 0) return;
+//    const existingTasks = await getData('board/toDo/');
+//    const existingValues = existingTasks ? Object.values(existingTasks) : [];
+//
+//    for (const task of Object.values(tasks)) {
+//        const alreadyExists = existingValues.some(existing => JSON.stringify(existing) === JSON.stringify(task));
+//        if (!alreadyExists) {
+//            await postData('board/toDo/', task);
+//            taskId += 1;
+//            localStorage.setItem('taskId',taskId.toString());
+//        }
+//    }
+//}
 
 async function renderTasksInProgress() {
     const container = document.getElementById('tasksContainer-1');

@@ -5,7 +5,7 @@ function emptyColumnTemplate(text) {
 }
 
 function taskTemplate(task) {
-    return `                <div class="task-body" onclick="openTaskInfoOverlay(${encodeTask(task)})">
+    return `                <div draggable="true" ondragstart="startDragging(${task.id}, event)" ondrag="dragMove(${task.id}, event)" id="taskBody${task.id}" class="task-body" onclick="openTaskInfoOverlay(${encodeTask(task)})">
                   <div class="task-category">${renderCategory(task)}</div>
                   <h3 class="task-title">${task.title}</h2>
                     <p class="task-description">${task.description}</p>

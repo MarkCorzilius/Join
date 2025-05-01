@@ -1,0 +1,120 @@
+@media (min-width: 1000px) and (max-width: 9999px) {
+
+.question-blocks {
+    flex-direction: column !important;
+}
+
+.content-in-main {
+    width: 100%;
+}
+
+.vertical-line {
+    display: none !important;
+}
+
+.add-task-main {
+    margin-left: 0;
+    justify-content: center;
+    height: calc(100vh - 180px);
+}
+
+.add-task-page-title {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    background-color: rgb(246 247 248);
+    font-size: 51px; 
+    z-index: 999;
+}
+
+#subtaskContainer {
+    width: 100%;
+}
+
+.footer-buttons-wrapper {
+    position: fixed;
+    bottom: 100px;
+    background-color: rgb(246 247 248);
+    z-index: 999; 
+    width: 100%;
+    padding: 30px 0 30px;
+    justify-content: flex-end;
+}
+
+.add-task-footer {
+    position: static;   
+}
+
+.requirement-warning {
+    position: static;
+    padding-bottom: 120px;
+}
+
+.title-field {
+    width: 100%;
+}
+
+.description-area {
+    width: 100%;
+}
+
+.due-date-field {
+    width: 100%;
+}
+
+.priority-section {
+    margin-top: 24px;
+}
+
+.subtask-section {
+    margin-bottom: 80px;
+  }
+
+.dropdown-btn {
+    width: 100%;
+}
+
+.category-btn {
+    width: 100%;
+}
+
+#subtaskInput {
+    width: 100%;
+}
+
+.options {
+    width: 100%;
+}
+
+#searchState {
+    width: 100%;
+}
+
+.category-options {
+    width: 100%;
+}
+
+.task-edit-state {
+    width: 100%;
+}
+
+.subtask-template-edit-state {
+    width: 100%;
+}
+
+.subtask-edit-input {
+    width: 100%;
+}
+
+.subtask-edit-icons {
+    display: flex;
+}
+
+.left-block {
+    width: 100%;
+}
+
+#taskDetailedOverlay {
+    overflow: auto;
+}
+}
