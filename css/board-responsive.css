@@ -1,0 +1,30 @@
+@media (min-width: 500px) and (max-width: 1350px) {
+    .board-all-tasks-section {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #tasksContainer-0,#tasksContainer-1, #tasksContainer-2, #tasksContainer-3 {
+        width: 90%;
+        overflow-x: auto;
+        max-height: none;
+        height: fit-content;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .task-body {
+        width: 244px;
+        height: 240px;
+    }
+
+    .empty-column {
+        width: 242px;
+    }
+
+    .board-column-control {
+        margin-bottom: 16px;
+    }
+
+}

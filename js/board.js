@@ -23,6 +23,7 @@ async function renderAllTasks() {
         await renderToDoTasks();
         await renderTasksInProgress();
         await renderTasksAwaitFeedback();
+        await renderTasksDone();
     } catch (error) {
         console.log('error in renderAllTasks()');
     } finally {
@@ -107,6 +108,21 @@ async function renderTasksInProgress() {
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];
 
+        container.innerHTML += taskTemplate(task);
+    }
+}
+
+async function renderTasksDone() {
+    const container = document.getElementById('tasksContainer-3');
+    container.innerHTML = '';
+    const rawTasks = await getData('board/done/');
+    const tasks = rawTasks ? Object.values(rawTasks) : [];
+    if (tasks.length === 0) {
+        container.innerHTML = emptyColumnTemplate('no tasks done');
+        return;
+    }
+    for (let i = 0; i < tasks.length; i++) {
+        const task = tasks[i];
         container.innerHTML += taskTemplate(task);
     }
 }
@@ -208,9 +224,9 @@ async function createTaskInBoardFireBase() {
         taskId += 1;
         localStorage.setItem('taskId',taskId.toString());
         emptyTaskDocument();
+        closeTaskOverlay();
+        await renderAllTasks();
     }
-    closeTaskOverlay();
-    await renderAllTasks();
 
 }
 
