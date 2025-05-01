@@ -13,26 +13,33 @@
   </div>
 
   <div class="sidebar-button">
-    <a href="../templates/summary.html" class="nav-button">
+    <a href="../templates/summary.html" class="nav-button auth-only d-none" onclick="buttonClicked(this)">
       <img src="../img/sidebar_summary.png" alt="summary" />
       <p>Summary</p>
     </a>
-    <a href="../templates/add_task.html" class="nav-button">
+    <a href="../templates/add_task.html" class="nav-button auth-only d-none" onclick="buttonClicked(this)">
       <img src="../img/add_task_sidebar.png" alt="tasks" />
       <p>Add Task</p>
     </a>
-    <a href="../templates/board.html" class="nav-button">
+    <a href="../templates/board.html" class="nav-button auth-only d-none" onclick="buttonClicked(this)">
       <img src="../img/sidebar_board.png" alt="board" />
       <p>Board</p>
     </a>
-    <a href="../templates/contacts.html" class="nav-button" onclick="setTimeout(renderContacts, 300)">
+    <a href="../templates/contacts.html" class="nav-button auth-only d-none"
+      onclick="setTimeout(renderContacts, 300), buttonClicked(this)">
       <img src="../img/sidebar_contact.png" alt="contacts" />
       <p>Contacts</p>
     </a>
+    <!-- Dieser Button nur wenn NICHT eingeloggt -->
+    <a href="../index.html" class="nav-button d-none" id="loginSidebarBtn">
+      <img src="../img/login_icon.png" alt="login" />
+      <p>Login</p>
+    </a>
+
   </div>
 
   <div class="sidebar-footer">
-    <a href="../templates/privacy_policy.html" class="nav-button">Privacy Policy</a>
-    <a href="../templates/legal_notice.html" class="nav-button">Legal Notice</a>
+    <a href="../templates/privacy_policy.html" class="nav-button" onclick="buttonClicked(this)">Privacy Policy</a>
+    <a href="../templates/legal_notice.html" class="nav-button" onclick="buttonClicked(this)">Legal Notice</a>
   </div>
 </aside>

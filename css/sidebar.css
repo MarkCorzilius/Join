@@ -95,7 +95,7 @@
 .sidebar-footer a {
   color: rgb(168, 168, 168);
   text-decoration: none;
-  transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
+  transition: color 0.2s ease-in-out, font-weight 0.2s ease-in-out;
 }
 
 .sidebar-footer .nav-button:hover {

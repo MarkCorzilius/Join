@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Join - Login</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,7 +20,7 @@
 </head>
 
 <body class="log-in">
-  <header class="login-header">
+  <header class="log-in-header">
     <div class="splash-logo-container">
       <img class="logo-image" id="mainLogo" src="../img/join-logo.svg" alt="Join Logo" />
     </div>
@@ -27,25 +28,25 @@
     <div class="header-content">
       <div class="signup-container">
         <span>Not a Join user?</span>
-        <a href="#" onclick="signIn()">Sign in</a>
+        <a href="#" onclick="signIn()">Sign up</a>
       </div>
     </div>
   </header>
 
 
-  <main class="login-main">
-    <div class="login-box">
+  <main class="log-in-main">
+    <div class="log-in-box">
       <h2>Log in</h2>
       <form onsubmit="addUser(); return false;">
         <div class="input-field">
-          <label for="email">Email</label>
+          <label for="loginEmail">Email</label>
           <input type="email" id="loginEmail" placeholder="Email" autocomplete="username" required />
         </div>
         <div class="input-field">
-          <label for="password">Password</label>
+          <label for="loginPassword">Password</label>
           <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password" required />
         </div>
-        <div class="options">
+        <!-- <div class="options">
           <div class="remember-me">
             <input type="checkbox" id="rememberMe" />
             <label for="rememberMe">Remember me</label>
@@ -53,14 +54,26 @@
           <div class="forgot-password">
             <a href="#">Forgot my password?</a>
           </div>
-        </div>
+        </div> -->
         <div class="buttons">
-          <a href="./templates/summary.html" class="login-btn">Log In</a>
-          <button type="button" class="guest-btn">Guest Log In</button>
+          <!-- <a href="../templates/summary.html" class="log-in-btn">Log In</a> -->
+          <button type="submit" class="log-in-btn">Log In</button>
+          <button type="button" class="guest-btn" onclick="guestLogin()">Guest Log In</button>
         </div>
       </form>
     </div>
   </main>
+
+
+  <footer class="log-in-footer">
+    <a href="../templates/privacy_policy.html" class="nav-button">Privacy Policy</a>
+    <a href="../templates/legal_notice.html" class="nav-button">Legal Notice</a>
+  </footer>
+
+  <!-- <script>
+    // Direkt nach dem Laden prüfen, ob User eingeloggt ist
+    window.addEventListener('DOMContentLoaded', authCheck);
+  </script> -->
 </body>
 
 </html>

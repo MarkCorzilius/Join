@@ -4,6 +4,7 @@
   <!-- Binde hier dein CSS für den Header ein -->
   <link rel="stylesheet" href="../css/header.css" />
 </head>
+
 <body>
   <header class="header">
     <div class="header-container">
@@ -16,8 +17,17 @@
       <!-- Rechte Seite: Fragezeichen-Icon + Initialen -->
       <div class="header-right">
         <!-- <div class="help-icon">?</div> -->
-        <a href="../templates/help.html"><img class="help-icon" src="../img/help.png" alt="Go to help" onclick="openHelp()" /></a>
-        <div class="user-initials">SM</div>
+        <a href="../templates/help.html"><img class="help-icon d-none" src="../img/help.png" alt="Go to help"
+            onclick="openHelp()" /></a>
+        <div class="user-initials d-none">G</div>
+        <div class="user-dropdown" id="userDropdown">
+          <ul>
+            <li onclick="">Privacy Policy</li>
+            <li onclick="">Legal Notice</li>
+            <li onclick="logout()">Log out</li>
+            <!-- Weitere Optionen möglich -->
+          </ul>
+        </div>
       </div>
     </div>
   </header>

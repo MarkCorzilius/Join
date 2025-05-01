@@ -22,7 +22,8 @@
 
   <script src="../script.js" defer></script>
   <script src="https://www.w3schools.com/lib/w3.js"></script>
-  <script src="../js/sidebar.js"></script>
+  <script src="../js/sidebar.js" defer></script>
+
 </head>
 
 <body onload="w3.includeHTML()">
@@ -155,6 +156,11 @@
 
     </div>
   </main>
+  <script>
+    w3.includeHTML(() => {
+      if (typeof setupSidebar === "function") setupSidebar();
+    });
+  </script>
 </body>
 
 </html>
