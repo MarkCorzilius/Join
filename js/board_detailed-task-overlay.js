@@ -30,12 +30,19 @@ let dragStartX = 0;
 let dragStartY = 0;
 let currentX = 0;
 let currentY = 0;
-rotation = 0;
+let rotation = 0;
+
 
 function startDragging(id, ev) {
+    const task = document.getElementById(`taskBody${id}`);
     currentId = id;
     dragStartX = ev.clientX;
     dragStartY = ev.clientY;
+
+    const img = new Image();
+    img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMXB4IiBoZWlnaHQ9IjFweCI+PC9zdmc+'; // 1x1 transparent SVG
+    ev.dataTransfer.setDragImage(img, 0, 0);
+
 }
 
 function dragMove(id, ev) {
@@ -61,6 +68,7 @@ function decideRotation() {
 
 function stopDragging(id) {
     const task = document.getElementById(`taskBody${id}`);
+
     rotation = 0;
     dragStartX = 0;
     dragStartY = 0;
@@ -70,10 +78,9 @@ function stopDragging(id) {
 
 function moveElementTo(ev, containerId) {
     ev.preventDefault();
+    droppedInZone = true;
     stopDragging(containerId);
-
-    console.log(currentId);
-    moveTaskFireBase(containerId, currentId)
+    moveTaskFireBase(containerId, currentId);
 }
 
 async function moveTaskFireBase(containerId, currentId) {
@@ -106,4 +113,9 @@ function checkNewColumn(container) {
             return 'toDo/';
 
     }
+}
+
+function endDragging(id, ev) {
+    const task = document.getElementById(`taskBody${id}`);
+    task.style.position = 'static';
 }

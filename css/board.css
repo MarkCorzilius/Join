@@ -170,7 +170,7 @@ body {
 }
 
 .task-body {
-  width: 100%;
+  width: 244px;
   background-color: white;
   border-radius: 24px;
   padding: 16px;
@@ -302,7 +302,12 @@ body {
   transform: rotate(30deg);
 }
 
-.task-dragging {
-  opacity: 0.8;
-  transition: transform 0.2s ease;
+.dragging {
+  position: absolute;
+}
+
+
+
+.mobile-add-task-btn {
+  display: none;
 }
