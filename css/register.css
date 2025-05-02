@@ -101,3 +101,37 @@
 .signup-btn:hover {
   background-color: #091931;
 }
+
+.privacy-accept {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px 0px 16px;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.privacy-policy {
+  color: rgb(41, 171, 226);
+  font-size: 14px;
+}
+
+.privacy-policy:hover {
+  color: rgb(41, 171, 226);
+  font-size: 15px;
+  transition: font-size 0.3 ease ;
+  text-decoration: underline;
+  text-decoration-color: rgb(41, 171, 226);
+}
+
+.privacy-line {
+  display: flex;
+  align-items: center;
+  gap: 4px
+}
+
+#privacyDiscard {
+  color: rgba(255, 0, 0, 0.732);
+  margin-bottom: 16px;
+  display: none;
+}

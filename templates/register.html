@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <title>Join - Sign in</title>
 
+    <script src="../js/database.js"></script>
+    <script src="../js/register.js"></script>
+
+    <link rel="icon" type="image/x-icon" href="../img/join-logo.svg" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../css/register.css" />
 
 </head>
 
@@ -17,23 +23,33 @@
             <form>
                 <!-- E-Mail-Feld als Benutzername -->
                 <div class="input-field">
+                    <label for="registerName">Name</label>
+                    <input type="name" id="registerName" placeholder="Name" autocomplete="username" required>
+                </div>
+                <div class="input-field">
                     <label for="registerEmail">Email</label>
                     <input type="email" id="registerEmail" placeholder="Email" autocomplete="username" required>
                 </div>
 
                 <!-- Passwortfeld -->
                 <div class="input-field">
-                    <label for="password1">Password</label>
+                    <label for="registerPassword1">Password</label>
                     <input type="password" id="registerPassword1" placeholder="Password" autocomplete="new-password" required>
                 </div>
 
                 <!-- Passwort bestätigen -->
                 <div class="input-field">
-                    <label for="password2">Password</label>
-                    <input type="password" id="registerPassword2" placeholder="Password" autocomplete="new-password" required>
+                    <label for="registerPassword2">Password</label>
+                    <input type="password" id="registerPassword2" placeholder="Confirm Password" autocomplete="new-password" required>
                 </div>
-
-                <button type="submit" class="signup-btn">Sign up</button>
+                <div class="privacy-accept">
+                    <img id="acceptPrivacy" src="../img/checkbox_unchecked_unhovered.png" alt="">
+                    <div class="privacy-line">
+                    <span>I accept the</span> <a class="privacy-policy" href="../templates/privacy_policy.html"> Privacy policy</a>
+                    </div>
+                </div>
+                <div id="privacyDiscard">*Privacy policy must be accepted!</div>
+                <button onclick="signUp()" type="submit" class="signup-btn">Sign up</button>
             </form>
 
         </div>

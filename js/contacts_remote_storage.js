@@ -143,8 +143,8 @@ async function doesContactExists({emailValue}) {
 
         for (const key in data) {
             if (sanitizedEmail === key) {
-                    const existingContact = data[key].icon;
-                    if (existingContact.initial === initial && existingContact.bg === bg) return;
+                    const existingIcon = data[key].icon;
+                    if (existingIcon && existingIcon.initial === initial && existingIcon.bg === bg) return;
                     await putData('contacts/' + sanitizedEmail + '/icon', {initial, bg});
                 } else {
                     continue;
