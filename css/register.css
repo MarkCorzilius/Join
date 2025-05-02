@@ -164,3 +164,10 @@
 .signup-btn-wrapper {
   width: 100%;
 }
+
+@media (max-width: 535px) {
+  .signup-box {
+    width: 240px;
+    padding: 20px 30px;
+  }
+}
