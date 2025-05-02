@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <title>Join - Sign in</title>
 
-    <script src="../js/database.js"></script>
+    <script src="../js/contacts.js"></script>
+    <script src="../js/contacts_remote_storage.js"></script>
+    <script src="../js/database.js" defer></script>
     <script src="../js/register.js"></script>
 
     <link rel="icon" type="image/x-icon" href="../img/join-logo.svg" />
@@ -20,7 +22,7 @@
     <main class="signup-main">
         <div class="signup-box">
             <h2>Sign up</h2>
-            <form>
+            <form onsubmit="signUp(event)">
                 <!-- E-Mail-Feld als Benutzername -->
                 <div class="input-field">
                     <label for="registerName">Name</label>
@@ -43,13 +45,13 @@
                     <input type="password" id="registerPassword2" placeholder="Confirm Password" autocomplete="new-password" required>
                 </div>
                 <div class="privacy-accept">
-                    <img id="acceptPrivacy" src="../img/checkbox_unchecked_unhovered.png" alt="">
+                    <img onmouseover="togglePrivacyBtn(event)" onmouseout="togglePrivacyBtn(event)" onclick="togglePrivacyBtn(event)" id="acceptPrivacy" src="../img/checkbox_unchecked_unhovered.png" alt="">
                     <div class="privacy-line">
                     <span>I accept the</span> <a class="privacy-policy" href="../templates/privacy_policy.html"> Privacy policy</a>
                     </div>
                 </div>
                 <div id="privacyDiscard">*Privacy policy must be accepted!</div>
-                <button onclick="signUp()" type="submit" class="signup-btn">Sign up</button>
+                <button type="submit" class="signup-btn">Sign up</button>
             </form>
 
         </div>
