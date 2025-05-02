@@ -110,3 +110,21 @@ function signIn() {
     document.getElementById('registerPassword1').value = "";
     document.getElementById('registerPassword2').value = "";
   }
+
+  function toggleSignupArrow(ev) {
+    const arrow = document.getElementById('signupArrow');
+
+    switch (ev.type) {
+      case 'mouseover':
+        arrow.src = '../img/signup_arrow_hover.png';
+        break;
+      case 'mouseout':
+        arrow.src = '../img/signup_arrow.png';
+        break;
+      case 'click':
+        window.location.href = '../index.html';
+        break;
+      default:
+        break;
+    }
+  }

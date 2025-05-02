@@ -37,11 +37,12 @@
 /* Sign-up-Karte */
 .signup-box {
   background-color: #fff;
-  padding: 30px 40px;
+  padding: 30px 60px;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   width: 350px;
   text-align: center;
+  position: relative;
 }
 
 
@@ -49,7 +50,7 @@
   margin-top: 0;
   margin-bottom: 20px;
   color: #2a3647;
-  font-size: 22px;
+  font-size: clamp(2rem, 6vw, 3rem);
 }
 
 
@@ -95,6 +96,7 @@
   font-size: 14px;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  width: clamp(5rem, 20vw, 10rem);
 }
 
 
@@ -134,4 +136,31 @@
   color: rgba(255, 0, 0, 0.732);
   margin-bottom: 16px;
   display: none;
+}
+
+.blue-horizontal-line {
+  width: 40%;
+  height: 2px;
+  background-color: rgb(41, 171, 226);
+}
+
+.signup-arrow {
+  position: absolute;
+  left: 0px;
+  top: 20px;
+  cursor: pointer;
+  height: 28px;
+  width: auto;
+}
+
+.signup-title-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.signup-btn-wrapper {
+  width: 100%;
 }

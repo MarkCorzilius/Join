@@ -21,7 +21,11 @@
     <!-- Hauptbereich mit Sign-up-Box -->
     <main class="signup-main">
         <div class="signup-box">
-            <h2>Sign up</h2>
+            <div class="signup-title-block">
+                <img onclick="toggleSignupArrow(event)" onmouseover="toggleSignupArrow(event)" onmouseout="toggleSignupArrow(event)" class="signup-arrow" id="signupArrow" src="../img/signup_arrow.png" alt="">
+                <h2>Sign up</h2>
+                <div class="blue-horizontal-line"></div>
+            </div>
             <form onsubmit="signUp(event)">
                 <!-- E-Mail-Feld als Benutzername -->
                 <div class="input-field">
@@ -51,7 +55,7 @@
                     </div>
                 </div>
                 <div id="privacyDiscard">*Privacy policy must be accepted!</div>
-                <button type="submit" class="signup-btn">Sign up</button>
+                <div class="signup-btn-wrapper"><button type="submit" class="signup-btn">Sign up</button></div>
             </form>
 
         </div>
