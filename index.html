@@ -14,12 +14,20 @@
 
   <link rel="stylesheet" href="./style.css" />
   <link rel="stylesheet" href="./css/register.css" />
+  <link rel="stylesheet" href="./css/login_responsive.css" />
   <link rel="stylesheet" href="./css/login.css" />
 
   <script src="./js/login.js"></script>
+  <script src="./js/database.js"></script>
 </head>
 
 <body class="log-in">
+
+  <div id="greetingOverlay" class="hidden">
+    <h2 id="logedInGreeting"></h2>
+    <h1 id="logedInUser"></h1>
+</div>
+
   <header class="log-in-header">
     <div class="splash-logo-container">
       <img class="logo-image" id="mainLogo" src="../img/join-logo.svg" alt="Join Logo" />
@@ -28,7 +36,7 @@
     <div class="header-content">
       <div class="signup-container">
         <span>Not a Join user?</span>
-        <a href="./templates/register.html" onclick="signIn()">Sign up</a>
+        <a href="./templates/register.html">Sign up</a>
       </div>
     </div>
   </header>
@@ -46,18 +54,10 @@
           <label for="loginPassword">Password</label>
           <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password" required />
         </div>
-        <!-- <div class="options">
-          <div class="remember-me">
-            <input type="checkbox" id="rememberMe" />
-            <label for="rememberMe">Remember me</label>
-          </div>
-          <div class="forgot-password">
-            <a href="#">Forgot my password?</a>
-          </div>
-        </div> -->
+        <p class="wrong-data-alert" id="wrongDataAlert">Check your email and password</p>
         <div class="buttons">
           <!-- <a href="../templates/summary.html" class="log-in-btn">Log In</a> -->
-          <button type="submit" class="log-in-btn">Log In</button>
+          <button onclick="logIn(event)" type="submit" class="log-in-btn">Log In</button>
           <button type="button" class="guest-btn" onclick="guestLogin()">Guest Log In</button>
         </div>
       </form>

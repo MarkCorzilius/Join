@@ -137,7 +137,6 @@ function iterateForNextUrgentTaskDate(board) {
     for (const [taskKey, task] of Object.entries(tasks)) {
       if (task.priority === 'urgent') {
         const taskDate = new Date(task.date);
-        console.log(taskDate);
         if (task.date < today) continue;
         if (!nearestDate || taskDate < nearestDate) {
           nearestDate = taskDate;
