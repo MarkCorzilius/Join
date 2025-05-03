@@ -27,7 +27,12 @@
     <script src="../js/header.js" defer></script>
   </head>
 
-  <body onload="w3.includeHTML()">
+  <body onload="summaryOnLoad()">
+
+    <div class="spinner-overlay">
+      <div class="spinner"></div>
+      </div>  
+
     <header w3-include-html="../templates/header.html" id="headerContainer"></header>
     <main class="main">
       <div w3-include-html="../templates/sidebar.html" id="sidebarContainer"></div>
@@ -46,7 +51,7 @@
                   <img class="card-icon" src="../img/pencil.png" alt="in work" />
                   <img class="pencil-light" src="../img/pencil_light.png" alt="in work" />
                   <div class="card-info">
-                    <p class="card-number">1</p>
+                    <p id="toDoAmount" class="card-number"></p>
                     <p class="card-text">To Do</p>
                   </div>
                 </a>
@@ -54,7 +59,7 @@
                   <img class="card-icon" src="../img/done.png" alt="done" />
                   <img class="card-icon-light" src="../img/card_icon_light.png" alt="done" />
                   <div class="card-info">
-                    <p class="card-number">1</p>
+                    <p id="doneAmount" class="card-number"></p>
                     <p class="card-text">Done</p>
                   </div>
                 </a>
@@ -63,33 +68,33 @@
                 <div class="task-importancy">
                   <img class="card-icon-small" src="../img/importancy.png" alt="importancy" />
                   <div class="card-info">
-                    <p class="card-number">1</p>
+                    <p id="urgentAmount" class="card-number"></p>
                     <p class="card-text">Urgent</p>
                   </div>
                 </div>
                 <div class="sep-line-third-box"></div>
                 <div class="deadline-box">
-                  <p class="todays-data">October 16, 2025</p>
-                  <p class="card-text">Upcoming Deadline</p>
+                  <p id="taskDeadline" class="todays-data"></p>
+                  <p id="deadlineTxt" class="card-text">Upcoming Deadline</p>
                 </div>
               </a>
               <div class="info-box-third-line">
                 <a class="all-tasks-box" href="../templates/board.html">
-                  <p class="all-tasks-amount">5</p>
+                  <p id="tasksInBoard" class="all-tasks-amount"></p>
                   <div class="all-tasks-types">
                     <p>Tasks</p>
                     <p>in Board</p>
                   </div>
                 </a>
                 <a class="all-tasks-box" href="../templates/board.html">
-                  <p class="all-tasks-amount">2</p>
+                  <p id="inProgressAmount" class="all-tasks-amount"></p>
                   <div class="all-tasks-types">
                     <p>Tasks</p>
                     <p>in Progress</p>
                   </div>
                 </a>
                 <a class="all-tasks-box" href="../templates/board.html">
-                  <p class="all-tasks-amount">2</p>
+                  <p id="awaitAmount" class="all-tasks-amount"></p>
                   <div class="all-tasks-types">
                     <p>Awaiting</p>
                     <p>Feedback</p>
@@ -98,9 +103,9 @@
               </div>
             </div>
             <div>
-              <span class="greeting-user">
+              <span id="greetingUser" class="greeting-user">
                 Good morning, <br />
-                <div id="theUser">Mark Corzilius</div>
+                <div id="theUser">Guest</div>
               </span>
             </div>
           </div>
