@@ -133,9 +133,6 @@ function saveSubtasks() {
                   </div>`;
   }
 
-  const currentUser = JSON.parse(localStorage.getItem('user'));
-  let userEmail = null;
-
   function showUser(name) {
     const email = findUserEmail();
     if (currentUser.name === 'Guest') {
@@ -148,14 +145,6 @@ function saveSubtasks() {
     }
   }
 
-  async function findUserEmail() {
-    const contacts = await getData('contacts/');
-    for (const contact of Object.values(contacts)) {
-      if (contact.email === currentUser.email) {
-        userEmail = contact.email;
-      }
-    }
-  }
 
   function sanitizeEmail(email) {
     return email.replace(/[@.]/g, "_");

@@ -87,13 +87,13 @@ async function renderContacts() {
     contactsArray = [];
     await saveBasicContacts();
     await saveContactsToArray();
-    contactsArray.sort((a, b) => a.name.localeCompare(b.name));
+    contactsArray.sort((a, b) => a.displayName.localeCompare(b.displayName)); // Sort by displayName
     const container = document.querySelector(".contacts-list");
     if (!container) return;
   
     const groups = {};
     contactsArray.forEach((c) => {
-      const letter = c.name[0].toUpperCase();
+      const letter = c.displayName[0].toUpperCase(); // Use displayName for grouping
       (groups[letter] = groups[letter] || []).push(c);
     });
   
@@ -116,7 +116,9 @@ async function renderContacts() {
 }
 
 function getInitials(name) {
-  const parts = name.split(" ").filter(Boolean);
+  const cleanName = name.replace(/ \(You\)$/, '');
+
+  const parts = cleanName.split(" ").filter(Boolean);
   if (parts.length === 0) return "";
   if (parts.length === 1) return parts[0].charAt(0).toUpperCase();
   return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase();

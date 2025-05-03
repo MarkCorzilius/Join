@@ -68,9 +68,17 @@ async function doesContactExists({emailValue}) {
     async function saveContactsToArray() {
         const response = await fetch(BASE_URL + 'contacts/' + '.json');
         const data = await response.json();
-
+    
         for (const contact of Object.values(data)) {
-            contactsArray.push(contact);
+            const contactCopy = { ...contact };
+    
+            if (contact.name === currentUser.name && contact.email === userEmail) {
+                contactCopy.displayName = contact.name + ' (You)';
+            } else {
+                contactCopy.displayName = contact.name; // Keep the original name for others
+            }
+    
+            contactsArray.push(contactCopy);
         }
     }
 
@@ -151,5 +159,3 @@ async function doesContactExists({emailValue}) {
                 }
         }    
       }
-    
-      //8. render contacts inside add-task-page on add-task-page load
