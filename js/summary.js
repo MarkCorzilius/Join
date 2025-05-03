@@ -13,12 +13,18 @@ async function summaryOnLoad() {
     findAwaitingTasksAmount();
     findNextUrgentDeadline();
     findOverallTasksAmount();
+    showLogedInName();
     
   } catch (error) {
     console.log('failed loading summary');
   } finally {
     document.querySelector('.spinner-overlay').style.display = 'none';
   }
+}
+
+function showLogedInName() {
+  const user = JSON.parse(localStorage.getItem('user'));
+  document.getElementById('theUser').innerText = user;
 }
 
 

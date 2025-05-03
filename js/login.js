@@ -87,10 +87,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 function guestLogin() {
-    localStorage.setItem("loggedIn", "true");
-    localStorage.setItem("userName", "Guest");
+    localStorage.setItem('user', 'Guest');
 
     console.log("Guest erfolgreich eingeloggt");
+    
 
     setTimeout(() => {
         window.location.href = "../templates/summary.html";
@@ -124,6 +124,7 @@ async function logIn(ev) {
     document.getElementById('logedInUser').innerText = contact.name;
     showLoginTransition();
     updateGreeting();
+    localStorage.setItem('user', JSON.stringify(contact.name));
 }
 
 async function searchingForAccount({inputEmail, inputPassword}) {
