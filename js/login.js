@@ -87,7 +87,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 function guestLogin() {
-    localStorage.setItem('user', 'Guest');
+    const guest = 'Guest' ;
+    localStorage.setItem('user', {name: guest, email: zero});
 
     console.log("Guest erfolgreich eingeloggt");
     
@@ -124,7 +125,7 @@ async function logIn(ev) {
     document.getElementById('logedInUser').innerText = contact.name;
     showLoginTransition();
     updateGreeting();
-    localStorage.setItem('user', JSON.stringify(contact.name));
+    localStorage.setItem('user', JSON.stringify({name: contact.name, email: contact.email}));
 }
 
 async function searchingForAccount({inputEmail, inputPassword}) {

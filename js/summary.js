@@ -24,7 +24,7 @@ async function summaryOnLoad() {
 
 function showLogedInName() {
   const user = JSON.parse(localStorage.getItem('user'));
-  document.getElementById('theUser').innerText = user;
+  document.getElementById('theUser').innerText = user.name;
 }
 
 

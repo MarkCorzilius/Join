@@ -113,7 +113,6 @@ function saveSubtasks() {
     for (const contact of Object.values(contacts)) {
       const sanitizedEmail = sanitizeEmail(contact.email);
       const currentIcon = await getData('contacts/' + sanitizedEmail + '/icon');
-      
       contactsContainer.innerHTML += contactsTemplate(contact.name, currentIcon.bg, currentIcon.initial);
     }
   }
@@ -122,7 +121,7 @@ function saveSubtasks() {
     return `<div onclick="styleChosenContact(this, '${initial}', '${bg}', '${name}')" class="option">
                     <div>
                     <div class="initial" style="background-image:url('${bg}')" alt="profile icon">${initial}</div>
-                    <span class="contact-name">${name}</span>
+                    <span class="contact-name">${showUser(name)}</span>
                     </div>
                     <svg class="select-box unchecked" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <rect x="4" y="4" width="16" height="16" rx="3" stroke="#2A3647" stroke-width="2"/>
@@ -132,6 +131,30 @@ function saveSubtasks() {
                         <path d="M8 12L12 16L20 4.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                   </div>`;
+  }
+
+  const currentUser = JSON.parse(localStorage.getItem('user'));
+  let userEmail = null;
+
+  function showUser(name) {
+    const email = findUserEmail();
+    if (currentUser.name === 'Guest') {
+      return name;
+    }
+    if (currentUser.name === name && currentUser.email === userEmail) {
+      return name + ' (You)';
+    } else {
+      return name;
+    }
+  }
+
+  async function findUserEmail() {
+    const contacts = await getData('contacts/');
+    for (const contact of Object.values(contacts)) {
+      if (contact.email === currentUser.email) {
+        userEmail = contact.email;
+      }
+    }
   }
 
   function sanitizeEmail(email) {
