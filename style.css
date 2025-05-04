@@ -35,8 +35,8 @@ li {
 }
 
 .main {
-  display: grid !important;
-  grid-template-columns: 200px 1fr !important;
+  display: grid;
+  grid-template-columns: 200px 1fr;
 }
 
 .content {
@@ -106,6 +106,11 @@ input[type="date"]:valid {
 
 #sidebarContainer {
   z-index: 700;
+}
+
+#headerContainer {
+  position: relative;
+  z-index: 888;
 }
 
 @media (max-width: 1000px) {
