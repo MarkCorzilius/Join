@@ -13,12 +13,18 @@ async function summaryOnLoad() {
     findAwaitingTasksAmount();
     findNextUrgentDeadline();
     findOverallTasksAmount();
+    showLogedInName();
     
   } catch (error) {
     console.log('failed loading summary');
   } finally {
     document.querySelector('.spinner-overlay').style.display = 'none';
   }
+}
+
+function showLogedInName() {
+  const user = JSON.parse(localStorage.getItem('user'));
+  document.getElementById('theUser').innerText = user.name;
 }
 
 
@@ -137,7 +143,6 @@ function iterateForNextUrgentTaskDate(board) {
     for (const [taskKey, task] of Object.entries(tasks)) {
       if (task.priority === 'urgent') {
         const taskDate = new Date(task.date);
-        console.log(taskDate);
         if (task.date < today) continue;
         if (!nearestDate || taskDate < nearestDate) {
           nearestDate = taskDate;

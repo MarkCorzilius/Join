@@ -6,6 +6,7 @@ function taskPageOnLoad() {
   w3.includeHTML();
   resetPriorityBtn();
   fetchContacts();
+  findUserEmail();
 }
 
 function clearBtnToBlue() {

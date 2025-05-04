@@ -62,7 +62,6 @@ function signIn() {
      const initial = getInitials(name);
      const bg = getBackgroundForName(name);
      const icon = {initial, bg};
-     console.log(icon);
 
      await putData(`contacts/${sanitizeEmail(email)}`, {name, email, password, icon});
      emptyRegisterData();

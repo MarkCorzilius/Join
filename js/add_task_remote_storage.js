@@ -109,20 +109,47 @@ function saveSubtasks() {
     contactsContainer.innerHTML = '';
     let response = await fetch(BASE_URL + 'contacts/' + '.json');
     let contacts = await response.json();
+    const { loggedInUser, defaultUsers } = sortContacts(contacts);
 
-    for (const contact of Object.values(contacts)) {
-      const sanitizedEmail = sanitizeEmail(contact.email);
-      const currentIcon = await getData('contacts/' + sanitizedEmail + '/icon');
-      
-      contactsContainer.innerHTML += contactsTemplate(contact.name, currentIcon.bg, currentIcon.initial);
+    await renderLoggedInUser(loggedInUser, contactsContainer);
+    for (const user of defaultUsers) {
+      await renderDefaultUsers(user, contactsContainer);
     }
+  }
+
+  async function renderLoggedInUser(user, contactsContainer) {
+    const sanitizedEmail = sanitizeEmail(user.email);
+    const currentIcon = await getData('contacts/' + sanitizedEmail + '/icon');
+    contactsContainer.innerHTML += contactsTemplate(user.name, currentIcon.bg, currentIcon.initial);
+  }
+
+  async function renderDefaultUsers(user, contactsContainer) {
+    const sanitizedEmail = sanitizeEmail(user.email);
+    const currentIcon = await getData('contacts/' + sanitizedEmail + '/icon');
+    contactsContainer.innerHTML += contactsTemplate(user.name, currentIcon.bg, currentIcon.initial);
+
+  }
+
+  function sortContacts(contacts) {
+    let loggedInUser = null;
+    let defaultUsers = [];
+    
+    for (const contact of Object.values(contacts)) {
+      if (contact.email === currentUser.email) {
+        loggedInUser = contact;
+      } else {
+        defaultUsers.push(contact);
+      }
+    }
+    console.log({loggedInUser, defaultUsers});
+    return {loggedInUser, defaultUsers};
   }
 
   function contactsTemplate(name, bg, initial) {
     return `<div onclick="styleChosenContact(this, '${initial}', '${bg}', '${name}')" class="option">
                     <div>
                     <div class="initial" style="background-image:url('${bg}')" alt="profile icon">${initial}</div>
-                    <span class="contact-name">${name}</span>
+                    <span class="contact-name">${showUser(name)}</span>
                     </div>
                     <svg class="select-box unchecked" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <rect x="4" y="4" width="16" height="16" rx="3" stroke="#2A3647" stroke-width="2"/>
@@ -133,6 +160,19 @@ function saveSubtasks() {
                         </svg>
                   </div>`;
   }
+
+  function showUser(name) {
+    const email = findUserEmail();
+    if (currentUser.name === 'Guest') {
+      return name;
+    }
+    if (currentUser.name === name && currentUser.email === userEmail) {
+      return name + ' (You)';
+    } else {
+      return name;
+    }
+  }
+
 
   function sanitizeEmail(email) {
     return email.replace(/[@.]/g, "_");

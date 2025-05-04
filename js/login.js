@@ -5,55 +5,55 @@
 // ];
 
 
-let users = [
-    {
-        firstName: "Igor",
-        lastName: "Test",
-        email: "igor@test.de",
-        password: "1234"
-    },
-    {
-        firstName: "Admin",
-        lastName: "Join",
-        email: "admin@join.de",
-        password: "join2024"
-    }
-];
-
-
-
-function addUser() {
-    let loginEmail = document.getElementById("loginEmail");
-    let loginPassword = document.getElementById("loginPassword");
-    let email = loginEmail.value;
-    let password = loginPassword.value;
-
-    if (!email || !password) {
-        alert("Bitte Email und Passwort eingeben!");
-        return;
-    }
-
-    // Suche User anhand E-Mail + Passwort
-    let existingUser = users.find(user => user.email === email && user.password === password);
-
-    if (existingUser) {
-        localStorage.setItem("loggedIn", "true");
-
-        // 🔥 Jetzt vollen Namen speichern
-        const fullName = existingUser.firstName + " " + existingUser.lastName;
-        // localStorage.setItem("userName", fullName);
-        localStorage.setItem("userName", existingUser.firstName + " " + existingUser.lastName);
-
-        console.log("erfolgreich eingeloggt als:", fullName);
-
-        setTimeout(() => {
-            window.location.href = "../templates/summary.html";
-        }, 300);
-        return;
-    }
-
-    alert("Benutzer nicht gefunden oder falsches Passwort!");
-}
+//let users = [
+//    {
+//        firstName: "Igor",
+//        lastName: "Test",
+//        email: "igor@test.de",
+//        password: "1234"
+//    },
+//    {
+//        firstName: "Admin",
+//        lastName: "Join",
+//        email: "admin@join.de",
+//        password: "join2024"
+//    }
+//];
+//
+//
+//
+//function addUser() {
+//    let loginEmail = document.getElementById("loginEmail");
+//    let loginPassword = document.getElementById("loginPassword");
+//    let email = loginEmail.value;
+//    let password = loginPassword.value;
+//
+//    if (!email || !password) {
+//        alert("Bitte Email und Passwort eingeben!");
+//        return;
+//    }
+//
+//    // Suche User anhand E-Mail + Passwort
+//    let existingUser = users.find(user => user.email === email && user.password === password);
+//
+//    if (existingUser) {
+//        localStorage.setItem("loggedIn", "true");
+//
+//        // 🔥 Jetzt vollen Namen speichern
+//        const fullName = existingUser.firstName + " " + existingUser.lastName;
+//        // localStorage.setItem("userName", fullName);
+//        localStorage.setItem("userName", existingUser.firstName + " " + existingUser.lastName);
+//
+//        console.log("erfolgreich eingeloggt als:", fullName);
+//
+//        setTimeout(() => {
+//            window.location.href = "../templates/summary.html";
+//        }, 300);
+//        return;
+//    }
+//
+//    alert("Benutzer nicht gefunden oder falsches Passwort!");
+//}
 
 
 
@@ -65,7 +65,6 @@ function addUser() {
 //         window.location.href = './templates/summary.html';
 //     }
 // }
-
 
 window.addEventListener('DOMContentLoaded', () => {
     let header = document.querySelector('.log-in-header');
@@ -88,14 +87,16 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 function guestLogin() {
-    localStorage.setItem("loggedIn", "true");
-    localStorage.setItem("userName", "Guest");
+    const guest = 'Guest' ;
+    localStorage.setItem('user', {name: guest, email: zero});
 
     console.log("Guest erfolgreich eingeloggt");
+    
 
     setTimeout(() => {
         window.location.href = "../templates/summary.html";
     }, 300);
+
 
 
     
@@ -105,9 +106,81 @@ function guestLogin() {
 
 
 
-function signIn() {
-    console.log("Sign In clicked");
+
+
+function storeLogInData() {
+    const inputEmail = document.getElementById('loginEmail').value.trim();
+    const inputPassword = document.getElementById('loginPassword').value.trim();
+    return {inputEmail, inputPassword};
 }
 
+async function logIn(ev) {
+    ev.preventDefault();
+    const {inputEmail, inputPassword} = storeLogInData();
+    if (!inputEmail || !inputPassword) {
+        showFailureAlert();
+        return;
+    }
+    const contact = await searchingForAccount({inputEmail, inputPassword});
+    document.getElementById('logedInUser').innerText = contact.name;
+    showLoginTransition();
+    updateGreeting();
+    localStorage.setItem('user', JSON.stringify({name: contact.name, email: contact.email}));
+}
 
+async function searchingForAccount({inputEmail, inputPassword}) {
+    const contacts = await getData('contacts/');
+    for (const contact of Object.values(contacts)) {
+        if (contact.email === inputEmail || contact.password === inputPassword) {
+            console.log('Match found:', contact.name);
+            return contact;
+        }
+    }
 
+    alert('Wrong email or password!');
+    return;
+}
+
+function showFailureAlert() {
+    const container = document.getElementById('wrongDataAlert');
+    container.style.display = 'block';
+}
+
+function showLoginTransition() {
+    const overlay = document.getElementById('greetingOverlay');
+    overlay.classList.remove('hidden');
+    setTimeout(() => {
+        overlay.classList.add('fade-out');
+        setTimeout(() => {
+            window.location.href = './templates/summary.html';
+        }, 1000);
+    }, 1000);
+}
+
+async function getCurrentTime() {
+    const now = new Date();
+    const hours = String(now.getHours());
+    return hours;
+  }
+  
+  
+  async function updateGreeting() {
+    const hour = await getCurrentTime();
+    showCurrentGreeting(hour);
+  }
+
+  
+  function showCurrentGreeting(hour) {
+    const container = document.getElementById('logedInGreeting');
+    let greeting;
+    if (hour >= 5 && hour <= 11) {
+      greeting = "Good morning,";
+    } else if (hour >= 12 && hour <= 16) {
+      greeting = "Good afternoon,";
+    } else if (hour >= 17 && hour <= 20) {
+      greeting = "Good evening,";
+    } else {
+      greeting = "Hello,";
+    }
+    container.innerText = greeting;
+  }

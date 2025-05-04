@@ -1,7 +1,4 @@
 .log-in {
-    /* height: 100vh; */
-    /* margin: 0; */
-    /* font-family: "Inter", sans-serif; */
     background-color: rgb(246, 247, 248);
 }
 
@@ -14,7 +11,6 @@
     padding: 20px 80px;
     overflow: hidden;
     height: 80px;
-    /* background-color: black; */
 }
 
 .splash-logo-container {
@@ -43,9 +39,6 @@
     }
 }
 
-/* Animiertes Logo im Splash-Bereich:
-     - Start: Groß (scale 2) und in der Mitte (top:50%, left:50% mit translate(-50%,-50%))
-     - Ende: Oben links (top:20px, left:20px) und normale Größe (scale 1) */
 .logo-image {
     position: absolute;
     top: 50%;
@@ -91,30 +84,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* position: relative; */
-    /* z-index: 10; */
-    /* opacity: 0; */
-    /* animation: fadeIn 1s ease-out forwards;
-    animation-delay: 1.5s; */
-    /* background-color: blue; */
 }
 
 
-/* Fade-In-Animation für Header-Inhalt */
-/* @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-} */
-
-
 .signup-container a {
-    /* color: #2a3647; */
-    /* text-decoration: none; */
     font-weight: bold;
     margin-left: 12px;
 
@@ -125,26 +98,14 @@
     border-radius: 6px;
     padding: 8px 16px;
     cursor: pointer;
-    /* height: 40px; */
-    /* font-size: 14px; */
     transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .signup-container a:hover {
-    /* text-decoration: underline; */
     background-color: rgb(41, 171, 226);
-    /*hier muss wegen a:hover im style.css extra auf wihte gesetzt werden */
     color: white;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
 }
-
-
-/* Neues: Seite-Hintergrund + Main-Content nach Logo */
-/* .page-fade-in {
-    opacity: 0;
-    animation: pageFadeIn 1s ease-in-out forwards;
-    animation-delay: 0.7s;
-} */
 
 .fade-header {
     opacity: 0;
@@ -163,17 +124,6 @@
     animation: pageFadeIn 1s ease-in-out forwards;
     animation-delay: 0.6s;
 }
-
-
-/* @keyframes pageFadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-} */
 
 @keyframes pageFadeIn {
     0% {
@@ -194,7 +144,6 @@
     justify-content: center;
     align-items: center;
     height: calc(100vh - 240px);
-    /* background-color: blue; */
 }
 
 .log-in-box {
@@ -204,11 +153,6 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     width: 400px;
-    /* max-width: 400px; */
-    /* width: 40%; */
-    /* max-height: 350px; */
-    /* height: 50%; */
-    /* background-color: black; */
 }
 
 .log-in-box h2 {
@@ -217,7 +161,6 @@
     padding-bottom: 12px;
     color: #2a3647;
     font-size: 48px;
-    /* border-bottom: 3px solid rgb(41, 171, 226); */
     position: relative;
 }
 
@@ -237,7 +180,6 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    /* background: aliceblue; */
 }
 
 .input-field {
@@ -261,37 +203,8 @@
     box-sizing: border-box;
 }
 
-/* .options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    font-size: 14px;
-}
-
-.options .remember-me {
-    display: flex;
-    align-items: center;
-}
-
-.options .remember-me input {
-    margin-right: 5px;
-}
-
-.options .forgot-password a {
-    color: #2a3647;
-    text-decoration: none;
-}
-
-.options .forgot-password a:hover {
-    text-decoration: underline;
-} */
-
 .buttons {
-    /* display: flex; */
-    /* justify-content: space-between; */
-    /* gap: 10px; */
-    margin-top: 40px;
+    margin-top: 32px;
 }
 
 .log-in-btn {
@@ -302,14 +215,11 @@
     padding: 8px 16px;
     cursor: pointer;
     font-size: 16px;
-    /* font-weight: bold; */
     transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    margin-right: 12px;
 }
 
 .log-in-btn:hover {
     background-color: rgb(41, 171, 226);
-    /*hier muss wegen a:hover im style.css extra auf wihte gesetzt werden */
     color: white;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
 }
@@ -324,7 +234,6 @@
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
-    margin-left: 12px;
 }
 
 .guest-btn:after {
@@ -357,12 +266,10 @@
     justify-content: center;
     align-items: center;
     height: 120px;
-    /* background-color: black; */
 }
 
 
 .log-in-footer a {
-    /* padding: 0 12px; */
     color: rgb(168, 168, 168);
     transition: color 0.2s ease-in-out, font-weight 0.2s ease-in-out;
     width: 130px;
@@ -376,122 +283,45 @@
     font-weight: bold;
 }
 
-
-
-/* @media (max-width: 1000px) {
-    .log-in-box {
-    }
-} */
-
-
-@media (max-width: 800px) {
-    .log-in-main {
-        height: calc(100vh - 60px);
-    }
-
-    .log-in-header {
-        position: fixed;
-        bottom: 60px;
-        left: 0;
-        right: 0;
-        z-index: 1;
-        justify-content: center;
-        height: 60px;
-        padding: 0;
-    }
-
-    /* .log-in-btn {
-        font-size: 14px;
-    }
-
-    .guest-btn {
-        font-size: 14px;
-    } */
-
-    .signup-container a {
-        margin-left: 48px;
-        font-size: 14px;
-    }
-
-    .logo-image {
-        width: 60px;
-    }
-
-    .log-in-box {
-        padding: 20px 12px;
-        margin: 30px 20px 0;
-    }
-
-    .log-in-box h2 {
-        font-size: 24px;
-    }
-
-    .buttons {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 20px;
-    }
-
-    .log-in-btn {
-        margin: 0 0 20px;
-        padding: 8px 0;
-        font-size: 14px;
-        width: 150px;
-    }
-
-    .guest-btn {
-        margin-left: 0;
-        padding: 8px 0;
-        font-size: 14px;
-        width: 150px;
-    }
-
-    .log-in-footer {
-        height: 60px;
-    }
+#greetingOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 2rem;
+    z-index: 9999;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 1s ease, visibility 1s ease;
 }
 
-
-/* @media (max-width: 700px) {
-    .log-in-box {
-        width: 70%;
-    }
+#greetingOverlay.fade-out {
+    opacity: 0;
+    visibility: hidden;
 }
 
-
-@media (max-width: 600px) {
-    .log-in-box {
-        margin: 0 20px;
-        width: 80%;
-        padding: 30px 30px;
-    }
+#greetingOverlay.hidden {
+    display: none;
 }
 
+.wrong-data-alert {
+    display: none;
+    font-size: 12px;
+    color:rgb(255 129 144);
+}
 
-@media (max-width: 450px) {
-    .log-in-box {
-        padding: 30px 20px;
-        width: 100%;
-        margin: 0 20px;
-    }
+#logedInUser {
+    color: rgb(41, 171, 226);
+    font-size: 60px;
+}
 
-    .buttons {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 20px;
-    }
-
-    .log-in-btn {
-        margin: 0 0 20px;
-        padding: 8px 0;
-        width: 200px;
-    }
-
-    .guest-btn {
-        margin-left: 0;
-        width: 200px;
-        padding: 8px 0;
-    }
-} */
+#logedInGreeting {
+    font-size: 60px;
+    margin-bottom: 0;
+}
