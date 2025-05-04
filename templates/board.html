@@ -35,6 +35,7 @@
 
     <script src="../script.js" defer></script>
     <script src="../js/board.js" defer></script>
+    <script src="../js/board_drag-drop.js"></script>
     <script src="../js/board_detailed-task-overlay.js"></script>
     <script src="../js/board_templates.js"></script>
     <script src="https://www.w3schools.com/lib/w3.js"></script>
@@ -237,7 +238,7 @@
                 <p class="board-section-title">To do</p>
                 <img onclick="openTaskOverlay(0)" onmouseover="hoveredAddTaskIcon(0)" onmouseout="normalAddTaskIcon(0)" class="new-board-task" src="../img/add_task_in_board.png" alt="" />
               </div>
-              <div id="tasksContainer-0" ondragover="allowDrop(event)" ondrop="moveElementTo(event, this.id)">
+              <div class="tasks-container" id="tasksContainer-0" ondragover="allowDrop(event)" ondrop="moveElementTo(event, this)">
               </div>
             </div>
             <div class="board-section-column">
@@ -245,8 +246,7 @@
                 <p class="board-section-title">In progress</p>
                 <img onclick="openTaskOverlay(1)" onmouseover="hoveredAddTaskIcon(1)" onmouseout="normalAddTaskIcon(1)" class="new-board-task" src="../img/add_task_in_board.png" alt="" />
               </div>
-              <div id="tasksContainer-1" ondragover="allowDrop(event)" ondrop="moveElementTo(event, this.id)">
-                <div class="tasks-box"></div>
+              <div class="tasks-container" id="tasksContainer-1" ondragover="allowDrop(event)" ondrop="moveElementTo(event, this)">
               </div>
             </div>
             <div class="board-section-column">
@@ -254,15 +254,15 @@
                 <p class="board-section-title">Await feedback</p>
                 <img onclick="openTaskOverlay(2)" onmouseover="hoveredAddTaskIcon(2)" onmouseout="normalAddTaskIcon(2)" class="new-board-task" src="../img/add_task_in_board.png" alt="" />
               </div>
-              <div id="tasksContainer-2" ondragover="allowDrop(event)" ondrop="moveElementTo(event, this.id)"></div>
+              <div class="tasks-container" id="tasksContainer-2" ondragover="allowDrop(event)" ondrop="moveElementTo(event, this)"></div>
             </div>
             <div class="board-section-column">
               <div class="board-column-control">
                 <p class="board-section-title">Done</p>
               </div>
-              <div id="tasksContainer-3" ondragover="allowDrop(event)" ondrop="moveElementTo(event, this.id)"></div>
+              <div class="tasks-container" id="tasksContainer-3" ondragover="allowDrop(event)" ondrop="moveElementTo(event, this)"></div>
             </div>
-            <div class="tasks-container"></div>
+            
           </div>
         </div>
       </div>
