@@ -156,7 +156,8 @@
     align-items: center;
     justify-content: space-between;
     width: 1010px;
-    position: fixed;
+    position: sticky;
+    z-index: 777;
     bottom: 40px;
   }
   

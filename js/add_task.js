@@ -167,7 +167,9 @@ function openContactAssignmentInput() {
   optionsRef.style.display = 'flex';
   wrapperRef.style.marginBottom = '210px';
   container.style.display = 'none';
-  document.querySelector('.content').style.overflow = 'hidden';
+  if (window.innerWidth <= 1000) {
+    document.querySelector('.content').style.overflow = 'hidden';
+  }
 }
 
 function closeContactAssignment() {
@@ -198,7 +200,9 @@ function toggleCategoryOptions() {
     section.style.marginBottom = '100px';
     arrow.src = '../img/dropdown-arrow-up.png';
     document.getElementById('categoryChoiceInsert').innerText = 'Select task category';
-    document.querySelector('.content').style.overflow = 'hidden';
+    if (window.innerWidth <= 1000) {
+      document.querySelector('.content').style.overflow = 'hidden';
+    }
   } else {
     section.style.marginBottom = 'auto';
     arrow.src = '../img/dropdown-arrow-down.png';
@@ -249,7 +253,6 @@ function addSubtask() {
   scrollToCreatedSubtask()
   subtaskId += 1;
     input.focus();
-
 }
 
 function subtaskTemplate(subtaskId, valueRef) {
