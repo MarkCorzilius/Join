@@ -7,7 +7,7 @@
 }
 
 .detail-task-title {
-    font-size: 61px;
+    font-size: clamp(32px, 4vw, 61px);
     margin: 24px 0 32px;
 }
 
@@ -42,10 +42,10 @@
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    padding: 40px 40px 20px;
+    padding: 40px 40px 40px;
     background-color: white;
     border-radius: 30px;
-    width: 40vw;
+    width: clamp(300px, 40vw, 600px);
     height: 90vh;
     max-width: 600px;
     transform: translateX(100%);
@@ -65,7 +65,7 @@
     gap: 28px;
     margin-top: 40px;
     margin-bottom: 40px;
-    width: 70%;
+    width: 80%;
   }
 
   .date-section {
@@ -73,7 +73,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    font-size: 24px;
+    font-size: clamp(16px, 1.8vw, 24px);
   }
 
   .prio-section {
@@ -81,22 +81,24 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    font-size: 24px;
-  }
+    font-size: clamp(16px, 1.8vw, 24px);  }
 
   .task-overlay-description {
-    font-size: 24px;
+    font-size: clamp(16px, 2vw, 24px);
     color: rgba(42, 54, 71, 1);
   }
 
   .assigned-to {
-    margin-bottom: 24px;
-    font-size: 24px;
+    margin-bottom: 10px;
+    font-size: clamp(20px, 3vw, 26px);
     color: rgba(42, 54, 71, 1);
   }
 
   .contacts-assignment {
     margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .close-btn-wrapper {
@@ -116,8 +118,14 @@
   }
 
   .title-subtask {
-    font-size: 24px;
+    font-size: clamp(20px, 3vw, 26px);
     color: rgba(42, 54, 71, 1);
+  }
+
+  .task-overlay-subtasks {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
   }
 
   .task-overlay-control {
@@ -153,9 +161,21 @@
   }
 
   #contactsContainer {
-    margin-top: 24px;
-    overflow: auto;
-    max-height: 120px;
+    overflow-y: scroll;
+    max-height: 80px;
+  }
+
+  #contactsContainer::-webkit-scrollbar {
+    width: 5px;             /* Width of vertical scrollbar */
+  }
+  
+  #contactsContainer::-webkit-scrollbar-track {
+    background: #f1f1f1;     /* Light gray track */
+  }
+  
+  #contactsContainer::-webkit-scrollbar-thumb {
+    background: #888;        /* Darker thumb */
+    border-radius: 5px;
   }
 
 
@@ -167,6 +187,7 @@
     cursor: pointer;
     box-sizing: border-box;
     padding: 5px 10px 5px;
+    font-size: clamp(12px, 2vw, 16px);
 }
 
 .overlay-subtask-template:hover {
@@ -178,9 +199,22 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 14px;
-    overflow: auto;
-    max-height: 115px;
+    gap: 10px;
+    overflow-y: scroll;
+    height: 90px;
+}
+
+#subtasksList::-webkit-scrollbar {
+  width: 5px;             /* Width of vertical scrollbar */
+}
+
+#subtasksList::-webkit-scrollbar-track {
+  background: #f1f1f1;     /* Light gray track */
+}
+
+#subtasksList::-webkit-scrollbar-thumb {
+  background: #888;        /* Darker thumb */
+  border-radius: 5px;
 }
 
 #taskDetailedOverlay {
@@ -190,7 +224,7 @@
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    padding: 40px 40px 20px;
+    padding: 40px 40px 30px;
     background-color: white;
     border-radius: 30px;
     width: 40vw;

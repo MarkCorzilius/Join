@@ -6,7 +6,7 @@ async function boardOnLoad() {
         taskId = Number(localStorage.getItem('taskId')) || 0;
         w3.includeHTML(); 
         renderTaskDialog(); 
-        //await fetchTasks(); 
+
         await renderAllTasks();
     } catch (error) {
         console.log('error in boardOnLoad');
