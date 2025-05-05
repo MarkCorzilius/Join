@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="../css/add_task-responsive.css" />
 
     <script src="../js/database.js" defer></script>
-    <script src="../js/add_task_remote_storage.js"></script>
+    <script src="../js/add_task_remote_storage.js" defer></script>
     <script src="../script.js"></script>
     <script src="https://www.w3schools.com/lib/w3.js"></script>
     <script src="../js/sidebar.js"></script>
@@ -154,16 +154,16 @@
                   <div class="subtask-section">
                   <span class="field-label" for="description task-subtitle">Subtask</span>
                   <div class="subtask-input-wrapper">
-                  <input onfocus="showActionBtns()" onkeydown="checkShiftSubtask(event)" class="task-txt" id="subtaskInput" placeholder="Add new subtask" minlength="1" type="text">
+                  <input  onfocus="showActionBtns()" onkeydown="checkShiftSubtask(event)" class="task-txt" id="subtaskInput" placeholder="Add new subtask" minlength="1" type="text">
                   <div onclick="showActionBtns()" id="subtaskMainBtn" class="subtask-btn-wrapper subtask-main-btn">
                     <img src="../img/add.png" alt="write">
                   </div>
                   <div id="focusBtns" class="subtask-focus-btns">
-                    <div onclick="emptySubtaskInput()" class="subtask-btn-wrapper">
+                    <div onclick="emptySubtaskInput()" class="subtask-edit-btns subtask-btn-wrapper">
                       <img src="../img/subtask_del.png" alt="del">
                     </div>
                     <div class="subtask-btns-separator"></div>
-                    <div onclick="addSubtask()" class="subtask-btn-wrapper">
+                    <div onclick="addSubtask()" class="subtask-edit-btns subtask-btn-wrapper">
                       <img src="../img/subtask_add.png" alt="add">
                     </div>
                   </div>
