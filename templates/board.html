@@ -32,7 +32,6 @@
     <script src="../js/add_task_remote_storage.js"></script>
     <script src="../js/add_task.js"></script>
 
-
     <script src="../script.js" defer></script>
     <script src="../js/board.js" defer></script>
     <script src="../js/board_drag-drop.js"></script>
@@ -220,7 +219,7 @@
             </div>
             <div class="add-task-buttons-wrapper">
               <div class="search-container">
-                <input onblur="bluredSearchContainer()" onfocus="focusedSearchContainer()" type="text" class="search-tasks-input" id="searchTasksInput" placeholder="Search..." />
+                <input oninput="searchTasks()" onblur="bluredSearchContainer()" onfocus="focusedSearchContainer()" type="text" class="search-tasks-input" id="searchTasksInput" placeholder="Search..." />
                 <div class="search-loop">
                   <div class="vertical-bar"></div>
                   <img class="search-loop-img" src="../img/search.png" alt="Search Loop Image" class="loop-image" />

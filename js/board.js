@@ -12,9 +12,7 @@ async function boardOnLoad() {
         console.log('error in boardOnLoad');
     } finally {
         document.querySelector('.spinner-overlay').style.display = "none";
-
     }
-
 }
 
 async function renderAllTasks() {
@@ -33,14 +31,11 @@ async function renderAllTasks() {
 
 function focusedSearchContainer() {
     const container = document.querySelector('.search-container');
-
     container.style.border = '1px solid rgb(42 170 226)';
-
 }
 
 function bluredSearchContainer() {
     const container = document.querySelector('.search-container');
-
     container.style.border = '1px solid black';
 }
 
@@ -76,25 +71,6 @@ function renderTaskDialog() {
     overlay.innerHTML += tasksDialogTemplate();
 }
 
-
-
-//async function fetchTasks() {
-//
-//    const tasks = await getData('tasks/');
-//    if (!tasks || Object.keys(tasks).length === 0) return;
-//    const existingTasks = await getData('board/toDo/');
-//    const existingValues = existingTasks ? Object.values(existingTasks) : [];
-//
-//    for (const task of Object.values(tasks)) {
-//        const alreadyExists = existingValues.some(existing => JSON.stringify(existing) === JSON.stringify(task));
-//        if (!alreadyExists) {
-//            await postData('board/toDo/', task);
-//            taskId += 1;
-//            localStorage.setItem('taskId',taskId.toString());
-//        }
-//    }
-//}
-
 async function renderTasksInProgress() {
     const container = document.getElementById('tasksContainer-1');
     container.innerHTML = "";
@@ -104,7 +80,6 @@ async function renderTasksInProgress() {
         container.innerHTML = emptyColumnTemplate('In Progress');
         return;
     }
-    
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];
 
@@ -132,7 +107,6 @@ async function renderTasksAwaitFeedback() {
     container.innerHTML = '';
     const rawTasks = await getData('board/awaitFeedback/');
     const tasks = rawTasks ? Object.values(rawTasks) : [];
-
     if (tasks.length === 0) {
         container.innerHTML = emptyColumnTemplate('Await Feedback');
         return;
@@ -150,12 +124,10 @@ async function renderToDoTasks() {
     const container = document.getElementById('tasksContainer-0');
     container.innerHTML = "";
     const tasks = Object.values(rawTasks ?? {});
-
     if (tasks.length === 0) {
         container.innerHTML = emptyColumnTemplate('To Do');
         return;
     }
-
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];   
         container.innerHTML += taskTemplate(task);
@@ -180,8 +152,7 @@ function renderPriorityIcon(task) {
         case 'low':
             return `../img/low_priority.png`;
         default: 
-            return `../img/medium_priority.png`;
-            
+            return `../img/medium_priority.png`;       
     }
 }
 
@@ -193,7 +164,6 @@ function renderSubtasksAmount(task) {
 
 function renderInitials(task) {
     const contacts = Object.values(task.contacts || {});
-
     return contacts.map(contact => `
       <div class="contact-initial" style="background-image: url('${contact.bg}'); background-size: cover; background-position: center;">
         ${contact.initial}
@@ -203,12 +173,10 @@ function renderInitials(task) {
 window.onresize = function handlePageRedirect() {
     const overlay = document.getElementById('createTaskInBoardOverlay');
     const isOVerlayOpen = overlay && overlay.style.display !== 'none';
-
     if (isOVerlayOpen && window.innerWidth < 700) {
         window.location.href = '../templates/add_task.html';
     }
 }
-
 
 async function createTaskInBoardFireBase() {
     const column = checkTargetColumn();
@@ -227,7 +195,6 @@ async function createTaskInBoardFireBase() {
         closeTaskOverlay();
         await renderAllTasks();
     }
-
 }
 
 function checkTargetColumn() {
@@ -245,14 +212,12 @@ function checkTargetColumn() {
 
 function closeTaskInfoOverlay() {
     const overlay = document.getElementById('taskInfoOverlay');
-
     overlay.classList.remove('active');
 }
 
 function openTaskInfoOverlay(task) {
     const overlay = document.getElementById('taskInfoOverlay');
     overlay.classList.add('active');
-
     renderDetailedTask(task);
 }
 
@@ -295,7 +260,6 @@ function capitalize(word) {
     return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
-
 function loopTaskContacts(task) {
     let templateHTML = '';
     const contacts = task.contacts;
@@ -323,6 +287,19 @@ function toggleMobileTaskAddBtn(event) {
     const img = event.target;
     const hoverSrc = `../img/mobile_add_task_hovered.png`;
     const basicSrc = `../img/mobile_add_task_btn.png`;
-
     img.src = event.type === 'mouseover' ? hoverSrc : basicSrc;
+}
+
+function searchTasks() {
+    const tasks = document.querySelectorAll('.task-body');
+    const input = document.getElementById('searchTasksInput').value.toLowerCase();
+
+    for (let i = 0; i < tasks.length; i++) {
+        const title = tasks[i].querySelector('.task-title').innerText.toLowerCase();
+        if (title.includes(input)) {
+            tasks[i].style.display = 'flex';
+        } else {
+            tasks[i].style.display = 'none';
+        }
+    }
 }

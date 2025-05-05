@@ -38,11 +38,23 @@
   right: 10px;
   top: 50%;
   transform: translateY(-40%);
+  padding: 5px;
 }
 
 .subtask-btn-wrapper:hover {
   border-radius: 50%;
   background-color: rgb(235, 235, 235);
+}
+
+.subtask-edit-btns {
+  position: relative;
+
+}
+
+.subtask-edit-btns img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .subtask-main-btn {

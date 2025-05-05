@@ -167,7 +167,9 @@ function openContactAssignmentInput() {
   optionsRef.style.display = 'flex';
   wrapperRef.style.marginBottom = '210px';
   container.style.display = 'none';
-  document.querySelector('.content').style.overflow = 'hidden';
+  if (window.innerWidth <= 1000) {
+    document.querySelector('.content').style.overflow = 'hidden';
+  }
 }
 
 function closeContactAssignment() {
@@ -198,7 +200,9 @@ function toggleCategoryOptions() {
     section.style.marginBottom = '100px';
     arrow.src = '../img/dropdown-arrow-up.png';
     document.getElementById('categoryChoiceInsert').innerText = 'Select task category';
-    document.querySelector('.content').style.overflow = 'hidden';
+    if (window.innerWidth <= 1000) {
+      document.querySelector('.content').style.overflow = 'hidden';
+    }
   } else {
     section.style.marginBottom = 'auto';
     arrow.src = '../img/dropdown-arrow-down.png';
@@ -218,12 +222,13 @@ function chooseCategory(option) {
 }
 
 function showActionBtns() {
+  const input = document.getElementById('subtaskInput');
   const focusBtns = document.getElementById('focusBtns');
   const mainBtn = document.getElementById('subtaskMainBtn');
 
   mainBtn.style.display = 'none';
   focusBtns.style.display = 'flex';
-
+  input.focus();
 }
 
 function showMainBtn() {
@@ -235,11 +240,24 @@ function showMainBtn() {
 }
 
 function addSubtask() {
-  const valueRef = document.getElementById('subtaskInput').value;
+  const valueRef = document.getElementById('subtaskInput').value.trim();
   const input = document.getElementById('subtaskInput');
   const outputDiv = document.getElementById('subtaskContainer');
+  if (valueRef.length === 0) {
+    input.focus();
+    return;
+  }
+  outputDiv.innerHTML += subtaskTemplate(subtaskId, valueRef);
 
-  outputDiv.innerHTML += `                    
+  document.getElementById('subtaskInput').value = '';
+  scrollToCreatedSubtask()
+  subtaskId += 1;
+    input.focus();
+}
+
+function subtaskTemplate(subtaskId, valueRef) {
+
+  return `                    
                                         <div id="subtaskTemplate${subtaskId}">
                       <div class="subtask-template" id="taskNormalState${subtaskId}">
                        <div class="subtask-title">
@@ -270,15 +288,6 @@ function addSubtask() {
                       </div>
                     </div>
                   </div>`;
-
-  document.getElementById('subtaskInput').value = '';
-  showMainBtn();
-  scrollToCreatedSubtask()
-  subtaskId += 1;
-  setTimeout(() => {
-    input.focus();
-  }, 0);
-  
 }
 
 function scrollToCreatedSubtask() {
@@ -314,17 +323,21 @@ function resetSubtasks() {
 
 function checkShiftSubtask(event) {
   const input = document.getElementById('subtaskInput');
-  if (input.value.length !== 0) {
+  const value = input.value.trim();
+  if (value.length !== 0) {
     if (event.key === 'Enter') {
       addSubtask();
+      return;
     }
   } else {
     blurOnEnter(event);
+    return;
   }
 }
 
 function blurOnEnter(event) {
   if (event.key === 'Enter') {
+
     event.target.blur();
   }
 }
@@ -337,9 +350,9 @@ function deleteTask(subtaskId) {
 }
 
 function emptySubtaskInput() {
-  const subtaskInput = document.getElementById('subtaskInput');
+  document.getElementById('subtaskInput').value = '';
+  showMainBtn();
 
-  subtaskInput.value = "";
 }
 
 function editTask(subtaskId) {
