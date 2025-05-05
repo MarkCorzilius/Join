@@ -241,8 +241,8 @@ function toggleEditBtn(event) {
 
 function renderDetailedTask(task) {
     const overlay = document.getElementById('taskInfoOverlay');
-    //overlay.innerHTML = '';
-    //overlay.innerHTML = taskDetailTemplate(task);
+    overlay.innerHTML = '';
+    overlay.innerHTML = taskDetailTemplate(task);
 }
 
 function encodeTask(task) {
@@ -271,6 +271,7 @@ function loopTaskContacts(task) {
 }
 
 function loopTaskSubtasks(task) {
+    let subtaskNum = 0;
     let templateHTML = '';
     if (!task.subtasks || typeof task.subtasks !== 'object') return;
 
@@ -278,7 +279,8 @@ function loopTaskSubtasks(task) {
     if (subtasks.length === 0) return;
     for (let i = 0; i < subtasks.length; i++) {
         const subtask = subtasks[i];
-        templateHTML += `<div class="overlay-subtask-template"><img src="../img/checkbox_unchecked_unhovered.png"><p>${subtask.title}</p></div>`;
+        templateHTML += `<div class="overlay-subtask-template"><img onclick="toggleSubtaskIcon(event, this)" onmouseover="toggleSubtaskIcon(event, this)" onmouseout="toggleSubtaskIcon(event, this)" id="subtaskIcon${subtaskNum}" src="../img/checkbox_unchecked_unhovered.png"><p>${subtask.title}</p></div>`;
+        subtaskNum += 1;
     }
     return templateHTML;
 }
@@ -301,5 +303,38 @@ function searchTasks() {
         } else {
             tasks[i].style.display = 'none';
         }
+    }
+}
+
+function updateSubtaskIcon(isHovered = false, icon) {
+    const chosen = icon.classList.contains('chosen');
+
+    if (chosen) {
+        icon.src = isHovered
+        ? '../img/checkbox_checked_hovered.png'
+        : '../img/checkbox_checked_unhovered.png';
+    } else {
+        icon.src = isHovered
+        ? '../img/checkbox_unchecked_hovered.png'
+        : '../img/checkbox_unchecked_unhovered.png';
+    }
+}
+
+function toggleSubtaskIcon(event, icon) {
+    console.log('event.target is: ', event.target);
+    console.log('icon is: ', icon);
+    switch (event.type) {
+        case 'click':
+            icon.classList.toggle('chosen');
+            updateSubtaskIcon(true, icon);
+            break;
+        case 'mouseover':
+            updateSubtaskIcon(true, icon);
+        break;
+        case 'mouseout':
+            updateSubtaskIcon(false, icon);
+        break;
+        default: updateSubtaskIcon(false, icon);
+            break;
     }
 }
