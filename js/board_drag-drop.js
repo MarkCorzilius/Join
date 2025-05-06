@@ -1,12 +1,14 @@
-function allowDrop(ev) {
-    ev.preventDefault();
-}
 let draggedTaskNum = 0;
 let dragStartX = 0;
 let dragStartY = 0;
 let currentX = 0;
 let currentY = 0;
 let rotation = 0;
+let wasDropped = false;
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
 
 
 function startDragging(id, ev) {
@@ -14,6 +16,7 @@ function startDragging(id, ev) {
     draggedTaskNum = id;
     dragStartX = ev.clientX;
     dragStartY = ev.clientY;
+    wasDropped = false;
 
     task.style.position = 'absolute';
     task.style.zIndex = '1000';
@@ -68,14 +71,7 @@ function stopDragging(id) {
 
 function moveElementTo(ev, containerEl) {
     ev.preventDefault();
-
-    const dropZone = ev.target.closest('.tasks-container');
-    if (!dropZone) {
-        renderAllTasks();
-        console.warn('Dropped outside any valid column');
-        return;
-    }
-    const task = document.getElementById(`taskBody${draggedTaskNum}`);
+    wasDropped = true;
 
     stopDragging(draggedTaskNum);
     moveTaskFireBase(containerEl, draggedTaskNum);
@@ -117,4 +113,9 @@ function checkNewColumn(container) {
 function endDragging(id, ev) {
     const task = document.getElementById(`taskBody${id}`);
     task.style.position = 'static';
+
+    if (!wasDropped) {
+        console.warn('Task was dropped outside valid area');
+        renderAllTasks();  // Reset tasks to original state
+    }
 }

@@ -42,7 +42,7 @@ function taskDetailTemplate(task) {
           <span>Priority:</span>
           <div class="task-prio">
             <p>${capitalize(task.priority)}</p>
-            <img src="../img/medium_priority.png" alt="">
+            <img src="${renderPriorityIcon(task)}" alt="">
           </div>
         </div>
         </div>
