@@ -408,7 +408,6 @@ function updateProgressBar(task) {
 
     if (total > 0) {
       percentage = (done / total) * 100;
-      console.log(percentage);
     }
   
     const progressBar = document.getElementById(`progressBar${task.id}`);
