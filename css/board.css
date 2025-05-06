@@ -218,10 +218,17 @@ body {
 }
 
 .progress-container {
-  width: 128px;
+  width: 120px;
   height: 8px;
   background-color: rgba(244, 244, 244, 1);
   border-radius: 8px;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  background-color: rgb(41, 171, 226);
+  transition: width 0.3s ease;
 }
 
 .tasks-done {
