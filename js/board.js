@@ -1,4 +1,5 @@
 let currentColumn = 0;
+let currTask = null;
 
 async function boardOnLoad() {
     document.querySelector('.spinner-overlay').style.display = "flex";
@@ -6,7 +7,7 @@ async function boardOnLoad() {
         taskId = Number(localStorage.getItem('taskId')) || 0;
         w3.includeHTML(); 
         renderTaskDialog(); 
-        //await fetchTasks(); 
+
         await renderAllTasks();
     } catch (error) {
         console.log('error in boardOnLoad');
@@ -131,6 +132,7 @@ async function renderToDoTasks() {
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];   
         container.innerHTML += taskTemplate(task);
+        updateProgressBar(task);
     }
 }
 
@@ -213,6 +215,7 @@ function checkTargetColumn() {
 function closeTaskInfoOverlay() {
     const overlay = document.getElementById('taskInfoOverlay');
     overlay.classList.remove('active');
+    renderAllTasks();
 }
 
 function openTaskInfoOverlay(task) {
@@ -241,8 +244,9 @@ function toggleEditBtn(event) {
 
 function renderDetailedTask(task) {
     const overlay = document.getElementById('taskInfoOverlay');
-    //overlay.innerHTML = '';
-    //overlay.innerHTML = taskDetailTemplate(task);
+    overlay.innerHTML = '';
+    overlay.innerHTML = taskDetailTemplate(task);
+    currTask = task;
 }
 
 function encodeTask(task) {
@@ -274,14 +278,34 @@ function loopTaskSubtasks(task) {
     let templateHTML = '';
     if (!task.subtasks || typeof task.subtasks !== 'object') return;
 
-    const subtasks = Object.values(task.subtasks);
-    if (subtasks.length === 0) return;
-    for (let i = 0; i < subtasks.length; i++) {
-        const subtask = subtasks[i];
-        templateHTML += `<div class="overlay-subtask-template"><img src="../img/checkbox_unchecked_unhovered.png"><p>${subtask.title}</p></div>`;
+    for (const [subtaskKey, subtask] of Object.entries(task.subtasks)) {
+        const { src, className } = renderCurrSubtaskState(subtask);
+        templateHTML += `
+            <div class="overlay-subtask-template">
+                <img class="subtask-icon ${className}" 
+                    onclick="toggleSubtaskIcon(event, this, '${subtaskKey}')" 
+                    onmouseover="toggleSubtaskIcon(event, this, '${subtaskKey}')" 
+                    onmouseout="toggleSubtaskIcon(event, this, '${subtaskKey}')" 
+                    id="subtaskIcon-${subtaskKey}" 
+                    src="${src}">
+                <p id="subtaskText-${subtaskKey}">${subtask.title}</p>
+            </div>`;
     }
     return templateHTML;
 }
+
+function renderCurrSubtaskState(subtask) {
+        if (subtask.state === true) {
+            return {src: `../img/checkbox_checked_unhovered.png`,
+                className: 'chosen',
+            };
+        } else {
+            return {src: `../img/checkbox_unchecked_unhovered.png`,
+                className: '',
+            };
+        }
+        
+    }
 
 function toggleMobileTaskAddBtn(event) {
     const img = event.target;
@@ -303,3 +327,87 @@ function searchTasks() {
         }
     }
 }
+
+
+function updateSubtaskIcon(isHovered = false, icon, subtaskKey) {
+    const chosen = icon.classList.contains('chosen');
+
+    if (chosen) {
+        icon.src = isHovered
+        ? '../img/checkbox_checked_hovered.png'
+        : '../img/checkbox_checked_unhovered.png';
+        
+    } else {
+        icon.src = isHovered
+        ? '../img/checkbox_unchecked_hovered.png'
+        : '../img/checkbox_unchecked_unhovered.png';
+    }
+    findChosenSubtasks(subtaskKey, icon);
+    adjustIconStateInArray(subtaskKey, icon);
+}
+
+function toggleSubtaskIcon(event, icon, subtaskKey) {
+    switch (event.type) {
+        case 'click':
+            icon.classList.toggle('chosen');
+            updateSubtaskIcon(true, icon, subtaskKey);
+            break;
+        case 'mouseover':
+            updateSubtaskIcon(true, icon, subtaskKey);
+            break;
+        case 'mouseout':
+            updateSubtaskIcon(false, icon, subtaskKey);
+            break;
+        default:
+            updateSubtaskIcon(false, icon, subtaskKey);
+            break;
+    }
+}
+
+function adjustIconStateInArray(subtaskNum, icon) {
+    console.log(currTask);
+    console.log('hello, ',icon);
+}
+
+async function findChosenSubtasks(subtaskKey, icon) {
+    if (!icon) return;
+    console.log(icon);
+
+    const board = await getData('board/');
+
+    for (const [columnKey, tasks] of Object.entries(board)) {
+        for (const [taskKey, oneTask] of Object.entries(tasks)) {
+            if (oneTask.id === currTask.id) {
+                let isChosen = icon.classList.contains('chosen');
+                const data = await putData(`board/${columnKey}/${taskKey}/subtasks/${subtaskKey}/state`, isChosen);
+                console.log(`Updating: board/${columnKey}/${taskKey}/subtasks/${subtaskKey}/state = ${isChosen}`);
+            }
+        }
+    }
+}
+
+function renderSubtasksDone(task) {
+    let trueTasks = 0;
+    const subtasks = Object.values(task.subtasks || {});
+    for (const subtask of subtasks) {
+        if (subtask.state === true) {
+            trueTasks += 1;
+        }
+    }
+    return trueTasks;  
+}
+
+function updateProgressBar(task) {
+    const done = renderSubtasksDone(task);
+    const total = renderSubtasksAmount(task);
+
+    let percentage = 0;
+
+    if (total > 0) {
+      percentage = (done / total) * 100;
+      console.log(percentage);
+    }
+  
+    const progressBar = document.getElementById(`progressBar${task.id}`);
+    progressBar.style.width = `${percentage}%`;
+  }

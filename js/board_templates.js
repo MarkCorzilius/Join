@@ -11,9 +11,9 @@ function taskTemplate(task) {
                     <p class="task-description">${task.description}</p>
                     <div class="progress-section">
                       <div class="progress-container">
-                       <div class="progress-bar" id="progressBar"></div>
+                       <div class="progress-bar" id="progressBar${task.id}"></div>
                       </div>
-                      <span class="tasks-done"> 0/${renderSubtasksAmount(task)} Subtasks</span>
+                      <span class="tasks-done"> ${renderSubtasksDone(task)}/${renderSubtasksAmount(task)} Subtasks</span>
                     </div>
                     <div class="user-task-footer">
                       <div class="contacts-assigned">${renderInitials(task)}</div>
