@@ -85,6 +85,7 @@ async function renderTasksInProgress() {
         const task = tasks[i];
 
         container.innerHTML += taskTemplate(task);
+        updateProgressBar(task);
     }
 }
 
@@ -100,6 +101,7 @@ async function renderTasksDone() {
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];
         container.innerHTML += taskTemplate(task);
+        updateProgressBar(task);
     }
 }
 
@@ -117,6 +119,7 @@ async function renderTasksAwaitFeedback() {
         const task = tasks[i];
 
         container.innerHTML += taskTemplate(task);
+        updateProgressBar(task);
     }
 }
 
