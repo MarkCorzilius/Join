@@ -24,6 +24,7 @@ async function summaryOnLoad() {
 
 function showLogedInName() {
   const user = JSON.parse(localStorage.getItem('user'));
+  console.log(user);
   document.getElementById('theUser').innerText = user.name;
 }
 
@@ -40,7 +41,18 @@ async function updateGreeting() {
   findCurrentGreeting(hour);
 }
 
+function checkIfGuest() {
+  const user = JSON.parse(localStorage.getItem('user'));
+  if (user.name === 'Guest') {
+    document.getElementById('theUser').style.display = 'none';
+    const greeting = document.getElementById('greetingUser');
+    const newGreeting = greeting.innerText.slice(0, -1);
+    greeting.innerText = newGreeting;
+  }
+}
+
 function findCurrentGreeting(hour) {
+
   const container = document.getElementById('greetingUser');
   let greeting;
   if (hour >= 5 && hour <= 11) {
@@ -50,9 +62,10 @@ function findCurrentGreeting(hour) {
   } else if (hour >= 17 && hour <= 20) {
     greeting = "Good evening,";
   } else {
-    greeting = "Hello,"; // or "Good night" if it's a parting message
+    greeting = "Good Night,";
   }
   container.innerText = greeting;
+  checkIfGuest();
 }
 
 setInterval(() => {

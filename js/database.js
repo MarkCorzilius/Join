@@ -1,10 +1,12 @@
+const BASE_URL = 'https://join-fce4c-default-rtdb.europe-west1.firebasedatabase.app/';
+
+
 let taskId = 0;
 
 const currentUser = JSON.parse(localStorage.getItem('user'));
 let userEmail = null;
 
 
-const BASE_URL = 'https://join-fce4c-default-rtdb.europe-west1.firebasedatabase.app/';
 
 async function postData(path="", data={}) {
   let response = await fetch(BASE_URL + path + '.json', {

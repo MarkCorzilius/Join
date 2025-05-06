@@ -1,71 +1,3 @@
-// Beispiel-Benutzer (später durch echten Authentifizierungs-Code wird in FireBase ersetzt!!!)
-// let users = [
-//     { email: 'igor@test.de', password: '1234' },
-//     { email: 'admin@join.de', password: 'join2024' }
-// ];
-
-
-//let users = [
-//    {
-//        firstName: "Igor",
-//        lastName: "Test",
-//        email: "igor@test.de",
-//        password: "1234"
-//    },
-//    {
-//        firstName: "Admin",
-//        lastName: "Join",
-//        email: "admin@join.de",
-//        password: "join2024"
-//    }
-//];
-//
-//
-//
-//function addUser() {
-//    let loginEmail = document.getElementById("loginEmail");
-//    let loginPassword = document.getElementById("loginPassword");
-//    let email = loginEmail.value;
-//    let password = loginPassword.value;
-//
-//    if (!email || !password) {
-//        alert("Bitte Email und Passwort eingeben!");
-//        return;
-//    }
-//
-//    // Suche User anhand E-Mail + Passwort
-//    let existingUser = users.find(user => user.email === email && user.password === password);
-//
-//    if (existingUser) {
-//        localStorage.setItem("loggedIn", "true");
-//
-//        // 🔥 Jetzt vollen Namen speichern
-//        const fullName = existingUser.firstName + " " + existingUser.lastName;
-//        // localStorage.setItem("userName", fullName);
-//        localStorage.setItem("userName", existingUser.firstName + " " + existingUser.lastName);
-//
-//        console.log("erfolgreich eingeloggt als:", fullName);
-//
-//        setTimeout(() => {
-//            window.location.href = "../templates/summary.html";
-//        }, 300);
-//        return;
-//    }
-//
-//    alert("Benutzer nicht gefunden oder falsches Passwort!");
-//}
-
-
-
-// ::::::::ist abfrage für fireBase ob user eingelogt ist::::::::
-
-// function authCheck() {
-//     const loggedIn = localStorage.getItem('loggedIn');
-//     if (loggedIn === 'true') {
-//         window.location.href = './templates/summary.html';
-//     }
-// }
-
 window.addEventListener('DOMContentLoaded', () => {
     let header = document.querySelector('.log-in-header');
     let main = document.querySelector('.log-in-main');
@@ -88,9 +20,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 function guestLogin() {
     const guest = 'Guest' ;
-    localStorage.setItem('user', {name: guest, email: zero});
-
-    console.log("Guest erfolgreich eingeloggt");
+    localStorage.setItem('user', JSON.stringify({name: guest, email: 'guest@example.com'}));
+    console.log("Guest is logged in");
     
 
     setTimeout(() => {
