@@ -1,3 +1,14 @@
+async function contactsOnLoad() {
+  try {
+    w3.includeHTML(); 
+    renderContacts();
+    findUserEmail();
+    adjustSideBar();
+  } catch (error) {
+    
+  }
+}
+
 const basicContacts = [
   {
     name: "Alice Johnson",

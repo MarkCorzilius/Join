@@ -3,12 +3,13 @@ let currTask = null;
 
 async function boardOnLoad() {
     document.querySelector('.spinner-overlay').style.display = "flex";
+    
     try {
-        taskId = Number(localStorage.getItem('taskId')) || 0;
         w3.includeHTML(); 
+        taskId = Number(localStorage.getItem('taskId')) || 0;
         renderTaskDialog(); 
-
         await renderAllTasks();
+        adjustSideBar();
     } catch (error) {
         console.log('error in boardOnLoad');
     } finally {

@@ -3,7 +3,9 @@ const today = new Date();
 
 async function summaryOnLoad() {
   document.querySelector('.spinner-overlay').style.display = 'flex';
-  try {
+
+  
+  try { 
     w3.includeHTML();
     updateGreeting();
     findToDoAmount();

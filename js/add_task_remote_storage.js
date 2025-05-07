@@ -111,7 +111,9 @@ function saveSubtasks() {
     let contacts = await response.json();
     const { loggedInUser, defaultUsers } = sortContacts(contacts);
 
-    await renderLoggedInUser(loggedInUser, contactsContainer);
+    if (loggedInUser) {
+      await renderLoggedInUser(loggedInUser, contactsContainer);
+    }
     for (const user of defaultUsers) {
       await renderDefaultUsers(user, contactsContainer);
     }

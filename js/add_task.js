@@ -1,12 +1,17 @@
 let subtaskId = null;
 let chosenContacts = [];
 
-function taskPageOnLoad() {
-  taskId = Number(localStorage.getItem('taskId')) || 0;
-  w3.includeHTML();
-  resetPriorityBtn();
-  fetchContacts();
-  findUserEmail();
+async function taskPageOnLoad() {
+  try {
+    w3.includeHTML();
+    taskId = Number(localStorage.getItem('taskId')) || 0;
+    resetPriorityBtn();
+    fetchContacts();
+    findUserEmail();
+    adjustSideBar();
+  } catch (error) {
+    console.log('error in taskPageOnLoad()');
+  }
 }
 
 function clearBtnToBlue() {
@@ -185,8 +190,6 @@ function closeContactAssignment() {
   wrapperRef.style.marginBottom = '0';
   container.style.display = 'flex';
   document.querySelector('.content').style.overflow = 'auto';
-
-
 }
 
 function toggleCategoryOptions() {
@@ -200,14 +203,13 @@ function toggleCategoryOptions() {
     section.style.marginBottom = '100px';
     arrow.src = '../img/dropdown-arrow-up.png';
     document.getElementById('categoryChoiceInsert').innerText = 'Select task category';
-    if (window.innerWidth <= 1000) {
+    if (window.innerWidth > 1000) {
       document.querySelector('.content').style.overflow = 'hidden';
     }
   } else {
     section.style.marginBottom = 'auto';
     arrow.src = '../img/dropdown-arrow-down.png';
     document.querySelector('.content').style.overflow = 'auto';
-
   }
 }
 
