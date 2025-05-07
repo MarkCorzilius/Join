@@ -1,3 +1,25 @@
+async function contactsOnLoad() {
+  w3.includeHTML();
+
+    const waitForInclude = () => new Promise((resolve) => {
+        const checkExist = setInterval(() => {
+          if (document.querySelector('#sidebar')) {
+            clearInterval(checkExist);
+            resolve();
+          }
+        }, 50);
+      });
+    try {
+    await waitForInclude();
+    markCurrentPage();
+    w3.includeHTML(); 
+    renderContacts();
+    findUserEmail();
+  } catch (error) {
+    
+  }
+}
+
 const basicContacts = [
   {
     name: "Alice Johnson",

@@ -3,11 +3,22 @@ let currTask = null;
 
 async function boardOnLoad() {
     document.querySelector('.spinner-overlay').style.display = "flex";
-    try {
-        taskId = Number(localStorage.getItem('taskId')) || 0;
-        w3.includeHTML(); 
-        renderTaskDialog(); 
+    
+    w3.includeHTML();
 
+    const waitForInclude = () => new Promise((resolve) => {
+        const checkExist = setInterval(() => {
+          if (document.querySelector('#sidebar')) {
+            clearInterval(checkExist);
+            resolve();
+          }
+        }, 50);
+      });
+    try {
+    await waitForInclude();
+    markCurrentPage(); 
+        taskId = Number(localStorage.getItem('taskId')) || 0;
+        renderTaskDialog(); 
         await renderAllTasks();
     } catch (error) {
         console.log('error in boardOnLoad');
