@@ -1,9 +1,20 @@
 async function contactsOnLoad() {
-  try {
+  w3.includeHTML();
+
+    const waitForInclude = () => new Promise((resolve) => {
+        const checkExist = setInterval(() => {
+          if (document.querySelector('#sidebar')) {
+            clearInterval(checkExist);
+            resolve();
+          }
+        }, 50);
+      });
+    try {
+    await waitForInclude();
+    markCurrentPage();
     w3.includeHTML(); 
     renderContacts();
     findUserEmail();
-    adjustSideBar();
   } catch (error) {
     
   }

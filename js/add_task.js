@@ -2,13 +2,23 @@ let subtaskId = null;
 let chosenContacts = [];
 
 async function taskPageOnLoad() {
+  w3.includeHTML();
+
+  const waitForInclude = () => new Promise((resolve) => {
+      const checkExist = setInterval(() => {
+        if (document.querySelector('#sidebar')) {
+          clearInterval(checkExist);
+          resolve();
+        }
+      }, 50);
+    });
   try {
-    w3.includeHTML();
+  await waitForInclude();
+  markCurrentPage();
     taskId = Number(localStorage.getItem('taskId')) || 0;
     resetPriorityBtn();
     fetchContacts();
     findUserEmail();
-    adjustSideBar();
   } catch (error) {
     console.log('error in taskPageOnLoad()');
   }

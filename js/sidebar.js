@@ -1,7 +1,3 @@
-// if logIn | if signIn –> show hint in localstorage
-// if 'guest' = nav buttons display: none | login btn display: block
-// 
-
 function adjustSideBar() {
     const buttons = document.querySelectorAll('.nav-button');
     const user = JSON.parse(localStorage.getItem('user'));

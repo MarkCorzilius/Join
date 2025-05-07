@@ -4,12 +4,22 @@ let currTask = null;
 async function boardOnLoad() {
     document.querySelector('.spinner-overlay').style.display = "flex";
     
+    w3.includeHTML();
+
+    const waitForInclude = () => new Promise((resolve) => {
+        const checkExist = setInterval(() => {
+          if (document.querySelector('#sidebar')) {
+            clearInterval(checkExist);
+            resolve();
+          }
+        }, 50);
+      });
     try {
-        w3.includeHTML(); 
+    await waitForInclude();
+    markCurrentPage(); 
         taskId = Number(localStorage.getItem('taskId')) || 0;
         renderTaskDialog(); 
         await renderAllTasks();
-        adjustSideBar();
     } catch (error) {
         console.log('error in boardOnLoad');
     } finally {

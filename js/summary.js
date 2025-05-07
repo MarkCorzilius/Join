@@ -4,9 +4,19 @@ const today = new Date();
 async function summaryOnLoad() {
   document.querySelector('.spinner-overlay').style.display = 'flex';
 
-  
-  try { 
-    w3.includeHTML();
+  w3.includeHTML();
+
+    const waitForInclude = () => new Promise((resolve) => {
+        const checkExist = setInterval(() => {
+          if (document.querySelector('#sidebar')) {
+            clearInterval(checkExist);
+            resolve();
+          }
+        }, 50);
+      });
+    try {
+    await waitForInclude();
+    markCurrentPage();
     updateGreeting();
     findToDoAmount();
     findDoneAmount();
