@@ -18,6 +18,7 @@ async function showLegalNoticeAndPrivacyPolicy() {
         await waitForInclude();
         adjustSideBar();
         markCurrentPage();
+        ifGuestShowDropdownHelp();
     } catch (error) {
         
     }

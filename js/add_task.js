@@ -15,6 +15,7 @@ async function taskPageOnLoad() {
   try {
   await waitForInclude();
   markCurrentPage();
+  ifGuestShowDropdownHelp();
     taskId = Number(localStorage.getItem('taskId')) || 0;
     resetPriorityBtn();
     fetchContacts();

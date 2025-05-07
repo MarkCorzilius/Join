@@ -17,6 +17,7 @@ async function summaryOnLoad() {
     try {
     await waitForInclude();
     markCurrentPage();
+    ifGuestShowDropdownHelp();
     updateGreeting();
     findToDoAmount();
     findDoneAmount();

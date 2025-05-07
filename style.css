@@ -18,14 +18,6 @@ li {
   list-style: none;
 }
 
-/* .d-none {
-  display: none !important;
-}
-
-.d-flex {
-  display: flex !important;
-} */
-
 .d-none {
   display: none;
 }

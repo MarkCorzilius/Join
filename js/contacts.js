@@ -12,7 +12,7 @@ async function contactsOnLoad() {
     try {
     await waitForInclude();
     markCurrentPage();
-    w3.includeHTML(); 
+    ifGuestShowDropdownHelp(); 
     renderContacts();
     findUserEmail();
   } catch (error) {

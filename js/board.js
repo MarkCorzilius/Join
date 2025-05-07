@@ -17,6 +17,7 @@ async function boardOnLoad() {
     try {
     await waitForInclude();
     markCurrentPage(); 
+    ifGuestShowDropdownHelp();
         taskId = Number(localStorage.getItem('taskId')) || 0;
         renderTaskDialog(); 
         await renderAllTasks();

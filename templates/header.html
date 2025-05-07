@@ -3,6 +3,8 @@
   <title>Join - Header</title>
   <!-- Binde hier dein CSS für den Header ein -->
   <link rel="stylesheet" href="../css/header.css" />
+  <link rel="stylesheet" href="../style.css" />
+
 </head>
 
 <body>
@@ -17,15 +19,15 @@
       <!-- Rechte Seite: Fragezeichen-Icon + Initialen -->
       <div class="header-right">
         <!-- <div class="help-icon">?</div> -->
-        <a href="../templates/help.html"><img class="help-icon d-none" src="../img/help.png" alt="Go to help"
+        <a href="../templates/help.html"><img class="help-icon" src="../img/help.png" alt="Go to help"
             onclick="openHelp()" /></a>
-        <div class="user-initials d-none">G</div>
-        <div class="user-dropdown" id="userDropdown">
+        <div onclick="toggleInitialDropdown()" class="user-initials">G</div>
+        <div class="user-dropdown d-none" id="userDropdown">
           <ul>
-            <li onclick="">Privacy Policy</li>
-            <li onclick="">Legal Notice</li>
+            <li class="dropdown-help d-none" onclick="window.location.href='../templates/help.html'">Help</li>
+            <li onclick="window.location.href='../templates/privacy_policy.html'">Privacy Policy</li>
+            <li onclick="window.location.href='../templates/legal_notice.html'">Legal Notice</li>
             <li onclick="logout()">Log out</li>
-            <!-- Weitere Optionen möglich -->
           </ul>
         </div>
       </div>
