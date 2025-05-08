@@ -1,85 +1,138 @@
-@media (min-width: 1001px) and (max-width: 1350px) {
+@media (max-width: 1350px) {
     
     .content {
         overflow: auto;
     }
-    .vertical-line {
-        margin: 0 32px
-    }
 
-    .task-right-block {
-        width: 320px;
-    }
-
-    .subtask-template {
-        width: 320px;
-    }
-
-    #subtaskContainer {
-        width: 320px;
-    }
-
-    .title-field {
-        width: 320px;
-    }
-
-    .description-area {
-        width: 320px;
-    }
-
-    .due-date-field {
-        width: 320px;
-    }
-
-    .dropdown-wrapper {
-        width: 320px;
-    }
-
-    .dropdown-btn {
-        width: 320px;
-    }
-
-    #searchState {
-        width: 320px;
+    .basic-size {
+        width: 360px;
     }
 
     .priority-button {
-        gap: 4px;
-        font-size: 16px;
-        width: 96px;
-        height: 48px;
-    }
-
-    .priority-btn svg {
-        height: 14px;
-        width: auto;
-    }
-
-    .category-section {
-        width: 320px;
-    }
-
-    #subtaskInput {
-        width: 320px;
-    }
-
-    .subtask-template-edit-state {
-        width: 320px;
+        width: 106px;
+        height: 50px;
     }
 
     .add-task-footer {
-        width: 710px;
+        width: 925px;
+    }
+
+    .description-area {
+        width: 360px;
+    }
+
+    .form-subtask-template {
+        width: 360px;
+    }
+
+    .add-task-footer {
+        width: 850px;
+    }
+
+    .contacts-options {
+        width: 360px;
+    }
+
+    .category-options {
+        width: 360px;
     }
 
   }
 
+
+  @media (max-width: 1219px) {
+
+    .basic-size {
+        width: 320px;
+    }
+
+    .priority-button {
+        width: 106px;
+        height: 50px;
+    }
+
+    .add-task-footer {
+        width: 850px;
+    }
+
+    .description-area {
+        width: 325px;
+    }
+
+    .form-subtask-template {
+        width: 320px;
+    }
+
+    .contacts-options {
+        width: 320px;
+    }
+
+    .category-options {
+        width: 320px;
+    }
+
+    .priority-button {
+        width: 92px;
+    }
+
+    .add-task-main {
+        margin-left: 40px;
+    }
+
+    .vertical-line {
+        margin: 0 40px;
+    }
+
+    .add-task-footer {
+        width: 725px;
+    }
+
+  }
+
+
   @media (max-width: 1000px) {
-   .question-blocks {
+
+    .main {
+        display: flex !important;
         flex-direction: column;
+        justify-content: center;
+    }
+
+    .content {
+        overflow: auto !important;
     }
 
     .content-in-main {
-        width: 80vw;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    .basic-size {
+        width: 85vw;
+    }
+
+    .description-area {
+        width: 85.2vw;
+    }
+
+    .contacts-options {
+        width: 85vw;
+    }
+
+    .category-options {
+        width: 85vw;
+    }
+
+    .form-subtask-template {
+        width: 85vw;
+    }
+
+    .subtask-section {
+        margin-bottom: 160px;
+    }
+
+   .question-blocks {
+        flex-direction: column;
     }
 
     .vertical-line {
@@ -93,7 +146,7 @@
     }
 
     .add-task-page-title {
-        width: 82vw;
+        width: 87vw;
         position: sticky;
         top: 0;
         background-color: rgb(246 247 248);
@@ -101,93 +154,42 @@
         z-index: 500;
     }
 
-    #subtaskContainer {
-        width: 80vw;
-    }
-
-    .footer-buttons-wrapper {
-        position: fixed;
-        bottom: 100px;
-        background-color: rgb(246 247 248);
-        z-index: 999; 
-        width: 80vw;
-        padding: 30px 0 30px;
-        justify-content: flex-end;
-    }
-
-    .add-task-footer {
-        position: static;   
-    }
-
-    .requirement-warning {
-        position: static;
-        padding-bottom: 120px;
-    }
-
-    .title-field {
-        width: 80vw;
-    }
-
-    .description-area {
-        width: 80vw;
-    }
-
-    .due-date-field {
-        width: 80vw;
-    }
-
     .priority-section {
         margin-top: 24px;
-    }
-
-    .subtask-section {
-        margin-bottom: 80px;
-      }
-
-    .dropdown-btn {
-        width: 80vw;
-    }
-
-    .category-btn {
-        width: 80vw;
-    }
-
-    #subtaskInput {
-        width: 80vw;
-    }
-
-    .options {
-        width: 80vw;
-    }
-
-    #searchState {
-        width: 80vw;
-    }
-
-    .category-options {
-        width: 80vw;
-    }
-
-    .task-edit-state {
-        width: 80vw;
     }
 
     .subtask-template-edit-state {
         width: 100%;
     }
 
-    .subtask-edit-input {
-        width: 80vw;
-    }
-
     .subtask-edit-icons {
         display: flex;
     }
+
+    .add-task-footer {
+        position: sticky;
+        width: 85vw;
+        bottom: 100px;
+        padding: 20px 0px 20px;
+        z-index: 999;
+        background-color: rgb(246 247 248);
+        padding-left: 20px;
+    }
+
 
   }
 
 
   @media (max-width: 550px) {
+
+    .basic-size {
+        width: 90vw;
+    }
+
+    .description-area {
+        width: 90.2vw;
+    }
+
     .add-task-page-title {
         font-size: 48px;
     }

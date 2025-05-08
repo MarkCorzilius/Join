@@ -278,7 +278,7 @@ function subtaskTemplate(subtaskId, valueRef) {
 
   return `                    
                                         <div id="subtaskTemplate${subtaskId}">
-                      <div class="subtask-template" id="taskNormalState${subtaskId}">
+                      <div class="form-subtask-template task-active-state" id="taskNormalState${subtaskId}">
                        <div class="subtask-title">
                          <p>•</p>
                          <span id="subtaskTitle${subtaskId}" class="subtask-titles">${valueRef}</span>
@@ -292,9 +292,9 @@ function subtaskTemplate(subtaskId, valueRef) {
                        </div>
                       </div>
 
-                    <div id="taskEditState${subtaskId}" style="display: none;">
-                      <div class="subtask-template-edit-state" class="subtask-edit-input-wrapper">
-                        <input onkeydown="postSubtaskOnEnter(event, ${subtaskId})" id="subtaskEditInput${subtaskId}" class="subtask-edit-input" type="text">
+                    <div class="task-active-state" id="taskEditState${subtaskId}" style="display: none;">
+                      <div class="subtask-template-edit-state basic-size" class="form-subtask-edit-input-wrapper">
+                        <input onkeydown="postSubtaskOnEnter(event, ${subtaskId})" id="subtaskEditInput${subtaskId}" class="form-subtask-edit-input basic-size" type="text">
                         <div class="subtask-icons-on-edit">
                           <div onclick="deleteSubtaskEditState(${subtaskId})" id="deleteSubtaskEditState${subtaskId}" class="subtask-icon-wrapper">
                           <img src="../img/subtask_trash.png" alt="delete">

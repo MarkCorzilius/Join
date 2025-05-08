@@ -1,0 +1,187 @@
+.form-border {
+    border: 1px solid rgb(209 209 209);
+    border-radius: 10px;
+}
+
+.form-description {
+    resize: none;
+    padding-top: 18px;
+    text-indent: 0 !important;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.form-priority {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: white;
+    cursor: pointer !important;
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.form-contact-options {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 50px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: white;
+    box-shadow: 1px 1px 3px rgba(117, 117, 117, 0.2);
+    padding-bottom: 8px;
+    position: absolute;
+    width: 100%;
+    overflow-y: auto;
+    top: 5px;
+    box-sizing: border-box;
+    gap: 8px;
+}
+
+.form-contact-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    cursor: pointer;
+    box-sizing: border-box;
+    padding: 10px;
+    position: relative;
+    border-radius: 10px;
+    border: 1px solid rgb(41, 171, 226);
+}
+
+.form-contact-search input {
+    background: transparent;
+    outline: none;
+    border: none;
+    width: 100%;
+}
+
+.task-active-state {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+} 
+
+.form-subtask-edit-input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+  
+  .form-subtask-edit-input {
+    width: 440px;
+    height: 40px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgb(41, 171, 226);
+  
+  }
+  
+  .form-subtask-edit-input:focus {
+    border-bottom: 1px solid rgb(41, 171, 226);
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+  }
+
+.form-category-options {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    background-color: white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 1px 1px 3px rgba(117, 117, 117, 0.2);
+    position: absolute;
+    width: 100%;
+    top: 20px;
+    padding-top: 32px;
+    z-index: 5;
+}
+
+.form-category-options span {
+    box-sizing: border-box;
+    padding-left: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+    height: 50px;
+  }
+
+  .form-category-options span:hover {
+    background-color: rgb(240, 240, 240);
+  }
+
+.form-select {
+    width: 100%;
+    background-color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    z-index: 20;
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .form-select:focus {
+    border: 1px solid rgb(41, 171, 226);
+    outline: none;
+  }
+
+.form-select:hover {
+    box-shadow: 0.2px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.form-subtask {
+    outline: none;
+    box-sizing: border-box;
+    text-indent: 10px;
+}
+
+.form-subtask-template {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 4px;
+    height: 40px;
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+
+.form-subtask-template:hover {
+    background-color: rgb(237, 237, 237);
+    border-radius: 10px;
+}
+
+.form-subtask-template:hover .subtask-edit-icons {
+    display: flex;
+}
+
+/*Many uses*/
+.form-size {
+    height: 48px;
+    width: 100%;
+}
+
+.form-wrap-icon {
+    position: absolute;
+    right: 10px;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
