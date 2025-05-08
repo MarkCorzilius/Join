@@ -8,7 +8,9 @@ async function showLegalNoticeAndPrivacyPolicy() {
 
     const waitForInclude = () => new Promise((resolve) => {
         const checkExist = setInterval(() => {
-          if (document.querySelector('#sidebar')) {
+        const sidebarLoaded = document.querySelector('#sidebar');
+        const headerLoaded = document.querySelector('#header');
+        if (sidebarLoaded && headerLoaded) {
             clearInterval(checkExist);
             resolve();
           }
@@ -19,8 +21,12 @@ async function showLegalNoticeAndPrivacyPolicy() {
         adjustSideBar();
         markCurrentPage();
         ifGuestShowDropdownHelp();
-    } catch (error) {
+        adjustInitialAfterLogin();
         
+        adjustHelpForMobile(); 
+        window.addEventListener('resize', adjustHelpForMobile);
+    } catch (error) {
+        console.log('error in showLegalNoticeAndPrivacyPolicy()');
     }
 }
 
@@ -43,7 +49,6 @@ const paths = [
 
 
 function markCurrentPage() {
-    console.log("Current path:", window.location.pathname);
     const buttons = document.querySelectorAll('.nav-button');
     paths.forEach((path, index) => {
         if (window.location.pathname.includes(path)) {
@@ -52,8 +57,17 @@ function markCurrentPage() {
                     btn.classList.remove('activeBtn');
                 });
             buttons[index].classList.add('activeBtn');
-            console.log('found: ', buttons[index]);
             }
         }
     });
+}
+
+
+function adjustHelpForMobile() {
+    const help = document.querySelector('.dropdown-help');
+    if (window.innerWidth <= 1000) {
+        help.classList.remove('d-none');
+    } else if (window.innerWidth > 1000) {
+        help.classList.add('d-none');
+    }
 }

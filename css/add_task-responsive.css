@@ -98,7 +98,7 @@
         top: 0;
         background-color: rgb(246 247 248);
         font-size: 51px; 
-        z-index: 999;
+        z-index: 500;
     }
 
     #subtaskContainer {

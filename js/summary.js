@@ -8,7 +8,9 @@ async function summaryOnLoad() {
 
     const waitForInclude = () => new Promise((resolve) => {
         const checkExist = setInterval(() => {
-          if (document.querySelector('#sidebar')) {
+          const sidebarLoaded = document.querySelector('#sidebar');
+          const headerLoaded = document.querySelector('#header');
+          if (sidebarLoaded && headerLoaded) {
             clearInterval(checkExist);
             resolve();
           }
@@ -18,6 +20,7 @@ async function summaryOnLoad() {
     await waitForInclude();
     markCurrentPage();
     ifGuestShowDropdownHelp();
+    adjustInitialAfterLogin();
     updateGreeting();
     findToDoAmount();
     findDoneAmount();
@@ -27,6 +30,10 @@ async function summaryOnLoad() {
     findNextUrgentDeadline();
     findOverallTasksAmount();
     showLogedInName();
+
+    adjustHelpForMobile(); 
+    window.addEventListener('resize', adjustHelpForMobile);
+    
     
   } catch (error) {
     console.log('failed loading summary');
@@ -37,7 +44,6 @@ async function summaryOnLoad() {
 
 function showLogedInName() {
   const user = JSON.parse(localStorage.getItem('user'));
-  console.log(user);
   document.getElementById('theUser').innerText = user.name;
 }
 

@@ -3,7 +3,9 @@ async function contactsOnLoad() {
 
     const waitForInclude = () => new Promise((resolve) => {
         const checkExist = setInterval(() => {
-          if (document.querySelector('#sidebar')) {
+          const sidebarLoaded = document.querySelector('#sidebar');
+          const headerLoaded = document.querySelector('#header');
+          if (sidebarLoaded && headerLoaded) {
             clearInterval(checkExist);
             resolve();
           }
@@ -13,10 +15,15 @@ async function contactsOnLoad() {
     await waitForInclude();
     markCurrentPage();
     ifGuestShowDropdownHelp(); 
+    adjustInitialAfterLogin();
     renderContacts();
     findUserEmail();
+
+    adjustHelpForMobile();
+    window.addEventListener('resize', adjustHelpForMobile);
+
   } catch (error) {
-    
+    console.log('error in contactsOnLoad()')
   }
 }
 

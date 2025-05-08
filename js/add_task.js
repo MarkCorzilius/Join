@@ -6,7 +6,9 @@ async function taskPageOnLoad() {
 
   const waitForInclude = () => new Promise((resolve) => {
       const checkExist = setInterval(() => {
-        if (document.querySelector('#sidebar')) {
+        const sidebarLoaded = document.querySelector('#sidebar');
+        const headerLoaded = document.querySelector('#header');
+        if (sidebarLoaded && headerLoaded) {
           clearInterval(checkExist);
           resolve();
         }
@@ -16,10 +18,14 @@ async function taskPageOnLoad() {
   await waitForInclude();
   markCurrentPage();
   ifGuestShowDropdownHelp();
+  adjustInitialAfterLogin();
     taskId = Number(localStorage.getItem('taskId')) || 0;
     resetPriorityBtn();
     fetchContacts();
     findUserEmail();
+    
+    adjustHelpForMobile(); 
+    window.addEventListener('resize', adjustHelpForMobile);
   } catch (error) {
     console.log('error in taskPageOnLoad()');
   }
