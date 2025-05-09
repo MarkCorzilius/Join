@@ -21,8 +21,7 @@ async function boardOnLoad() {
     markCurrentPage(); 
     ifGuestShowDropdownHelp();
     adjustInitialAfterLogin();
-        taskId = Number(localStorage.getItem('taskId')) || 0;
-        renderTaskDialog(); 
+        taskId = Number(localStorage.getItem('taskId')) || 0; 
         await renderAllTasks();
         adjustHelpForMobile(); 
         window.addEventListener('resize', adjustHelpForMobile);
@@ -73,18 +72,22 @@ function closeTaskOverlay() {
 }
 
 function openTaskOverlay(column) {
+    currOverlay = 'boardAddTaskOverlay';
     if (window.innerWidth < 700) {
         window.location.href = '../templates/add_task.html';
     } else {
         const overlay = document.getElementById('createTaskInBoardOverlay');
         overlay.style.display = 'flex';
+        renderTaskDialog();
         currentColumn = column;
     }
     fetchContacts();
 }
 
 function renderTaskDialog() {
+    const infoOverlay = document.getElementById('taskInfoOverlay');
     const overlay = document.getElementById('createTaskInBoardOverlay');
+    infoOverlay.innerHTML = '';
     overlay.innerHTML = "";
     overlay.innerHTML += tasksDialogTemplate();
 }
@@ -239,6 +242,8 @@ function closeTaskInfoOverlay() {
 }
 
 function openTaskInfoOverlay(task) {
+    currOverlay = 'editOverlay';
+
     const overlay = document.getElementById('taskInfoOverlay');
     overlay.classList.add('active');
     renderDetailedTask(task);
@@ -254,18 +259,26 @@ function toggleDeleteBtn(event) {
 }
 
 function toggleEditBtn(event) {
+    const overlay = document.getElementById('taskInfoOverlay');
+    const boardAddTask = document.getElementById('overlayDialogBoard');
     const img = event.target;
     if (event.type === 'mouseover') {
         img.src = '../img/edit_task_hovered.png';
     } else if (event.type === 'mouseout') {
         img.src = '../img/edit_task.png';
+    } else if ('click') {
+        currOverlay = 'editOverlay';
+        overlay.innerHTML = '';
+        boardAddTask.innerHTML = '';
+        overlay.innerHTML = editTaskTemplate();
+
     }
 }
 
 function renderDetailedTask(task) {
     const overlay = document.getElementById('taskInfoOverlay');
-    //overlay.innerHTML = taskDetailTemplate(task);
-    //currTask = task;
+    overlay.innerHTML = taskDetailTemplate(task);
+    currTask = task;
 }
 
 function encodeTask(task) {

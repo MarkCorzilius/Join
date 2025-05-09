@@ -203,7 +203,6 @@
   .dropdown-wrapper {
     display: flex;
     flex-direction: column;
-    width: 440px;
     position: relative;
   }
   

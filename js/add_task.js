@@ -292,8 +292,8 @@ function subtaskTemplate(subtaskId, valueRef) {
                        </div>
                       </div>
 
-                    <div class="task-active-state" id="taskEditState${subtaskId}" style="display: none;">
-                      <div class="subtask-template-edit-state basic-size" class="form-subtask-edit-input-wrapper">
+                    <div class="task-active-state task-edit-state" id="taskEditState${subtaskId}" style="display: none;">
+                      <div class="subtask-template-edit-state subtask-edit-state" class="form-subtask-edit-input-wrapper">
                         <input onkeydown="postSubtaskOnEnter(event, ${subtaskId})" id="subtaskEditInput${subtaskId}" class="form-subtask-edit-input basic-size" type="text">
                         <div class="subtask-icons-on-edit">
                           <div onclick="deleteSubtaskEditState(${subtaskId})" id="deleteSubtaskEditState${subtaskId}" class="subtask-icon-wrapper">

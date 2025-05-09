@@ -73,8 +73,6 @@
   }
   
   .form-subtask-edit-input {
-    width: 440px;
-    height: 40px;
     box-sizing: border-box;
     border: none;
     outline: none;
@@ -168,11 +166,10 @@
 .form-subtask-template:hover .subtask-edit-icons {
     display: flex;
 }
-
 /*Many uses*/
 .form-size {
     height: 48px;
-    width: 100%;
+    width: clamp(200px, 32vw, 400px);
 }
 
 .form-wrap-icon {

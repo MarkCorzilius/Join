@@ -16,9 +16,11 @@ async function deleteTaskInOverlay(currentTask) {
 }
 
 function openTaskEditStateInOverlay(task) {
+    const addTaskOverlay = document.getElementById('createTaskInBoardOverlay');
     const overlay = document.getElementById('taskInfoOverlay');
+    addTaskOverlay.innerHTML = '';
     overlay.innerHTML = '';
-    overlay.innerHTML = editStateOverlayTemplate(task);
+    overlay.innerHTML = editTaskTemplate(task);
 
 }
 
