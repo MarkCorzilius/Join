@@ -24,3 +24,7 @@ function openTaskEditStateInOverlay(task) {
 
 }
 
+function handleOkBtnEvents() {
+    
+}
+

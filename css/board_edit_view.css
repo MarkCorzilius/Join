@@ -1,0 +1,33 @@
+#taskDetailedOverlay {
+    overflow: auto;
+      box-sizing: border-box;
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      padding: 40px 40px 30px;
+      background-color: white;
+      border-radius: 30px;
+      width: clamp(300px, 40vw, 1000px);
+      height: 90vh;
+      max-width: 600px;
+  }
+
+  .detailed-overlay {
+    position: relative;
+  }
+  
+  
+  .edit-data-container {
+      height: 100%;
+      width: 100%;
+    }
+    
+
+.accept-btn-wrapper {
+    position: sticky;
+    width: 100%;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}

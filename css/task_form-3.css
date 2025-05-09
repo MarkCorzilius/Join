@@ -63,10 +63,25 @@
 .subtask-container {
   display: flex;
   flex-direction: column;
-  max-height: 160px;
-  height: 100px;
+  max-height: 100px;
+  height: auto;
   overflow-y: scroll;
   box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.subtask-container::-webkit-scrollbar {
+  width: 5px;             /* Width of vertical scrollbar */
+}
+
+.subtask-container::-webkit-scrollbar-track {
+  background: #f1f1f1;     /* Light gray track */
+}
+
+.subtask-container::-webkit-scrollbar-thumb {
+  background: #888;        /* Darker thumb */
+  border-radius: 5px;
 }
 
 .subtask-edit-icons {
@@ -151,4 +166,16 @@ fill: white;
 
 .footer-wrapper {
   width: 100vw;
+}
+
+.mobile-warning {
+  display: none;
+  font-size: 16px;
+  margin-bottom: 40px;
+  margin-top: 24px;
+}
+
+.mobile-warning::before {
+  content: '*';
+  color: red;
 }

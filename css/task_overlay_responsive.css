@@ -80,7 +80,7 @@
 
     .add-task-page-title {
         padding-top: 20px;
-        padding-bottom: 50px;
+        padding-bottom: 30px;
         width: 100%;
     }
 
@@ -162,6 +162,7 @@
     .task-form-close-wrapper {
         margin-top: 40px;
     }
+
 }
 
 @media (max-width: 1370px) {

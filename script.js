@@ -77,17 +77,12 @@ function adjustHelpForMobile() {
 
 function decideCurrentTaskOverlay() {
 
-    if (window.location.href.includes('add_task')) {
-        currOverlay = 'addTaskOverlay';
-        return 'addTaskOverlay';
-    }
-
     switch (currOverlay) {
         case 'boardAddTaskOverlay':
             return 'form-size';
         case 'editOverlay':
             return 'edit-form-size';
-        default: 'addTaskOverlay';
+        default: 
             return 'basic-size';
     }
 }

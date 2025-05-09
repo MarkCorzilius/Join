@@ -23,7 +23,6 @@ async function taskPageOnLoad() {
     resetPriorityBtn();
     fetchContacts();
     findUserEmail();
-    
     adjustHelpForMobile(); 
     window.addEventListener('resize', adjustHelpForMobile);
   } catch (error) {
@@ -279,7 +278,7 @@ function addSubtask() {
 function subtaskTemplate(subtaskId, valueRef, subtaskClass) {
 
   return `                    
-                                        <div id="subtaskTemplate${subtaskId}">
+                                        <div class="template-subtask" id="subtaskTemplate${subtaskId}">
                       <div class="form-subtask-template task-active-state" id="taskNormalState${subtaskId}">
                        <div class="subtask-title">
                          <p>•</p>
@@ -295,7 +294,7 @@ function subtaskTemplate(subtaskId, valueRef, subtaskClass) {
                       </div>
 
                     <div class="task-active-state task-edit-state" id="taskEditState${subtaskId}" style="display: none;">
-                      <div class="subtask-template-edit-state subtask-edit-state" class="form-subtask-edit-input-wrapper">
+                      <div class="subtask-template-edit-state ${subtaskClass} subtask-edit-state" class="form-subtask-edit-input-wrapper">
                         <input onkeydown="postSubtaskOnEnter(event, ${subtaskId})" id="subtaskEditInput${subtaskId}" class="form-subtask-edit-input ${subtaskClass}" type="text">
                         <div class="subtask-icons-on-edit">
                           <div onclick="deleteSubtaskEditState(${subtaskId})" id="deleteSubtaskEditState${subtaskId}" class="subtask-icon-wrapper">
