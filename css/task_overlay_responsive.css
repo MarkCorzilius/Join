@@ -1,8 +1,9 @@
-@media (min-width: 1000px) and (max-width: 9999px) {
-
+@media (min-width: 1001px) {
     .content-in-main {
         overflow: hidden;
     }
+}
+@media(max-width: 9999px) {
 
     #overlayDialogBoard {
         max-width: 1000px;
@@ -102,116 +103,65 @@
         flex-direction: column;
     }
 
-    .task-overlay-header {
-        display: flex;
-        justify-content: space-between;
-        padding-top: 28px;
-        margin-bottom: 32px;
-        height: 100px;
-        position: sticky;
-        top: 0;
-        z-index: 999;
-        background-color: white;
-    }
-
-    .add-task-page-title {
-        padding: 0;
-
+    .form-size {
+        width: 100%;
     }
 
     .content-in-main {
         width: 100%;
     }
 
-    .task-form-close-wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 4px;
-        height: 30px;
-        width: 30px;
-        box-sizing: border-box;
-        cursor: pointer;
+    .task-left-block {
+        width: 100%;
+        margin-bottom: 24px;
     }
 
-    .task-form-close-wrapper:hover {
-        border-radius: 50%;
-        background-color: rgb(212, 212, 212);
-    }
-
-    .priority-button {
-        box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3);
-    }
-
-    .priority-button {
-        gap: 4px;
-        font-size: 16px;
-        width: 96px;
-        height: 48px;
-    }
-
-    .priority-btn svg {
-        height: 14px;
-        width: auto;
-    }
-
-    .category-section {
+    .task-right-block {
         width: 100%;
     }
 
-    #subtaskInput {
-        width: 100%;
-    }
-
-    .subtask-edit-state {
-        width: clamp(300px, 32vw, 400px);
-    }
-
-    .form-subtask-edit-input {
-        width: clamp(300px, 32vw, 400px);
-    }
-
-    .subtask-template-edit-state {
+    .description-area {
         width: 100%;
     }
 
     .vertical-line {
-        display: none;
+        display: none   ;
     }
 
-    .task-left-block, .task-right-block {
+    .category-options {
         width: 100%;
+    }
+
+    .subtask-section {
+        margin-top: 40px;
     }
 
     .add-task-footer {
-        width: 100%;
+        background-color: white;
         position: sticky;
         bottom: 0;
-        z-index: 999;
-        background-color: white;
-        padding-top: 40px;
-        padding-bottom: 24px;
-    }
-
-    .subtask-template-edit-state {
-        width: 0px;
-        width: clamp(200px, 32vw, 400px) !important;
-    }
-
-    
-
-    #subtaskContainer {
-        margin-bottom: 56px;
-    }
-
-    .subtask-input-wrapper {
         width: 100%;
+        padding: 20px 0px 30px;
     }
 
     #overlayDialogBoard {
-        padding: 0 32px 0 !important;
+        padding-bottom: 0;
+        padding-top: 0px;
     }
 
+    .add-task-page-header {
+        width: 100%;
+        margin-top: 0;
+        padding: 20px 10px 20px;
+        z-index: 888;
+        position: sticky;
+        top: 0;
+        background-color: white;
+    }
+
+    .task-form-close-wrapper {
+        margin-top: 40px;
+    }
 }
 
 @media (max-width: 1370px) {

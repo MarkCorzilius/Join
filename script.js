@@ -84,7 +84,7 @@ function decideCurrentTaskOverlay() {
 
     switch (currOverlay) {
         case 'boardAddTaskOverlay':
-            return 'basic-size';
+            return 'form-size';
         case 'editOverlay':
             return 'edit-form-size';
         default: 'addTaskOverlay';

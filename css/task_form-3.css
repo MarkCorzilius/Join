@@ -1,9 +1,12 @@
-
+.add-task-page-header {
+  width: 100%;
+}
 
 .subtask-section {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+  margin-top: 40px;
 }
 
 .subtask-input-wrapper {

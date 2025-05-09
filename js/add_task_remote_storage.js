@@ -143,7 +143,6 @@ function saveSubtasks() {
         defaultUsers.push(contact);
       }
     }
-    console.log({loggedInUser, defaultUsers});
     return {loggedInUser, defaultUsers};
   }
 

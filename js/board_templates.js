@@ -65,9 +65,11 @@ function taskDetailTemplate(task) {
 function tasksDialogTemplate() {
     return `      <div id="overlayDialogBoard" onclick="event.stopPropagation()">
             <div class="content-in-main">
+            <div class="add-task-page-header">
               <h1 class="add-task-page-title">Add Task</h1>
               <div class="task-form-close-wrapper" onclick="closeTaskOverlay()">
                <img class="task-form-close" src="../img/close.png">
+              </div>
               </div>
               <div class="question-blocks">
                 <div class="task-left-block">
@@ -76,7 +78,7 @@ function tasksDialogTemplate() {
                     <input onkeydown="blurOnEnter(event)" id="taskTitle" class="form-size task-txt form-border" placeholder="Enter a title" type="text" />
                   </div>
                   <div class="title-field-space">
-                    <span class="field-label" for="description task-subtitle">Description</span>
+                    <span class="field-label task-subtitle" for="description">Description</span>
                     <textarea class="description-area form-border form-description task-txt" id="description" name="description" placeholder="Enter a description"></textarea>
                   </div>
                   <div class="title-field-space">
@@ -166,8 +168,8 @@ function tasksDialogTemplate() {
                     </div>
                     <div id="chosenContactsBox"></div>
                   </div>
-                  <div class="category-section">
-                    <span class="field-label" for="description task-subtitle">Category</span>
+                  <div class="category-section form-size">
+                    <span class="field-label task-subtitle" for="description">Category</span>
                     <div class="category-btn-and-options">
                       <div onclick="toggleCategoryOptions()" class="dropdown-btn-category">
                         <button class="form-size form-select form-border">
@@ -185,8 +187,8 @@ function tasksDialogTemplate() {
                   </div>
 
                   <div class="subtask-section">
-                  <span class="field-label" for="description task-subtitle">Subtask</span>
-                  <div class="subtask-input-wrapper">
+                  <span class="field-label task-subtitle" for="description">Subtask</span>
+                  <div class="subtask-input-wrapper form-size">
                   <input onfocus="showActionBtns()" onkeydown="checkShiftSubtask(event)" class="form-size form-subtask form-border task-txt" id="subtaskInput" placeholder="Add new subtask" minlength="1" type="text">
                   <div onclick="showActionBtns()" id="subtaskMainBtn" class="subtask-btn-wrapper subtask-main-btn">
                     <img src="../img/add.png" alt="write">
@@ -236,7 +238,7 @@ function editTaskTemplate() {
           <input onkeydown="blurOnEnter(event)" id="taskTitle" class="title-field task-txt" placeholder="Enter a title" type="text" />
         </div>
         <div class="title-field-space">
-          <span class="field-label" for="description task-subtitle">Description</span>
+          <span class="field-label task-subtitle" for="description">Description</span>
           <textarea class="description-area task-txt" id="description" name="description" placeholder="Enter a description"></textarea>
         </div>
         <div class="title-field-space">
@@ -327,7 +329,7 @@ function editTaskTemplate() {
           <div id="chosenContactsBox"></div>
         </div>
         <div class="category-section">
-          <span class="field-label" for="description task-subtitle">Category</span>
+          <span class="field-label task-subtitle" for="description">Category</span>
           <div class="category-btn-and-options">
             <div onclick="toggleCategoryOptions()" class="dropdown-btn-category">
               <button class="category-btn">
@@ -345,7 +347,7 @@ function editTaskTemplate() {
         </div>
 
         <div class="subtask-section">
-        <span class="field-label" for="description task-subtitle">Subtask</span>
+        <span class="field-label task-subtitle" for="description">Subtask</span>
         <div class="subtask-input-wrapper">
         <input onfocus="showActionBtns()" onkeydown="checkShiftSubtask(event)" class="task-txt" id="subtaskInput" placeholder="Add new subtask" minlength="1" type="text">
         <div onclick="showActionBtns()" id="subtaskMainBtn" class="subtask-btn-wrapper subtask-main-btn">

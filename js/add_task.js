@@ -266,7 +266,9 @@ function addSubtask() {
     input.focus();
     return;
   }
-  outputDiv.innerHTML += subtaskTemplate(subtaskId, valueRef);
+  const subtaskEditClass = decideCurrentTaskOverlay();
+  console.log(subtaskEditClass);
+  outputDiv.innerHTML += subtaskTemplate(subtaskId, valueRef, subtaskEditClass);
 
   document.getElementById('subtaskInput').value = '';
   scrollToCreatedSubtask()
@@ -274,7 +276,7 @@ function addSubtask() {
     input.focus();
 }
 
-function subtaskTemplate(subtaskId, valueRef) {
+function subtaskTemplate(subtaskId, valueRef, subtaskClass) {
 
   return `                    
                                         <div id="subtaskTemplate${subtaskId}">
@@ -294,7 +296,7 @@ function subtaskTemplate(subtaskId, valueRef) {
 
                     <div class="task-active-state task-edit-state" id="taskEditState${subtaskId}" style="display: none;">
                       <div class="subtask-template-edit-state subtask-edit-state" class="form-subtask-edit-input-wrapper">
-                        <input onkeydown="postSubtaskOnEnter(event, ${subtaskId})" id="subtaskEditInput${subtaskId}" class="form-subtask-edit-input basic-size" type="text">
+                        <input onkeydown="postSubtaskOnEnter(event, ${subtaskId})" id="subtaskEditInput${subtaskId}" class="form-subtask-edit-input ${subtaskClass}" type="text">
                         <div class="subtask-icons-on-edit">
                           <div onclick="deleteSubtaskEditState(${subtaskId})" id="deleteSubtaskEditState${subtaskId}" class="subtask-icon-wrapper">
                           <img src="../img/subtask_trash.png" alt="delete">
