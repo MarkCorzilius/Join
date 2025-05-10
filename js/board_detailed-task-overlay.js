@@ -21,7 +21,18 @@ function openTaskEditStateInOverlay(task) {
     addTaskOverlay.innerHTML = '';
     overlay.innerHTML = '';
     overlay.innerHTML = editTaskTemplate(task);
+    renderTaskDetails(task);
+    fetchContacts();
 
+}
+
+function renderTaskDetails(task) {
+    const title = document.getElementById('taskTitle');
+    const description = document.getElementById('description');
+    const date = document.getElementById('taskDate');
+    title.value = task.title;
+    description.value = task.description;
+    date.value = task.date;
 }
 
 function handleOkBtnEvents() {

@@ -1,19 +1,25 @@
-#taskDetailedOverlay {
-    overflow: auto;
-      box-sizing: border-box;
-      display: flex;
-      align-items: flex-start;
-      flex-direction: column;
-      padding: 40px 40px 30px;
-      background-color: white;
-      border-radius: 30px;
-      width: clamp(300px, 40vw, 1000px);
-      height: 90vh;
-      max-width: 600px;
-  }
+.edit-form-size {
+    height: 48px;
+    width: 100%;
+}
 
   .detailed-overlay {
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 0px 40px 30px;
+    background-color: white;
+    border-radius: 30px;
+    width: clamp(310px, 60vw, 1000px);
+    height: 90vh;
+    max-width: 600px;
     position: relative;
+    overflow: auto;
+  }
+
+  .detailed-overlay::-webkit-scrollbar {
+    display: none;
   }
   
   
@@ -30,4 +36,67 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+}
+
+.input-wrapper-subtask {
+    width: 100%;
+}
+
+.edit-subtask-section {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.edit-state-subtitle {
+    margin-bottom: 8px;
+}
+
+.space-between {
+    margin-bottom: 24px;
+}
+
+
+.prio-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+.prio-small {
+    width: 90px !important;
+    height: 48px !important;
+}
+
+.leave-edit-icon {
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.leave-edit-icon-wrapper {
+    top:0;
+    position: sticky;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 30px 10px 20px;
+    background-color: white;
+
+}
+
+.leave-edit-icon:hover {
+    background-color: rgb(233, 233, 233);
+}
+
+
+
+@media (max-width: 1000px) {
+    .prio-buttons {
+        gap: 8px;
+    }
+
 }

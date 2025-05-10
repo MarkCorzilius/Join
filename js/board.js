@@ -396,11 +396,6 @@ function toggleSubtaskIcon(event, icon, subtaskKey) {
     }
 }
 
-function adjustIconStateInArray(subtaskNum, icon) {
-    console.log(currTask);
-    console.log('hello, ',icon);
-}
-
 async function findChosenSubtasks(subtaskKey, icon) {
     if (!icon) return;
     console.log(icon);
