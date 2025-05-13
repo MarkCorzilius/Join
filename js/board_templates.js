@@ -168,7 +168,7 @@ function tasksDialogTemplate() {
                     </div>
                     <div id="chosenContactsBox"></div>
                   </div>
-                  <div class="category-section form-size">
+                  <div class="category-section">
                     <span class="field-label task-subtitle" for="description">Category</span>
                     <div class="category-btn-and-options">
                       <div onclick="toggleCategoryOptions()" class="dropdown-btn-category">
@@ -203,7 +203,7 @@ function tasksDialogTemplate() {
                     </div>
                   </div>
                   </div>
-                  <div class="subtask-container edit-form-size" id="subtaskContainer">
+                  <div class="subtask-container" id="subtaskContainer">
 
                   </div>
                 </div>
@@ -241,7 +241,7 @@ function editTaskTemplate() {
      </div>
       <div class="title-field-space space-between">
        <span class="edit-state-subtitle" for="description">Description</span>
-       <textarea class="form-border form-description" id="description" name="description" placeholder="Enter a description"></textarea>
+       <textarea class="form-border edit-form-description" id="description" name="description" placeholder="Enter a description"></textarea>
      </div>
      <div class="title-field-space space-between">
        <span class="edit-state-subtitle">Due date</span>
@@ -250,8 +250,8 @@ function editTaskTemplate() {
      <div class="priority-section">
              <span class="edit-state-subtitle">Priority</span>
              <div class="prio-buttons">
-               <button onclick="setActivePriority(this, 'rgb(255, 61, 0)', 0)" class="priority-button prio-small form-priority urgent">
-                 <p class="task-txt">Urgent</p>
+               <button onclick="setActivePriority(this, 'rgb(255, 61, 0)', 0)" class="priority-button prio-small form-priority urgent prio-btn">
+                 <p class="prio-txt">Urgent</p>
                  <svg class="priority-icon priority-icon-0" width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                    <g clip-path="url(#clip0_156_1009)">
                      <path
@@ -270,8 +270,8 @@ function editTaskTemplate() {
                    </defs>
                  </svg>
                </button>
-               <button onclick="setActivePriority(this, 'rgb(255, 168, 1)', 1)" class="priority-button prio-small form-priority medium">
-                 <p class="task-txt">Medium</p>
+               <button onclick="setActivePriority(this, 'rgb(255, 168, 1)', 1)" class="priority-button prio-small form-priority medium prio-btn">
+                 <p class="prio-txt">Medium</p>
                  <svg class="priority-icon priority-icon-1" width="21" height="8" viewBox="0 0 21 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                    <g clip-path="url(#clip0_156_1038)">
                      <path
@@ -290,8 +290,8 @@ function editTaskTemplate() {
                    </defs>
                  </svg>
                </button>
-               <button onclick="setActivePriority(this, 'rgb(123, 225, 41)', 2)" class="priority-button prio-small form-priority low">
-                 <p class="task-txt">Low</p>
+               <button onclick="setActivePriority(this, 'rgb(123, 225, 41)', 2)" class="priority-button prio-small form-priority low prio-btn">
+                 <p class="prio-txt">Low</p>
                  <svg class="priority-icon priority-icon-2" width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                    <path
                      d="M10.3555 9.69779C10.1209 9.69819 9.89234 9.62335 9.70349 9.48427L0.800382 2.91453C0.684543 2.82898 0.586704 2.72146 0.512448 2.59812C0.438193 2.47478 0.388977 2.33803 0.367609 2.19569C0.324455 1.90821 0.397354 1.61537 0.57027 1.3816C0.743187 1.14782 1.00196 0.992265 1.28965 0.949143C1.57734 0.906021 1.8704 0.978866 2.10434 1.15165L10.3555 7.23414L18.6066 1.15165C18.7224 1.0661 18.854 1.00418 18.9938 0.969432C19.1336 0.934685 19.2788 0.927791 19.4213 0.949143C19.5637 0.970495 19.7006 1.01967 19.824 1.09388C19.9474 1.16808 20.055 1.26584 20.1407 1.3816C20.2263 1.49735 20.2883 1.62882 20.323 1.7685C20.3578 1.90818 20.3647 2.05334 20.3433 2.19569C20.322 2.33803 20.2727 2.47478 20.1985 2.59812C20.1242 2.72146 20.0264 2.82898 19.9106 2.91453L11.0075 9.48427C10.8186 9.62335 10.5901 9.69819 10.3555 9.69779Z"
@@ -345,14 +345,14 @@ function editTaskTemplate() {
               </div>
             </div>
             </div>
-            <div class="subtask-container edit-form-size" id="subtaskContainer">
+            <div class="subtask-container edit-subtask-container" id="subtaskContainer">
             </div>
             <p class="mobile-warning task-txt">This field is required</p>
           </div>
     </div>
     <div class="accept-btn-wrapper">
-    <svg class="accept-changes-btn" width="90" height="58" viewBox="0 0 90 58" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0.682129" y="0.396729" width="89" height="57" rx="10" fill="#2A3647"/>
+    <svg onclick="handleOkBtnEvents(event)" onmouseover="handleOkBtnEvents(event)" onmouseout="handleOkBtnEvents(event)" class="accept-changes-btn" width="90" height="58" viewBox="0 0 90 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect class="ok-btn-color" x="0.682129" y="0.396729" width="89" height="57" rx="10" fill="#2A3647"/>
       <path d="M32.0443 28.7604C32.0443 30.4258 31.7286 31.8428 31.0973 33.0111C30.4708 34.1794 29.6157 35.0718 28.5319 35.6883C27.4531 36.2998 26.24 36.6055 24.8927 36.6055C23.5355 36.6055 22.3174 36.2973 21.2386 35.6808C20.1598 35.0643 19.3071 34.1719 18.6807 33.0036C18.0543 31.8353 17.7411 30.4209 17.7411 28.7604C17.7411 27.0949 18.0543 25.678 18.6807 24.5097C19.3071 23.3413 20.1598 22.4514 21.2386 21.8399C22.3174 21.2234 23.5355 20.9152 24.8927 20.9152C26.24 20.9152 27.4531 21.2234 28.5319 21.8399C29.6157 22.4514 30.4708 23.3413 31.0973 24.5097C31.7286 25.678 32.0443 27.0949 32.0443 28.7604ZM28.7706 28.7604C28.7706 27.6815 28.609 26.7717 28.2858 26.031C27.9676 25.2902 27.5177 24.7284 26.936 24.3456C26.3544 23.9628 25.6733 23.7714 24.8927 23.7714C24.1122 23.7714 23.4311 23.9628 22.8494 24.3456C22.2677 24.7284 21.8153 25.2902 21.4921 26.031C21.174 26.7717 21.0149 27.6815 21.0149 28.7604C21.0149 29.8392 21.174 30.749 21.4921 31.4898C21.8153 32.2305 22.2677 32.7923 22.8494 33.1751C23.4311 33.558 24.1122 33.7494 24.8927 33.7494C25.6733 33.7494 26.3544 33.558 26.936 33.1751C27.5177 32.7923 27.9676 32.2305 28.2858 31.4898C28.609 30.749 28.7706 29.8392 28.7706 28.7604ZM37.2552 33.1006L37.2627 29.2898H37.725L41.394 24.9422H45.0407L40.1114 30.6993H39.3582L37.2552 33.1006ZM34.3766 36.3967V21.124H37.5535V36.3967H34.3766ZM41.5357 36.3967L38.165 31.4077L40.2829 29.1631L45.257 36.3967H41.5357Z" fill="white"/>
       <mask id="mask0_75609_16286" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="49" y="16" width="25" height="25">
       <rect x="49.6821" y="16.8967" width="24" height="24" fill="#D9D9D9"/>

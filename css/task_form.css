@@ -78,6 +78,7 @@
     align-items: center;
     justify-content: space-between;
     position: relative;
+    box-sizing: border-box;
   }
   
   .form-subtask-edit-input {
@@ -85,6 +86,10 @@
     border: none;
     outline: none;
     border-bottom: 1px solid rgb(41, 171, 226);
+    width: 100%;
+    padding-right: 40%;
+    overflow-x: auto;
+    white-space: nowrap;
   
   }
   

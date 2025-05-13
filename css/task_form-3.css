@@ -63,6 +63,7 @@
 .subtask-container {
   display: flex;
   flex-direction: column;
+  width: 100%;
   max-height: 100px;
   height: auto;
   overflow-y: scroll;
@@ -91,6 +92,8 @@
   gap: 4px;
 }
 
+
+
 .subtask-separator {
   height: 24px;
   width: 1px;
@@ -101,7 +104,14 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  height: 40px;
+  min-height: 40px;
+}
+
+.subtask-titles {
+  font-size: clamp(12px, 2vw, 16px);
+  max-width: 90%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .subtask-icon-wrapper {

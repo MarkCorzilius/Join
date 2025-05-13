@@ -8,7 +8,7 @@
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    padding: 0px 40px 30px;
+    padding: 0px 40px 10px;
     background-color: white;
     border-radius: 30px;
     width: clamp(310px, 60vw, 1000px);
@@ -22,11 +22,31 @@
     display: none;
   }
   
-  
-  .edit-data-container {
-      height: 100%;
-      width: 100%;
-    }
+
+.edit-form-description {
+  height: 60px;
+  max-height: 140px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  resize: none;
+  padding: 18px 20px 0px;
+  box-sizing: border-box;
+  text-indent: 0 !important;
+
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center
+}
+
+.accept-changes-btn {
+    cursor: pointer;
+}
+
+.accept-changes-btn:hover {
+    color: 1px solid rgb(41, 171, 226);
+}
     
 
 .accept-btn-wrapper {
@@ -46,6 +66,7 @@
     display: flex;
     align-items: flex-start;
     flex-direction: column;
+    margin-bottom: 28px;
 }
 
 .edit-state-subtitle {
@@ -53,7 +74,7 @@
 }
 
 .space-between {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 
@@ -85,6 +106,7 @@
     justify-content: flex-end;
     padding: 30px 10px 20px;
     background-color: white;
+    box-sizing: border-box;
 
 }
 
@@ -92,11 +114,53 @@
     background-color: rgb(233, 233, 233);
 }
 
+.edit-subtask-container {
+    max-height: 150px !important;
+}
 
+.prio-txt {
+    font-size: 16px;
+}
 
-@media (max-width: 1000px) {
+.edit-data-container {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding-right: 5px;
+  }
+
+.edit-data-container::-webkit-scrollbar {
+    width: 5px;             /* Width of vertical scrollbar */
+  }
+  
+  .edit-data-container::-webkit-scrollbar-track {
+    background: #f1f1f1;     /* Light gray track */
+  }
+  
+  .edit-data-container::-webkit-scrollbar-thumb {
+    background: #888;        /* Darker thumb */
+    border-radius: 5px;
+  }
+
+@media (max-width: 600px) {
+    .prio-small {
+        width: 86px !important;
+        height: 44px !important;
+    }
+
+    .prio-small svg {
+        height: 12px;
+        width: auto;
+    }
+
     .prio-buttons {
-        gap: 8px;
+        gap: 4px;
+    }
+
+    .prio-txt {
+        font-size: 14px;
     }
 
 }

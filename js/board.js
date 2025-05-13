@@ -79,6 +79,7 @@ function openTaskOverlay(column) {
         const overlay = document.getElementById('createTaskInBoardOverlay');
         overlay.style.display = 'flex';
         renderTaskDialog();
+        resetPriorityBtn();
         currentColumn = column;
     }
     fetchContacts();
@@ -375,7 +376,7 @@ function updateSubtaskIcon(isHovered = false, icon, subtaskKey) {
         : '../img/checkbox_unchecked_unhovered.png';
     }
     findChosenSubtasks(subtaskKey, icon);
-    adjustIconStateInArray(subtaskKey, icon);
+   // adjustIconStateInArray(subtaskKey, icon);
 }
 
 function toggleSubtaskIcon(event, icon, subtaskKey) {
@@ -398,7 +399,6 @@ function toggleSubtaskIcon(event, icon, subtaskKey) {
 
 async function findChosenSubtasks(subtaskKey, icon) {
     if (!icon) return;
-    console.log(icon);
 
     const board = await getData('board/');
 
@@ -407,7 +407,6 @@ async function findChosenSubtasks(subtaskKey, icon) {
             if (oneTask.id === currTask.id) {
                 let isChosen = icon.classList.contains('chosen');
                 const data = await putData(`board/${columnKey}/${taskKey}/subtasks/${subtaskKey}/state`, isChosen);
-                console.log(`Updating: board/${columnKey}/${taskKey}/subtasks/${subtaskKey}/state = ${isChosen}`);
             }
         }
     }

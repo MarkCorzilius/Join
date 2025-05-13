@@ -137,6 +137,10 @@
     gap: 10px;
   }
 
+  .task-overlay-control img {
+    cursor: pointer;
+  }
+
 
   .task-overlay-info {
     height: 100%;

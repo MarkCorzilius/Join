@@ -266,7 +266,6 @@ function addSubtask() {
     return;
   }
   const subtaskEditClass = decideCurrentTaskOverlay();
-  console.log(subtaskEditClass);
   outputDiv.innerHTML += subtaskTemplate(subtaskId, valueRef, subtaskEditClass);
 
   document.getElementById('subtaskInput').value = '';
@@ -276,7 +275,6 @@ function addSubtask() {
 }
 
 function subtaskTemplate(subtaskId, valueRef, subtaskClass) {
-
   return `                    
                                         <div class="template-subtask" id="subtaskTemplate${subtaskId}">
                       <div class="form-subtask-template task-active-state" id="taskNormalState${subtaskId}">
@@ -316,9 +314,9 @@ function scrollToCreatedSubtask() {
 }
 
 function emptyTaskDocument() {
-  const title = document.querySelector('.title-field');
-  const description = document.querySelector('.description-area');
-  const date = document.querySelector('.due-date-field');
+  const title = document.getElementById('taskTitle');
+  const description = document.getElementById('description');
+  const date = document.getElementById('taskDate');
   const subtaskInput = document.getElementById('subtaskInput');
 
   title.value = '';
@@ -423,11 +421,10 @@ function exitSubtaskEditState(subtaskId) {
 
 function postSubtaskOnEnter(event, subtaskId) {
   const taskInput = document.getElementById('subtaskEditInput' + subtaskId);
-  if (taskInput.value.length !== 0) {
-    if (event.key === 'Enter') {
+
+    if (event.key === 'Enter' && taskInput.value.length !== 0) {
       updateTask(subtaskId);
+    } else {
+      deleteSubtaskEditState();
     }
-  } else {
-    deleteSubtaskEditState(subtaskId);
-  }
 }

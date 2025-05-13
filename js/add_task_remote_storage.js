@@ -65,6 +65,8 @@ function getTaskData() {
   taskId += 1;
   localStorage.setItem('taskId',taskId.toString());
   emptyTaskDocument();
+  renderAllTasks();
+  closeTaskOverlay();
 }
 }
 
@@ -147,7 +149,7 @@ function saveSubtasks() {
   }
 
   function contactsTemplate(name, bg, initial) {
-    return `<div onclick="styleChosenContact(this, '${initial}', '${bg}', '${name}')" class="option">
+    return `<div onclick="styleChosenContact(this, '${initial}', '${bg}', '${name}')" class="option contact-line">
                     <div>
                     <div class="initial" style="background-image:url('${bg}')" alt="profile icon">${initial}</div>
                     <span class="contact-name">${showUser(name)}</span>
