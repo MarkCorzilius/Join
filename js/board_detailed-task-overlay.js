@@ -7,7 +7,6 @@ async function deleteTaskInOverlay(currentTask) {
         for (const [taskKey, task] of Object.entries(tasks)) {
             if (task.id === currentTask.id) {
                 await deleteData(`board/${columnKey}/${taskKey}`);
-                await renderAllTasks();
                 closeTaskInfoOverlay();
                 return;
             }

@@ -35,14 +35,32 @@ async function boardOnLoad() {
 async function renderAllTasks() {
     document.querySelector('.spinner-overlay').style.display = "flex";
     try {
-        await renderToDoTasks();
-        await renderTasksInProgress();
-        await renderTasksAwaitFeedback();
-        await renderTasksDone();
+        renderTasks('tasksContainer-0', 'board/toDo/', 'To Do');
+        renderTasks('tasksContainer-1', 'board/InProgress/', 'In Progress');
+        renderTasks('tasksContainer-2', 'board/awaitFeedback/', 'Await Feedback');
+        renderTasks('tasksContainer-3', 'board/done/', 'Done');
+
     } catch (error) {
         console.log('error in renderAllTasks()');
     } finally {
         document.querySelector('.spinner-overlay').style.display = "none";
+    }
+}
+
+async function renderTasks(id, path, emptyMessage) {
+    const container = document.getElementById(id);
+    container.innerHTML = "";
+    const rawTasks = await getData(path);
+    const tasks = rawTasks ? Object.values(rawTasks) : [];
+    if (tasks.length === 0) {
+        container.innerHTML = emptyColumnTemplate(emptyMessage);
+        return;
+    }
+    for (let i = 0; i < tasks.length; i++) {
+        const task = tasks[i];
+
+        container.innerHTML += taskTemplate(task);
+        updateProgressBar(task);
     }
 }
 
@@ -93,73 +111,6 @@ function renderTaskDialog() {
     overlay.innerHTML += tasksDialogTemplate();
 }
 
-async function renderTasksInProgress() {
-    const container = document.getElementById('tasksContainer-1');
-    container.innerHTML = "";
-    const rawTasks = await getData('board/InProgress/');
-    const tasks = rawTasks ? Object.values(rawTasks) : [];
-    if (tasks.length === 0) {
-        container.innerHTML = emptyColumnTemplate('In Progress');
-        return;
-    }
-    for (let i = 0; i < tasks.length; i++) {
-        const task = tasks[i];
-
-        container.innerHTML += taskTemplate(task);
-        updateProgressBar(task);
-    }
-}
-
-async function renderTasksDone() {
-    const container = document.getElementById('tasksContainer-3');
-    container.innerHTML = '';
-    const rawTasks = await getData('board/done/');
-    const tasks = rawTasks ? Object.values(rawTasks) : [];
-    if (tasks.length === 0) {
-        container.innerHTML = emptyColumnTemplate('no tasks done');
-        return;
-    }
-    for (let i = 0; i < tasks.length; i++) {
-        const task = tasks[i];
-        container.innerHTML += taskTemplate(task);
-        updateProgressBar(task);
-    }
-}
-
-async function renderTasksAwaitFeedback() {
-    const container = document.getElementById('tasksContainer-2');
-    container.innerHTML = '';
-    const rawTasks = await getData('board/awaitFeedback/');
-    const tasks = rawTasks ? Object.values(rawTasks) : [];
-    if (tasks.length === 0) {
-        container.innerHTML = emptyColumnTemplate('Await Feedback');
-        return;
-    }
-
-    for (let i = 0; i < tasks.length; i++) {
-        const task = tasks[i];
-
-        container.innerHTML += taskTemplate(task);
-        updateProgressBar(task);
-    }
-}
-
-async function renderToDoTasks() {
-    const rawTasks = await getData('board/toDo/');
-    const container = document.getElementById('tasksContainer-0');
-    container.innerHTML = "";
-    const tasks = Object.values(rawTasks ?? {});
-    if (tasks.length === 0) {
-        container.innerHTML = emptyColumnTemplate('To Do');
-        return;
-    }
-    for (let i = 0; i < tasks.length; i++) {
-        const task = tasks[i];   
-        container.innerHTML += taskTemplate(task);
-        updateProgressBar(task);
-    }
-}
-
 function renderCategory(task) {
     switch (task.category) {
         case "User Story":
@@ -206,6 +157,7 @@ window.onresize = function handlePageRedirect() {
 
 async function createTaskInBoardFireBase() {
     const column = checkTargetColumn();
+    console.log(column);
     if (!extractTaskValues()) {
         alert('chosen date is not in the future!');
         return;
@@ -215,6 +167,7 @@ async function createTaskInBoardFireBase() {
       return; 
     } else {
         postData('board/' + column, dataSafe);
+        console.log('board/' + column, dataSafe);
         taskId += 1;
         localStorage.setItem('taskId',taskId.toString());
         emptyTaskDocument();

@@ -25,7 +25,7 @@ function guestLogin() {
     
 
     setTimeout(() => {
-        window.location.href = "../templates/summary.html";
+        window.location.href = "./templates/summary.html";
     }, 300);
 
 

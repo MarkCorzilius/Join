@@ -41,6 +41,10 @@
         display: flex;
     }
 
+    .board-section-column {
+        width: 100%;
+    }
+
     .mobile-title-and-btn {
         display: flex;
         align-items: center;
