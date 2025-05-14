@@ -264,7 +264,6 @@ body {
 }
 
 #tasksContainer-0,#tasksContainer-1, #tasksContainer-2, #tasksContainer-3 {
-  overflow: auto;
   width: 244px;
   max-height: 500px;
   height: 500px;
@@ -317,4 +316,23 @@ body {
 .mobile-add-task-btn {
   display: none;
   cursor: pointer;
+}
+
+.tasks-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.tasks-container::-webkit-scrollbar {
+  width: 5px;             /* Width of vertical scrollbar */
+}
+
+.tasks-container::-webkit-scrollbar-track {
+  background: #f1f1f1;     /* Light gray track */
+}
+
+.tasks-container::-webkit-scrollbar-thumb {
+  background: #888;        /* Darker thumb */
+  border-radius: 5px;
 }

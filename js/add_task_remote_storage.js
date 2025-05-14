@@ -93,6 +93,7 @@ function saveSubtasks() {
   const subtaskTitles = document.querySelectorAll('.subtask-titles');
 
   if (!subtaskContainer) return null;
+  if (!subtaskTitles) return;
 
   const subtasks = {};
 

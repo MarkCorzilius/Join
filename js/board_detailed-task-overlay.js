@@ -133,9 +133,8 @@ async function changeCurrTask() {
     for (const [columnKey, tasks] of Object.entries(rawBoard)) {
         for (const [tasksKey, task] of Object.entries(tasks)) {
             if (task.id === currTask.id) {
-                putData(`board/${columnKey}/${tasksKey}`, newTaskData);
+                await putData(`board/${columnKey}/${tasksKey}`, newTaskData);
                 closeTaskInfoOverlay();
-                await renderAllTasks();
             }
         }
     }

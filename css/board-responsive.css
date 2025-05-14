@@ -37,6 +37,12 @@
 }
 
 @media (max-width: 1000px) {
+
+    .tasks-container {
+        overflow-y: hidden;
+        overflow-x: auto;
+    }
+
     .mobile-add-task-btn {
         display: flex;
     }

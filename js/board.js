@@ -262,7 +262,8 @@ function loopTaskContacts(task) {
 
 function loopTaskSubtasks(task) {
     let templateHTML = '';
-    if (!task.subtasks || typeof task.subtasks !== 'object') return;
+    if (!task.subtasks || typeof task.subtasks !== 'object') return '';
+    if (Object.entries(task.subtasks).length === 0) return '';
 
     for (const [subtaskKey, subtask] of Object.entries(task.subtasks)) {
         const { src, className } = renderCurrSubtaskState(subtask);
