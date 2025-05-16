@@ -150,3 +150,52 @@ input[type="date"]:valid {
     transform: rotate(360deg);
   }
 }
+
+#greetingOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 2rem;
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1s ease, visibility 1s ease;
+}
+
+#greetingOverlay.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#greetingOverlay.hidden {
+  display: none;
+}
+
+#logedInUser {
+  color: rgb(41, 171, 226);
+  font-size: 60px;
+}
+
+#logedInGreeting {
+  font-size: 60px;
+  margin-bottom: 0;
+}
+
+.login-input-wrapper {
+  position: relative;
+}
+
+.login-icons {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-45%);
+  cursor: pointer;
+}

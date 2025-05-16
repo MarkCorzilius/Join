@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="./css/login_responsive.css" />
   <link rel="stylesheet" href="./css/login.css" />
 
+  <script src="./script.js"></script>
   <script src="./js/login.js"></script>
   <script src="./js/database.js"></script>
 </head>
@@ -48,11 +49,17 @@
       <form onsubmit="addUser(); return false;">
         <div class="input-field">
           <label for="loginEmail">Email</label>
+          <div class="login-input-wrapper">
           <input type="email" id="loginEmail" placeholder="Email" autocomplete="username" required />
+          <img class="login-icons" src="./img/mail.png" alt="mail png">
+          </div>
         </div>
         <div class="input-field">
           <label for="loginPassword">Password</label>
+          <div class="login-input-wrapper">
           <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password" required />
+          <img onclick="togglePasswordVisibility('loginPassword', this, './')" class="login-icons" src="./img/password_not_visible.png" alt="toggle visibility">
+          </div>
         </div>
         <p class="wrong-data-alert" id="wrongDataAlert">Check your email and password</p>
         <div class="buttons">

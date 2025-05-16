@@ -200,6 +200,14 @@
 
   @media (max-width: 550px) {
 
+    .contacts-options {
+        width: 100%;
+    }
+
+    .category-options {
+        width: 100%;
+    }
+
     .basic-size {
         width: 90vw;
     }
@@ -210,6 +218,12 @@
 
     .add-task-page-title {
         font-size: 48px;
+        padding: 20px
+    }
+
+    .footer-buttons-wrapper {
+        width: 97vw;
+        left: 0
     }
 
     .priority-button {

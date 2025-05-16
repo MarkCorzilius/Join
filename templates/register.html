@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Join - Sign in</title>
 
+    <script src="../script.js"></script>
     <script src="../js/contacts.js"></script>
     <script src="../js/contacts_remote_storage.js"></script>
     <script src="../js/database.js" defer></script>
@@ -30,23 +31,35 @@
                 <!-- E-Mail-Feld als Benutzername -->
                 <div class="input-field">
                     <label for="registerName">Name</label>
-                    <input type="name" id="registerName" placeholder="Name" autocomplete="username" required>
+                    <div class="login-input-wrapper"> 
+                        <input type="name" id="registerName" placeholder="Name" autocomplete="username" required>
+                        <img class="login-icons" src="../img/user.png" alt="mail png">
+                    </div>
                 </div>
                 <div class="input-field">
                     <label for="registerEmail">Email</label>
-                    <input type="email" id="registerEmail" placeholder="Email" autocomplete="username" required>
+                    <div class="login-input-wrapper">   
+                        <input type="email" id="registerEmail" placeholder="Email" autocomplete="username" required>
+                        <img class="login-icons" src="../img/mail.png" alt="mail png">
+                    </div>
                 </div>
 
                 <!-- Passwortfeld -->
                 <div class="input-field">
                     <label for="registerPassword1">Password</label>
-                    <input type="password" id="registerPassword1" placeholder="Password" autocomplete="new-password" required>
+                    <div class="login-input-wrapper">
+                        <input type="password" id="registerPassword1" placeholder="Password" autocomplete="new-password" required>
+                        <img onclick="togglePasswordVisibility('registerPassword1', this, '../')" class="login-icons" src="../img/password_not_visible.png" alt="mail png">
+                    </div>
                 </div>
 
                 <!-- Passwort bestätigen -->
                 <div class="input-field">
                     <label for="registerPassword2">Password</label>
-                    <input type="password" id="registerPassword2" placeholder="Confirm Password" autocomplete="new-password" required>
+                    <div class="login-input-wrapper">      
+                        <input type="password" id="registerPassword2" placeholder="Confirm Password" autocomplete="new-password" required>
+                        <img onclick="togglePasswordVisibility('registerPassword2', this, '../')" class="login-icons" src="../img/password_not_visible.png" alt="mail png">
+                    </div>
                 </div>
                 <div class="privacy-accept">
                     <img onmouseover="togglePrivacyBtn(event)" onmouseout="togglePrivacyBtn(event)" onclick="togglePrivacyBtn(event)" id="acceptPrivacy" src="../img/checkbox_unchecked_unhovered.png" alt="">

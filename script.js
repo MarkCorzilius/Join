@@ -86,3 +86,16 @@ function decideCurrentTaskOverlay() {
             return 'basic-size';
     }
 }
+
+function togglePasswordVisibility(inputId, element, path) {
+    const passwordInputId = document.getElementById(inputId);
+    element.classList.toggle('visible');
+    if (element.classList.contains('visible')) {
+        passwordInputId.type = 'text';
+        element.src = `${path}img/password_visible.png`;
+    } else {
+        passwordInputId.type = 'password';
+        element.src = `${path}img/password_not_visible.png`;
+
+    }
+}
