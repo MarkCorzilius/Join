@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Join - Sign in</title>
 
+    <script src="../script.js"></script>
     <script src="../js/contacts.js"></script>
     <script src="../js/contacts_remote_storage.js"></script>
     <script src="../js/database.js" defer></script>
@@ -13,7 +14,6 @@
     <link rel="icon" type="image/x-icon" href="../img/join-logo.svg" />
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="../css/register.css" />
-    <link rel="stylesheet" href="../css/login.css" />
 
 </head>
 
@@ -49,7 +49,7 @@
                     <label for="registerPassword1">Password</label>
                     <div class="login-input-wrapper">
                         <input type="password" id="registerPassword1" placeholder="Password" autocomplete="new-password" required>
-                        <img class="login-icons" src="../img/password_not_visible.png" alt="mail png">
+                        <img onclick="togglePasswordVisibility('registerPassword1', this, '../')" class="login-icons" src="../img/password_not_visible.png" alt="mail png">
                     </div>
                 </div>
 
@@ -58,7 +58,7 @@
                     <label for="registerPassword2">Password</label>
                     <div class="login-input-wrapper">      
                         <input type="password" id="registerPassword2" placeholder="Confirm Password" autocomplete="new-password" required>
-                        <img class="login-icons" src="../img/password_not_visible.png" alt="mail png">
+                        <img onclick="togglePasswordVisibility('registerPassword2', this, '../')" class="login-icons" src="../img/password_not_visible.png" alt="mail png">
                     </div>
                 </div>
                 <div class="privacy-accept">

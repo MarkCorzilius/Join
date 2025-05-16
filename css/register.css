@@ -171,3 +171,7 @@
     padding: 20px 30px;
   }
 }
+
+#registerPassword1, #registerPassword2 {
+  text-indent: 0 !important;
+}
