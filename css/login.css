@@ -325,3 +325,15 @@
     font-size: 60px;
     margin-bottom: 0;
 }
+
+.login-input-wrapper {
+    position: relative;
+}
+
+.login-icons {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-45%);
+    cursor: pointer;
+}
