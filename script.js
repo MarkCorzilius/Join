@@ -1,3 +1,5 @@
+let currOverlay = 1;
+
 document.addEventListener("DOMContentLoaded", function () {
     window.dispatchEvent(new Event("resize"));
 });
@@ -22,7 +24,7 @@ async function showLegalNoticeAndPrivacyPolicy() {
         markCurrentPage();
         ifGuestShowDropdownHelp();
         adjustInitialAfterLogin();
-        
+
         adjustHelpForMobile(); 
         window.addEventListener('resize', adjustHelpForMobile);
     } catch (error) {
@@ -69,5 +71,18 @@ function adjustHelpForMobile() {
         help.classList.remove('d-none');
     } else if (window.innerWidth > 1000) {
         help.classList.add('d-none');
+    }
+}
+
+
+function decideCurrentTaskOverlay() {
+
+    switch (currOverlay) {
+        case 'boardAddTaskOverlay':
+            return 'form-size';
+        case 'editOverlay':
+            return 'edit-form-size';
+        default: 
+            return 'basic-size';
     }
 }

@@ -65,6 +65,9 @@ function getTaskData() {
   taskId += 1;
   localStorage.setItem('taskId',taskId.toString());
   emptyTaskDocument();
+  if (window.location.href.includes('task')) return;
+    renderAllTasks();
+    closeTaskOverlay();
 }
 }
 
@@ -91,6 +94,7 @@ function saveSubtasks() {
   const subtaskTitles = document.querySelectorAll('.subtask-titles');
 
   if (!subtaskContainer) return null;
+  if (!subtaskTitles) return;
 
   const subtasks = {};
 
@@ -143,12 +147,11 @@ function saveSubtasks() {
         defaultUsers.push(contact);
       }
     }
-    console.log({loggedInUser, defaultUsers});
     return {loggedInUser, defaultUsers};
   }
 
   function contactsTemplate(name, bg, initial) {
-    return `<div onclick="styleChosenContact(this, '${initial}', '${bg}', '${name}')" class="option">
+    return `<div onclick="styleChosenContact(this, '${initial}', '${bg}', '${name}')" class="option contact-line">
                     <div>
                     <div class="initial" style="background-image:url('${bg}')" alt="profile icon">${initial}</div>
                     <span class="contact-name">${showUser(name)}</span>

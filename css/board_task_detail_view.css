@@ -137,6 +137,10 @@
     gap: 10px;
   }
 
+  .task-overlay-control img {
+    cursor: pointer;
+  }
+
 
   .task-overlay-info {
     height: 100%;
@@ -215,19 +219,4 @@
 #subtasksList::-webkit-scrollbar-thumb {
   background: #888;        /* Darker thumb */
   border-radius: 5px;
-}
-
-#taskDetailedOverlay {
-  overflow: auto;
-  position: relative;
-    box-sizing: border-box;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    padding: 40px 40px 30px;
-    background-color: white;
-    border-radius: 30px;
-    width: 40vw;
-    height: 90vh;
-    max-width: 600px;
 }

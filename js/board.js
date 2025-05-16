@@ -1,5 +1,5 @@
+let disabled = false;
 let currentColumn = 0;
-let currTask = null;
 
 async function boardOnLoad() {
     document.querySelector('.spinner-overlay').style.display = "flex";
@@ -21,11 +21,11 @@ async function boardOnLoad() {
     markCurrentPage(); 
     ifGuestShowDropdownHelp();
     adjustInitialAfterLogin();
-        taskId = Number(localStorage.getItem('taskId')) || 0;
-        renderTaskDialog(); 
+        taskId = Number(localStorage.getItem('taskId')) || 0; 
         await renderAllTasks();
         adjustHelpForMobile(); 
         window.addEventListener('resize', adjustHelpForMobile);
+        checkIfMobileLayout();
     } catch (error) {
         console.log('error in boardOnLoad');
     } finally {
@@ -36,14 +36,34 @@ async function boardOnLoad() {
 async function renderAllTasks() {
     document.querySelector('.spinner-overlay').style.display = "flex";
     try {
-        await renderToDoTasks();
-        await renderTasksInProgress();
-        await renderTasksAwaitFeedback();
-        await renderTasksDone();
+        renderTasks('tasksContainer-0', 'board/toDo/', 'To Do');
+        renderTasks('tasksContainer-1', 'board/InProgress/', 'In Progress');
+        renderTasks('tasksContainer-2', 'board/awaitFeedback/', 'Await Feedback');
+        renderTasks('tasksContainer-3', 'board/done/', 'Done');
+        disableMoveBtns('.move-task-up', 'board/toDo/');
+        disableMoveBtns('.move-task-down', 'board/done/');
+
     } catch (error) {
         console.log('error in renderAllTasks()');
     } finally {
         document.querySelector('.spinner-overlay').style.display = "none";
+    }
+}
+
+async function renderTasks(id, path, emptyMessage) {
+    const container = document.getElementById(id);
+    container.innerHTML = "";
+    const rawTasks = await getData(path);
+    const tasks = rawTasks ? Object.values(rawTasks) : [];
+    if (tasks.length === 0) {
+        container.innerHTML = emptyColumnTemplate(emptyMessage);
+        return;
+    }
+    for (let i = 0; i < tasks.length; i++) {
+        const task = tasks[i];
+
+        container.innerHTML += taskTemplate(task);
+        updateProgressBar(task);
     }
 }
 
@@ -73,87 +93,25 @@ function closeTaskOverlay() {
 }
 
 function openTaskOverlay(column) {
+    currOverlay = 'boardAddTaskOverlay';
     if (window.innerWidth < 700) {
         window.location.href = '../templates/add_task.html';
     } else {
         const overlay = document.getElementById('createTaskInBoardOverlay');
         overlay.style.display = 'flex';
+        renderTaskDialog();
+        resetPriorityBtn();
         currentColumn = column;
     }
     fetchContacts();
 }
 
 function renderTaskDialog() {
+    const infoOverlay = document.getElementById('taskInfoOverlay');
     const overlay = document.getElementById('createTaskInBoardOverlay');
+    infoOverlay.innerHTML = '';
     overlay.innerHTML = "";
     overlay.innerHTML += tasksDialogTemplate();
-}
-
-async function renderTasksInProgress() {
-    const container = document.getElementById('tasksContainer-1');
-    container.innerHTML = "";
-    const rawTasks = await getData('board/InProgress/');
-    const tasks = rawTasks ? Object.values(rawTasks) : [];
-    if (tasks.length === 0) {
-        container.innerHTML = emptyColumnTemplate('In Progress');
-        return;
-    }
-    for (let i = 0; i < tasks.length; i++) {
-        const task = tasks[i];
-
-        container.innerHTML += taskTemplate(task);
-        updateProgressBar(task);
-    }
-}
-
-async function renderTasksDone() {
-    const container = document.getElementById('tasksContainer-3');
-    container.innerHTML = '';
-    const rawTasks = await getData('board/done/');
-    const tasks = rawTasks ? Object.values(rawTasks) : [];
-    if (tasks.length === 0) {
-        container.innerHTML = emptyColumnTemplate('no tasks done');
-        return;
-    }
-    for (let i = 0; i < tasks.length; i++) {
-        const task = tasks[i];
-        container.innerHTML += taskTemplate(task);
-        updateProgressBar(task);
-    }
-}
-
-async function renderTasksAwaitFeedback() {
-    const container = document.getElementById('tasksContainer-2');
-    container.innerHTML = '';
-    const rawTasks = await getData('board/awaitFeedback/');
-    const tasks = rawTasks ? Object.values(rawTasks) : [];
-    if (tasks.length === 0) {
-        container.innerHTML = emptyColumnTemplate('Await Feedback');
-        return;
-    }
-
-    for (let i = 0; i < tasks.length; i++) {
-        const task = tasks[i];
-
-        container.innerHTML += taskTemplate(task);
-        updateProgressBar(task);
-    }
-}
-
-async function renderToDoTasks() {
-    const rawTasks = await getData('board/toDo/');
-    const container = document.getElementById('tasksContainer-0');
-    container.innerHTML = "";
-    const tasks = Object.values(rawTasks ?? {});
-    if (tasks.length === 0) {
-        container.innerHTML = emptyColumnTemplate('To Do');
-        return;
-    }
-    for (let i = 0; i < tasks.length; i++) {
-        const task = tasks[i];   
-        container.innerHTML += taskTemplate(task);
-        updateProgressBar(task);
-    }
 }
 
 function renderCategory(task) {
@@ -202,6 +160,7 @@ window.onresize = function handlePageRedirect() {
 
 async function createTaskInBoardFireBase() {
     const column = checkTargetColumn();
+    console.log(column);
     if (!extractTaskValues()) {
         alert('chosen date is not in the future!');
         return;
@@ -211,6 +170,7 @@ async function createTaskInBoardFireBase() {
       return; 
     } else {
         postData('board/' + column, dataSafe);
+        console.log('board/' + column, dataSafe);
         taskId += 1;
         localStorage.setItem('taskId',taskId.toString());
         emptyTaskDocument();
@@ -239,6 +199,8 @@ function closeTaskInfoOverlay() {
 }
 
 function openTaskInfoOverlay(task) {
+    currOverlay = 'editOverlay';
+
     const overlay = document.getElementById('taskInfoOverlay');
     overlay.classList.add('active');
     renderDetailedTask(task);
@@ -254,18 +216,26 @@ function toggleDeleteBtn(event) {
 }
 
 function toggleEditBtn(event) {
+    const overlay = document.getElementById('taskInfoOverlay');
+    const boardAddTask = document.getElementById('overlayDialogBoard');
     const img = event.target;
     if (event.type === 'mouseover') {
         img.src = '../img/edit_task_hovered.png';
     } else if (event.type === 'mouseout') {
         img.src = '../img/edit_task.png';
+    } else if ('click') {
+        currOverlay = 'editOverlay';
+        overlay.innerHTML = '';
+        boardAddTask.innerHTML = '';
+        overlay.innerHTML = editTaskTemplate();
+
     }
 }
 
 function renderDetailedTask(task) {
     const overlay = document.getElementById('taskInfoOverlay');
-    //overlay.innerHTML = taskDetailTemplate(task);
-    //currTask = task;
+    overlay.innerHTML = taskDetailTemplate(task);
+    currTask = task;
 }
 
 function encodeTask(task) {
@@ -295,7 +265,8 @@ function loopTaskContacts(task) {
 
 function loopTaskSubtasks(task) {
     let templateHTML = '';
-    if (!task.subtasks || typeof task.subtasks !== 'object') return;
+    if (!task.subtasks || typeof task.subtasks !== 'object') return '';
+    if (Object.entries(task.subtasks).length === 0) return '';
 
     for (const [subtaskKey, subtask] of Object.entries(task.subtasks)) {
         const { src, className } = renderCurrSubtaskState(subtask);
@@ -362,7 +333,7 @@ function updateSubtaskIcon(isHovered = false, icon, subtaskKey) {
         : '../img/checkbox_unchecked_unhovered.png';
     }
     findChosenSubtasks(subtaskKey, icon);
-    adjustIconStateInArray(subtaskKey, icon);
+   // adjustIconStateInArray(subtaskKey, icon);
 }
 
 function toggleSubtaskIcon(event, icon, subtaskKey) {
@@ -383,14 +354,8 @@ function toggleSubtaskIcon(event, icon, subtaskKey) {
     }
 }
 
-function adjustIconStateInArray(subtaskNum, icon) {
-    console.log(currTask);
-    console.log('hello, ',icon);
-}
-
 async function findChosenSubtasks(subtaskKey, icon) {
     if (!icon) return;
-    console.log(icon);
 
     const board = await getData('board/');
 
@@ -399,7 +364,6 @@ async function findChosenSubtasks(subtaskKey, icon) {
             if (oneTask.id === currTask.id) {
                 let isChosen = icon.classList.contains('chosen');
                 const data = await putData(`board/${columnKey}/${taskKey}/subtasks/${subtaskKey}/state`, isChosen);
-                console.log(`Updating: board/${columnKey}/${taskKey}/subtasks/${subtaskKey}/state = ${isChosen}`);
             }
         }
     }
@@ -429,3 +393,96 @@ function updateProgressBar(task) {
     const progressBar = document.getElementById(`progressBar${task.id}`);
     progressBar.style.width = `${percentage}%`;
   }
+
+  async function handleTaskTransfer(task, column) {
+    document.querySelector('.spinner-overlay').style.display = "flex";
+    try {
+        const board = await getData('board/');
+        for (const [columnKey, tasks] of Object.entries(board)) {
+            for (const [taskKey, oneTask] of Object.entries(tasks)) {
+                if (oneTask.id === task.id) {
+                    await postData(`board/${column}`, task);
+                    await deleteData(`board/${columnKey}/${taskKey}`);
+                }
+            }
+        } 
+    } catch (error) {
+        console.log('error in handleTaskTransfer()');
+    } finally {
+        document.querySelector('.spinner-overlay').style.display = "none";
+    }
+  }
+
+  async function moveMobileTasks(direction, task, event, element) {
+    event.stopPropagation();
+    const currColumnName = await checkCurrColumnName(task.id);
+    const nextColumn = await checkNextColumnName(task.id, currColumnName);
+    const prevColumn = await checkPrevColumnName(task.id, currColumnName);
+    
+    switch (direction) {
+        case 'forward':
+            if (nextColumn === 'done') {
+                element.classList.add('disabled');
+                await handleTaskTransfer(task, nextColumn);
+                renderAllTasks();
+            } else {
+                await handleTaskTransfer(task, nextColumn);
+                renderAllTasks();
+            }
+           break;
+        case 'back':
+            if (prevColumn === 'toDo') {
+                element.classList.add('disabled');
+                await handleTaskTransfer(task, prevColumn);
+                renderAllTasks();
+            } else {
+                await handleTaskTransfer(task, prevColumn);
+                renderAllTasks();
+            }
+            break;
+  }
+}
+
+  async function checkCurrColumnName(id) {
+    const board = await getData('board/');
+    for (const [columnKey, tasks] of Object.entries(board)) {
+        for (const [taskKey, oneTask] of Object.entries(tasks)) {
+            if (oneTask.id === id) {
+                return `${columnKey}`;
+            }
+        }
+    }
+  }
+
+  async function disableMoveBtns(course, path) {
+    const toDos = await getData(path);
+    if (!toDos) return ;
+    for (const task of Object.values(toDos)) {
+        const taskBody = document.getElementById(`taskBody${task.id}`)
+        if (taskBody) {
+            const btn = taskBody.querySelector(course);
+            if (btn) {
+              btn.classList.add('disabled');
+            }
+          }
+    }
+  }
+
+
+
+  async function checkNextColumnName(id, currColumnName) {
+    const order = ['toDo', 'InProgress', 'awaitFeedback', 'done'];
+    const currColumnIndex = order.indexOf(currColumnName);
+    const nextColumnName = order[currColumnIndex + 1];
+    return nextColumnName;
+  }
+
+  async function checkPrevColumnName(id, currColumnName) {
+    const order = ['toDo', 'InProgress', 'awaitFeedback', 'done'];
+    const currColumnIndex = order.indexOf(currColumnName);
+    const prevColumnName = order[currColumnIndex - 1];
+    return prevColumnName;
+  }
+
+
+//after page reload check every task

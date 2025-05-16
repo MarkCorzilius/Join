@@ -1,3 +1,4 @@
+let isMobileLayout = false;
 let draggedTaskNum = 0;
 let dragStartX = 0;
 let dragStartY = 0;
@@ -12,6 +13,11 @@ function allowDrop(ev) {
 
 
 function startDragging(id, ev) {
+    checkIfMobileLayout();
+    if (isMobileLayout) {
+        ev.preventDefault();
+        return;
+    };
     const task = document.getElementById(`taskBody${id}`);
     draggedTaskNum = id;
     dragStartX = ev.clientX;
@@ -34,6 +40,8 @@ function startDragging(id, ev) {
 }
 
 function dragMove(id, ev) {
+    checkIfMobileLayout();
+    if (isMobileLayout) return;
     const task = document.getElementById(`taskBody${id}`);
     currentX = ev.clientX;
     currentY = ev.clientY;
@@ -55,6 +63,8 @@ function decideRotation() {
 }
 
 function stopDragging(id) {
+    checkIfMobileLayout();
+    if (isMobileLayout) return;
     const task = document.getElementById(`taskBody${id}`);
     task.style.position = 'static';
     task.style.zIndex = '';
@@ -70,6 +80,8 @@ function stopDragging(id) {
 }
 
 function moveElementTo(ev, containerEl) {
+    checkIfMobileLayout();
+    if (isMobileLayout) return;
     ev.preventDefault();
     wasDropped = true;
 
@@ -111,11 +123,22 @@ function checkNewColumn(container) {
 }
 
 function endDragging(id, ev) {
+    checkIfMobileLayout();
+    if (isMobileLayout) return;
     const task = document.getElementById(`taskBody${id}`);
     task.style.position = 'static';
 
     if (!wasDropped) {
         console.warn('Task was dropped outside valid area');
-        renderAllTasks();  // Reset tasks to original state
+        renderAllTasks();
     }
 }
+
+function checkIfMobileLayout() {
+    isMobileLayout = window.innerWidth <= 1350;
+
+    const tasks = document.querySelectorAll('.task-body');
+    tasks.forEach(task => {
+        task.setAttribute('draggable', isMobileLayout ? 'false' : 'true');
+    });
+  }
