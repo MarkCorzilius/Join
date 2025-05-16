@@ -21,10 +21,6 @@
         width: 360px;
     }
 
-    .form-subtask-template {
-        width: 360px;
-    }
-
     .add-task-footer {
         width: 850px;
     }
@@ -59,10 +55,6 @@
         width: 325px;
     }
 
-    .form-subtask-template {
-        width: 320px;
-    }
-
     .contacts-options {
         width: 320px;
     }
@@ -92,6 +84,7 @@
 
   @media (max-width: 1000px) {
 
+
     .main {
         display: flex !important;
         flex-direction: column;
@@ -103,6 +96,7 @@
     }
 
     .content-in-main {
+        position: relative;
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -133,6 +127,7 @@
 
    .question-blocks {
         flex-direction: column;
+        align-items: center;
     }
 
     .vertical-line {
@@ -167,20 +162,51 @@
     }
 
     .add-task-footer {
-        position: sticky;
+        z-index: 777;
+        position: static;
         width: 85vw;
         bottom: 100px;
-        padding: 20px 0px 20px;
+    }
+
+    .requirement-warning {
+        display: none;
+    }
+
+    .mobile-warning {
+        display: flex;
+    }
+
+    .footer-buttons-wrapper {
+        width: 85vw;
+        position: fixed;
+        bottom: 100px;
+        padding: 20px 20px 20px;
         z-index: 999;
         background-color: rgb(246 247 248);
         padding-left: 20px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: flex-end;
     }
 
+  }
 
+  @media (max-width: 450px) {
+    .footer-buttons-wrapper {
+        bottom: 80px;
+    }
   }
 
 
   @media (max-width: 550px) {
+
+    .contacts-options {
+        width: 100%;
+    }
+
+    .category-options {
+        width: 100%;
+    }
 
     .basic-size {
         width: 90vw;
@@ -192,6 +218,12 @@
 
     .add-task-page-title {
         font-size: 48px;
+        padding: 20px
+    }
+
+    .footer-buttons-wrapper {
+        width: 97vw;
+        left: 0
     }
 
     .priority-button {

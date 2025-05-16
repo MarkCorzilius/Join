@@ -1,43 +1,36 @@
-@media (min-width: 1000px) and (max-width: 9999px) {
+@media (min-width: 1001px) {
+    .content-in-main {
+        overflow: hidden;
+    }
+}
+@media(max-width: 9999px) {
 
-    .priority-button {
-        box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3) !important;
+    #overlayDialogBoard {
+        max-width: 1000px;
     }
 
-    .task-right-block {
-        width: 32vw;
+    .vertical-line {
+        margin: 0 36px;
     }
 
-    .subtask-template {
-        width: 32vw;
+    .task-form-close-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        height: 30px;
+        width: 30px;
+        margin-top: 20px;
+        top: 10px;
+        right: 10px;
+        box-sizing: border-box;
+        cursor: pointer;
+        position: absolute;
     }
 
-    #subtaskContainer {
-        width: 32vw;
-    }
-
-    .title-field {
-        width: 32vw;
-    }
-
-    .description-area {
-        width: 32vw;
-    }
-
-    .due-date-field {
-        width: 32vw;
-    }
-
-    .dropdown-wrapper {
-        width: 32vw;
-    }
-
-    .dropdown-btn {
-        width: 32vw;
-    }
-
-    #searchState {
-        width: 32vw;
+    .task-form-close-wrapper:hover {
+        border-radius: 50%;
+        background-color: rgb(212, 212, 212);
     }
 
     .priority-button {
@@ -45,6 +38,11 @@
         font-size: 16px;
         width: 96px;
         height: 48px;
+        box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    .category-section {
+        width: 100%;
     }
 
     .priority-btn svg {
@@ -52,29 +50,12 @@
         width: auto;
     }
 
-    .category-section {
-        width: 32vw;
-    }
-
-    #subtaskInput {
-        width: 32vw;
-    }
-
-    .subtask-template-edit-state {
-        width: 32vw;
-    }
-
-    .subtask-input-wrapper {
-        width: 32vw;
-    }
-
-    .vertical-line {
-        margin: 0 40px;
-        height: 450px;
+    .category-options {
+        width: clamp(200px, 32vw, 400px);
     }
 
     .add-task-footer {
-        width: 70vw;
+        width: clamp(300px, 70vw, 850px);
         position: absolute;
         z-index: 999;
         bottom: 0;
@@ -88,23 +69,27 @@
         width: 70vw;
         justify-content: flex-start;
         width: 100%;
-    }
-
-    .task-form-close-wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 4px;
-        height: 30px;
-        width: 30px;
-        margin-top: 20px;
+        overflow-y: auto;
+        overflow-x: hidden;
         box-sizing: border-box;
-        cursor: pointer;
+        padding-right: 5px;
     }
 
-    .task-form-close-wrapper:hover {
-        border-radius: 50%;
-        background-color: rgb(212, 212, 212);
+    .question-blocks::-webkit-scrollbar {
+        width: 5px;             /* Width of vertical scrollbar */
+      }
+      
+      .question-blocks::-webkit-scrollbar-track {
+        background: #f1f1f1;     /* Light gray track */
+      }
+      
+      .question-blocks::-webkit-scrollbar-thumb {
+        background: #888;        /* Darker thumb */
+        border-radius: 5px;
+      }
+
+    .task-right-block {
+        width: clamp(300px, 32vw, 400px);
     }
 
     .task-overlay-header {
@@ -117,6 +102,7 @@
     .add-task-page-title {
         padding-top: 20px;
         padding-bottom: 30px;
+        width: 100%;
     }
 
     .content-in-main {
@@ -127,6 +113,10 @@
         align-items: center;
       }
 
+    .description-area {
+        width: clamp(300px, 32vw, 400px);
+    }
+
 }
 
 @media (max-width: 1000px) {
@@ -134,60 +124,20 @@
         flex-direction: column;
     }
 
-    .task-overlay-header {
-        display: flex;
-        justify-content: space-between;
-        padding-top: 28px;
-        margin-bottom: 32px;
-        height: 100px;
-        position: sticky;
-        top: 0;
-        z-index: 999;
-        background-color: white;
-    }
-
-    .add-task-page-title {
-        padding: 0;
-
+    .form-size {
+        width: 100%;
     }
 
     .content-in-main {
         width: 100%;
     }
 
-    .task-form-close-wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 4px;
-        height: 30px;
-        width: 30px;
-        box-sizing: border-box;
-        cursor: pointer;
-    }
-
-    .task-form-close-wrapper:hover {
-        border-radius: 50%;
-        background-color: rgb(212, 212, 212);
-    }
-
-    .priority-button {
-        box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3);
+    .task-left-block {
+        width: 100%;
+        margin-bottom: 24px;
     }
 
     .task-right-block {
-        width: 100%;
-    }
-
-    .subtask-template {
-        width: 100%;
-    }
-
-    #subtaskContainer {
-        width: 100%;
-    }
-
-    .title-field {
         width: 100%;
     }
 
@@ -195,74 +145,43 @@
         width: 100%;
     }
 
-    .due-date-field {
-        width: 100%;
-    }
-
-    .dropdown-wrapper {
-        width: 100%;
-    }
-
-    .dropdown-btn {
-        width: 100%;
-    }
-
-    #searchState {
-        width: 100%;
-    }
-
-    .priority-button {
-        gap: 4px;
-        font-size: 16px;
-        width: 96px;
-        height: 48px;
-    }
-
-    .priority-btn svg {
-        height: 14px;
-        width: auto;
-    }
-
-    .category-section {
-        width: 100%;
-    }
-
-    #subtaskInput {
-        width: 100%;
-    }
-
-    .subtask-template-edit-state {
-        width: 100%;
-    }
-
     .vertical-line {
-        display: none;
+        display: none   ;
     }
 
-    .task-left-block, .task-right-block {
+    .category-options {
         width: 100%;
+    }
+
+    .subtask-section {
+        margin-top: 40px;
     }
 
     .add-task-footer {
-        width: 100%;
+        background-color: white;
         position: sticky;
         bottom: 0;
-        z-index: 999;
-        background-color: white;
-        padding-top: 40px;
-        padding-bottom: 24px;
-    }
-
-    #subtaskContainer {
-        margin-bottom: 56px;
-    }
-
-    .subtask-input-wrapper {
         width: 100%;
+        padding: 20px 0px 30px;
     }
 
     #overlayDialogBoard {
-        padding: 0 32px 0 !important;
+        padding-bottom: 0;
+        padding-top: 0px;
+    }
+
+    .add-task-page-header {
+        width: 100%;
+        margin-top: 0;
+        padding: 20px 10px 20px;
+        z-index: 888;
+        position: sticky;
+        top: 0;
+        background-color: white;
+    }
+
+    .task-form-close-wrapper {
+        margin-top: 40px;
     }
 
 }

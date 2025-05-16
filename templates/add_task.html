@@ -45,7 +45,7 @@
                     <input onkeydown="blurOnEnter(event)" id="taskTitle" class="basic-size task-txt form-border" placeholder="Enter a title" type="text" />
                   </div>
                   <div class="title-field-space">
-                    <span class="field-label" for="description task-subtitle">Description</span>
+                    <span class="field-label task-subtitle" for="description">Description</span>
                     <textarea class="description-area form-border form-description task-txt" id="description" name="description" placeholder="Enter a description"></textarea>
                   </div>
                   <div class="title-field-space">
@@ -114,7 +114,7 @@
                     </div>
                   </div>
                   <div class="contacts-section">
-                  <span required class="field-label-required task-subtitle">Contacts</span>
+                  <span required class="field-label-required task-subtitle">Assigned to</span>
                   <div class="dropdown-wrapper">
                     <div class="assignment-toggle-buttons">
                     <div id="closedState" onclick="openContactAssignmentInput()" class="basic-size form-select form-border">
@@ -136,7 +136,7 @@
                     <div id="chosenContactsBox"></div>
                   </div>
                   <div class="category-section">
-                    <span class="field-label" for="description task-subtitle">Category</span>
+                    <span class="field-label task-subtitle" for="description">Category</span>
                     <div class="category-btn-and-options">
                       <div onclick="toggleCategoryOptions()" class="dropdown-btn-category">
                         <button class="basic-size form-select form-border">
@@ -154,7 +154,7 @@
                   </div>
 
                   <div class="subtask-section">
-                  <span class="field-label" for="description task-subtitle">Subtask</span>
+                  <span class="field-label task-subtitle" for="description">Subtasks</span>
                   <div class="subtask-input-wrapper">
                   <input onfocus="showActionBtns()" onkeydown="checkShiftSubtask(event)" class="basic-size form-subtask form-border task-txt" id="subtaskInput" placeholder="Add new subtask" minlength="1" type="text">
                   <div onclick="showActionBtns()" id="subtaskMainBtn" class="subtask-btn-wrapper subtask-main-btn">
@@ -171,8 +171,8 @@
                   </div>
                   </div>
                   <div class="subtask-container basic-size" id="subtaskContainer">
-
                   </div>
+                  <p class="mobile-warning task-txt">This field is required</p>
                 </div>
 
                 </div>

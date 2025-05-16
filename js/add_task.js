@@ -23,7 +23,6 @@ async function taskPageOnLoad() {
     resetPriorityBtn();
     fetchContacts();
     findUserEmail();
-    
     adjustHelpForMobile(); 
     window.addEventListener('resize', adjustHelpForMobile);
   } catch (error) {
@@ -266,7 +265,8 @@ function addSubtask() {
     input.focus();
     return;
   }
-  outputDiv.innerHTML += subtaskTemplate(subtaskId, valueRef);
+  const subtaskEditClass = decideCurrentTaskOverlay();
+  outputDiv.innerHTML += subtaskTemplate(subtaskId, valueRef, subtaskEditClass);
 
   document.getElementById('subtaskInput').value = '';
   scrollToCreatedSubtask()
@@ -274,10 +274,9 @@ function addSubtask() {
     input.focus();
 }
 
-function subtaskTemplate(subtaskId, valueRef) {
-
+function subtaskTemplate(subtaskId, valueRef, subtaskClass) {
   return `                    
-                                        <div id="subtaskTemplate${subtaskId}">
+                                        <div class="template-subtask" id="subtaskTemplate${subtaskId}">
                       <div class="form-subtask-template task-active-state" id="taskNormalState${subtaskId}">
                        <div class="subtask-title">
                          <p>•</p>
@@ -292,9 +291,9 @@ function subtaskTemplate(subtaskId, valueRef) {
                        </div>
                       </div>
 
-                    <div class="task-active-state" id="taskEditState${subtaskId}" style="display: none;">
-                      <div class="subtask-template-edit-state basic-size" class="form-subtask-edit-input-wrapper">
-                        <input onkeydown="postSubtaskOnEnter(event, ${subtaskId})" id="subtaskEditInput${subtaskId}" class="form-subtask-edit-input basic-size" type="text">
+                    <div class="task-active-state task-edit-state" id="taskEditState${subtaskId}" style="display: none;">
+                      <div class="subtask-template-edit-state ${subtaskClass} subtask-edit-state" class="form-subtask-edit-input-wrapper">
+                        <input onkeydown="postSubtaskOnEnter(event, ${subtaskId})" id="subtaskEditInput${subtaskId}" class="form-subtask-edit-input ${subtaskClass}" type="text">
                         <div class="subtask-icons-on-edit">
                           <div onclick="deleteSubtaskEditState(${subtaskId})" id="deleteSubtaskEditState${subtaskId}" class="subtask-icon-wrapper">
                           <img src="../img/subtask_trash.png" alt="delete">
@@ -315,9 +314,9 @@ function scrollToCreatedSubtask() {
 }
 
 function emptyTaskDocument() {
-  const title = document.querySelector('.title-field');
-  const description = document.querySelector('.description-area');
-  const date = document.querySelector('.due-date-field');
+  const title = document.getElementById('taskTitle');
+  const description = document.getElementById('description');
+  const date = document.getElementById('taskDate');
   const subtaskInput = document.getElementById('subtaskInput');
 
   title.value = '';
@@ -422,11 +421,10 @@ function exitSubtaskEditState(subtaskId) {
 
 function postSubtaskOnEnter(event, subtaskId) {
   const taskInput = document.getElementById('subtaskEditInput' + subtaskId);
-  if (taskInput.value.length !== 0) {
-    if (event.key === 'Enter') {
+
+    if (event.key === 'Enter' && taskInput.value.length !== 0) {
       updateTask(subtaskId);
+    } else {
+      deleteSubtaskEditState();
     }
-  } else {
-    deleteSubtaskEditState(subtaskId);
-  }
 }
