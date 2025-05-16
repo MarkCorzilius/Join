@@ -1,5 +1,5 @@
+let disabled = false;
 let currentColumn = 0;
-let currTask = null;
 
 async function boardOnLoad() {
     document.querySelector('.spinner-overlay').style.display = "flex";
@@ -25,6 +25,7 @@ async function boardOnLoad() {
         await renderAllTasks();
         adjustHelpForMobile(); 
         window.addEventListener('resize', adjustHelpForMobile);
+        checkIfMobileLayout();
     } catch (error) {
         console.log('error in boardOnLoad');
     } finally {
@@ -39,6 +40,8 @@ async function renderAllTasks() {
         renderTasks('tasksContainer-1', 'board/InProgress/', 'In Progress');
         renderTasks('tasksContainer-2', 'board/awaitFeedback/', 'Await Feedback');
         renderTasks('tasksContainer-3', 'board/done/', 'Done');
+        disableMoveBtns('.move-task-up', 'board/toDo/');
+        disableMoveBtns('.move-task-down', 'board/done/');
 
     } catch (error) {
         console.log('error in renderAllTasks()');
@@ -390,3 +393,96 @@ function updateProgressBar(task) {
     const progressBar = document.getElementById(`progressBar${task.id}`);
     progressBar.style.width = `${percentage}%`;
   }
+
+  async function handleTaskTransfer(task, column) {
+    document.querySelector('.spinner-overlay').style.display = "flex";
+    try {
+        const board = await getData('board/');
+        for (const [columnKey, tasks] of Object.entries(board)) {
+            for (const [taskKey, oneTask] of Object.entries(tasks)) {
+                if (oneTask.id === task.id) {
+                    await postData(`board/${column}`, task);
+                    await deleteData(`board/${columnKey}/${taskKey}`);
+                }
+            }
+        } 
+    } catch (error) {
+        console.log('error in handleTaskTransfer()');
+    } finally {
+        document.querySelector('.spinner-overlay').style.display = "none";
+    }
+  }
+
+  async function moveMobileTasks(direction, task, event, element) {
+    event.stopPropagation();
+    const currColumnName = await checkCurrColumnName(task.id);
+    const nextColumn = await checkNextColumnName(task.id, currColumnName);
+    const prevColumn = await checkPrevColumnName(task.id, currColumnName);
+    
+    switch (direction) {
+        case 'forward':
+            if (nextColumn === 'done') {
+                element.classList.add('disabled');
+                await handleTaskTransfer(task, nextColumn);
+                renderAllTasks();
+            } else {
+                await handleTaskTransfer(task, nextColumn);
+                renderAllTasks();
+            }
+           break;
+        case 'back':
+            if (prevColumn === 'toDo') {
+                element.classList.add('disabled');
+                await handleTaskTransfer(task, prevColumn);
+                renderAllTasks();
+            } else {
+                await handleTaskTransfer(task, prevColumn);
+                renderAllTasks();
+            }
+            break;
+  }
+}
+
+  async function checkCurrColumnName(id) {
+    const board = await getData('board/');
+    for (const [columnKey, tasks] of Object.entries(board)) {
+        for (const [taskKey, oneTask] of Object.entries(tasks)) {
+            if (oneTask.id === id) {
+                return `${columnKey}`;
+            }
+        }
+    }
+  }
+
+  async function disableMoveBtns(course, path) {
+    const toDos = await getData(path);
+    if (!toDos) return ;
+    for (const task of Object.values(toDos)) {
+        const taskBody = document.getElementById(`taskBody${task.id}`)
+        if (taskBody) {
+            const btn = taskBody.querySelector(course);
+            if (btn) {
+              btn.classList.add('disabled');
+            }
+          }
+    }
+  }
+
+
+
+  async function checkNextColumnName(id, currColumnName) {
+    const order = ['toDo', 'InProgress', 'awaitFeedback', 'done'];
+    const currColumnIndex = order.indexOf(currColumnName);
+    const nextColumnName = order[currColumnIndex + 1];
+    return nextColumnName;
+  }
+
+  async function checkPrevColumnName(id, currColumnName) {
+    const order = ['toDo', 'InProgress', 'awaitFeedback', 'done'];
+    const currColumnIndex = order.indexOf(currColumnName);
+    const prevColumnName = order[currColumnIndex - 1];
+    return prevColumnName;
+  }
+
+
+//after page reload check every task

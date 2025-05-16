@@ -1,5 +1,9 @@
 @media (min-width: 320px) and (max-width: 1350px) {
 
+    .mobile-switch {
+        display: flex;
+    }
+
     .board-upper-line {
         flex-direction: column;
         align-items: flex-start;
@@ -18,8 +22,8 @@
         max-height: none;
         height: fit-content;
         display: flex;
-        align-items: center;
-        gap: 16px;
+        align-items: flex-start;
+        gap: 32px;
     }
 
     .task-body {

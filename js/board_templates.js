@@ -7,7 +7,7 @@ function emptyColumnTemplate(text) {
 function taskTemplate(task) {
     return `                <div id="taskBody${task.id}" class="task-body" draggable="true" ondragstart="startDragging(${task.id}, event)" ondrag="dragMove(${task.id}, event)" ondragend="endDragging(${task.id}, event)" onclick="openTaskInfoOverlay(${encodeTask(task)})">
                   <div class="task-category">${renderCategory(task)}</div>
-                  <h3 class="task-title">${task.title}</h2>
+                  <h3 class="task-title">${task.title}</h3>
                     <p class="task-description">${task.description}</p>
                     <div class="progress-section">
                       <div class="progress-container">
@@ -19,6 +19,12 @@ function taskTemplate(task) {
                       <div class="contacts-assigned">${renderInitials(task)}</div>
                       <img class='priority-png' src="${renderPriorityIcon(task)}">
                     </div>
+
+                    <div class="mobile-switch">
+                    <button onclick="moveMobileTasks('back', ${encodeTask(task)}, event, this)" class="mobile-switch-btn move-task-up" id="moveTaskUp">⬆︎ back</button>
+                    <button onclick="moveMobileTasks('forward', ${encodeTask(task)}, event, this)" class="mobile-switch-btn move-task-down" id="moveTaskDown">⬇︎ forward</button>
+                    </div>
+
                 </div>`;
 }
 

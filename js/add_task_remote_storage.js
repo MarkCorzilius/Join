@@ -65,8 +65,9 @@ function getTaskData() {
   taskId += 1;
   localStorage.setItem('taskId',taskId.toString());
   emptyTaskDocument();
-  renderAllTasks();
-  closeTaskOverlay();
+  if (window.location.href.includes('task')) return;
+    renderAllTasks();
+    closeTaskOverlay();
 }
 }
 

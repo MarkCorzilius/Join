@@ -169,6 +169,7 @@ body {
 }
 
 .task-body {
+  overflow: visible;
   min-width: 240px;
   max-width: 244px;
   width: 244px;
@@ -183,6 +184,7 @@ body {
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.08);
   margin-bottom: 16px;
   cursor: pointer;
+  position: relative;
 }
 
 
@@ -335,4 +337,37 @@ body {
 .tasks-container::-webkit-scrollbar-thumb {
   background: #888;        /* Darker thumb */
   border-radius: 5px;
+}
+
+.mobile-switch {
+  display: none;
+  background-color: rgba(42, 54, 71, 1);
+  position: absolute;
+  flex-direction: column;
+  align-items: flex-start;
+  top: 0px;
+  right: -30px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  border-bottom-left-radius: 0px;
+  gap: 8px;
+}
+
+.mobile-switch-btn {
+  background-color: rgba(42, 54, 71, 1);
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s ease, font-size 0.3s ease
+}
+
+.mobile-switch-btn:hover {
+  transform: scale(1.1);
+}
+
+.disabled {
+  opacity: 0.5;
+  color: lightgrey;
+  pointer-events: none;
 }
