@@ -36,6 +36,19 @@
   background-color: white;
 }
 
+.contacts::-webkit-scrollbar {
+  width: 5px;             /* Width of vertical scrollbar */
+}
+
+.contacts::-webkit-scrollbar-track {
+  background: #f1f1f1;     /* Light gray track */
+}
+
+.contacts::-webkit-scrollbar-thumb {
+  background: #888;        /* Darker thumb */
+  border-radius: 5px;
+}
+
 
 .contacts-list h2 {
   padding-left: 16px;
@@ -98,6 +111,7 @@
   font-weight: 600;
   margin: 0;
   font-size: 14px;
+  overflow-x: auto;
 }
 
 
@@ -569,30 +583,29 @@
   margin-left: 4px;
 }
 
-/* .btn-cancel:after {
-    content: "";
-    position: absolute;
-    top: -1px;
-    left: -1px;
-    right: -1px;
-    bottom: -1px;
-    border: 2px solid transparent;
-    border-radius: inherit;
-    transition: border-color 0.3s ease-in-out;
-    pointer-events: none;
-  }
-  
-  
-  .btn-cancel:hover {
-    border-color: rgb(41, 171, 226);
-    color: rgb(41, 171, 226);
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
-  }
-  
-  
-  .btn-cancel:hover:after {
-    border-color: rgb(41, 171, 226);
-  } */
+.btn-cancel {
+  text-align: center;
+  color: rgb(42, 54, 71);;
+  border: none;
+  border-radius: 10px;
+  border: 2px solid rgb(42, 54, 71);
+  background-color: white;
+  padding: 8px 16px;
+  cursor: pointer;
+  height: 48px;
+  font-size: 16px;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-cancel:hover {
+  color: rgb(41, 171, 226);
+  border: 2px solid rgb(41, 171, 226);
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+}
 
 #overlayCancelIcon {
   cursor: pointer;
@@ -618,7 +631,6 @@
   align-items: center;
   gap: 8px;
   justify-content: center;
-  
 }
 
 
@@ -653,8 +665,21 @@
 }
 
 @media (max-width: 1150px) {
+
   .overlay-right {
     padding: 15px
+  }
+
+  .contacts {
+    padding: 24px 16px;
+  }
+
+  .contact-name {
+    font-size: 14px;
+  }
+
+  .contact-email {
+    font-size: 12px;
   }
 }
 
