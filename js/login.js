@@ -1,43 +1,39 @@
 window.addEventListener('DOMContentLoaded', () => {
-    let header = document.querySelector('.log-in-header');
-    let main = document.querySelector('.log-in-main');
-    let footer = document.querySelector('.log-in-footer')
+    applyFadeEffectsToLoginSections();
+    disableSplashInteraction();
+});
+
+function applyFadeEffectsToLoginSections() {
+    const header = document.querySelector('.log-in-header');
+    const main = document.querySelector('.log-in-main');
+    const footer = document.querySelector('.log-in-footer');
+
     if (header && main && footer) {
         header.classList.add('fade-header');
         main.classList.add('fade-main');
         footer.classList.add('fade-footer');
     }
+}
 
+function disableSplashInteraction() {
+    const splash = document.querySelector('.splash-logo-container');
 
-    let splash = document.querySelector('.splash-logo-container');
     if (splash) {
         splash.style.pointerEvents = 'none';
         splash.style.zIndex = '0';
     }
-
-});
-
+}
 
 function guestLogin() {
     const guest = 'Guest' ;
     localStorage.setItem('user', JSON.stringify({name: guest, email: 'guest@example.com'}));
     console.log("Guest is logged in");
     
-
     setTimeout(() => {
         window.location.href = "./templates/summary.html";
     }, 300);
 
-
-
-    
-    // Gast - User darf z.B.keine Kontakte speichern
-    // Gast - User darf nur Board lesen, aber nicht bearbeiten
 }
-
-
-
-
 
 function storeLogInData() {
     const inputEmail = document.getElementById('loginEmail').value.trim();

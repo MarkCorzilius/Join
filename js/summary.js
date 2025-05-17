@@ -2,44 +2,52 @@ let nearestDate = null;
 const today = new Date();
 
 async function summaryOnLoad() {
-  document.querySelector('.spinner-overlay').style.display = 'flex';
-
+  showSpinner(true);
   w3.includeHTML();
 
-    const waitForInclude = () => new Promise((resolve) => {
-        const checkExist = setInterval(() => {
-          const sidebarLoaded = document.querySelector('#sidebar');
-          const headerLoaded = document.querySelector('#header');
-          if (sidebarLoaded && headerLoaded) {
-            clearInterval(checkExist);
-            resolve();
-          }
-        }, 50);
-      });
-    try {
+  try {
     await waitForInclude();
-    markCurrentPage();
-    ifGuestShowDropdownHelp();
-    adjustInitialAfterLogin();
-    updateGreeting();
-    findToDoAmount();
-    findDoneAmount();
-    findUrgentTasksAmount();
-    findTasksInProgressAmount();
-    findAwaitingTasksAmount();
-    findNextUrgentDeadline();
-    findOverallTasksAmount();
-    showLogedInName();
-
-    adjustHelpForMobile(); 
-    window.addEventListener('resize', adjustHelpForMobile);
-    
-    
+    initializeSummaryUI();
   } catch (error) {
-    console.log('failed loading summary');
+    console.log('Failed loading summary:', error);
   } finally {
-    document.querySelector('.spinner-overlay').style.display = 'none';
+    showSpinner(false);
   }
+}
+
+function showSpinner(visible) {
+  document.querySelector('.spinner-overlay').style.display = visible ? 'flex' : 'none';
+}
+
+function waitForInclude() {
+  return new Promise((resolve) => {
+    const checkExist = setInterval(() => {
+      if (document.querySelector('#sidebar') && document.querySelector('#header')) {
+        clearInterval(checkExist);
+        resolve();
+      }
+    }, 50);
+  });
+}
+
+function initializeSummaryUI() {
+  markCurrentPage();
+  ifGuestShowDropdownHelp();
+  adjustInitialAfterLogin();
+  updateGreeting();
+
+  // Task-related counters
+  findToDoAmount();
+  findDoneAmount();
+  findUrgentTasksAmount();
+  findTasksInProgressAmount();
+  findAwaitingTasksAmount();
+  findNextUrgentDeadline();
+  findOverallTasksAmount();
+
+  showLogedInName();
+  adjustHelpForMobile();
+  window.addEventListener('resize', adjustHelpForMobile);
 }
 
 function showLogedInName() {
@@ -116,21 +124,27 @@ async function findDoneAmount() {
 }
 
 async function findUrgentTasksAmount() {
-  priorityCounter = 0;
   const container = document.getElementById('urgentAmount');
-  const board = await getData('board/')
+  const board = await getData('board/');
+
   if (board === null) {
     container.innerText = 0;
     return;
   }
-  for (const [columnKey, tasks] of Object.entries(board)) {
-    for (const [taskKey,task] of Object.entries(tasks)) {
+  const priorityCounter = countUrgentTasks(board);
+  container.innerText = priorityCounter;
+}
+
+function countUrgentTasks(board) {
+  let count = 0;
+  for (const tasks of Object.values(board)) {
+    for (const task of Object.values(tasks)) {
       if (task.priority === 'urgent') {
-        priorityCounter += 1;
+        count += 1;
       }
     }
   }
-  container.innerText = priorityCounter;
+  return count;
 }
 
 async function findTasksInProgressAmount() {
@@ -185,7 +199,7 @@ function iterateForNextUrgentTaskDate(board) {
 }
 
 function formatDate(date) {
-  formattedDate = date.toLocaleDateString('en-US', {
+  const formattedDate = date.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric'

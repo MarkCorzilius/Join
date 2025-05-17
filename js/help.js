@@ -1,26 +1,32 @@
 async function helpOnLoad() {
-    w3.includeHTML();
+  w3.includeHTML();
+  try {
+      await waitForInclude();
+      initializeHelpPageFeatures();
+  } catch (error) {
+      console.log('Error in helpOnLoad():', error);
+  }
+}
 
-    const waitForInclude = () => new Promise((resolve) => {
-        const checkExist = setInterval(() => {
+function waitForInclude() {
+  return new Promise((resolve) => {
+      const checkExist = setInterval(() => {
           const sidebarLoaded = document.querySelector('#sidebar');
           const headerLoaded = document.querySelector('#header');
           if (sidebarLoaded && headerLoaded) {
-            clearInterval(checkExist);
-            resolve();
+              clearInterval(checkExist);
+              resolve();
           }
-        }, 50);
-      });
-    try {
-        await waitForInclude();
-        ifGuestShowDropdownHelp();
-        adjustInitialAfterLogin();
-        ifHelpPageNoHelpIcon();
-        adjustHelpForMobile(); 
-        window.addEventListener('resize', adjustHelpForMobile);
-    } catch (error) {
-        console.log('error in helpOnLoad()')
-    }
+      }, 50);
+  });
+}
+
+function initializeHelpPageFeatures() {
+  ifGuestShowDropdownHelp();
+  adjustInitialAfterLogin();
+  ifHelpPageNoHelpIcon();
+  adjustHelpForMobile();
+  window.addEventListener('resize', adjustHelpForMobile);
 }
 
 
