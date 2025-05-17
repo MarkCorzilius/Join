@@ -488,3 +488,21 @@ function renderMobileControl() {
   container.innerHTML = `<img onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}')" src="../img/edit_contacts.png" alt="">
         <img onclick="deleteContact('${email}')" src="../img/delete-contact.png" alt="">`;
 }
+
+function hideMobileDetailsOnResize() {
+  const arrow = document.getElementById('backArrow');
+  const container = document.getElementById('mobileDetailsOverlay');
+  const panel = document.querySelector('.mobile-contact-details');
+
+  if (arrow.classList.contains('d-none')) {
+      container.style.display = 'none';
+      panel.style.display = 'none';
+      return;
+  } else if (window.innerWidth <= 800 || !arrow.classList.contains('d-none')) {
+      container.style.display = 'flex';
+      panel.style.display = 'flex';
+  } else {
+    container.style.display = 'none';
+    panel.style.display = 'none';
+  }
+}
