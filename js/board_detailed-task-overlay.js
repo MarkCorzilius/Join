@@ -1,5 +1,8 @@
+
+
 async function deleteTaskInOverlay(currentTask) {
     const board = await getData('board/');
+
     for (const [columnKey, tasks] of Object.entries(board)) {
         for (const [taskKey, task] of Object.entries(tasks)) {
             if (task.id === currentTask.id) {
@@ -11,18 +14,9 @@ async function deleteTaskInOverlay(currentTask) {
     }
 }
 
-async function handleOpeningEditTaskOverlay(task) {
+async function openTaskEditStateInOverlay(task) {
     document.querySelector('.spinner-overlay').style.display = "flex";
     try {
-        await openTaskEditStateInOverlay(task);
-    } catch (error) {
-        console.log('error in handleOpeningEditTaskOverlay()', error);
-    } finally {
-        document.querySelector('.spinner-overlay').style.display = "none";
-    }
-}
-
-async function openTaskEditStateInOverlay(task) {
     const addTaskOverlay = document.getElementById('createTaskInBoardOverlay');
     const overlay = document.getElementById('taskInfoOverlay');
     addTaskOverlay.innerHTML = '';
@@ -30,10 +24,14 @@ async function openTaskEditStateInOverlay(task) {
     overlay.innerHTML = editTaskTemplate(task);
     await fetchContacts();
     renderTaskDetails(task);
+    } catch (error) {
+        console.log('error in openTaskEditStateInOverlay()', error);
+    } finally {
+        document.querySelector('.spinner-overlay').style.display = "none";
+  }
 }
 
 function renderTaskDetails(task) {
-
         const title = document.getElementById('taskTitle');
         const description = document.getElementById('description');
         const date = document.getElementById('taskDate');
@@ -42,7 +40,7 @@ function renderTaskDetails(task) {
         date.value = task.date;
         showChosenPriority(task);
         showChosenContacts(task);
-        showChosenSubtasks(task);     
+        showChosenSubtasks(task.subtasks);     
 }
 
 function showChosenPriority(task) {
@@ -60,17 +58,15 @@ function showChosenPriority(task) {
 }
 
 async function showChosenContacts(task) {
-    chosenContacts = [];
     const contacts = task.contacts;
     for (let i = 0; i < contacts.length; i++) {
         const contact = contacts[i];
-        const element = await checkChosenNames(contact);
-        if (!element) continue;
+        const element = checkChosenNames(contact);
         styleChosenContact(element, contact.initial, contact.bg, contact.name);
     }
 }
 
-async function checkChosenNames(contact) {
+function checkChosenNames(contact) {
     const names = document.querySelectorAll('.contact-name');
     const contactLine = document.querySelectorAll('.contact-line');
     for (let i = 0; i < names.length; i++) {
@@ -82,16 +78,19 @@ async function checkChosenNames(contact) {
     }
 }
 
-function showChosenSubtasks(task) {
+function showChosenSubtasks(mySubtasks) {
+    if (!mySubtasks || typeof mySubtasks !== 'object') return;
+
     const subtaskEditClass = decideCurrentTaskOverlay();
     const container = document.getElementById('subtaskContainer');
     container.innerHTML = '';
     subtaskCount = 0;
-    if (!task.subtasks) return;
-    const subtasks = Object.values(task.subtasks);
+
+    const subtasks = Object.values(mySubtasks);
+
     for (let i = 0; i < subtasks.length; i++) {
         const subtask = subtasks[i];
-        if (subtask) {   
+        if (subtask) {
             container.innerHTML += subtaskTemplate(subtaskCount, subtask.title, subtaskEditClass);
             subtaskCount += 1;
         }
@@ -102,16 +101,21 @@ function showChosenSubtasks(task) {
 
 function handleOkBtnEvents(event) {
     const rect = document.querySelector('.ok-btn-color');
+
     switch (event.type) {
         case 'click':
             changeCurrTask();
             break;
+
         case 'mouseover':
             rect.setAttribute('fill', 'rgb(41, 171, 226)');
             break;
 
         case 'mouseout':
             rect.setAttribute('fill', '#2A3647');
+            break;
+
+        default:
             break;
     }
 }
@@ -125,10 +129,6 @@ async function changeCurrTask() {
       if (!restrictAddingTask()) {
       return; 
       }
-      handleCurrTaskChange(newTaskData);
-}
-
-async function handleCurrTaskChange(newTaskData) {
     const rawBoard = await getData('board/');
     for (const [columnKey, tasks] of Object.entries(rawBoard)) {
         for (const [tasksKey, task] of Object.entries(tasks)) {

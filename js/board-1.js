@@ -178,6 +178,7 @@ async function createTaskInBoardFireBase() {
     } else {
        await handleCreatingTask(column, dataSafe);
     }
+    chosenContacts = [];
 }
 
 async function handleCreatingTask(column, dataSafe) {
@@ -206,15 +207,21 @@ function checkTargetColumn() {
 function closeTaskInfoOverlay() {
     const overlay = document.getElementById('taskInfoOverlay');
     overlay.classList.remove('active');
+    chosenContacts = [];
     renderAllTasks();
 }
 
 function openTaskInfoOverlay(task) {
     currOverlay = 'editOverlay';
-
     const overlay = document.getElementById('taskInfoOverlay');
     overlay.classList.add('active');
     renderDetailedTask(task);
+    const subtasksList = document.getElementById('subtasksList');
+    const container = document.querySelector('.task-overlay-subtasks');
+    if (subtasksList.children.length === 0) {
+        container.style.display = 'none';
+    }
+
 }
 
 function toggleDeleteBtn(event) {

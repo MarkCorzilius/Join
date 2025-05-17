@@ -49,16 +49,24 @@ function taskDataStorage() {
 }
 
 async function getTaskData() {
-  if (!extractTaskValues()) {
-    alert('chosen date is not in the future!');
-    return;
-  };
-  const dataSafe = taskDataStorage();
-  if (!restrictAddingTask()) {
-  return; 
-} else {
-  await handlePostingTask(dataSafe);
-}
+  document.querySelector('.create-task-button').disabled = true;
+  try {
+    if (!extractTaskValues()) {
+      alert('chosen date is not in the future!');
+      return;
+    };
+    const dataSafe = taskDataStorage();
+    if (!restrictAddingTask()) {
+    return; 
+  } else {
+    await handlePostingTask(dataSafe);
+    window.location.href = '../templates/board.html';
+  }
+  } catch (error) {
+    console.log('error in getTaskData', error);
+  } finally {
+    document.querySelector('.create-task-button').disabled = false;
+  }
 }
 
 async function handlePostingTask(dataSafe) {
