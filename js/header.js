@@ -37,7 +37,6 @@ async function searchForContactInitial(email) {
 
 }
 
-
 function ifHelpPageNoHelpIcon() {
     const icon = document.querySelector('.help-icon');
     if (window.location.pathname.includes('help')) {

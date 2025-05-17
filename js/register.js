@@ -58,14 +58,16 @@ function signIn() {
      if (!areAllFieldsFilled({name, email, password, confirmPassword})) return;
      if (!isPasswordMatch({name, email, password, confirmPassword})) return;
      if (!isPrivacyPolicyAccepted()) return;
+     await handleSignUp({name, email, password, confirmPassword});
+  }
 
-     const initial = getInitials(name);
-     const bg = getBackgroundForName(name);
-     const icon = {initial, bg};
-
-     await putData(`contacts/${sanitizeEmail(email)}`, {name, email, password, icon});
-     emptyRegisterData();
-     return true;
+  async function handleSignUp({name, email, password, confirmPassword}) {
+    const initial = getInitials(name);
+    const bg = getBackgroundForName(name);
+    const icon = {initial, bg};
+    await putData(`contacts/${sanitizeEmail(email)}`, {name, email, password, icon});
+    emptyRegisterData();
+    return true;
   }
 
   function updateCheckboxIcon(isHovered = false) {

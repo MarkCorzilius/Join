@@ -5,32 +5,38 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function showLegalNoticeAndPrivacyPolicy() {
-
     w3.includeHTML();
-
-    const waitForInclude = () => new Promise((resolve) => {
-        const checkExist = setInterval(() => {
+  
+    try {
+      await waitForInclude();
+      initializeLegalNoticePage();
+    } catch (error) {
+      console.log('error in showLegalNoticeAndPrivacyPolicy():', error);
+    }
+  }
+  
+  function waitForInclude() {
+    return new Promise((resolve) => {
+      const checkExist = setInterval(() => {
         const sidebarLoaded = document.querySelector('#sidebar');
         const headerLoaded = document.querySelector('#header');
         if (sidebarLoaded && headerLoaded) {
-            clearInterval(checkExist);
-            resolve();
-          }
-        }, 50);
-      });
-    try {
-        await waitForInclude();
-        adjustSideBar();
-        markCurrentPage();
-        ifGuestShowDropdownHelp();
-        adjustInitialAfterLogin();
-
-        adjustHelpForMobile(); 
-        window.addEventListener('resize', adjustHelpForMobile);
-    } catch (error) {
-        console.log('error in showLegalNoticeAndPrivacyPolicy()');
-    }
-}
+          clearInterval(checkExist);
+          resolve();
+        }
+      }, 50);
+    });
+  }
+  
+  function initializeLegalNoticePage() {
+    adjustSideBar();
+    markCurrentPage();
+    ifGuestShowDropdownHelp();
+    adjustInitialAfterLogin();
+  
+    adjustHelpForMobile();
+    window.addEventListener('resize', adjustHelpForMobile);
+  }
 
 function setViewSubtask() {
     const user = JSON.stringify({name: 'Guest', email: 'guest@example.com'});
