@@ -1,0 +1,150 @@
+.overlay-buttons {
+    gap: 10px;
+    display: flex;
+    margin-top: 40px;
+    align-items: flex-start;
+  }
+  
+  
+  .overlay-buttons img {
+    width: 12px;
+    height: 12px;
+    margin-left: 4px;
+  }
+  
+  .btn-delete {
+    text-align: center;
+    color: rgb(42, 54, 71);;
+    border: none;
+    border-radius: 10px;
+    border: 2px solid rgb(42, 54, 71);
+    background-color: white;
+    padding: 8px 16px;
+    cursor: pointer;
+    height: 48px;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .btn-delete:hover {
+    color: rgb(41, 171, 226);
+    border: 2px solid rgb(41, 171, 226);
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  #overlayCancelIcon {
+    cursor: pointer;
+    /* font-size: 16px;
+    transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out; */
+    width: 126px;
+    height: 56px;
+  }
+  
+  .btn-save {
+    background-color: rgb(42, 54, 71);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 16px;
+    cursor: pointer;
+    /* height: 40px; */
+    height: 48px;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+  }
+  
+  
+  .btn-save:hover {
+    background-color: rgb(41, 171, 226);
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  
+  .overlay-contact-succesfully-created {
+    display: none;
+    position: fixed;
+    bottom: 10%;
+    right: 15%;
+    object-fit: contain;
+    background-color: rgba(0, 0, 0, 0);
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  
+  
+  .overlay-contact-succesfully-created.show {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  
+  
+  .mobile-contact-info {
+    /* display: flex; */
+    background-color: aliceblue;
+    width: 100%;
+  }
+  
+  .mobile-contact-details {
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    right: 20px;
+    bottom: 120px;
+  }
+  
+  .mobile-details-btn:hover  {
+    cursor: pointer;
+    fill:rgb(41, 171, 226);
+    
+  }
+  
+  #mobileDetailsOverlay {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 888;
+  }
+  
+  .mobile-detail-dialog {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 120px;
+    right: 20px;
+    padding: 10px;
+    border-radius: 20px;
+    border-bottom-left-radius: 0;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: #fff;
+    transition: transform 0.5s ease, opacity 0.5s ease, visibility 0.5s ease;
+    opacity: 0;
+    transform: translateX(150%);
+    visibility: hidden;
+    transition: right 0.5s ease, opacity 0.5s ease, visibility 0.5s ease;
+  }
+  
+  .mobile-detail-dialog.open {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .mobile-detail-dialog img {
+    cursor: pointer;
+  }
+
+  .adding-disabled {
+    pointer-events: none;
+    background-color: rgb(130, 130, 130);
+    cursor: not-allowed;
+  }

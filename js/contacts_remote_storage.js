@@ -3,7 +3,6 @@ async function saveBasicContacts() {
         const contact = basicContacts[i];
         const safeKey = sanitizeEmail(contact.email);
         const path = 'contacts/' + safeKey;
-
         const exists = await isDuplicateEmail(path);
         if (!exists) {
             await putData(path, contact);
@@ -31,7 +30,6 @@ async function saveNewContactToDataBase() {
     const safeKey = sanitizeEmail(emailValue);
     const path = 'contacts/' + safeKey;
     if (!filled) return;
-
     const exists = await doesContactExists({emailValue});
     if (exists) {
         alert("contact already exists");
@@ -41,7 +39,6 @@ async function saveNewContactToDataBase() {
         putData(path, {name: nameValue, email: emailValue, phone: phoneValue});
         contactsArray.push({name: nameValue, email: emailValue, phone: phoneValue});
     }
-
 }
 
 function inputsFilledOut({nameValue, emailValue, phoneValue}) {
@@ -56,7 +53,6 @@ async function doesContactExists({emailValue}) {
     const response = await fetch(BASE_URL + 'contacts/' + '.json');
     const data = await response.json();
     const sanitizedEmailValue = sanitizeEmail(emailValue);
-
     for (const key in data) {
         if (data[key].email === sanitizedEmailValue) {
             return true;
@@ -67,17 +63,14 @@ async function doesContactExists({emailValue}) {
 
     async function saveContactsToArray() {
         const response = await fetch(BASE_URL + 'contacts/' + '.json');
-        const data = await response.json();
-    
+        const data = await response.json(); 
         for (const contact of Object.values(data)) {
             const contactCopy = { ...contact };
-    
             if (contact.name === currentUser.name && contact.email === userEmail) {
                 contactCopy.displayName = contact.name + ' (You)';
             } else {
                 contactCopy.displayName = contact.name; // Keep the original name for others
             }
-    
             contactsArray.push(contactCopy);
         }
     }
@@ -96,12 +89,9 @@ async function doesContactExists({emailValue}) {
       async function deleteContactForEdit() {
         if (!currentContact) return;
         if (!confirm("Möchten Sie diesen Kontakt wirklich löschen?")) return;
-    
         const deletedContact = contactsArray.find((contact) => contact.email.toLowerCase() === currentContact.email.toLowerCase());
         const deletedContactEmail = deletedContact.email;
-        console.log(deletedContact.email);
         const deletedContactKey = sanitizeEmail(deletedContactEmail);
-        console.log(deletedContactKey);
         contactsArray = contactsArray.filter((contact) => contact.email.toLowerCase() !== currentContact.email.toLowerCase());
         await deleteData('contacts/' + deletedContactKey);
         renderContacts();
@@ -119,20 +109,15 @@ async function doesContactExists({emailValue}) {
       }
 
       async function saveEditedContact() {
-        if (!currentContact) return;
-      
+        if (!currentContact) return; 
         const newName = document.getElementById("editName").value.trim();
         const newEmail = document.getElementById("editEmail").value.trim();
         const newPhone = document.getElementById("editPhone").value.trim();
-      
         if (!validateContactInput(newName, newEmail, newPhone)) return;
-      
         updateContactArray(newName, newEmail, newPhone);
         await updateEditedContactInFireBase(currentContact.email, {newName, newEmail, newPhone});
         renderContacts();
-      
         updateDetailView(newName, newEmail, newPhone);
-      
         closeEditContactOverlay();
         currentContact = null;
       }
@@ -148,7 +133,6 @@ async function doesContactExists({emailValue}) {
         let response = await fetch(BASE_URL + 'contacts/' + '.json');
         let data = await response.json();
         const sanitizedEmail = sanitizeEmail(contact.email);
-
         for (const key in data) {
             if (sanitizedEmail === key) {
                     const existingIcon = data[key].icon;
