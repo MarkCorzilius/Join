@@ -1,7 +1,6 @@
 function restrictAddingTask() {
   const title = document.getElementById('taskTitle');
   const date = document.getElementById('taskDate');
-  
   if (chosenContacts.length === 0 || !title.value || !date.value) {
     alert('title, date and contacts are required!');
     return false;
@@ -13,7 +12,6 @@ function restrictAddingTask() {
 function isNotInTheFuture(inputDate) {
   const currentDate = new Date();
   const inputDateObject = new Date(inputDate);
-
   if (currentDate > inputDateObject) {
     return true;
   } else {
@@ -50,24 +48,27 @@ function taskDataStorage() {
   return dataSafe;
 }
 
-function getTaskData() {
+async function getTaskData() {
   if (!extractTaskValues()) {
     alert('chosen date is not in the future!');
     return;
   };
   const dataSafe = taskDataStorage();
-  console.log(chosenContacts);
   if (!restrictAddingTask()) {
   return; 
 } else {
-  postData('board/toDo/', dataSafe);
+  await handlePostingTask(dataSafe);
+}
+}
+
+async function handlePostingTask(dataSafe) {
+  await postData('board/toDo/', dataSafe);
   taskId += 1;
   localStorage.setItem('taskId',taskId.toString());
   emptyTaskDocument();
   if (window.location.href.includes('task')) return;
     renderAllTasks();
     closeTaskOverlay();
-}
 }
 
 function saveActivePriority() {
@@ -91,12 +92,9 @@ function saveCategory() {
 function saveSubtasks() {
   const subtaskContainer = document.getElementById('subtaskContainer');
   const subtaskTitles = document.querySelectorAll('.subtask-titles');
-
   if (!subtaskContainer) return null;
   if (!subtaskTitles) return;
-
   const subtasks = {};
-
   for (let i = 0; i < subtaskTitles.length; i++) {
     const titleText = subtaskTitles[i].innerText.trim();
     if (titleText !== '') {
@@ -113,7 +111,6 @@ function saveSubtasks() {
     let response = await fetch(BASE_URL + 'contacts/' + '.json');
     let contacts = await response.json();
     const { loggedInUser, defaultUsers } = sortContacts(contacts);
-
     if (loggedInUser) {
       await renderLoggedInUser(loggedInUser, contactsContainer);
     }
@@ -137,8 +134,7 @@ function saveSubtasks() {
 
   function sortContacts(contacts) {
     let loggedInUser = null;
-    let defaultUsers = [];
-    
+    let defaultUsers = [];  
     for (const contact of Object.values(contacts)) {
       if (contact.email === currentUser.email) {
         loggedInUser = contact;
