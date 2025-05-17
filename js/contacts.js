@@ -1,3 +1,5 @@
+let currContactData = [];
+
 async function contactsOnLoad() {
   w3.includeHTML();
 
@@ -185,6 +187,7 @@ function openContactItem(name, email, phone) {
   const initials = getInitials(name);
   const bg = getBackgroundForName(name);
   let contactDetailView = document.getElementById("contactDetailView");
+  currContactData = { bg, initials, name, email, phone };
   contactDetailView.innerHTML = generateContactDetails(bg, initials, name, email, phone);
   slideEfekt();
   goToContactInfoForMobile();
@@ -193,28 +196,34 @@ function openContactItem(name, email, phone) {
 
 function goToContactInfoForMobile() {
   if (document.documentElement.clientWidth < 800) {
-    let contacts = document.getElementById("contacts");
-    let contactDetailContainer = document.getElementById("contactDetailContainer");
-    let backArrow = document.getElementById("backArrow");
+    const button = document.querySelector('.mobile-contact-details');
+    const contacts = document.getElementById("contacts");
+    const contactDetailContainer = document.getElementById("contactDetailContainer");
+    const backArrow = document.getElementById("backArrow");
     if (contacts && contactDetailContainer && backArrow) {
       contacts.classList.add("d-none");
       contactDetailContainer.classList.add("d-flex");
       contactDetailContainer.classList.remove("d-none");
       backArrow.classList.remove("d-none");
+      button.style.display = 'flex';
+
     }
   }
 }
 
 function backToContacts() {
   if (document.documentElement.clientWidth < 800) {
-    let contacts = document.getElementById("contacts");
-    let contactDetailContainer = document.getElementById("contactDetailContainer");
-    let backArrow = document.getElementById("backArrow");
+    const button = document.querySelector('.mobile-contact-details');
+    const contacts = document.getElementById("contacts");
+    const contactDetailContainer = document.getElementById("contactDetailContainer");
+    const backArrow = document.getElementById("backArrow");
+
     if (contacts && contactDetailContainer && backArrow) {
       contacts.classList.remove("d-none");
       contactDetailContainer.classList.remove("d-flex");
       contactDetailContainer.classList.add("d-none");
       backArrow.classList.add("d-none");
+      button.style.display = 'none';
       detailViewOpen = false;
     }
   }
@@ -445,4 +454,37 @@ function makeCancelBtnDark() {
   setTimeout(() => {
     document.getElementById('overlayCancelIcon').src = '../img/full-cancel-btn.png';
   }, 100);
+}
+
+function disableAddContactIfGuest() {
+  const button = document.getElementById('addContactBtn');
+  const user = localStorage.getItem(JSON.parse(user));
+  const userName = user.name;
+  if (userName === 'Guest') {
+    button.classList.add('adding-disabled');
+  }
+}
+
+function showMobileContactDetails() {
+  const overlay = document.getElementById('mobileDetailsOverlay');
+  const dialog = document.querySelector('.mobile-detail-dialog');
+  renderMobileControl();
+  overlay.style.display = 'flex';
+  requestAnimationFrame(() => dialog.classList.add('open'));
+}
+
+function hideMobileDetails() {
+  const overlay = document.getElementById('mobileDetailsOverlay');
+  const dialog = document.querySelector('.mobile-detail-dialog');
+  dialog.classList.remove('open');
+  setTimeout(() => {
+    overlay.style.display = 'none';
+  }, 500);
+}
+
+function renderMobileControl() {
+  const container = document.getElementById('mobileDetailsDialog');
+  const { name, email, phone, initials, bg } = currContactData;
+  container.innerHTML = `<img onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}')" src="../img/edit_contacts.png" alt="">
+        <img onclick="deleteContact('${email}')" src="../img/delete-contact.png" alt="">`;
 }

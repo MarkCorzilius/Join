@@ -571,9 +571,9 @@
 
 .overlay-buttons {
   gap: 10px;
-  margin-top: 16px;
   display: flex;
-  align-items: center;
+  margin-top: 40px;
+  align-items: flex-start;
 }
 
 
@@ -583,7 +583,7 @@
   margin-left: 4px;
 }
 
-.btn-cancel {
+.btn-delete {
   text-align: center;
   color: rgb(42, 54, 71);;
   border: none;
@@ -601,7 +601,7 @@
   justify-content: center;
 }
 
-.btn-cancel:hover {
+.btn-delete:hover {
   color: rgb(41, 171, 226);
   border: 2px solid rgb(41, 171, 226);
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
@@ -641,6 +641,7 @@
 
 
 .overlay-contact-succesfully-created {
+  display: none;
   position: fixed;
   bottom: 10%;
   right: 15%;
@@ -662,6 +663,55 @@
   /* display: flex; */
   background-color: aliceblue;
   width: 100%;
+}
+
+.mobile-contact-details {
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  right: 20px;
+  bottom: 120px;
+}
+
+.mobile-details-btn:hover  {
+  cursor: pointer;
+  fill:rgb(41, 171, 226);
+  
+}
+
+#mobileDetailsOverlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 888;
+}
+
+.mobile-detail-dialog {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 120px;
+  right: 20px;
+  padding: 10px;
+  border-radius: 20px;
+  border-bottom-left-radius: 0;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: #fff;
+  transition: transform 0.5s ease, opacity 0.5s ease, visibility 0.5s ease;
+  opacity: 0;
+  transform: translateX(150%);
+  visibility: hidden;
+  transition: right 0.5s ease, opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.mobile-detail-dialog.open {
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-detail-dialog img {
+  cursor: pointer;
 }
 
 @media (max-width: 1150px) {
