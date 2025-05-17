@@ -142,3 +142,9 @@
   .mobile-detail-dialog img {
     cursor: pointer;
   }
+
+  .adding-disabled {
+    pointer-events: none;
+    background-color: rgb(130, 130, 130);
+    cursor: not-allowed;
+  }
