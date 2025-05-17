@@ -18,25 +18,27 @@ function startDragging(id, ev) {
         ev.preventDefault();
         return;
     };
-    const task = document.getElementById(`taskBody${id}`);
-    draggedTaskNum = id;
-    dragStartX = ev.clientX;
-    dragStartY = ev.clientY;
-    wasDropped = false;
-
-    task.style.position = 'absolute';
-    task.style.zIndex = '1000';
-    task.style.boxShadow = '0 8px 20px rgba(0,0,0,0.2)';
-    task.style.transform = 'scale(1.1)';
-
-    setTimeout(() => {
-        task.style.pointerEvents = 'none';
-    }, 100);
+    prepareDraggedTask(id, ev);
 
     const img = new Image();
     img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMXB4IiBoZWlnaHQ9IjFweCI+PC9zdmc+'; // 1x1 transparent SVG
     ev.dataTransfer.setDragImage(img, 0, 0);
 
+}
+
+function prepareDraggedTask(id, ev) {
+    const task = document.getElementById(`taskBody${id}`);
+    draggedTaskNum = id;
+    dragStartX = ev.clientX;
+    dragStartY = ev.clientY;
+    wasDropped = false;
+    task.style.position = 'absolute';
+    task.style.zIndex = '1000';
+    task.style.boxShadow = '0 8px 20px rgba(0,0,0,0.2)';
+    task.style.transform = 'scale(1.1)';
+    setTimeout(() => {
+        task.style.pointerEvents = 'none';
+    }, 100);
 }
 
 function dragMove(id, ev) {
@@ -45,12 +47,9 @@ function dragMove(id, ev) {
     const task = document.getElementById(`taskBody${id}`);
     currentX = ev.clientX;
     currentY = ev.clientY;
-
     const deltaX = currentX - dragStartX;
     const deltaY = currentY - dragStartY;
-
     decideRotation();
-
     task.style.transform = `translate(${deltaX}px, ${deltaY}px) rotate(${rotation}deg)`;
 }
 
@@ -71,7 +70,6 @@ function stopDragging(id) {
     task.style.pointerEvents = 'none';
     task.style.boxShadow = '';
     task.style.transform = '';
-
     rotation = 0;
     dragStartX = 0;
     dragStartY = 0;
@@ -84,7 +82,6 @@ function moveElementTo(ev, containerEl) {
     if (isMobileLayout) return;
     ev.preventDefault();
     wasDropped = true;
-
     stopDragging(draggedTaskNum);
     moveTaskFireBase(containerEl, draggedTaskNum);
 }
@@ -127,7 +124,6 @@ function endDragging(id, ev) {
     if (isMobileLayout) return;
     const task = document.getElementById(`taskBody${id}`);
     task.style.position = 'static';
-
     if (!wasDropped) {
         console.warn('Task was dropped outside valid area');
         renderAllTasks();
@@ -136,7 +132,6 @@ function endDragging(id, ev) {
 
 function checkIfMobileLayout() {
     isMobileLayout = window.innerWidth <= 1350;
-
     const tasks = document.querySelectorAll('.task-body');
     tasks.forEach(task => {
         task.setAttribute('draggable', isMobileLayout ? 'false' : 'true');

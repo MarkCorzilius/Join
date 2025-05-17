@@ -1,10 +1,8 @@
-
-
 function restrictAddingTask() {
   const title = document.getElementById('taskTitle');
   const date = document.getElementById('taskDate');
   
-  if (chosenContacts === "" || !title.value || !date.value) {
+  if (chosenContacts.length === 0 || !title.value || !date.value) {
     alert('title, date and contacts are required!');
     return false;
   } else {
@@ -58,6 +56,7 @@ function getTaskData() {
     return;
   };
   const dataSafe = taskDataStorage();
+  console.log(chosenContacts);
   if (!restrictAddingTask()) {
   return; 
 } else {

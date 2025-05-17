@@ -1,8 +1,5 @@
-
-
 async function deleteTaskInOverlay(currentTask) {
     const board = await getData('board/');
-
     for (const [columnKey, tasks] of Object.entries(board)) {
         for (const [taskKey, task] of Object.entries(tasks)) {
             if (task.id === currentTask.id) {
@@ -14,9 +11,18 @@ async function deleteTaskInOverlay(currentTask) {
     }
 }
 
-async function openTaskEditStateInOverlay(task) {
+async function handleOpeningEditTaskOverlay(task) {
     document.querySelector('.spinner-overlay').style.display = "flex";
     try {
+        await openTaskEditStateInOverlay(task);
+    } catch (error) {
+        console.log('error in handleOpeningEditTaskOverlay()', error);
+    } finally {
+        document.querySelector('.spinner-overlay').style.display = "none";
+    }
+}
+
+async function openTaskEditStateInOverlay(task) {
     const addTaskOverlay = document.getElementById('createTaskInBoardOverlay');
     const overlay = document.getElementById('taskInfoOverlay');
     addTaskOverlay.innerHTML = '';
@@ -24,11 +30,6 @@ async function openTaskEditStateInOverlay(task) {
     overlay.innerHTML = editTaskTemplate(task);
     await fetchContacts();
     renderTaskDetails(task);
-    } catch (error) {
-        console.log('error in openTaskEditStateInOverlay()');
-    } finally {
-        document.querySelector('.spinner-overlay').style.display = "none";
-  }
 }
 
 function renderTaskDetails(task) {
@@ -63,12 +64,13 @@ async function showChosenContacts(task) {
     const contacts = task.contacts;
     for (let i = 0; i < contacts.length; i++) {
         const contact = contacts[i];
-        const element = checkChosenNames(contact);
+        const element = await checkChosenNames(contact);
+        if (!element) continue;
         styleChosenContact(element, contact.initial, contact.bg, contact.name);
     }
 }
 
-function checkChosenNames(contact) {
+async function checkChosenNames(contact) {
     const names = document.querySelectorAll('.contact-name');
     const contactLine = document.querySelectorAll('.contact-line');
     for (let i = 0; i < names.length; i++) {
@@ -85,9 +87,8 @@ function showChosenSubtasks(task) {
     const container = document.getElementById('subtaskContainer');
     container.innerHTML = '';
     subtaskCount = 0;
-
+    if (!task.subtasks) return;
     const subtasks = Object.values(task.subtasks);
-
     for (let i = 0; i < subtasks.length; i++) {
         const subtask = subtasks[i];
         if (subtask) {   
@@ -101,21 +102,16 @@ function showChosenSubtasks(task) {
 
 function handleOkBtnEvents(event) {
     const rect = document.querySelector('.ok-btn-color');
-
     switch (event.type) {
         case 'click':
             changeCurrTask();
             break;
-
         case 'mouseover':
             rect.setAttribute('fill', 'rgb(41, 171, 226)');
             break;
 
         case 'mouseout':
             rect.setAttribute('fill', '#2A3647');
-            break;
-
-        default:
             break;
     }
 }
@@ -129,6 +125,10 @@ async function changeCurrTask() {
       if (!restrictAddingTask()) {
       return; 
       }
+      handleCurrTaskChange(newTaskData);
+}
+
+async function handleCurrTaskChange(newTaskData) {
     const rawBoard = await getData('board/');
     for (const [columnKey, tasks] of Object.entries(rawBoard)) {
         for (const [tasksKey, task] of Object.entries(tasks)) {
