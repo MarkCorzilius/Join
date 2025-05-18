@@ -61,6 +61,7 @@ async function showChosenContacts(task) {
     const contacts = task.contacts;
     for (let i = 0; i < contacts.length; i++) {
         const contact = contacts[i];
+        if (contact === null) continue;
         const element = checkChosenNames(contact);
         styleChosenContact(element, contact.initial, contact.bg, contact.name);
     }
@@ -80,14 +81,11 @@ function checkChosenNames(contact) {
 
 function showChosenSubtasks(mySubtasks) {
     if (!mySubtasks || typeof mySubtasks !== 'object') return;
-
     const subtaskEditClass = decideCurrentTaskOverlay();
     const container = document.getElementById('subtaskContainer');
     container.innerHTML = '';
     subtaskCount = 0;
-
     const subtasks = Object.values(mySubtasks);
-
     for (let i = 0; i < subtasks.length; i++) {
         const subtask = subtasks[i];
         if (subtask) {
@@ -124,19 +122,29 @@ async function changeCurrTask() {
     if (!extractTaskValues()) {
         alert('chosen date is not in the future!');
         return;
-      };
-      const newTaskData = updatedTaskDataStorage();
-      if (!restrictAddingTask()) {
-      return; 
-      }
+    }
+
+    const newTaskData = updatedTaskDataStorage();
+
+    if (!restrictAddingTask()) {
+        return; 
+    }
+
     const rawBoard = await getData('board/');
+    let taskUpdated = false;
+
     for (const [columnKey, tasks] of Object.entries(rawBoard)) {
         for (const [tasksKey, task] of Object.entries(tasks)) {
             if (task.id === currTask.id) {
                 await putData(`board/${columnKey}/${tasksKey}`, newTaskData);
-                closeTaskInfoOverlay();
+                taskUpdated = true;
+                break;
             }
         }
+        if (taskUpdated) break;
+    }
+    if (taskUpdated) {
+        closeTaskInfoOverlay();
     }
 }
 

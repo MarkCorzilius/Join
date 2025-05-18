@@ -70,13 +70,29 @@ async function getTaskData() {
 }
 
 async function handlePostingTask(dataSafe) {
-  await postData('board/toDo/', dataSafe);
+  const columnNum = localStorage.getItem('taskColumn');
+  const columnName = checkChosenColummn(columnNum);
+  await postData(`board/${columnName}/`, dataSafe);
   taskId += 1;
   localStorage.setItem('taskId',taskId.toString());
   emptyTaskDocument();
   if (window.location.href.includes('task')) return;
     renderAllTasks();
     closeTaskOverlay();
+}
+
+function checkChosenColummn(columnNum) {
+  switch (columnNum) {
+    case '0':
+      return 'toDo';
+    case '1':
+      return 'InProgress';
+    case '2':
+      return 'awaitFeedback';
+    case '3':
+      return 'done';
+    default: return 'toDo';
+  }
 }
 
 function saveActivePriority() {
