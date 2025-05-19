@@ -49,26 +49,50 @@ function taskDataStorage() {
 }
 
 async function getTaskData() {
-  if (!extractTaskValues()) {
-    alert('chosen date is not in the future!');
-    return;
-  };
-  const dataSafe = taskDataStorage();
-  if (!restrictAddingTask()) {
-  return; 
-} else {
-  await handlePostingTask(dataSafe);
-}
+  document.querySelector('.create-task-button').disabled = true;
+  try {
+    if (!extractTaskValues()) {
+      alert('chosen date is not in the future!');
+      return;
+    };
+    const dataSafe = taskDataStorage();
+    if (!restrictAddingTask()) {
+    return; 
+  } else {
+    await handlePostingTask(dataSafe);
+    window.location.href = '../templates/board.html';
+  }
+  } catch (error) {
+    console.log('error in getTaskData', error);
+  } finally {
+    document.querySelector('.create-task-button').disabled = false;
+  }
 }
 
 async function handlePostingTask(dataSafe) {
-  await postData('board/toDo/', dataSafe);
+  const columnNum = localStorage.getItem('taskColumn');
+  const columnName = checkChosenColummn(columnNum);
+  await postData(`board/${columnName}/`, dataSafe);
   taskId += 1;
   localStorage.setItem('taskId',taskId.toString());
   emptyTaskDocument();
   if (window.location.href.includes('task')) return;
     renderAllTasks();
     closeTaskOverlay();
+}
+
+function checkChosenColummn(columnNum) {
+  switch (columnNum) {
+    case '0':
+      return 'toDo';
+    case '1':
+      return 'InProgress';
+    case '2':
+      return 'awaitFeedback';
+    case '3':
+      return 'done';
+    default: return 'toDo';
+  }
 }
 
 function saveActivePriority() {

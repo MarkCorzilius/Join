@@ -18,6 +18,7 @@ function loopTaskContacts(task) {
     const contacts = task.contacts;
     for (let i = 0; i < contacts.length; i++) {
         const contact = contacts[i];
+        if (contact === null) continue;
         templateHTML += `<div class="task-overlay-contact"> <div style="background-image: url('${contact.bg}')" class="initial">${contact.initial}</div> <p>${contact.name}</p> </div>`;
     }
     return templateHTML;
