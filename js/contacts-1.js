@@ -215,8 +215,8 @@ function generateContactDetails(bg, initials, name, email, phone) {
       </div>
       <div class="edit-delete">
         <h2 id="detailName">${name}</h2>
-        <img src="/img/edit_contacts.png" alt="" onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}') ">
-        <img src="/img/delete-contact.png" alt="" onclick="deleteContact('${email}')">
+        <img src="../img/edit_contacts.png" alt="" onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}') ">
+        <img src="../img/delete-contact.png" alt="" onclick="deleteContact('${email}')">
       </div>
     </div>
     <div class="email-phone">

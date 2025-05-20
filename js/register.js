@@ -59,6 +59,18 @@ function signIn() {
      if (!isPasswordMatch({name, email, password, confirmPassword})) return;
      if (!isPrivacyPolicyAccepted()) return;
      await handleSignUp({name, email, password, confirmPassword});
+     toggleSignupArrow('click');
+     showLoginToast();
+  }
+
+  function showLoginToast() {
+    setTimeout(() => {
+      const toast = document.getElementById("loginBanner");
+      toast.style.display = 'block'
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 3000); 
+    }, 1500);
   }
 
   async function handleSignUp({name, email, password, confirmPassword}) {
@@ -115,7 +127,7 @@ function signIn() {
   function toggleSignupArrow(ev) {
     const arrow = document.getElementById('signupArrow');
 
-    switch (ev.type) {
+    switch (ev.type || ev) {
       case 'mouseover':
         arrow.src = '../img/signup_arrow_hover.png';
         break;

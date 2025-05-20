@@ -27,7 +27,6 @@ function disableSplashInteraction() {
 function guestLogin() {
     const guest = 'Guest' ;
     localStorage.setItem('user', JSON.stringify({name: guest, email: 'guest@example.com'}));
-    console.log("Guest is logged in");
     
     setTimeout(() => {
         window.location.href = "./templates/summary.html";
@@ -111,3 +110,9 @@ async function getCurrentTime() {
     }
     container.innerText = greeting;
   }
+
+
+  function setViewerStateLocalStorage() {
+    const viewer = 'Viewer' ;
+    localStorage.setItem('user', JSON.stringify({name: viewer, email: 'viewer@example.com'}));
+}

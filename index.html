@@ -19,10 +19,12 @@
 
   <script src="./script.js"></script>
   <script src="./js/login.js"></script>
+  <script src="./js/register.js"></script>
   <script src="./js/database.js"></script>
 </head>
 
 <body class="log-in">
+  <div id="loginBanner" style="display: none;" class="login-banner">You are now signed up.</div>
 
   <div id="greetingOverlay" class="hidden">
     <h2 id="logedInGreeting"></h2>
@@ -73,8 +75,8 @@
 
 
   <footer class="log-in-footer">
-    <a href="../templates/privacy_policy.html" onclick="setViewSubtask()" class="nav-button">Privacy Policy</a>
-    <a href="../templates/legal_notice.html" onclick="setViewSubtask()" class="nav-button">Legal Notice</a>
+    <a href="../templates/privacy_policy.html" onclick="setViewerStateLocalStorage()" class="nav-button">Privacy Policy</a>
+    <a href="../templates/legal_notice.html" onclick="setViewerStateLocalStorage()" class="nav-button">Legal Notice</a>
   </footer>
 
 </body>
