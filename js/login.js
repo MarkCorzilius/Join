@@ -73,14 +73,9 @@ function showFailureAlert() {
 }
 
 function showLoginTransition() {
-    const overlay = document.getElementById('greetingOverlay');
-    overlay.classList.remove('hidden');
-    setTimeout(() => {
-        overlay.classList.add('fade-out');
         setTimeout(() => {
             window.location.href = './templates/summary.html';
-        }, 1000);
-    }, 1000);
+        }, 500);
 }
 
 async function getCurrentTime() {
@@ -109,6 +104,7 @@ async function getCurrentTime() {
       greeting = "Hello,";
     }
     container.innerText = greeting;
+    checkIfGuest();
   }
 
 

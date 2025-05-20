@@ -24,12 +24,18 @@
 
     <script src="../js/database.js"></script>
     <script src="../js/summary.js"></script>
+    <script src="../js/login.js"></script>
     <script src="../script.js"></script>
     <script src="../js/sidebar.js"></script>
     <script src="../js/header.js"></script>
   </head>
 
   <body onload="summaryOnLoad()">
+
+    <div id="greetingOverlay" class="hidden">
+      <h2 id="logedInGreeting"></h2>
+      <h1 id="logedInUser"></h1>
+  </div>
 
     <div class="spinner-overlay">
       <div class="spinner"></div>
