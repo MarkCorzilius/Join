@@ -116,3 +116,20 @@ async function getCurrentTime() {
     const viewer = 'Viewer' ;
     localStorage.setItem('user', JSON.stringify({name: viewer, email: 'viewer@example.com'}));
 }
+
+function checkReffererPage() {
+    const created = localStorage.getItem('createContact');
+    console.log(document.referrer)
+    console.log(created)
+    if (created && document.referrer.includes('register')) {
+        showLoginToast();
+    }
+}
+
+function showLoginToast() {
+      const toast = document.getElementById("loginBanner");
+      toast.style.display = 'block'
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 3000);
+  }
