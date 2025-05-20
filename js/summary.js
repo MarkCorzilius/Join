@@ -31,13 +31,11 @@ function waitForInclude() {
 }
 
 function initializeSummaryUI() {
-  showLogedInName();
-  insertLoggedInName();
   showGreetingOverlayAfterLogIn();
+  updateGreeting();
   markCurrentPage();
   ifGuestShowDropdownHelp();
   adjustInitialAfterLogin();
-  updateGreeting();
 
   findToDoAmount();
   findDoneAmount();
@@ -51,21 +49,6 @@ function initializeSummaryUI() {
   window.addEventListener('resize', adjustHelpForMobile);
 }
 
-function showLogedInName() {
-  const user = JSON.parse(localStorage.getItem('user'));
-  if (user.name !== 'Guest') {
-    document.getElementById('theUser').innerText = user.name;
-  } else {
-    document.getElementById('theUser').innerText = '';
-  }
-}
-
-function insertLoggedInName() {
-  const user = JSON.parse(localStorage.getItem('user'));
-  document.getElementById('logedInUser').innerText = user.name;
-}
-
-
 async function getCurrentTime() {
   const now = new Date();
   const hours = String(now.getHours());
@@ -78,37 +61,15 @@ async function updateGreeting() {
   findCurrentGreeting(hour);
 }
 
-function checkIfGuest() {
+function checkIfGuest(currContainer, userName) {
   const user = JSON.parse(localStorage.getItem('user'));
   if (user.name === 'Guest') {
-    const overlayGreeting = document.getElementById('logedInGreeting');
-    const newOverlayGreeting = overlayGreeting.innerText.replace(',', '');
-    const greeting = document.getElementById('greetingUser');
+
+    document.getElementById(userName).innerText = '';
+    const greeting = document.getElementById(currContainer);
     const newGreeting = greeting.innerText.replace(',', '');
     greeting.innerText = newGreeting;
-    overlayGreeting.innerText = newOverlayGreeting;
   }
-}
-
-// check if guest after loading this text
-
-// if guest –> hide name and remove ,
-
-function findCurrentGreeting(hour) {
-
-  const container = document.getElementById('greetingUser');
-  if (!container) return;
-  let greeting;
-  if (hour >= 5 && hour <= 11) {
-    greeting = "Good morning,";
-  } else if (hour >= 12 && hour <= 16) {
-    greeting = "Good afternoon,";
-  } else if (hour >= 17 && hour <= 20) {
-    greeting = "Good evening,";
-  } else {
-    greeting = "Good Night,";
-  }
-  container.innerText = greeting;
 }
 
 setInterval(() => {

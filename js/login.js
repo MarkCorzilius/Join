@@ -48,7 +48,6 @@ async function logIn(ev) {
         return;
     }
     const contact = await searchingForAccount({inputEmail, inputPassword});
-    // document.getElementById('logedInUser').innerText = contact.name;
     showLoginTransition();
     updateGreeting();
     localStorage.setItem('user', JSON.stringify({name: contact.name, email: contact.email}));
@@ -89,7 +88,6 @@ async function getCurrentTime() {
     showCurrentGreeting(hour);
   }
 
-  
   function showCurrentGreeting(hour) {
     const container = document.getElementById('logedInGreeting');
     let greeting;
@@ -100,10 +98,11 @@ async function getCurrentTime() {
     } else if (hour >= 17 && hour <= 20) {
       greeting = "Good evening,";
     } else {
-      greeting = "Hello,";
+      greeting = "Good Night,";
     }
     container.innerText = greeting;
-    checkIfGuest();
+    checkIfGuest('greetingUser', 'theUser');
+    checkIfGuest('logedInGreeting', 'logedInUser');
   }
 
 
