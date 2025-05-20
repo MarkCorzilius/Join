@@ -1,6 +1,5 @@
 body {
-  font-family: "Inter", sans-serif;
-  /* background-color: rgb(246, 247, 248); */
+  font-family: 'PT Sans', sans-serif;
   margin: 0;
   height: 100vh;
 }
@@ -122,11 +121,13 @@ input[type="date"]:valid {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6); /* darkened background */
+  background-color: rgba(0, 0, 0, 0.6);
+  /* darkened background */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999; /* Make sure it's above everything */
+  z-index: 9999;
+  /* Make sure it's above everything */
 }
 
 .spinner {
@@ -146,6 +147,7 @@ input[type="date"]:valid {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }

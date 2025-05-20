@@ -8,13 +8,13 @@
       padding: 24px 16px;
     }
   
-    .contact-name {
+    /* .contact-name {
       font-size: 14px;
     }
   
     .contact-email {
       font-size: 12px;
-    }
+    } */
   }
   
   @media (max-width: 1000px) {

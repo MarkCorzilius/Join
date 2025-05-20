@@ -37,15 +37,18 @@
 }
 
 .contacts::-webkit-scrollbar {
-  width: 5px;             /* Width of vertical scrollbar */
+  width: 5px;
+  /* Width of vertical scrollbar */
 }
 
 .contacts::-webkit-scrollbar-track {
-  background: #f1f1f1;     /* Light gray track */
+  background: #f1f1f1;
+  /* Light gray track */
 }
 
 .contacts::-webkit-scrollbar-thumb {
-  background: #888;        /* Darker thumb */
+  background: #888;
+  /* Darker thumb */
   border-radius: 5px;
 }
 
@@ -94,24 +97,29 @@
 }
 
 
-.contact-name {
-  font-size: 16px;
-  margin: 0;
-  font-weight: 600;
-}
-
-
 .color-white {
   color: white;
 }
 
 
 .contact-details {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+.contact-name {
+  font-size: 16px;
   margin: 0;
   font-weight: 600;
-  margin: 0;
-  font-size: 14px;
-  overflow-x: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
 }
 
 
@@ -119,6 +127,10 @@
   margin: 0;
   font-size: 14px;
   color: rgb(128, 189, 247);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
 }
 
 

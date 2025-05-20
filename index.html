@@ -7,9 +7,8 @@
   <title>Join - Login</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+
   <link rel="icon" type="image/x-icon" href="./img/join-logo.svg" />
 
   <link rel="stylesheet" href="./style.css" />
@@ -27,7 +26,7 @@
   <div id="greetingOverlay" class="hidden">
     <h2 id="logedInGreeting"></h2>
     <h1 id="logedInUser"></h1>
-</div>
+  </div>
 
   <header class="log-in-header">
     <div class="splash-logo-container">
@@ -50,15 +49,16 @@
         <div class="input-field">
           <label for="loginEmail">Email</label>
           <div class="login-input-wrapper">
-          <input type="email" id="loginEmail" placeholder="Email" autocomplete="username" required />
-          <img class="login-icons" src="./img/mail.png" alt="mail png">
+            <input type="email" id="loginEmail" placeholder="Email" autocomplete="username" required />
+            <img class="login-icons" src="./img/mail.png" alt="mail png">
           </div>
         </div>
         <div class="input-field">
           <label for="loginPassword">Password</label>
           <div class="login-input-wrapper">
-          <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password" required />
-          <img onclick="togglePasswordVisibility('loginPassword', this, './')" class="login-icons" src="./img/password_not_visible.png" alt="toggle visibility">
+            <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password" required />
+            <img onclick="togglePasswordVisibility('loginPassword', this, './')" class="login-icons"
+              src="./img/password_not_visible.png" alt="toggle visibility">
           </div>
         </div>
         <p class="wrong-data-alert" id="wrongDataAlert">Check your email and password</p>
@@ -73,7 +73,8 @@
 
 
   <footer class="log-in-footer">
-    <a href="../templates/privacy_policy.html" onclick="setViewSubtask()" class="nav-button">Privacy Policy</a>
+    <a href="../templates/privacy_policy.html" onclick="setViewSubtask()" class="nav-button">Privacy
+      Policy</a>
     <a href="../templates/legal_notice.html" onclick="setViewSubtask()" class="nav-button">Legal Notice</a>
   </footer>
 
