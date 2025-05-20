@@ -32,6 +32,7 @@ function waitForInclude() {
 
 function initializeSummaryUI() {
   showLogedInName();
+  insertLoggedInName();
   showGreetingOverlayAfterLogIn();
   markCurrentPage();
   ifGuestShowDropdownHelp();
@@ -57,6 +58,11 @@ function showLogedInName() {
   } else {
     document.getElementById('theUser').innerText = '';
   }
+}
+
+function insertLoggedInName() {
+  const user = JSON.parse(localStorage.getItem('user'));
+  document.getElementById('logedInUser').innerText = user.name;
 }
 
 
@@ -91,6 +97,7 @@ function checkIfGuest() {
 function findCurrentGreeting(hour) {
 
   const container = document.getElementById('greetingUser');
+  if (!container) return;
   let greeting;
   if (hour >= 5 && hour <= 11) {
     greeting = "Good morning,";
@@ -228,7 +235,7 @@ async function findOverallTasksAmount() {
   container.innerText = tasksCounter;
 }
 
-function showGreetingOverlayAfterLogIn() {
+async function showGreetingOverlayAfterLogIn() {
   if (document.referrer.includes('index')) {
     const overlay = document.getElementById('greetingOverlay');
     overlay.classList.remove('hidden');

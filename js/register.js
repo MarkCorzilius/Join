@@ -67,7 +67,7 @@ function signIn() {
     const initial = getInitials(name);
     const bg = getBackgroundForName(name);
     const icon = {initial, bg};
-    await putData(`contacts/${sanitizeEmail(email)}`, {name, email, password, icon});
+    await putData(`ourUsers/${sanitizeEmail(email)}`, {name, email, password, icon});
     emptyRegisterData();
     return true;
   }

@@ -29,7 +29,7 @@ async function adjustInitialAfterLogin() {
 }
 
 async function searchForContactInitial(email) {
-    const rawContacts = await getData('contacts/');
+    const rawContacts = await getData('ourUsers/');
     const contacts = Object.values(rawContacts);
 
     const match = contacts.find(contact => contact.email === email);

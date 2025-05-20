@@ -48,17 +48,16 @@ async function logIn(ev) {
         return;
     }
     const contact = await searchingForAccount({inputEmail, inputPassword});
-    document.getElementById('logedInUser').innerText = contact.name;
+    // document.getElementById('logedInUser').innerText = contact.name;
     showLoginTransition();
     updateGreeting();
     localStorage.setItem('user', JSON.stringify({name: contact.name, email: contact.email}));
 }
 
 async function searchingForAccount({inputEmail, inputPassword}) {
-    const contacts = await getData('contacts/');
+    const contacts = await getData('ourUsers/');
     for (const contact of Object.values(contacts)) {
         if (contact.email === inputEmail || contact.password === inputPassword) {
-            console.log('Match found:', contact.name);
             return contact;
         }
     }
@@ -115,8 +114,6 @@ async function getCurrentTime() {
 
 function checkReffererPage() {
     const created = localStorage.getItem('createContact');
-    console.log(document.referrer)
-    console.log(created)
     if (!created === 'false') return;
     if (created === 'true' && document.referrer.includes('register')) {
         showLoginToast();

@@ -53,6 +53,9 @@
     overflow-y: auto;
   }
 
+  #taskInfoDialog::-webkit-scrollbar {
+    display: none;
+  }
 
   .task-prio {
     display: flex;
