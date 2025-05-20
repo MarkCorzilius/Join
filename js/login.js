@@ -121,7 +121,8 @@ function checkReffererPage() {
     const created = localStorage.getItem('createContact');
     console.log(document.referrer)
     console.log(created)
-    if (created && document.referrer.includes('register')) {
+    if (!created === 'false') return;
+    if (created === 'true' && document.referrer.includes('register')) {
         showLoginToast();
     }
 }
