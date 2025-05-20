@@ -59,13 +59,15 @@ function signIn() {
      if (!isPasswordMatch({name, email, password, confirmPassword})) return;
      if (!isPrivacyPolicyAccepted()) return;
      await handleSignUp({name, email, password, confirmPassword});
+     localStorage.setItem('createContact', true);
+     window.location.href = '../index.html'
   }
 
   async function handleSignUp({name, email, password, confirmPassword}) {
     const initial = getInitials(name);
     const bg = getBackgroundForName(name);
     const icon = {initial, bg};
-    await putData(`contacts/${sanitizeEmail(email)}`, {name, email, password, icon});
+    await putData(`ourUsers/${sanitizeEmail(email)}`, {name, email, password, icon});
     emptyRegisterData();
     return true;
   }
@@ -115,7 +117,7 @@ function signIn() {
   function toggleSignupArrow(ev) {
     const arrow = document.getElementById('signupArrow');
 
-    switch (ev.type) {
+    switch (ev.type || ev) {
       case 'mouseover':
         arrow.src = '../img/signup_arrow_hover.png';
         break;
@@ -128,4 +130,5 @@ function signIn() {
       default:
         break;
     }
+    localStorage.setItem('createContact', false);
   }

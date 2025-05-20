@@ -46,12 +46,16 @@
     background-color: white;
     border-radius: 30px;
     width: clamp(300px, 40vw, 600px);
-    height: 90vh;
+    max-height: 90vh;
     max-width: 600px;
     transform: translateX(100%);
     transition: transform 0.3s ease;
+    overflow-y: auto;
   }
 
+  #taskInfoDialog::-webkit-scrollbar {
+    display: none;
+  }
 
   .task-prio {
     display: flex;
@@ -165,21 +169,7 @@
   }
 
   #contactsContainer {
-    overflow-y: scroll;
-    max-height: 80px;
-  }
-
-  #contactsContainer::-webkit-scrollbar {
-    width: 5px;             /* Width of vertical scrollbar */
-  }
-  
-  #contactsContainer::-webkit-scrollbar-track {
-    background: #f1f1f1;     /* Light gray track */
-  }
-  
-  #contactsContainer::-webkit-scrollbar-thumb {
-    background: #888;        /* Darker thumb */
-    border-radius: 5px;
+    overflow: none;
   }
 
 
@@ -204,19 +194,6 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
-    overflow-y: scroll;
+    overflow: none;
     height: 90px;
-}
-
-#subtasksList::-webkit-scrollbar {
-  width: 5px;             /* Width of vertical scrollbar */
-}
-
-#subtasksList::-webkit-scrollbar-track {
-  background: #f1f1f1;     /* Light gray track */
-}
-
-#subtasksList::-webkit-scrollbar-thumb {
-  background: #888;        /* Darker thumb */
-  border-radius: 5px;
 }

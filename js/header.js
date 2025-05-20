@@ -11,7 +11,7 @@ function logout() {
 function ifGuestShowDropdownHelp() {
     const user = JSON.parse(localStorage.getItem('user'));
     const btn = document.querySelector('.dropdown-help');
-    if (user.name === 'Guest') {
+    if (user.name === 'Guest' || user.name === 'Viewer') {
         btn.classList.remove('d-none');
     }
 }
@@ -19,7 +19,7 @@ function ifGuestShowDropdownHelp() {
 async function adjustInitialAfterLogin() {
     const container = document.getElementById('userInitial');
     const user = JSON.parse(localStorage.getItem('user'));
-    if (user.name === 'Guest') {
+    if (user.name === 'Guest' || user.name === 'Viewer') {
         container.innerText = 'G';
         return;
     } else {
@@ -29,7 +29,7 @@ async function adjustInitialAfterLogin() {
 }
 
 async function searchForContactInitial(email) {
-    const rawContacts = await getData('contacts/');
+    const rawContacts = await getData('ourUsers/');
     const contacts = Object.values(rawContacts);
 
     const match = contacts.find(contact => contact.email === email);
