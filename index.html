@@ -26,6 +26,11 @@
 <body class="log-in" onload="checkReffererPage()">
   <div id="loginBanner" style="display: none;" class="login-banner">You are now signed up.</div>
 
+  <div id="greetingOverlay" class="hidden">
+    <h2 id="logedInGreeting"></h2>
+    <h1 id="logedInUser"></h1>
+</div>
+
   <header class="log-in-header">
     <div class="splash-logo-container">
       <img class="logo-image" id="mainLogo" src="./img/join-logo.svg" alt="Join Logo" />
@@ -71,8 +76,8 @@
 
 
   <footer class="log-in-footer">
-    <a href="../templates/privacy_policy.html" onclick="setViewSubtask()" class="nav-button">Privacy Policy</a>
-    <a href="../templates/legal_notice.html" onclick="setViewSubtask()" class="nav-button">Legal Notice</a>
+    <a href="../templates/privacy_policy.html" onclick="setViewerStateLocalStorage()" class="nav-button">Privacy Policy</a>
+    <a href="../templates/legal_notice.html" onclick="setViewerStateLocalStorage()" class="nav-button">Legal Notice</a>
   </footer>
 
 </body>

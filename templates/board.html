@@ -56,13 +56,13 @@
   <div onclick="closeTaskInfoOverlay()" id="taskInfoOverlay">
   </div>
 
-  <header w3-include-html="../templates/header.html" id="headerContainer"></header>
-  <main class="main">
-    <div w3-include-html="../templates/sidebar.html" id="sidebarContainer"></div>
-    <div class="content">
-      <div class="board" style="overflow-y: auto;">
-        <div class="board-upper-line">
-          <div class="mobile-title-and-btn">
+    <header w3-include-html="../templates/header.html" id="headerContainer"></header>
+    <main class="main">
+      <div w3-include-html="../templates/sidebar.html" id="sidebarContainer"></div>
+      <div class="content">
+        <div class="board">
+          <div class="board-upper-line">
+            <div class="mobile-title-and-btn">
             <p class="board-title">Board</p>
             <img onclick="openTaskOverlay(0)" onmouseover="toggleMobileTaskAddBtn(event)"
               onmouseout="toggleMobileTaskAddBtn(event)" class="mobile-add-task-btn" id="mobileAddTaskBtn"
