@@ -185,6 +185,11 @@ function showUser(name) {
   }
 }
 
+function showNameWithoutYou(name) {
+  const newName = name.replace(' (You)', '');
+  return newName;
+}
+
 function sanitizeEmail(email) {
   return email.replace(/[@.]/g, "_");
 }

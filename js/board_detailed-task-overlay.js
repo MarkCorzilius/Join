@@ -155,6 +155,6 @@ function updatedTaskDataStorage() {
     contacts: chosenContacts,
     category: currTask.category,
     subtasks: saveSubtasks(),
-  };
+};
   return dataSafe;
 }

@@ -88,6 +88,17 @@ async function renderTasks(id, path, emptyMessage) {
     }
 }
 
+async function findCurrentUser() {
+    const currUser = JSON.parse(localStorage.getItem('user'));
+    const users = await getData('ourUsers/');
+
+    for (const user of Object.values(users)) {
+        if (currUser.email === user.email) {
+            return user;
+        }
+    }
+}
+
 function focusedSearchContainer() {
     const container = document.querySelector('.search-container');
     container.style.border = '1px solid rgb(42 170 226)';
@@ -169,16 +180,23 @@ async function renderInitials(task) {
     const firebaseContacts = await getData('contacts/');
     const firebaseContactsArray = Object.values(firebaseContacts || {});
     const taskContacts = Object.values(task.contacts || {});
-  
-    return taskContacts.map(contact => {
-      const match = firebaseContactsArray.find(fc => fc.name === contact.name);
-      if (!match) return '';
-      return `
-        <div class="contact-initial" style="background-image: url('${contact.bg}'); background-size: cover; background-position: center;">
-          ${contact.initial}
+    const user = await findCurrentUser();
+
+    const currentUserInitialHTML = `
+        <div class="contact-initial" style="background-image: url('${user.icon.bg}'); background-size: cover; background-position: center;">
+            ${user.icon.initial}
         </div>`;
+
+    const contactsHTML = taskContacts.map(contact => {
+        const match = firebaseContactsArray.find(fc => fc.name === contact.name);
+        if (!match) return '';
+        return `
+            <div class="contact-initial" style="background-image: url('${contact.bg}'); background-size: cover; background-position: center;">
+                ${contact.initial}
+            </div>`;
     }).join('');
-  }
+    return currentUserInitialHTML + contactsHTML;
+}
 
 
 window.onresize = function handlePageRedirect() {

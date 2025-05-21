@@ -38,7 +38,6 @@
 
 .subtask-edit-btns {
   position: relative;
-
 }
 
 .subtask-edit-btns img {
@@ -73,15 +72,15 @@
 }
 
 .subtask-container::-webkit-scrollbar {
-  width: 5px;             /* Width of vertical scrollbar */
+  width: 5px; /* Width of vertical scrollbar */
 }
 
 .subtask-container::-webkit-scrollbar-track {
-  background: #f1f1f1;     /* Light gray track */
+  background: #f1f1f1; /* Light gray track */
 }
 
 .subtask-container::-webkit-scrollbar-thumb {
-  background: #888;        /* Darker thumb */
+  background: #888; /* Darker thumb */
   border-radius: 5px;
 }
 
@@ -91,8 +90,6 @@
   justify-content: center;
   gap: 4px;
 }
-
-
 
 .subtask-separator {
   height: 24px;
@@ -147,24 +144,24 @@
   height: 40px;
   box-sizing: border-box;
   position: relative;
-
 }
 
 .clicked-priority-color path {
-fill: white;
+  fill: white;
 }
 
 .initial {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    background-size: cover;
-    background-position: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  background-size: cover;
+  background-position: center;
+  flex: 0 0 auto;
 }
 
 #chosenContactsBox {
@@ -172,6 +169,22 @@ fill: white;
   align-items: center;
   gap: 8px;
   margin-top: 16px;
+  max-width: 90%;
+  overflow-x: auto;
+}
+
+#chosenContactsBox::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+#chosenContactsBox::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+#chosenContactsBox::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
 }
 
 .footer-wrapper {
@@ -186,6 +199,6 @@ fill: white;
 }
 
 .mobile-warning::before {
-  content: '*';
+  content: "*";
   color: red;
 }
