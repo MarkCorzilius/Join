@@ -34,7 +34,7 @@ function setupTaskPageEnvironment() {
 
 function loadTaskPageData() {
   resetPriorityBtn();
-  fetchContacts();
+  fetchContacts('contactOptions');
   findUserEmail();
   adjustHelpForMobile(); 
   window.addEventListener('resize', adjustHelpForMobile);
