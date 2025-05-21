@@ -160,7 +160,11 @@ function visualizeChosenContacts() {
 }
 
 function addContactToArray(initial, bg, name) {
-  chosenContacts.push({name, initial, bg});
+  chosenContacts.push({
+    name: showNameWithoutYou(name),
+    initial: initial,
+    bg: bg
+  });
 }
 
 function deleteContactFromArray(initial, bg, name) {

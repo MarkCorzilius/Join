@@ -31,12 +31,13 @@ function waitForInclude() {
 }
 
 function initializeSummaryUI() {
+  showGreetingOverlayAfterLogIn();
+  updateGreeting('logedInGreeting', 'logedInUser');
+  updateGreeting('greetingUser', 'theUser');
   markCurrentPage();
   ifGuestShowDropdownHelp();
   adjustInitialAfterLogin();
-  updateGreeting();
 
-  // Task-related counters
   findToDoAmount();
   findDoneAmount();
   findUrgentTasksAmount();
@@ -45,16 +46,9 @@ function initializeSummaryUI() {
   findNextUrgentDeadline();
   findOverallTasksAmount();
 
-  showLogedInName();
   adjustHelpForMobile();
   window.addEventListener('resize', adjustHelpForMobile);
 }
-
-function showLogedInName() {
-  const user = JSON.parse(localStorage.getItem('user'));
-  document.getElementById('theUser').innerText = user.name;
-}
-
 
 async function getCurrentTime() {
   const now = new Date();
@@ -62,25 +56,14 @@ async function getCurrentTime() {
   return hours;
 }
 
-
-async function updateGreeting() {
+async function updateGreeting(userGreeting, userName) {
   const hour = await getCurrentTime();
-  findCurrentGreeting(hour);
+  showCurrentGreeting(hour, userGreeting, userName);
 }
 
-function checkIfGuest() {
-  const user = JSON.parse(localStorage.getItem('user'));
-  if (user.name === 'Guest') {
-    document.getElementById('theUser').style.display = 'none';
-    const greeting = document.getElementById('greetingUser');
-    const newGreeting = greeting.innerText.slice(0, -1);
-    greeting.innerText = newGreeting;
-  }
-}
-
-function findCurrentGreeting(hour) {
-
-  const container = document.getElementById('greetingUser');
+function showCurrentGreeting(hour, userGreeting, userName) {
+  const container = document.getElementById(userGreeting);
+  
   let greeting;
   if (hour >= 5 && hour <= 11) {
     greeting = "Good morning,";
@@ -91,8 +74,29 @@ function findCurrentGreeting(hour) {
   } else {
     greeting = "Good Night,";
   }
-  container.innerText = greeting;
-  checkIfGuest();
+  if (container) {
+    container.innerText = greeting;
+  }
+  checkIfGuest(userGreeting, userName);
+}
+
+function checkIfGuest(userGreeting, userName) {
+  if (!userGreeting || !userName) return;
+  const user = JSON.parse(localStorage.getItem('user'));
+  if (!user) return;
+  if (user.name === 'Guest') {
+    document.getElementById(userName).innerText = '';
+    const greeting = document.getElementById(userGreeting);
+    const newGreeting = greeting.innerText.replace(',', '');
+    greeting.innerText = newGreeting;
+  } else {
+    ifLoggedInUser(user, userName);
+  }
+}
+
+function ifLoggedInUser(user, userName) {
+  const greeting = document.getElementById(userName);
+  greeting.innerText = user.name;
 }
 
 setInterval(() => {
@@ -217,4 +221,14 @@ async function findOverallTasksAmount() {
     tasksCounter += 1;
   }
   container.innerText = tasksCounter;
+}
+
+async function showGreetingOverlayAfterLogIn() {
+  if (document.referrer.includes('index')) {
+    const overlay = document.getElementById('greetingOverlay');
+    overlay.classList.remove('hidden');
+    setTimeout(() => {
+      overlay.classList.add('fade-out');
+    }, 1500);
+  }
 }

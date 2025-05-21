@@ -126,8 +126,7 @@ input[type="date"]:valid {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
-  /* Make sure it's above everything */
+  z-index: 7777;
 }
 
 .spinner {
@@ -182,11 +181,11 @@ input[type="date"]:valid {
 
 #logedInUser {
   color: rgb(41, 171, 226);
-  font-size: 60px;
+  font-size: clamp(24px, 7vw, 64px);
 }
 
 #logedInGreeting {
-  font-size: 60px;
+  font-size: clamp(24px, 7vw, 64px);
   margin-bottom: 0;
 }
 

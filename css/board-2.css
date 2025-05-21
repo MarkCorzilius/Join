@@ -30,15 +30,31 @@
       background-position: center;
       margin-right: -6px;
       border: 0.5px solid white;
+      flex: 0 0 auto;
   }
   
   .contacts-assigned {
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 112px;
+    max-width: 80px;
     overflow-x: auto;
   }
+
+.contacts-assigned::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+.contacts-assigned::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.contacts-assigned::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+  
   
   .priority-png {
     height: 40px;
@@ -47,8 +63,8 @@
   
   #tasksContainer-0,#tasksContainer-1, #tasksContainer-2, #tasksContainer-3 {
     width: 244px;
-    max-height: 500px;
-    height: 500px;
+    max-height: 550px;
+    height: 550px;
   }
   
   .overlay-priority-button {
@@ -102,21 +118,11 @@
   
   .tasks-container {
     overflow-y: auto;
-    overflow-x: hidden;
     box-sizing: border-box;
   }
   
   .tasks-container::-webkit-scrollbar {
-    width: 5px;             /* Width of vertical scrollbar */
-  }
-  
-  .tasks-container::-webkit-scrollbar-track {
-    background: #f1f1f1;     /* Light gray track */
-  }
-  
-  .tasks-container::-webkit-scrollbar-thumb {
-    background: #888;        /* Darker thumb */
-    border-radius: 5px;
+    display: none;
   }
   
   .mobile-switch {

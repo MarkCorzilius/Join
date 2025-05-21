@@ -27,7 +27,6 @@ function disableSplashInteraction() {
 function guestLogin() {
     const guest = 'Guest' ;
     localStorage.setItem('user', JSON.stringify({name: guest, email: 'guest@example.com'}));
-    console.log("Guest is logged in");
     
     setTimeout(() => {
         window.location.href = "./templates/summary.html";
@@ -49,17 +48,14 @@ async function logIn(ev) {
         return;
     }
     const contact = await searchingForAccount({inputEmail, inputPassword});
-    document.getElementById('logedInUser').innerText = contact.name;
     showLoginTransition();
-    updateGreeting();
     localStorage.setItem('user', JSON.stringify({name: contact.name, email: contact.email}));
 }
 
 async function searchingForAccount({inputEmail, inputPassword}) {
-    const contacts = await getData('contacts/');
+    const contacts = await getData('ourUsers/');
     for (const contact of Object.values(contacts)) {
         if (contact.email === inputEmail || contact.password === inputPassword) {
-            console.log('Match found:', contact.name);
             return contact;
         }
     }
@@ -74,14 +70,9 @@ function showFailureAlert() {
 }
 
 function showLoginTransition() {
-    const overlay = document.getElementById('greetingOverlay');
-    overlay.classList.remove('hidden');
-    setTimeout(() => {
-        overlay.classList.add('fade-out');
         setTimeout(() => {
             window.location.href = './templates/summary.html';
-        }, 1000);
-    }, 1000);
+        }, 500);
 }
 
 async function getCurrentTime() {
@@ -89,25 +80,24 @@ async function getCurrentTime() {
     const hours = String(now.getHours());
     return hours;
   }
-  
-  
-  async function updateGreeting() {
-    const hour = await getCurrentTime();
-    showCurrentGreeting(hour);
-  }
 
-  
-  function showCurrentGreeting(hour) {
-    const container = document.getElementById('logedInGreeting');
-    let greeting;
-    if (hour >= 5 && hour <= 11) {
-      greeting = "Good morning,";
-    } else if (hour >= 12 && hour <= 16) {
-      greeting = "Good afternoon,";
-    } else if (hour >= 17 && hour <= 20) {
-      greeting = "Good evening,";
-    } else {
-      greeting = "Hello,";
+  function setViewerStateLocalStorage() {
+    const viewer = 'Viewer' ;
+    localStorage.setItem('user', JSON.stringify({name: viewer, email: 'viewer@example.com'}));
+}
+
+function checkReffererPage() {
+    const created = localStorage.getItem('createContact');
+    if (!created === 'false') return;
+    if (created === 'true' && document.referrer.includes('register')) {
+        showLoginToast();
     }
-    container.innerText = greeting;
+}
+
+function showLoginToast() {
+      const toast = document.getElementById("loginBanner");
+      toast.style.display = 'block'
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 3000);
   }

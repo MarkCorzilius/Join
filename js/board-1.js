@@ -46,12 +46,12 @@ async function loadBoardTasks() {
 async function renderAllTasks() {
     document.querySelector('.spinner-overlay').style.display = "flex";
     try {
-        renderTasks('tasksContainer-0', 'board/toDo/', 'To Do');
-        renderTasks('tasksContainer-1', 'board/InProgress/', 'In Progress');
-        renderTasks('tasksContainer-2', 'board/awaitFeedback/', 'Await Feedback');
-        renderTasks('tasksContainer-3', 'board/done/', 'Done');
-        disableMoveBtns('.move-task-up', 'board/toDo/');
-        disableMoveBtns('.move-task-down', 'board/done/');
+        await renderTasks('tasksContainer-0', 'board/toDo/', 'To Do');
+        await renderTasks('tasksContainer-1', 'board/InProgress/', 'In Progress');
+        await renderTasks('tasksContainer-2', 'board/awaitFeedback/', 'Await Feedback');
+        await renderTasks('tasksContainer-3', 'board/done/', 'Done');
+        await disableMoveBtns('.move-task-up', 'board/toDo/');
+        await disableMoveBtns('.move-task-down', 'board/done/');
     } catch (error) {
         console.log('error in renderAllTasks()');
     } finally {
@@ -68,10 +68,34 @@ async function renderTasks(id, path, emptyMessage) {
         container.innerHTML = emptyColumnTemplate(emptyMessage);
         return;
     }
+    const firebaseContacts = await getData('contacts/');
+    const firebaseContactsArray = Object.values(firebaseContacts || {});
+
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];
-        container.innerHTML += taskTemplate(task);
+
+        if (task.contacts) {
+            for (const key in task.contacts) {
+              const contact = task.contacts[key];
+              const exists = firebaseContactsArray.find(fc => fc.name === contact.name);
+              if (!exists) delete task.contacts[key];
+            }
+          }
+
+        const initialsHTML = await renderInitials(task);
+        container.innerHTML += taskTemplate(task, initialsHTML);
         updateProgressBar(task);
+    }
+}
+
+async function findCurrentUser() {
+    const currUser = JSON.parse(localStorage.getItem('user'));
+    const users = await getData('ourUsers/');
+
+    for (const user of Object.values(users)) {
+        if (currUser.email === user.email) {
+            return user;
+        }
     }
 }
 
@@ -98,10 +122,12 @@ function normalAddTaskIcon(element) {
 function closeTaskOverlay() {
     const overlay = document.getElementById('createTaskInBoardOverlay');
     overlay.style.display = 'none';
+    localStorage.removeItem('taskColumn');
 }
 
 function openTaskOverlay(column) {
     currOverlay = 'boardAddTaskOverlay';
+    localStorage.setItem('taskColumn', column);
     if (window.innerWidth < 700) {
         window.location.href = '../templates/add_task.html';
     } else {
@@ -150,13 +176,28 @@ function renderSubtasksAmount(task) {
     return amount;
 }
 
-function renderInitials(task) {
-    const contacts = Object.values(task.contacts || {});
-    return contacts.map(contact => `
-      <div class="contact-initial" style="background-image: url('${contact.bg}'); background-size: cover; background-position: center;">
-        ${contact.initial}
-      </div>`).join('');
+async function renderInitials(task) {
+    const firebaseContacts = await getData('contacts/');
+    const firebaseContactsArray = Object.values(firebaseContacts || {});
+    const taskContacts = Object.values(task.contacts || {});
+    const user = await findCurrentUser();
+
+    const currentUserInitialHTML = `
+        <div class="contact-initial" style="background-image: url('${user.icon.bg}'); background-size: cover; background-position: center;">
+            ${user.icon.initial}
+        </div>`;
+
+    const contactsHTML = taskContacts.map(contact => {
+        const match = firebaseContactsArray.find(fc => fc.name === contact.name);
+        if (!match) return '';
+        return `
+            <div class="contact-initial" style="background-image: url('${contact.bg}'); background-size: cover; background-position: center;">
+                ${contact.initial}
+            </div>`;
+    }).join('');
+    return currentUserInitialHTML + contactsHTML;
 }
+
 
 window.onresize = function handlePageRedirect() {
     const overlay = document.getElementById('createTaskInBoardOverlay');
@@ -178,6 +219,7 @@ async function createTaskInBoardFireBase() {
     } else {
        await handleCreatingTask(column, dataSafe);
     }
+    chosenContacts = [];
 }
 
 async function handleCreatingTask(column, dataSafe) {
@@ -203,18 +245,32 @@ function checkTargetColumn() {
     }
 }
 
-function closeTaskInfoOverlay() {
-    const overlay = document.getElementById('taskInfoOverlay');
-    overlay.classList.remove('active');
-    renderAllTasks();
+async function closeTaskInfoOverlay() {
+    document.querySelector('.spinner-overlay').style.display = "flex";
+    try {
+        const overlay = document.getElementById('taskInfoOverlay');
+        overlay.classList.remove('active');
+        chosenContacts = [];
+        await renderAllTasks();    
+    } catch (error) {
+        console.log('error in closeTaskInfoOverlay()', error);
+    } finally {
+        document.querySelector('.spinner-overlay').style.display = "none";
+    }
+
 }
 
-function openTaskInfoOverlay(task) {
+async function openTaskInfoOverlay(task) {
     currOverlay = 'editOverlay';
-
     const overlay = document.getElementById('taskInfoOverlay');
     overlay.classList.add('active');
-    renderDetailedTask(task);
+    await renderDetailedTask(task);
+    const subtasksList = document.getElementById('subtasksList');
+    const container = document.querySelector('.task-overlay-subtasks');
+    if (subtasksList.children.length === 0) {
+        container.style.display = 'none';
+    }
+
 }
 
 function toggleDeleteBtn(event) {
@@ -246,8 +302,9 @@ function handleEditBtnClick(overlay, boardAddTask) {
     overlay.innerHTML = editTaskTemplate();
 }
 
-function renderDetailedTask(task) {
+async function renderDetailedTask(task) {
+    const user = await findCurrentUser();
     const overlay = document.getElementById('taskInfoOverlay');
-    overlay.innerHTML = taskDetailTemplate(task);
+    overlay.innerHTML = taskDetailTemplate(task, user);
     currTask = task;
 }

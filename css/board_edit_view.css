@@ -132,18 +132,9 @@
   }
 
 .edit-data-container::-webkit-scrollbar {
-    width: 5px;             /* Width of vertical scrollbar */
+    display: none;             /* Width of vertical scrollbar */
   }
   
-  .edit-data-container::-webkit-scrollbar-track {
-    background: #f1f1f1;     /* Light gray track */
-  }
-  
-  .edit-data-container::-webkit-scrollbar-thumb {
-    background: #888;        /* Darker thumb */
-    border-radius: 5px;
-  }
-
 @media (max-width: 600px) {
     .prio-small {
         width: 86px !important;
@@ -161,6 +152,10 @@
 
     .prio-txt {
         font-size: 14px;
+    }
+
+    .detailed-overlay {
+        padding: 0 20px 10px;
     }
 
 }

@@ -1,5 +1,6 @@
 .contacts-container {
   display: flex;
+  max-width: 1920px;
 }
 
 
@@ -37,19 +38,7 @@
 }
 
 .contacts::-webkit-scrollbar {
-  width: 5px;
-  /* Width of vertical scrollbar */
-}
-
-.contacts::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  /* Light gray track */
-}
-
-.contacts::-webkit-scrollbar-thumb {
-  background: #888;
-  /* Darker thumb */
-  border-radius: 5px;
+  display: none;
 }
 
 

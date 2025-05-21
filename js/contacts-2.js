@@ -167,14 +167,6 @@ function contactItemClicked(itemElement) {
     }
   }
   
-  //function showAddingContactNotPossible() {
-  //  const user = JSON.parse(localStorage.getItem('user')); 
-  //  if (!user) return;
-  //  if (user.name === 'Guest') {
-  //    alert('Guests cannot add contacts. Please, log in first');
-  //  }
-  //}
-  
   function showMobileContactDetails() {
     const overlay = document.getElementById('mobileDetailsOverlay');
     const dialog = document.querySelector('.mobile-detail-dialog');
