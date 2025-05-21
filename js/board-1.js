@@ -260,11 +260,11 @@ async function closeTaskInfoOverlay() {
 
 }
 
-function openTaskInfoOverlay(task) {
+async function openTaskInfoOverlay(task) {
     currOverlay = 'editOverlay';
     const overlay = document.getElementById('taskInfoOverlay');
     overlay.classList.add('active');
-    renderDetailedTask(task);
+    await renderDetailedTask(task);
     const subtasksList = document.getElementById('subtasksList');
     const container = document.querySelector('.task-overlay-subtasks');
     if (subtasksList.children.length === 0) {
@@ -302,8 +302,9 @@ function handleEditBtnClick(overlay, boardAddTask) {
     overlay.innerHTML = editTaskTemplate();
 }
 
-function renderDetailedTask(task) {
+async function renderDetailedTask(task) {
+    const user = await findCurrentUser();
     const overlay = document.getElementById('taskInfoOverlay');
-    overlay.innerHTML = taskDetailTemplate(task);
+    overlay.innerHTML = taskDetailTemplate(task, user);
     currTask = task;
 }

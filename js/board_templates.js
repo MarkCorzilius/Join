@@ -27,7 +27,7 @@ function taskTemplate(task, initialsHTML) {
                 </div>`;
 }
 
-function taskDetailTemplate(task) {
+function taskDetailTemplate(task, user) {
     return `     <div id="taskInfoDialog" onclick="event.stopPropagation()">
         <div class="task-overlay-info">
         <div class="task-detail-header">
@@ -54,11 +54,11 @@ function taskDetailTemplate(task) {
         </div>
         <div class="contacts-assignment">
           <span class="assigned-to">Assigned To:</span>
-          <div id="contactsContainer">${loopTaskContacts(task)}</div>
+          <div id="contactsContainer">${loopTaskContacts(task, user)}</div>
         </div>
         <div class="task-overlay-subtasks">
           <span class="title-subtask">Subtasks</span>
-          <div id="subtasksList">${loopTaskSubtasks(task)}</div>
+          <div id="subtasksList">${loopTaskSubtasks(task, user)}</div>
         </div>
         </div>
         </div>

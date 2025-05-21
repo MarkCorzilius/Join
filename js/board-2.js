@@ -13,15 +13,12 @@ function capitalize(word) {
     return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
-async function loopTaskContacts(task) {
+function loopTaskContacts(task, user) {
     let templateHTML = '';
-    
-    const user = await findCurrentUser();
-
     if (user) {
         templateHTML += `
         <div class="task-overlay-contact">
-            <div style="background-image: url('${user.bg}')" class="initial">${user.initial}</div>
+            <div style="background-image: url('${user.icon.bg}')" class="initial">${user.icon.initial}</div>
             <p>${user.name}</p>
         </div>`;
     }
