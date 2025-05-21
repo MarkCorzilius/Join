@@ -69,7 +69,7 @@ function taskDetailTemplate(task, user) {
       </div>`;
 }
 
-function editStateOverlayTemplate(task) {
+function editStateOverlayTemplate(task, user) {
   return `<div onclick="event.stopPropagation()" id="taskDetailedOverlay">
     <div class="question-blocks">
       <div class="task-left-block">

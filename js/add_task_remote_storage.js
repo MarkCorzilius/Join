@@ -129,8 +129,9 @@ function saveSubtasks() {
   return Object.keys(subtasks).length > 0 ? subtasks : null;
 }
 
-async function fetchContacts() {
-  let contactsContainer = document.getElementById("contactOptions");
+async function fetchContacts(currentContainer) {
+  console.log(currentContainer);
+  let contactsContainer = document.getElementById(currentContainer);
   contactsContainer.innerHTML = "";
   let response = await fetch(BASE_URL + "contacts/" + ".json");
   let contacts = await response.json();
@@ -148,7 +149,9 @@ async function renderLoggedInUser(contactsContainer) {
     if (user.email === currUser.email) {
       const sanitizedEmail = sanitizeEmail(user.email);
       const currentIcon = await getData("ourUsers/" + sanitizedEmail + "/icon");
-      contactsContainer.innerHTML += contactsTemplate(showUser(user.name), currentIcon.bg, currentIcon.initial);   
+      console.log(contactsContainer);
+      contactsContainer.innerHTML += contactsTemplate(showUser(user.name), currentIcon.bg, currentIcon.initial);
+      console.log(user.name, currentIcon.bg, currentIcon.initial)   
     }
   }
 }
