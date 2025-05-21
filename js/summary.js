@@ -32,7 +32,8 @@ function waitForInclude() {
 
 function initializeSummaryUI() {
   showGreetingOverlayAfterLogIn();
-  updateGreeting();
+  updateGreeting('logedInGreeting', 'logedInUser');
+  updateGreeting('greetingUser', 'theUser');
   markCurrentPage();
   ifGuestShowDropdownHelp();
   adjustInitialAfterLogin();
@@ -55,21 +56,47 @@ async function getCurrentTime() {
   return hours;
 }
 
-
-async function updateGreeting() {
+async function updateGreeting(userGreeting, userName) {
   const hour = await getCurrentTime();
-  findCurrentGreeting(hour);
+  showCurrentGreeting(hour, userGreeting, userName);
 }
 
-function checkIfGuest(currContainer, userName) {
-  const user = JSON.parse(localStorage.getItem('user'));
-  if (user.name === 'Guest') {
+function showCurrentGreeting(hour, userGreeting, userName) {
+  const container = document.getElementById(userGreeting);
+  
+  let greeting;
+  if (hour >= 5 && hour <= 11) {
+    greeting = "Good morning,";
+  } else if (hour >= 12 && hour <= 16) {
+    greeting = "Good afternoon,";
+  } else if (hour >= 17 && hour <= 20) {
+    greeting = "Good evening,";
+  } else {
+    greeting = "Good Night,";
+  }
+  if (container) {
+    container.innerText = greeting;
+  }
+  checkIfGuest(userGreeting, userName);
+}
 
+function checkIfGuest(userGreeting, userName) {
+  if (!userGreeting || !userName) return;
+  const user = JSON.parse(localStorage.getItem('user'));
+  if (!user) return;
+  if (user.name === 'Guest') {
     document.getElementById(userName).innerText = '';
-    const greeting = document.getElementById(currContainer);
+    const greeting = document.getElementById(userGreeting);
     const newGreeting = greeting.innerText.replace(',', '');
     greeting.innerText = newGreeting;
+  } else {
+    ifLoggedInUser(user, userName);
   }
+}
+
+function ifLoggedInUser(user, userName) {
+  const greeting = document.getElementById(userName);
+  greeting.innerText = user.name;
 }
 
 setInterval(() => {

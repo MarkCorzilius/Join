@@ -49,7 +49,6 @@ async function logIn(ev) {
     }
     const contact = await searchingForAccount({inputEmail, inputPassword});
     showLoginTransition();
-    updateGreeting();
     localStorage.setItem('user', JSON.stringify({name: contact.name, email: contact.email}));
 }
 
@@ -81,30 +80,6 @@ async function getCurrentTime() {
     const hours = String(now.getHours());
     return hours;
   }
-  
-  
-  async function updateGreeting() {
-    const hour = await getCurrentTime();
-    showCurrentGreeting(hour);
-  }
-
-  function showCurrentGreeting(hour) {
-    const container = document.getElementById('logedInGreeting');
-    let greeting;
-    if (hour >= 5 && hour <= 11) {
-      greeting = "Good morning,";
-    } else if (hour >= 12 && hour <= 16) {
-      greeting = "Good afternoon,";
-    } else if (hour >= 17 && hour <= 20) {
-      greeting = "Good evening,";
-    } else {
-      greeting = "Good Night,";
-    }
-    container.innerText = greeting;
-    checkIfGuest('greetingUser', 'theUser');
-    checkIfGuest('logedInGreeting', 'logedInUser');
-  }
-
 
   function setViewerStateLocalStorage() {
     const viewer = 'Viewer' ;
