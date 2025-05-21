@@ -36,6 +36,7 @@ function taskDetailTemplate(task) {
             <img class="task-form-close" src="../img/close.png">
           </div>
         </div>
+        <div class="details-main">
         <h2 class="detail-task-title">${task.title}</h2>
         <span class="task-overlay-description">${task.description}</span>
         <div class="prio-and-date-section">
@@ -58,6 +59,7 @@ function taskDetailTemplate(task) {
         <div class="task-overlay-subtasks">
           <span class="title-subtask">Subtasks</span>
           <div id="subtasksList">${loopTaskSubtasks(task)}</div>
+        </div>
         </div>
         </div>
         <div class="task-overlay-control">

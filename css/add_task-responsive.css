@@ -142,8 +142,8 @@
 
     .add-task-page-title {
         width: 87vw;
-        position: sticky;
-        top: 0;
+        position: fixed;
+        top: 80px;
         background-color: rgb(246 247 248);
         font-size: 51px; 
         z-index: 500;

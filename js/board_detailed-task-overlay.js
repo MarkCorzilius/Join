@@ -61,7 +61,6 @@ async function showChosenContacts(task) {
     const contact = contacts[i];
     if (contact === null) continue;
     const element = checkChosenNames(contact);
-    console.log(element);
     styleChosenContact(element, contact.initial, contact.bg, contact.name);
   }
 }
@@ -72,7 +71,6 @@ function checkChosenNames(contact) {
   for (let i = 0; i < names.length; i++) {
     const name = names[i];
     if (name.textContent.replace('(You)', '').trim() === contact.name) {
-        console.log(name.textContent.replace('(You)', '').trim());
       return contactLine[i];
     }
   }

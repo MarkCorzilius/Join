@@ -165,17 +165,6 @@ function renderSubtasksAmount(task) {
     return amount;
 }
 
-// async function renderInitials(task) {
-//     const contacts = Object.values(task.contacts || {});
-//     return contacts.map(contact => `
-//       <div class="contact-initial" style="background-image: url('${contact.bg}'); background-size: cover; background-position: center;">
-//         ${contact.initial}
-//       </div>`).join('');
-// }
-
-// iterate firebase
-// save it every render in global variable
-// check in loop
 async function renderInitials(task) {
     const firebaseContacts = await getData('contacts/');
     const firebaseContactsArray = Object.values(firebaseContacts || {});
