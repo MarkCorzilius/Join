@@ -192,19 +192,29 @@ function contactItemClicked(itemElement) {
   }
   
   function hideMobileDetailsOnResize() {
-    const arrow = document.getElementById('backArrow');
-    const container = document.getElementById('mobileDetailsOverlay');
-    const panel = document.querySelector('.mobile-contact-details');
+      const arrow = document.getElementById('backArrow');
+      const container = document.getElementById('mobileDetailsOverlay');
+      const panel = document.querySelector('.mobile-contact-details');
+      const desktopPanel = document.getElementById('controlTaskExistance');
   
     if (arrow.classList.contains('d-none')) {
         container.style.display = 'none';
         panel.style.display = 'none';
+        if (desktopPanel) {
+            desktopPanel.style.display = 'flex';
+        }
         return;
     } else if (window.innerWidth <= 800 || !arrow.classList.contains('d-none')) {
         container.style.display = 'flex';
         panel.style.display = 'flex';
+        if (desktopPanel) {
+            desktopPanel.style.display = 'none';
+        }
     } else {
       container.style.display = 'none';
       panel.style.display = 'none';
+      if (desktopPanel) {
+        desktopPanel.style.display = 'flex';
+    }
     }
   }

@@ -7,8 +7,8 @@ async function contactsOnLoad() {
 async function waitForHTMLIncludes() {
   return new Promise((resolve) => {
     const checkExist = setInterval(() => {
-      const sidebarLoaded = document.querySelector('#sidebar');
-      const headerLoaded = document.querySelector('#header');
+      const sidebarLoaded = document.querySelector("#sidebar");
+      const headerLoaded = document.querySelector("#header");
       if (sidebarLoaded && headerLoaded) {
         clearInterval(checkExist);
         resolve();
@@ -20,26 +20,26 @@ async function waitForHTMLIncludes() {
 function initializeContactsPage() {
   try {
     markCurrentPage();
-    ifGuestShowDropdownHelp(); 
+    ifGuestShowDropdownHelp();
     adjustInitialAfterLogin();
     renderContacts();
     findUserEmail();
     disableAddContactIfGuest();
     adjustHelpForMobile();
-    window.addEventListener('resize', adjustHelpForMobile);
+    window.addEventListener("resize", adjustHelpForMobile);
   } catch (error) {
-    console.log('Error in initializeContactsPage()', error);
+    console.log("Error in initializeContactsPage()", error);
   }
 }
 
 async function renderContacts() {
-  document.querySelector('.spinner-overlay').style.display = "block";
+  document.querySelector(".spinner-overlay").style.display = "block";
   try {
     await displayContactsByAlphabet();
   } catch (error) {
-    console.log('rendering contacts failed');
+    console.log("rendering contacts failed");
   } finally {
-    document.querySelector('.spinner-overlay').style.display = 'none';
+    document.querySelector(".spinner-overlay").style.display = "none";
   }
 }
 
@@ -76,7 +76,7 @@ function renderGroupedContacts(container, groups) {
 }
 
 function getInitials(name) {
-  const cleanName = name.replace(/ \(You\)$/, '');
+  const cleanName = name.replace(/ \(You\)$/, "");
 
   const parts = cleanName.split(" ").filter(Boolean);
   if (parts.length === 0) return "";
@@ -85,10 +85,10 @@ function getInitials(name) {
 }
 
 function getContactVars(c) {
-    let initials = getInitials(c.name);
-    let bg = getBackgroundForName(c.name);
-    saveContactIconInFireBase(c, initials, bg);
-    return {initials, bg};
+  let initials = getInitials(c.name);
+  let bg = getBackgroundForName(c.name);
+  saveContactIconInFireBase(c, initials, bg);
+  return { initials, bg };
 }
 
 function generateContactHTML(c, vars) {
@@ -121,11 +121,11 @@ function openContactItem(name, email, phone) {
   slideEfekt();
   goToContactInfoForMobile();
   detailViewOpen = true;
- }
+}
 
 function goToContactInfoForMobile() {
   if (document.documentElement.clientWidth < 800) {
-    const button = document.querySelector('.mobile-contact-details');
+    const button = document.querySelector(".mobile-contact-details");
     const contacts = document.getElementById("contacts");
     const contactDetailContainer = document.getElementById("contactDetailContainer");
     const backArrow = document.getElementById("backArrow");
@@ -134,15 +134,14 @@ function goToContactInfoForMobile() {
       contactDetailContainer.classList.add("d-flex");
       contactDetailContainer.classList.remove("d-none");
       backArrow.classList.remove("d-none");
-      button.style.display = 'flex';
-
+      button.style.display = "flex";
     }
   }
 }
 
 function backToContacts() {
   if (document.documentElement.clientWidth < 800) {
-    const button = document.querySelector('.mobile-contact-details');
+    const button = document.querySelector(".mobile-contact-details");
     const contacts = document.getElementById("contacts");
     const contactDetailContainer = document.getElementById("contactDetailContainer");
     const backArrow = document.getElementById("backArrow");
@@ -152,12 +151,11 @@ function backToContacts() {
       contactDetailContainer.classList.remove("d-flex");
       contactDetailContainer.classList.add("d-none");
       backArrow.classList.add("d-none");
-      button.style.display = 'none';
+      button.style.display = "none";
       detailViewOpen = false;
     }
   }
 }
-
 
 window.addEventListener("resize", handleResizeView);
 
@@ -197,7 +195,6 @@ function setMobileLayout(contacts, contactDetailContainer, backArrow) {
   }
 }
 
-
 function slideEfekt() {
   let contactDetailView = document.getElementById("contactDetailView");
   contactDetailView.classList.remove("slide-in");
@@ -215,8 +212,10 @@ function generateContactDetails(bg, initials, name, email, phone) {
       </div>
       <div class="edit-delete">
         <h2 id="detailName">${name}</h2>
-        <img src="../img/edit_contacts.png" alt="" onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}') ">
-        <img src="../img/delete-contact.png" alt="" onclick="deleteContact('${email}')">
+       <div id="controlTaskExistance">
+        <img id='hideDesktopEdit' src="../img/edit_contacts.png" alt="" onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}') ">
+        <img id='hideDesktopDelete' src="../img/delete-contact.png" alt="" onclick="deleteContact('${email}')">
+       </div>
       </div>
     </div>
     <div class="email-phone">
