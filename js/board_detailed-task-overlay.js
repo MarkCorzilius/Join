@@ -123,13 +123,9 @@ async function changeCurrTask() {
   }
 
   const newTaskData = updatedTaskDataStorage();
-  if (!restrictAddingTask()) {
-    return;
-  }
-
+  if (!restrictAddingTask()) return;
   const rawBoard = await getData("board/");
   let taskUpdated = false;
-
   for (const [columnKey, tasks] of Object.entries(rawBoard)) {
     for (const [tasksKey, task] of Object.entries(tasks)) {
       if (task.id === currTask.id) {

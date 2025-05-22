@@ -130,16 +130,18 @@ async function doesContactExists({emailValue}) {
       }
 
       async function saveContactIconInFireBase(contact, initial, bg) {
-        let response = await fetch(BASE_URL + 'contacts/' + '.json');
+          let response = await fetch(BASE_URL + 'contacts/' + '.json');
         let data = await response.json();
-        const sanitizedEmail = sanitizeEmail(contact.email);
-        for (const key in data) {
-            if (sanitizedEmail === key) {
-                    const existingIcon = data[key].icon;
-                    if (existingIcon && existingIcon.initial === initial && existingIcon.bg === bg) return;
-                    await putData('contacts/' + sanitizedEmail + '/icon', {initial, bg});
-                } else {
-                    continue;
-                }
-        }    
+        if (contact.email) {
+            const sanitizedEmail = sanitizeEmail(contact.email);
+            for (const key in data) {
+                if (sanitizedEmail === key) {
+                        const existingIcon = data[key].icon;
+                        if (existingIcon && existingIcon.initial === initial && existingIcon.bg === bg) return;
+                        await putData('contacts/' + sanitizedEmail + '/icon', {initial, bg});
+                    } else {
+                        continue;
+                    }
+            }    
+        }
       }
