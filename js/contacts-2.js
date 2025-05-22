@@ -119,7 +119,7 @@ function contactItemClicked(itemElement) {
       contactsArray.push({ email: newEmail, name: newName, phone: newPhone});
   }
   
-  function updateDetailView(newName, newEmail, newPhone) {
+  async function updateDetailView(newName, newEmail, newPhone) {
     let detailView = document.getElementById("contactDetailView");
     if (!detailView.classList.contains("d-none")) {
       const vars = getContactVars({ name: newName });

@@ -171,7 +171,7 @@ function deleteContactFromArray(initial, bg, name) {
   const index = chosenContacts.findIndex(contact =>
     contact.initial === initial && 
     contact.bg === bg &&
-    contact.name === name
+    contact.name === name.replace('(You)','').trim()
   );
   if (index != -1) {
     chosenContacts.splice(index, 1);

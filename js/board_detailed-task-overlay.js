@@ -56,37 +56,21 @@ function showChosenPriority(task) {
 }
 
 async function showChosenContacts(task) {
-  const contacts = task.contacts;
-  const user = await showCurrUser();
-  for (let i = 0; i < contacts.length; i++) {
-    const contact = contacts[i];
-    if (contact === null) continue;
-    const element = checkChosenNames(contact);
-    styleChosenContact(element, contact.initial, contact.bg, contact.name);
-  }
-}
-
-async function showCurrUser() {
-    const loggedInUser = JSON.parse(localStorage.getItem('user'));
-    const ourUsers = await getData('ourUsers/')
-    const contactLine = document.querySelectorAll(".contact-line");
-    if (loggedInUser.name !== 'Guest' || ourUsers) {
-        for (const user of Object.values(ourUsers)) {
-            console.log(user);
-            if (user.email === loggedInUser.email) {
-                const element = contactLine[0];
-                styleChosenContact(element, user.icon.initial, user.icon.bg, user.name);
-            }
-        }
-    } else {
-        return;
+    const contacts = task.contacts;
+    for (let i = 0; i < contacts.length; i++) {
+      const contact = contacts[i];
+      if (contact === null) continue;
+      const element = checkChosenNames(contact);
+      if (element) {
+        styleChosenContact(element, contact.initial, contact.bg, contact.name);
+      }
     }
-}
+  }
 
 function checkChosenNames(contact) {
   const names = document.querySelectorAll(".contact-name");
   const contactLine = document.querySelectorAll(".contact-line");
-  for (let i = 1; i < names.length; i++) {
+  for (let i = 0; i < names.length; i++) {
     const name = names[i];
     if (name.textContent.replace('(You)', '').trim() === contact.name) {
       return contactLine[i];
@@ -139,14 +123,9 @@ async function changeCurrTask() {
   }
 
   const newTaskData = updatedTaskDataStorage();
-
-  if (!restrictAddingTask()) {
-    return;
-  }
-
+  if (!restrictAddingTask()) return;
   const rawBoard = await getData("board/");
   let taskUpdated = false;
-
   for (const [columnKey, tasks] of Object.entries(rawBoard)) {
     for (const [tasksKey, task] of Object.entries(tasks)) {
       if (task.id === currTask.id) {
@@ -171,8 +150,18 @@ function updatedTaskDataStorage() {
     date: dateValue,
     priority: saveActivePriority(),
     contacts: chosenContacts,
-    category: currTask.category,
+    category: getUpdatedCategory(),
     subtasks: saveSubtasks(),
 };
   return dataSafe;
+}
+
+
+function getUpdatedCategory() {
+    const newCategory = currTask.category;
+    if (newCategory === undefined) {
+        return;
+    } else {
+        return newCategory
+    }
 }

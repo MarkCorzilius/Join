@@ -45,7 +45,7 @@ async function renderContacts() {
 
 async function displayContactsByAlphabet() {
   contactsArray = [];
-  await saveBasicContacts();
+  //await saveBasicContacts();
   await saveContactsToArray();
   contactsArray.sort((a, b) => a.displayName.localeCompare(b.displayName));
 

@@ -135,7 +135,7 @@
     display: none;             /* Width of vertical scrollbar */
   }
   
-@media (max-width: 600px) {
+@media (max-width: 650px) {
     .prio-small {
         width: 86px !important;
         height: 44px !important;
