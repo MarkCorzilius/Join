@@ -42,6 +42,20 @@
 }
 
 
+/* .contacts::-webkit-scrollbar {
+  width: 5px;
+}
+
+.contacts::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.contacts::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+} */
+
+
 .contacts-list h2 {
   padding-left: 16px;
   border-bottom: 1px solid rgb(221, 221, 221);
@@ -220,6 +234,7 @@
 
 .edit-delete {
   margin: 0 0 0 36px;
+  min-width: 0;
 }
 
 
@@ -260,8 +275,8 @@
 
 
 .contact-detail-avatar {
-  width: 80px;
-  height: 80px;
+  min-width: 80px;
+  min-height: 80px;
   border-radius: 50%;
   background-color: #ccc;
   display: flex;
@@ -279,4 +294,8 @@
   margin-bottom: 8px;
   font-size: 36px;
   font-weight: 300;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
 }
