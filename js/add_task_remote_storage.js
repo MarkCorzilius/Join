@@ -134,23 +134,33 @@ async function fetchContacts(currentContainer) {
   contactsContainer.innerHTML = "";
   let response = await fetch(BASE_URL + "contacts/" + ".json");
   let contacts = await response.json();
-  await renderLoggedInUser(contactsContainer);
-  for (const user of Object.values(contacts)) {
+  const {loggedIn, defaults} = sortContacts(contacts);
+  await renderLoggedInUser(loggedIn, contactsContainer);
+  for (const user of defaults) {
     await renderDefaultUsers(user, contactsContainer);
   }
 }
 
-async function renderLoggedInUser(contactsContainer) {
-  const currUser = JSON.parse(localStorage.getItem('user'));
-  const users = await getData('ourUsers/');
-  if (!users) return;
-  for (const user of Object.values(users)) {
-    if (user.email === currUser.email) {
-      const sanitizedEmail = sanitizeEmail(user.email);
-      const currentIcon = await getData("ourUsers/" + sanitizedEmail + "/icon");
-      contactsContainer.innerHTML += contactsTemplate(showUser(user.name), currentIcon.bg, currentIcon.initial); 
+function sortContacts(contacts) {
+  let loggedIn = [];
+  let defaults = [];
+  const theUser = JSON.parse(localStorage.getItem('user'))
+  for (const contact of Object.values(contacts)) {
+    if (contact.email !== theUser.email) {
+      defaults.push(contact);
+    } else {
+      loggedIn.push(contact);
     }
   }
+  return {loggedIn, defaults}
+}
+
+async function renderLoggedInUser(user, contactsContainer) {
+  if (user === null) return;
+  const currentUser = user[0];
+  const sanitizedEmail = sanitizeEmail(currentUser.email);
+  const currentIcon = await getData("contacts/" + sanitizedEmail + "/icon");
+  contactsContainer.innerHTML += contactsTemplate(currentUser.name, currentIcon.bg, currentIcon.initial);
 }
 
 async function renderDefaultUsers(user, contactsContainer) {
