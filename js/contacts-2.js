@@ -199,7 +199,7 @@ function contactItemClicked(itemElement) {
     if (detailViewOpen === false) {
         ifContactOverlayClosed(container, panel, desktopPanel);
         return;
-    } else if (window.innerWidth <= 800 || detailViewOpen === true) {
+    } else if (window.innerWidth <= 800 && detailViewOpen === true) {
         ifMobileContactOverlayOpen(panel, desktopPanel);
     } else {
         ifDesktopContactOverlayOpen(container, panel, desktopPanel)
