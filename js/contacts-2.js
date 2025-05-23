@@ -200,7 +200,7 @@ function contactItemClicked(itemElement) {
         ifContactOverlayClosed(container, panel, desktopPanel);
         return;
     } else if (window.innerWidth <= 800 || detailViewOpen === true) {
-        ifMobileContactOverlayOpen(container, panel, desktopPanel);
+        ifMobileContactOverlayOpen(panel, desktopPanel);
     } else {
         ifDesktopContactOverlayOpen(container, panel, desktopPanel)
     }
@@ -214,8 +214,7 @@ function contactItemClicked(itemElement) {
     }
   }
 
-  function ifMobileContactOverlayOpen(container, panel, desktopPanel) {
-    container.style.display = 'flex';
+  function ifMobileContactOverlayOpen(panel, desktopPanel) {
     panel.style.display = 'flex';
     if (desktopPanel) {
         desktopPanel.style.display = 'none';

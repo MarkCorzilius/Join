@@ -13,9 +13,9 @@ function capitalize(word) {
 }
 
 function loopTaskContacts(task, user) {
-    const userTemplateHTML = isCurrUserChosen(user, task);
+    //const userTemplateHTML = isCurrUserChosen(user, task);
     const defaultTemplateHTML = createContactsTemplate(task);
-    return userTemplateHTML + defaultTemplateHTML;
+    return defaultTemplateHTML;
 }
 
 function isCurrUserChosen(user, task) {

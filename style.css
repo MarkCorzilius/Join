@@ -1,5 +1,5 @@
 body {
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
   margin: 0;
   height: 100vh;
 }
@@ -34,7 +34,7 @@ li {
   height: calc(100vh - 80px);
   margin-top: 80px;
   box-sizing: border-box;
-  overflow: auto;
+  overflow: auto !important;
   background-color: rgb(246 247 248);
 }
 
@@ -112,6 +112,7 @@ input[type="date"]:valid {
 @media (max-width: 1000px) {
   .content {
     width: 100vw;
+    overflow-y: auto;
   }
 }
 
