@@ -192,29 +192,40 @@ function contactItemClicked(itemElement) {
   }
   
   function hideMobileDetailsOnResize() {
-      const arrow = document.getElementById('backArrow');
       const container = document.getElementById('mobileDetailsOverlay');
       const panel = document.querySelector('.mobile-contact-details');
       const desktopPanel = document.getElementById('controlTaskExistance');
   
-    if (arrow.classList.contains('d-none')) {
-        container.style.display = 'none';
-        panel.style.display = 'none';
-        if (desktopPanel) {
-            desktopPanel.style.display = 'flex';
-        }
+    if (detailViewOpen === false) {
+        ifContactOverlayClosed(container, panel, desktopPanel);
         return;
-    } else if (window.innerWidth <= 800 || !arrow.classList.contains('d-none')) {
-        container.style.display = 'flex';
-        panel.style.display = 'flex';
-        if (desktopPanel) {
-            desktopPanel.style.display = 'none';
-        }
+    } else if (window.innerWidth <= 800 || detailViewOpen === true) {
+        ifMobileContactOverlayOpen(container, panel, desktopPanel);
     } else {
-      container.style.display = 'none';
-      panel.style.display = 'none';
-      if (desktopPanel) {
+        ifDesktopContactOverlayOpen(container, panel, desktopPanel)
+    }
+  }
+
+  function ifContactOverlayClosed(container, panel, desktopPanel) {
+    container.style.display = 'none';
+    panel.style.display = 'none';
+    if (desktopPanel) {
         desktopPanel.style.display = 'flex';
     }
+  }
+
+  function ifMobileContactOverlayOpen(container, panel, desktopPanel) {
+    container.style.display = 'flex';
+    panel.style.display = 'flex';
+    if (desktopPanel) {
+        desktopPanel.style.display = 'none';
     }
+  }
+
+  function ifDesktopContactOverlayOpen(container, panel, desktopPanel) {
+    container.style.display = 'none';
+    panel.style.display = 'none';
+    if (desktopPanel) {
+      desktopPanel.style.display = 'flex';
+  }
   }

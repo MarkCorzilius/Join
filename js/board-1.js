@@ -64,7 +64,6 @@ async function renderTasks(id, path, emptyMessage) {
   const container = document.getElementById(id);
   container.innerHTML = "";
   const rawTasks = await getData(path);
-  console.log(rawTasks);
   const tasks = rawTasks ? Object.values(rawTasks) : [];
   if (tasks.length === 0) {
     container.innerHTML = emptyColumnTemplate(emptyMessage);

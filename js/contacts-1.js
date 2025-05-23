@@ -121,6 +121,7 @@ function openContactItem(name, email, phone) {
   slideEfekt();
   goToContactInfoForMobile();
   detailViewOpen = true;
+  hideMobileDetailsOnResize();
 }
 
 function goToContactInfoForMobile() {
