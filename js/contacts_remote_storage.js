@@ -1,3 +1,5 @@
+const user = JSON.parse(localStorage.getItem('user'));
+
 async function saveBasicContacts() {
     for (let i = 0; i < basicContacts.length; i++) {
         const contact = basicContacts[i];
@@ -65,16 +67,17 @@ async function doesContactExists({emailValue}) {
         const response = await fetch(BASE_URL + 'contacts/' + '.json');
         const data = await response.json(); 
         for (const contact of Object.values(data)) {
-            const contactCopy = { ...contact };
-            if (contact.name === currentUser.name && contact.email === userEmail) {
-                contactCopy.displayName = contact.name + ' (You)';
+            if (user.email !== contact.email) {
+                const contactCopy = { ...contact };
+                contactCopy.displayName = contact.name;
+                contactsArray.push(contactCopy);
             } else {
-                contactCopy.displayName = contact.name; // Keep the original name for others
+                console.log("Skipping user:", user.email);
             }
-            contactsArray.push(contactCopy);
         }
     }
 
+    // if contact.email === 
 
     async function deleteContact(email) {
         const deletedContact = contactsArray.find((contact) => contact.email.toLowerCase() === email.toLowerCase());
