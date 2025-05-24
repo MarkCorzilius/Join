@@ -13,37 +13,51 @@ function capitalize(word) {
 }
 
 function loopTaskContacts(task, user) {
-    //const userTemplateHTML = isCurrUserChosen(user, task);
-    const defaultTemplateHTML = createContactsTemplate(task);
-    return defaultTemplateHTML;
+    const {defaultHTML, userHTML} = separateUserFromContacts(task, user);
+    const defTempl = returnContactTemplates(userHTML, user);
+    const userTempl = returnContactTemplates(defaultHTML, user);
+
+    return userTempl + defTempl;
 }
 
-function isCurrUserChosen(user, task) {
-    if (!user) return '';
-    const exists = task.contacts?.some((contact) => contact?.name === user.name);
-    if (exists) {
-        return `
-        <div class="task-overlay-contact">
-            <div style="background-image: url('${user.icon.bg}')" class="initial">${user.icon.initial}</div>
-            <p>${user.name}</p>
-        </div>`;
-    }
-    return '';
-}
-
-function createContactsTemplate(task) {
+function returnContactTemplates(contacts, user) {
     let templateHTML = '';
-    const contacts = task.contacts;
+    if (!contacts) return;
+    const ifUser = ifUserAddYou(contacts, user);
     for (let i = 0; i < contacts.length; i++) {
         const contact = contacts[i];
         if (contact === null) continue;
         templateHTML += `
         <div class="task-overlay-contact">
             <div style="background-image: url('${contact.bg}')" class="initial">${contact.initial}</div>
-            <p>${contact.name}</p>
+            <p>${contact.name + ifUser}</p>
         </div>`;
     }
     return templateHTML;
+}
+
+function ifUserAddYou(contacts, user) {
+    if (contacts.length === 0) return '';
+    for (let contact of contacts) {
+        if (contact.name === user.name) {
+            return ' (You)';
+        }
+    }
+    return '';
+}
+
+function separateUserFromContacts(task, user) {
+    let defaultHTML = [];
+    let userHTML = [];
+    for (let i = 0; i < task.contacts.length; i++) {
+        const contact = task.contacts[i];
+        if (contact.name !== user.name) {
+            defaultHTML.push(contact)
+        } else {
+            userHTML.push(contact)
+        }
+    }
+    return {defaultHTML, userHTML};
 }
 
 function loopTaskSubtasks(task) {

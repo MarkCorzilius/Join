@@ -160,7 +160,11 @@ async function renderLoggedInUser(user, contactsContainer) {
   const currentUser = user[0];
   const sanitizedEmail = sanitizeEmail(currentUser.email);
   const currentIcon = await getData("contacts/" + sanitizedEmail + "/icon");
-  contactsContainer.innerHTML += contactsTemplate(currentUser.name, currentIcon.bg, currentIcon.initial);
+  contactsContainer.innerHTML += contactsTemplate(addYouToCurrentUser(currentUser.name), currentIcon.bg, currentIcon.initial);
+}
+
+function addYouToCurrentUser(name) {
+  return `${name + ' (You)'}`;
 }
 
 async function renderDefaultUsers(user, contactsContainer) {
