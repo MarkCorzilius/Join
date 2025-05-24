@@ -136,19 +136,18 @@ function goToContactInfoForMobile() {
   }
 }
 
+
 function backToContacts() {
   if (document.documentElement.clientWidth < 800) {
     const button = document.querySelector(".mobile-more-container");
     const contacts = document.getElementById("contacts");
     const contactDetailContainer = document.getElementById("contactDetailContainer");
     const backArrow = document.getElementById("backArrow");
-
     if (contacts && contactDetailContainer && backArrow) {
       contacts.classList.remove("d-none");
       contactDetailContainer.classList.remove("d-flex");
       contactDetailContainer.classList.add("d-none");
       backArrow.classList.add("d-none");
-      button.style.display = "none";
       detailViewOpen = false;
     }
   }
