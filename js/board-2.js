@@ -223,22 +223,20 @@ async function handleForwardCase(nextColumn, element, task) {
   if (nextColumn === "done") {
     element.classList.add("disabled");
     await handleTaskTransfer(task, nextColumn);
-    renderAllTasks();
   } else {
     await handleTaskTransfer(task, nextColumn);
-    renderAllTasks();
   }
+  await renderAllTasks();
 }
 
 async function handleBackCase(prevColumn, element, task) {
   if (prevColumn === "toDo") {
     element.classList.add("disabled");
     await handleTaskTransfer(task, prevColumn);
-    renderAllTasks();
   } else {
     await handleTaskTransfer(task, prevColumn);
-    renderAllTasks();
   }
+  await renderAllTasks();
 }
 
 async function checkCurrColumnName(id) {
