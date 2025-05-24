@@ -73,6 +73,8 @@ function toggleCategoryOptions() {
     const mainBtn = document.getElementById('subtaskMainBtn');
     const wrapper = document.querySelector('.subtask-input-wrapper');
 
+    if (!focusBtns || !mainBtn || !wrapper) return; 
+
     if (focusBtns.style.display === 'flex' && !wrapper.contains(e.target)) {
       emptySubtaskInput();
       mainBtn.focus();

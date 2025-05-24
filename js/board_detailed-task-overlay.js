@@ -143,8 +143,9 @@ async function changeCurrTask() {
 
 function updatedTaskDataStorage() {
   const { titleValue, descriptionValue, dateValue } = extractTaskValues();
+  console.log(currTask.id)
   const dataSafe = {
-    id: taskId,
+    id: currTask.id,
     title: titleValue,
     description: descriptionValue,
     date: dateValue,

@@ -187,38 +187,58 @@ async function renderInitials(task) {
   const firebaseContacts = await getData("contacts/");
   const firebaseContactsArray = Object.values(firebaseContacts || {});
   const taskContacts = Object.values(task.contacts || {});
+  const user = await findCurrentUser();
+
+  let currentUserInitialHTML = "";
+  if (user !== "Guest") {
+    currentUserInitialHTML = checkCurrUserInitial(user, taskContacts, firebaseContactsArray);
+  }
   const contactsHTML = await checkContactsInitials(taskContacts, firebaseContactsArray);
-  return contactsHTML;
+  return currentUserInitialHTML + contactsHTML;
+}
+
+function checkCurrUserInitial(user, taskContacts, firebaseContactsArray) {
+  const isUserInTask = taskContacts.some((contact) => contact.name === user.name);
+  if (!isUserInTask) return "";
+
+  return `
+      <div class="contact-initial" style="background-image: url('${user.icon.bg}'); background-size: cover; background-position: center;">
+          ${user.icon.initial}
+      </div>`;
 }
 
 async function checkContactsInitials(taskContacts, firebaseContactsArray) {
-  const userContacts = [];
-  const otherContacts = [];
+    let contactsHTML = '';
+  
+    for (const contact of taskContacts) {
+      const match = firebaseContactsArray.find((fc) => fc.name === contact.name);
+  
+      if (!match) {
+        const userExists = await proofIfUser([contact]);
+        console.log(userExists);
 
-  const theUser = JSON.parse(localStorage.getItem("user"));
-  for (const contact of taskContacts) {
-    const match = firebaseContactsArray.find((fc) => fc.name === contact.name);
-    if (!match) continue;
-    if (contact.name === theUser.name) {
-      userContacts.push(contact);
-    } else {
-      otherContacts.push(contact);
+      }
+  
+      contactsHTML += `
+        <div class="contact-initial" style="background-image: url('${contact.bg}'); background-size: cover; background-position: center;">
+          ${contact.initial}
+        </div>`;
     }
+  
+    return contactsHTML;
   }
-  const userTemplate = renderContacts(userContacts);
-  const contactsTemplate = renderContacts(otherContacts);
-  return userTemplate + contactsTemplate;
-}
 
-function renderContacts(contacts) {
-  let templateHTML = "";
-  if (!contacts) return templateHTML;
-  contacts.forEach((contact) => {
-    templateHTML += `<div class="contact-initial" style="background-image: url('${contact.bg}'); background-size: cover; background-position: center;">
-        ${contact.initial}
-    </div>`;
-  });
-  return templateHTML;
+async function proofIfUser(taskContacts) {
+    const rawUsers = await getData('ourUsers/');
+    const users = Object.values(rawUsers);
+    const userHTML = taskContacts.some((contact) =>
+        users.some((user) => user.name === contact.name)
+    )
+    if (userHTML) {
+        return userHTML;
+    } else {
+        return '';
+    }
 }
 
 window.onresize = function handlePageRedirect() {
@@ -240,6 +260,7 @@ async function createTaskInBoardFireBase() {
     return;
   } else {
     await handleCreatingTask(column, dataSafe);
+    renderAllTasks();
   }
   chosenContacts = [];
 }
