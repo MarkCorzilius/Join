@@ -59,7 +59,7 @@ async function signUp(ev) {
   if (!isPasswordMatch({ name, email, password, confirmPassword })) return;
   if (!isPrivacyPolicyAccepted()) return;
   await handleSignUp({ name, email, password, confirmPassword });
-  localStorage.setItem("createContact", true);
+  await showSignUpToast();
   window.location.href = "../index.html";
 }
 
@@ -70,7 +70,6 @@ async function handleSignUp({ name, email, password, confirmPassword }) {
   await putData(`ourUsers/${sanitizeEmail(email)}`, { name, email, password, icon });
   await putData(`contacts/${sanitizeEmail(email)}`, { name, email, icon, phone: "" });
   emptyRegisterData();
-  return true;
 }
 
 function updateCheckboxIcon(isHovered = false) {
@@ -128,4 +127,16 @@ function toggleSignupArrow(ev) {
       break;
   }
   localStorage.setItem("createContact", false);
+}
+
+async function showSignUpToast() {
+  const toast = document.getElementById("registerBanner");
+  toast.classList.add('visible');
+
+  await new Promise((resolve) => {
+    setTimeout(() => {
+      toast.classList.remove('visible');
+      resolve();
+    }, 3000);  
+  })
 }

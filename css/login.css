@@ -292,13 +292,3 @@
 #loginPassword {
     text-indent: 0 !important;
 }
-
-.login-banner {
-    background-color: #e0ffe0;
-    color: #2e7d32;
-    padding: 10px 20px;
-    margin: 10px;
-    border: 1px solid #2e7d32;
-    border-radius: 5px;
-    font-weight: bold;
-  }
