@@ -139,7 +139,6 @@ function goToContactInfoForMobile() {
 
 function backToContacts() {
   if (document.documentElement.clientWidth < 800) {
-    const button = document.querySelector(".mobile-more-container");
     const contacts = document.getElementById("contacts");
     const contactDetailContainer = document.getElementById("contactDetailContainer");
     const backArrow = document.getElementById("backArrow");

@@ -188,7 +188,6 @@ async function renderInitials(task) {
   const firebaseContactsArray = Object.values(firebaseContacts || {});
   const taskContacts = Object.values(task.contacts || {});
   const user = await findCurrentUser();
-
   let currentUserInitialHTML = "";
   if (user !== "Guest") {
     currentUserInitialHTML = checkCurrUserInitial(user, taskContacts, firebaseContactsArray);
@@ -200,7 +199,6 @@ async function renderInitials(task) {
 function checkCurrUserInitial(user, taskContacts, firebaseContactsArray) {
   const isUserInTask = taskContacts.some((contact) => contact.name === user.name);
   if (!isUserInTask) return "";
-
   return `
       <div class="contact-initial" style="background-image: url('${user.icon.bg}'); background-size: cover; background-position: center;">
           ${user.icon.initial}
@@ -208,37 +206,30 @@ function checkCurrUserInitial(user, taskContacts, firebaseContactsArray) {
 }
 
 async function checkContactsInitials(taskContacts, firebaseContactsArray) {
-    let contactsHTML = '';
-  
-    for (const contact of taskContacts) {
-      const match = firebaseContactsArray.find((fc) => fc.name === contact.name);
-  
-      if (!match) {
-        const userExists = await proofIfUser([contact]);
-        console.log(userExists);
-
-      }
-  
-      contactsHTML += `
+  let contactsHTML = "";
+  for (const contact of taskContacts) {
+    const match = firebaseContactsArray.find((fc) => fc.name === contact.name);
+    if (!match) {
+      const userExists = await proofIfUser([contact]);
+      console.log(userExists);
+    }
+    contactsHTML += `
         <div class="contact-initial" style="background-image: url('${contact.bg}'); background-size: cover; background-position: center;">
           ${contact.initial}
         </div>`;
-    }
-  
-    return contactsHTML;
   }
+  return contactsHTML;
+}
 
 async function proofIfUser(taskContacts) {
-    const rawUsers = await getData('ourUsers/');
-    const users = Object.values(rawUsers);
-    const userHTML = taskContacts.some((contact) =>
-        users.some((user) => user.name === contact.name)
-    )
-    if (userHTML) {
-        return userHTML;
-    } else {
-        return '';
-    }
+  const rawUsers = await getData("ourUsers/");
+  const users = Object.values(rawUsers);
+  const userHTML = taskContacts.some((contact) => users.some((user) => user.name === contact.name));
+  if (userHTML) {
+    return userHTML;
+  } else {
+    return "";
+  }
 }
 
 window.onresize = function handlePageRedirect() {
@@ -256,12 +247,9 @@ async function createTaskInBoardFireBase() {
     return;
   }
   const dataSafe = taskDataStorage();
-  if (!restrictAddingTask()) {
-    return;
-  } else {
-    await handleCreatingTask(column, dataSafe);
-    renderAllTasks();
-  }
+  if (!restrictAddingTask()) return;
+  await handleCreatingTask(column, dataSafe);
+  renderAllTasks();
   chosenContacts = [];
 }
 

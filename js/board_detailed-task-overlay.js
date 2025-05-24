@@ -1,6 +1,5 @@
 async function deleteTaskInOverlay(currentTask) {
   const board = await getData("board/");
-
   for (const [columnKey, tasks] of Object.entries(board)) {
     for (const [taskKey, task] of Object.entries(tasks)) {
       if (task.id === currentTask.id) {
@@ -15,18 +14,22 @@ async function deleteTaskInOverlay(currentTask) {
 async function openTaskEditStateInOverlay(task) {
   document.querySelector(".spinner-overlay").style.display = "flex";
   try {
-    const addTaskOverlay = document.getElementById("createTaskInBoardOverlay");
-    const overlay = document.getElementById("taskInfoOverlay");
-    addTaskOverlay.innerHTML = "";
-    overlay.innerHTML = "";
-    overlay.innerHTML = editTaskTemplate(task);
-    await fetchContacts('contactOptions');
-    renderTaskDetails(task);
+    await handleOpeningEditOverlay(task);
   } catch (error) {
     console.log("error in openTaskEditStateInOverlay()", error);
   } finally {
     document.querySelector(".spinner-overlay").style.display = "none";
   }
+}
+
+async function handleOpeningEditOverlay(task) {
+  const addTaskOverlay = document.getElementById("createTaskInBoardOverlay");
+  const overlay = document.getElementById("taskInfoOverlay");
+  addTaskOverlay.innerHTML = "";
+  overlay.innerHTML = "";
+  overlay.innerHTML = editTaskTemplate(task);
+  await fetchContacts("contactOptions");
+  renderTaskDetails(task);
 }
 
 function renderTaskDetails(task) {
@@ -44,7 +47,6 @@ function renderTaskDetails(task) {
 function showChosenPriority(task) {
   const prio = document.querySelector(`.${task.priority}`);
   let data = null;
-
   if (prio.classList.contains("urgent")) {
     data = { button: prio, color: "rgb(255, 61, 0)", id: "0" };
   } else if (prio.classList.contains("medium")) {
@@ -56,23 +58,23 @@ function showChosenPriority(task) {
 }
 
 async function showChosenContacts(task) {
-    const contacts = task.contacts;
-    for (let i = 0; i < contacts.length; i++) {
-      const contact = contacts[i];
-      if (contact === null) continue;
-      const element = checkChosenNames(contact);
-      if (element) {
-        styleChosenContact(element, contact.initial, contact.bg, contact.name);
-      }
+  const contacts = task.contacts;
+  for (let i = 0; i < contacts.length; i++) {
+    const contact = contacts[i];
+    if (contact === null) continue;
+    const element = checkChosenNames(contact);
+    if (element) {
+      styleChosenContact(element, contact.initial, contact.bg, contact.name);
     }
   }
+}
 
 function checkChosenNames(contact) {
   const names = document.querySelectorAll(".contact-name");
   const contactLine = document.querySelectorAll(".contact-line");
   for (let i = 0; i < names.length; i++) {
     const name = names[i];
-    if (name.textContent.replace('(You)', '').trim() === contact.name) {
+    if (name.textContent.replace("(You)", "").trim() === contact.name) {
       return contactLine[i];
     }
   }
@@ -97,21 +99,15 @@ function showChosenSubtasks(mySubtasks) {
 
 function handleOkBtnEvents(event) {
   const rect = document.querySelector(".ok-btn-color");
-
   switch (event.type) {
     case "click":
       changeCurrTask();
       break;
-
     case "mouseover":
       rect.setAttribute("fill", "rgb(41, 171, 226)");
       break;
-
     case "mouseout":
       rect.setAttribute("fill", "#2A3647");
-      break;
-
-    default:
       break;
   }
 }
@@ -121,29 +117,30 @@ async function changeCurrTask() {
     alert("chosen date is not in the future!");
     return;
   }
-
   const newTaskData = updatedTaskDataStorage();
   if (!restrictAddingTask()) return;
-  const rawBoard = await getData("board/");
-  let taskUpdated = false;
-  for (const [columnKey, tasks] of Object.entries(rawBoard)) {
-    for (const [tasksKey, task] of Object.entries(tasks)) {
-      if (task.id === currTask.id) {
-        await putData(`board/${columnKey}/${tasksKey}`, newTaskData);
-        taskUpdated = true;
-        break;
-      }
-    }
-    if (taskUpdated) break;
-  }
+  const taskUpdated = await handlePostingChangedTask(newTaskData);
   if (taskUpdated) {
     closeTaskInfoOverlay();
   }
 }
 
+async function handlePostingChangedTask(newTaskData) {
+  const rawBoard = await getData("board/");
+  for (const [columnKey, tasks] of Object.entries(rawBoard)) {
+    for (const [tasksKey, task] of Object.entries(tasks)) {
+      if (task.id === currTask.id) {
+        await putData(`board/${columnKey}/${tasksKey}`, newTaskData);
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 function updatedTaskDataStorage() {
   const { titleValue, descriptionValue, dateValue } = extractTaskValues();
-  console.log(currTask.id)
+  console.log(currTask.id);
   const dataSafe = {
     id: currTask.id,
     title: titleValue,
@@ -153,16 +150,15 @@ function updatedTaskDataStorage() {
     contacts: chosenContacts,
     category: getUpdatedCategory(),
     subtasks: saveSubtasks(),
-};
+  };
   return dataSafe;
 }
 
-
 function getUpdatedCategory() {
-    const newCategory = currTask.category;
-    if (newCategory === undefined) {
-        return;
-    } else {
-        return newCategory
-    }
+  const newCategory = currTask.category;
+  if (newCategory === undefined) {
+    return;
+  } else {
+    return newCategory;
+  }
 }
