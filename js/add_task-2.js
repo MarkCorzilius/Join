@@ -79,7 +79,6 @@ document.addEventListener('click', (e) => {
   }
 });
 
-
 function subtaskTemplate(subtaskId, valueRef, subtaskClass) {
   return `                    
                                           <div class="template-subtask" id="subtaskTemplate${subtaskId}">
