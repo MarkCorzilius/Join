@@ -1,6 +1,20 @@
 function toggleInitialDropdown() {
     const dropdown = document.getElementById('userDropdown');
     dropdown.classList.toggle('d-none');
+    if (!dropdown.classList.contains('d-none')) {
+        document.addEventListener('click', closeDropdownOnClickOutside);
+    } else {
+        document.removeEventListener('click', closeDropdownOnClickOutside);
+    }
+}
+
+function closeDropdownOnClickOutside(event) {
+    const dropdown = document.getElementById('userDropdown');
+    const trigger = document.getElementById('userInitial');
+    if (!dropdown.contains(event.target) && !trigger.contains(event.target)) {
+        dropdown.classList.add('d-none');
+        document.removeEventListener('click', closeDropdownOnClickOutside);
+    }
 }
 
 function logout() {
@@ -25,7 +39,7 @@ async function adjustInitialAfterLogin() {
     } else {
         const initial = await searchForContactInitial(user.email);
         container.innerText = initial;
-    }  
+    }
 }
 
 async function searchForContactInitial(email) {
