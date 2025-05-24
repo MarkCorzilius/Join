@@ -24,7 +24,6 @@ function initializeContactsPage() {
     adjustInitialAfterLogin();
     renderContacts();
     findUserEmail();
-    disableAddContactIfGuest();
     adjustHelpForMobile();
     window.addEventListener("resize", adjustHelpForMobile);
   } catch (error) {
@@ -123,7 +122,6 @@ function openContactItem(name, email, phone) {
   detailViewOpen = true;
 }
 
-
 function goToContactInfoForMobile() {
   if (document.documentElement.clientWidth < 800) {
     let contacts = document.getElementById("contacts");
@@ -141,6 +139,7 @@ function goToContactInfoForMobile() {
 
 function backToContacts() {
   if (document.documentElement.clientWidth < 800) {
+    const button = document.querySelector(".mobile-more-container");
     const contacts = document.getElementById("contacts");
     const contactDetailContainer = document.getElementById("contactDetailContainer");
     const backArrow = document.getElementById("backArrow");
@@ -201,7 +200,6 @@ function slideEfekt() {
   }, 10);
 }
 
-
 function generateContactDetails(bg, initials, name, email, phone) {
   return `
     <div class="detail-avatar-name">
@@ -246,7 +244,6 @@ function generateContactDetails(bg, initials, name, email, phone) {
     </div>
   `;
 }
-
 
 function generateToggleMobileHTML(bg, initials, name, email, phone) {
   return `
