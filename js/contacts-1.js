@@ -24,7 +24,6 @@ function initializeContactsPage() {
     adjustInitialAfterLogin();
     renderContacts();
     findUserEmail();
-    disableAddContactIfGuest();
     adjustHelpForMobile();
     window.addEventListener("resize", adjustHelpForMobile);
   } catch (error) {
@@ -123,22 +122,6 @@ function openContactItem(name, email, phone) {
   detailViewOpen = true;
 }
 
-// function goToContactInfoForMobile() {
-//   if (document.documentElement.clientWidth < 800) {
-//     const button = document.querySelector(".mobile-contact-details");
-//     const contacts = document.getElementById("contacts");
-//     const contactDetailContainer = document.getElementById("contactDetailContainer");
-//     const backArrow = document.getElementById("backArrow");
-//     if (contacts && contactDetailContainer && backArrow) {
-//       contacts.classList.add("d-none");
-//       contactDetailContainer.classList.add("d-flex");
-//       contactDetailContainer.classList.remove("d-none");
-//       backArrow.classList.remove("d-none");
-//       button.style.display = "flex";
-//     }
-//   }
-// }
-
 function goToContactInfoForMobile() {
   if (document.documentElement.clientWidth < 800) {
     let contacts = document.getElementById("contacts");
@@ -155,7 +138,7 @@ function goToContactInfoForMobile() {
 
 function backToContacts() {
   if (document.documentElement.clientWidth < 800) {
-    const button = document.querySelector(".mobile-contact-details");
+    const button = document.querySelector(".mobile-more-container");
     const contacts = document.getElementById("contacts");
     const contactDetailContainer = document.getElementById("contactDetailContainer");
     const backArrow = document.getElementById("backArrow");
@@ -218,32 +201,6 @@ function slideEfekt() {
   }, 10);
 }
 
-// function generateContactDetails(bg, initials, name, email, phone) {
-//   return `
-//     <div class="detail-avatar-name">
-//       <div class="contact-detail-avatar" id="detailAvatar" style="background-image: url('${bg}'); background-size: cover; background-position: center;">
-//         ${initials}
-//       </div>
-//       <div class="edit-delete">
-//         <h2 id="detailName">${name}</h2>
-//        <div id="controlTaskExistance">
-//         <img id='hideDesktopEdit' src="../img/edit_contacts.png" alt="" onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}') ">
-//         <img id='hideDesktopDelete' src="../img/delete-contact.png" alt="" onclick="deleteContact('${email}')">
-//        </div>
-//       </div>
-//     </div>
-//     <div class="email-phone">
-//       <p>Contact Information</p>
-//       <b>Email</b>
-//       <p class="email" id="detailEmail">${email}</p>
-//       <b>Phone</b>
-//       <p class="phone" id="detailPhone">${phone}</p>
-//     </div>
-//   `;
-// }
-
-
-
 function generateContactDetails(bg, initials, name, email, phone) {
   return `
     <div class="detail-avatar-name">
@@ -288,7 +245,6 @@ function generateContactDetails(bg, initials, name, email, phone) {
     </div>
   `;
 }
-
 
 function generateToggleMobileHTML(bg, initials, name, email, phone) {
   return `

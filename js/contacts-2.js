@@ -179,15 +179,7 @@ function makeCancelBtnDark() {
   }, 100);
 }
 
-function disableAddContactIfGuest() {
-  const button = document.getElementById('addContactBtn');
-  const user = JSON.parse(localStorage.getItem('user')); // Correct this line
-  if (!user) return;
-  const userName = user.name;
-  if (userName === 'Guest') {
-    button.classList.add('adding-disabled');
-  }
-}
+
 
 function showMobileContactDetails() {
   const overlay = document.getElementById('mobileDetailsOverlay');
