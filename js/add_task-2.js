@@ -50,8 +50,8 @@ function toggleCategoryOptions() {
   }
   
   function addSubtask() {
-    const valueRef = document.getElementById('subtaskInput').value.trim();
     const input = document.getElementById('subtaskInput');
+    const valueRef = input.value.trim();
     const outputDiv = document.getElementById('subtaskContainer');
     if (valueRef.length === 0) {
       input.focus();
@@ -59,11 +59,26 @@ function toggleCategoryOptions() {
     }
     const subtaskEditClass = decideCurrentTaskOverlay();
     outputDiv.innerHTML += subtaskTemplate(subtaskId, valueRef, subtaskEditClass);
-    document.getElementById('subtaskInput').value = '';
+    input.value = '';
+    // showMainBtn();
     scrollToCreatedSubtask()
     subtaskId += 1;
       input.focus();
+    // document.getElementById('subtaskMainBtn').focus();
   }
+
+
+  document.addEventListener('click', (e) => {
+    const focusBtns = document.getElementById('focusBtns');
+    const mainBtn = document.getElementById('subtaskMainBtn');
+    const wrapper = document.querySelector('.subtask-input-wrapper');
+
+    if (focusBtns.style.display === 'flex' && !wrapper.contains(e.target)) {
+      emptySubtaskInput();
+      mainBtn.focus();
+    }
+  });
+  
   
   function subtaskTemplate(subtaskId, valueRef, subtaskClass) {
     return `                    
