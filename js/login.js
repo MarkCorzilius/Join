@@ -55,7 +55,7 @@ async function logIn(ev) {
 async function searchingForAccount({inputEmail, inputPassword}) {
     const contacts = await getData('ourUsers/');
     for (const contact of Object.values(contacts)) {
-        if (contact.email === inputEmail || contact.password === inputPassword) {
+        if (contact.email === inputEmail && contact.password === inputPassword) {
             return contact;
         }
     }

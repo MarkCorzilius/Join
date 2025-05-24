@@ -156,8 +156,8 @@ function sortContacts(contacts) {
 }
 
 async function renderLoggedInUser(user, contactsContainer) {
-  if (user === null) return;
   const currentUser = user[0];
+  if (currentUser === undefined || currentUser === null) return;
   const sanitizedEmail = sanitizeEmail(currentUser.email);
   const currentIcon = await getData("contacts/" + sanitizedEmail + "/icon");
   contactsContainer.innerHTML += contactsTemplate(addYouToCurrentUser(currentUser.name), currentIcon.bg, currentIcon.initial);
