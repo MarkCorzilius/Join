@@ -121,21 +121,34 @@ function openContactItem(name, email, phone) {
   slideEfekt();
   goToContactInfoForMobile();
   detailViewOpen = true;
-  hideMobileDetailsOnResize();
 }
+
+// function goToContactInfoForMobile() {
+//   if (document.documentElement.clientWidth < 800) {
+//     const button = document.querySelector(".mobile-contact-details");
+//     const contacts = document.getElementById("contacts");
+//     const contactDetailContainer = document.getElementById("contactDetailContainer");
+//     const backArrow = document.getElementById("backArrow");
+//     if (contacts && contactDetailContainer && backArrow) {
+//       contacts.classList.add("d-none");
+//       contactDetailContainer.classList.add("d-flex");
+//       contactDetailContainer.classList.remove("d-none");
+//       backArrow.classList.remove("d-none");
+//       button.style.display = "flex";
+//     }
+//   }
+// }
 
 function goToContactInfoForMobile() {
   if (document.documentElement.clientWidth < 800) {
-    const button = document.querySelector(".mobile-contact-details");
-    const contacts = document.getElementById("contacts");
-    const contactDetailContainer = document.getElementById("contactDetailContainer");
-    const backArrow = document.getElementById("backArrow");
+    let contacts = document.getElementById("contacts");
+    let contactDetailContainer = document.getElementById("contactDetailContainer");
+    let backArrow = document.getElementById("backArrow");
     if (contacts && contactDetailContainer && backArrow) {
       contacts.classList.add("d-none");
       contactDetailContainer.classList.add("d-flex");
       contactDetailContainer.classList.remove("d-none");
       backArrow.classList.remove("d-none");
-      button.style.display = "flex";
     }
   }
 }
@@ -205,18 +218,57 @@ function slideEfekt() {
   }, 10);
 }
 
+// function generateContactDetails(bg, initials, name, email, phone) {
+//   return `
+//     <div class="detail-avatar-name">
+//       <div class="contact-detail-avatar" id="detailAvatar" style="background-image: url('${bg}'); background-size: cover; background-position: center;">
+//         ${initials}
+//       </div>
+//       <div class="edit-delete">
+//         <h2 id="detailName">${name}</h2>
+//        <div id="controlTaskExistance">
+//         <img id='hideDesktopEdit' src="../img/edit_contacts.png" alt="" onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}') ">
+//         <img id='hideDesktopDelete' src="../img/delete-contact.png" alt="" onclick="deleteContact('${email}')">
+//        </div>
+//       </div>
+//     </div>
+//     <div class="email-phone">
+//       <p>Contact Information</p>
+//       <b>Email</b>
+//       <p class="email" id="detailEmail">${email}</p>
+//       <b>Phone</b>
+//       <p class="phone" id="detailPhone">${phone}</p>
+//     </div>
+//   `;
+// }
+
+
+
 function generateContactDetails(bg, initials, name, email, phone) {
   return `
     <div class="detail-avatar-name">
       <div class="contact-detail-avatar" id="detailAvatar" style="background-image: url('${bg}'); background-size: cover; background-position: center;">
         ${initials}
       </div>
-      <div class="edit-delete">
+      <div class="contact-edit">
         <h2 id="detailName">${name}</h2>
-       <div id="controlTaskExistance">
-        <img id='hideDesktopEdit' src="../img/edit_contacts.png" alt="" onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}') ">
-        <img id='hideDesktopDelete' src="../img/delete-contact.png" alt="" onclick="deleteContact('${email}')">
-       </div>
+        <div class="edit-or-delete">
+          <button class="edit-btn" type="button" onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}')">
+            <span class="edit-icon-wrapper icon-left">
+              <img class="edit-icon default" src="/img/edit.png" alt="">
+              <img class="edit-icon hover" src="/img/edit_hovered.png" alt="">
+            </span>
+            <p>Edit</p>
+          </button>
+
+          <button class="delete-btn" type="button" onclick="deleteContact('${email}')">
+            <span class="delete-icon-wrapper icon-left">
+              <img class="delete-icon default" src="/img/delete.png" alt="">
+              <img class="delete-icon hover" src="/img/delete_hovered.png" alt="">
+            </span>
+            <p>Delete</p>
+          </button>
+        </div>
       </div>
     </div>
     <div class="email-phone">
@@ -226,5 +278,25 @@ function generateContactDetails(bg, initials, name, email, phone) {
       <b>Phone</b>
       <p class="phone" id="detailPhone">${phone}</p>
     </div>
+
+    <div class="mobile-more-container">
+      <button class="mobile-more-btn" onclick="toggleMobileActions('${bg}', '${initials}', '${name}', '${email}', '${phone}')">
+        <img src="/img/mobile_more_btn.png" alt="Mehr Optionen">
+      </button>
+      <div id="mobileActionsMenu" class="mobile-actions d-none">
+      </div>
+    </div>
+  `;
+}
+
+
+function generateToggleMobileHTML(bg, initials, name, email, phone) {
+  return `
+    <button onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}')">
+      <img class="edit" src="/img/edit_task.png" alt="Edit">
+    </button>
+    <button onclick="deleteContact('${email}')">
+      <img class="delete" src="/img/delete_task.png" alt="Delete">
+    </button>
   `;
 }
