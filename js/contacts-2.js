@@ -1,7 +1,6 @@
 function contactItemClicked(itemElement) {
   document.querySelectorAll(".contact-item").forEach((item) => item.classList.remove("clicked-color"));
   itemElement.classList.add("clicked-color");
-
   document.querySelectorAll(".contact-name").forEach((name) => name.classList.remove("color-white"));
   const nameElement = itemElement.querySelector(".contact-name");
   if (nameElement) {
@@ -10,24 +9,22 @@ function contactItemClicked(itemElement) {
 }
 
 function toggleMobileActions(bg, initials, name, email, phone) {
-  const menu = document.getElementById('mobileActionsMenu');
-  menu.classList.toggle('d-none');
+  const menu = document.getElementById("mobileActionsMenu");
+  menu.classList.toggle("d-none");
   menu.innerHTML = generateToggleMobileHTML(bg, initials, name, email, phone);
 }
 
-
 function bindMobileButton(bg, initials, name, email, phone) {
-  const button = document.querySelector('.mobile-more-btn');
+  const button = document.querySelector(".mobile-more-btn");
   button.onclick = () => toggleMobileActions(bg, initials, name, email, phone);
 }
 
-
-document.addEventListener('click', function (e) {
-  const btn = document.querySelector('.mobile-more-btn');
-  const menu = document.getElementById('mobileActionsMenu');
+document.addEventListener("click", function (e) {
+  const btn = document.querySelector(".mobile-more-btn");
+  const menu = document.getElementById("mobileActionsMenu");
   if (!btn || !menu) return;
   if (!btn.contains(e.target) && !menu.contains(e.target)) {
-    menu.classList.add('d-none');
+    menu.classList.add("d-none");
   }
 });
 
@@ -49,10 +46,10 @@ function closeAddContactOverlay() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  ["addContactOverlay", "editContactOverlay"].forEach(id => {
+  ["addContactOverlay", "editContactOverlay"].forEach((id) => {
     const overlay = document.getElementById(id);
     if (overlay) {
-      overlay.addEventListener("click", e => {
+      overlay.addEventListener("click", (e) => {
         if (e.target === overlay) {
           id === "addContactOverlay" ? closeAddContactOverlay() : closeEditContactOverlay();
         }
@@ -74,14 +71,12 @@ function saveNewContact() {
   overlayForContactSuccesfullyCreated();
 }
 
-
 function overlayForContactSuccesfullyCreated() {
   const overlay = document.getElementById("contactSuccesfullyCreated");
   const detailContainer = document.getElementById("contactDetailContainer");
   const containerRect = detailContainer.getBoundingClientRect();
   const computedStyle = getComputedStyle(detailContainer);
   const paddingLeft = parseFloat(computedStyle.paddingLeft);
-
   overlay.style.left = containerRect.left + paddingLeft + "px";
   overlay.classList.remove("d-none");
   setTimeout(() => overlay.classList.add("show"), 10);
@@ -119,7 +114,6 @@ function deleteValue() {
   document.getElementById("contactPhone").value = "";
 }
 
-
 function editContact(name, email, phone, initials, bg) {
   currentContact = { name, email, phone };
   let editContactOverlay = document.getElementById("editContactOverlay");
@@ -136,7 +130,6 @@ function editContact(name, email, phone, initials, bg) {
 }
 
 function updateContactArray(newName, newEmail, newPhone) {
-
   contactsArray = contactsArray.filter((contact) => contact.email.toLowerCase() !== currentContact.email.toLowerCase());
   contactsArray.push({ email: newEmail, name: newName, phone: newPhone });
 }
@@ -159,86 +152,61 @@ function closeEditContactOverlay() {
 }
 
 function emptyContactForm() {
-  const nameInput = document.getElementById('contactName');
+  const nameInput = document.getElementById("contactName");
   nameInput.value = "";
-  const emailInput = document.getElementById('contactEmail');
+  const emailInput = document.getElementById("contactEmail");
   emailInput.value = "";
-  const phoneInput = document.getElementById('contactPhone');
+  const phoneInput = document.getElementById("contactPhone");
   phoneInput.value = "";
 }
 
 function makeCancelBtnLight() {
   setTimeout(() => {
-    document.getElementById('overlayCancelIcon').src = '../img/full-cancel-btn-hovered.png';
+    document.getElementById("overlayCancelIcon").src = "../img/full-cancel-btn-hovered.png";
   }, 100);
 }
 
 function makeCancelBtnDark() {
   setTimeout(() => {
-    document.getElementById('overlayCancelIcon').src = '../img/full-cancel-btn.png';
+    document.getElementById("overlayCancelIcon").src = "../img/full-cancel-btn.png";
   }, 100);
 }
 
-
-
 function showMobileContactDetails() {
-  const overlay = document.getElementById('mobileDetailsOverlay');
-  const dialog = document.querySelector('.mobile-detail-dialog');
+  const overlay = document.getElementById("mobileDetailsOverlay");
+  const dialog = document.querySelector(".mobile-detail-dialog");
   renderMobileControl();
-  overlay.style.display = 'flex';
-  requestAnimationFrame(() => dialog.classList.add('open'));
+  overlay.style.display = "flex";
+  requestAnimationFrame(() => dialog.classList.add("open"));
 }
 
 function hideMobileDetails() {
-  const overlay = document.getElementById('mobileDetailsOverlay');
-  const dialog = document.querySelector('.mobile-detail-dialog');
-  dialog.classList.remove('open');
+  const overlay = document.getElementById("mobileDetailsOverlay");
+  const dialog = document.querySelector(".mobile-detail-dialog");
+  dialog.classList.remove("open");
   setTimeout(() => {
-    overlay.style.display = 'none';
+    overlay.style.display = "none";
   }, 500);
 }
 
 function renderMobileControl() {
-  const container = document.getElementById('mobileDetailsDialog');
+  const container = document.getElementById("mobileDetailsDialog");
   const { name, email, phone, initials, bg } = currContactData;
   container.innerHTML = `<img onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}')" src="../img/edit_contacts.png" alt="">
           <img onclick="deleteContact('${email}')" src="../img/delete-contact.png" alt="">`;
 }
 
-// function hideMobileDetailsOnResize() {
-//     const container = document.getElementById('mobileDetailsOverlay');
-//     const panel = document.querySelector('.mobile-contact-details');
-//     const desktopPanel = document.getElementById('controlTaskExistance');
-
-//   if (detailViewOpen === false) {
-//       ifContactOverlayClosed(container, panel, desktopPanel);
-//       return;
-//   } else if (window.innerWidth <= 800 && detailViewOpen === true) {
-//       ifMobileContactOverlayOpen(panel, desktopPanel);
-//   } else {
-//       ifDesktopContactOverlayOpen(container, panel, desktopPanel)
-//   }
-// }
-
-// function ifContactOverlayClosed(container, panel, desktopPanel) {
-//   container.style.display = 'none';
-//   panel.style.display = 'none';
-//   if (desktopPanel) {
-//       desktopPanel.style.display = 'flex';
-//   }
-// }
-
 function ifMobileContactOverlayOpen(panel, desktopPanel) {
-  panel.style.display = 'flex';
+  panel.style.display = "flex";
   if (desktopPanel) {
-    desktopPanel.style.display = 'none';
+    desktopPanel.style.display = "none";
   }
 }
 
 function ifDesktopContactOverlayOpen(container, panel, desktopPanel) {
-  container.style.display = 'none';
-  panel.style.display = 'none';
+  container.style.display = "none";
+  panel.style.display = "none";
   if (desktopPanel) {
-    desktopPanel.style.display = 'flex';
+    desktopPanel.style.display = "flex";
   }
 }

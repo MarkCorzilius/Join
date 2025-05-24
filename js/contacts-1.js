@@ -47,16 +47,13 @@ async function displayContactsByAlphabet() {
   //await saveBasicContacts();
   await saveContactsToArray();
   contactsArray.sort((a, b) => a.displayName.localeCompare(b.displayName));
-
   const container = document.querySelector(".contacts-list");
   if (!container) return;
-
   const groups = {};
   contactsArray.forEach((c) => {
     const letter = c.displayName[0].toUpperCase();
     (groups[letter] = groups[letter] || []).push(c);
   });
-
   renderGroupedContacts(container, groups);
 }
 
@@ -76,7 +73,6 @@ function renderGroupedContacts(container, groups) {
 
 function getInitials(name) {
   const cleanName = name.replace(/ \(You\)$/, "");
-
   const parts = cleanName.split(" ").filter(Boolean);
   if (parts.length === 0) return "";
   if (parts.length === 1) return parts[0].charAt(0).toUpperCase();
@@ -136,7 +132,6 @@ function goToContactInfoForMobile() {
   }
 }
 
-
 function backToContacts() {
   if (document.documentElement.clientWidth < 800) {
     const contacts = document.getElementById("contacts");
@@ -159,9 +154,7 @@ function handleResizeView() {
   const contacts = document.getElementById("contacts");
   const contactDetailContainer = document.getElementById("contactDetailContainer");
   const backArrow = document.getElementById("backArrow");
-
   if (!contacts || !contactDetailContainer || !backArrow) return;
-
   if (browserWidth >= 800) {
     setDesktopLayout(contacts, contactDetailContainer, backArrow);
   } else {

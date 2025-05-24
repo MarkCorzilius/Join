@@ -1,59 +1,58 @@
 function toggleInitialDropdown() {
-    const dropdown = document.getElementById('userDropdown');
-    dropdown.classList.toggle('d-none');
-    if (!dropdown.classList.contains('d-none')) {
-        document.addEventListener('click', closeDropdownOnClickOutside);
-    } else {
-        document.removeEventListener('click', closeDropdownOnClickOutside);
-    }
+  const dropdown = document.getElementById("userDropdown");
+  dropdown.classList.toggle("d-none");
+  if (!dropdown.classList.contains("d-none")) {
+    document.addEventListener("click", closeDropdownOnClickOutside);
+  } else {
+    document.removeEventListener("click", closeDropdownOnClickOutside);
+  }
 }
 
 function closeDropdownOnClickOutside(event) {
-    const dropdown = document.getElementById('userDropdown');
-    const trigger = document.getElementById('userInitial');
-    if (!dropdown.contains(event.target) && !trigger.contains(event.target)) {
-        dropdown.classList.add('d-none');
-        document.removeEventListener('click', closeDropdownOnClickOutside);
-    }
+  const dropdown = document.getElementById("userDropdown");
+  const trigger = document.getElementById("userInitial");
+  if (!dropdown.contains(event.target) && !trigger.contains(event.target)) {
+    dropdown.classList.add("d-none");
+    document.removeEventListener("click", closeDropdownOnClickOutside);
+  }
 }
 
 function logout() {
-    window.location.href = '../index.html';
-    localStorage.removeItem('user');
+  window.location.href = "../index.html";
+  localStorage.removeItem("user");
 }
 
 function ifGuestShowDropdownHelp() {
-    const user = JSON.parse(localStorage.getItem('user'));
-    const btn = document.querySelector('.dropdown-help');
-    if (user.name === 'Guest' || user.name === 'Viewer') {
-        btn.classList.remove('d-none');
-    }
+  const user = JSON.parse(localStorage.getItem("user"));
+  const btn = document.querySelector(".dropdown-help");
+  if (user.name === "Guest" || user.name === "Viewer") {
+    btn.classList.remove("d-none");
+  }
 }
 
 async function adjustInitialAfterLogin() {
-    const container = document.getElementById('userInitial');
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (user.name === 'Guest' || user.name === 'Viewer') {
-        container.innerText = 'G';
-        return;
-    } else {
-        const initial = await searchForContactInitial(user.email);
-        container.innerText = initial;
-    }
+  const container = document.getElementById("userInitial");
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (user.name === "Guest" || user.name === "Viewer") {
+    container.innerText = "G";
+    return;
+  } else {
+    const initial = await searchForContactInitial(user.email);
+    container.innerText = initial;
+  }
 }
 
 async function searchForContactInitial(email) {
-    const rawContacts = await getData('ourUsers/');
-    const contacts = Object.values(rawContacts);
+  const rawContacts = await getData("ourUsers/");
+  const contacts = Object.values(rawContacts);
 
-    const match = contacts.find(contact => contact.email === email);
-    return match?.icon?.initial;
-
+  const match = contacts.find((contact) => contact.email === email);
+  return match?.icon?.initial;
 }
 
 function ifHelpPageNoHelpIcon() {
-    const icon = document.querySelector('.help-icon');
-    if (window.location.pathname.includes('help')) {
-        icon.classList.add('d-none');
-    }
+  const icon = document.querySelector(".help-icon");
+  if (window.location.pathname.includes("help")) {
+    icon.classList.add("d-none");
+  }
 }

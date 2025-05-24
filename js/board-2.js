@@ -13,57 +13,55 @@ function capitalize(word) {
 }
 
 function loopTaskContacts(task, user) {
-    const {defaultHTML, userHTML} = separateUserFromContacts(task, user);
-    const defTempl = returnContactTemplates(userHTML, user);
-    const userTempl = returnContactTemplates(defaultHTML, user);
-
-    return userTempl + defTempl;
+  const { defaultHTML, userHTML } = separateUserFromContacts(task, user);
+  const defTempl = returnContactTemplates(userHTML, user);
+  const userTempl = returnContactTemplates(defaultHTML, user);
+  return userTempl + defTempl;
 }
 
 function returnContactTemplates(contacts, user) {
-    let templateHTML = '';
-    if (!contacts) return;
-    const ifUser = ifUserAddYou(contacts, user);
-    for (let i = 0; i < contacts.length; i++) {
-        const contact = contacts[i];
-        if (contact === null) continue;
-        templateHTML += `
+  let templateHTML = "";
+  if (!contacts) return;
+  const ifUser = ifUserAddYou(contacts, user);
+  for (let i = 0; i < contacts.length; i++) {
+    const contact = contacts[i];
+    if (contact === null) continue;
+    templateHTML += `
         <div class="task-overlay-contact">
             <div style="background-image: url('${contact.bg}')" class="initial">${contact.initial}</div>
             <p>${contact.name + ifUser}</p>
         </div>`;
-    }
-    return templateHTML;
+  }
+  return templateHTML;
 }
 
 function ifUserAddYou(contacts, user) {
-    if (contacts.length === 0) return '';
-    for (let contact of contacts) {
-        if (contact.name === user.name) {
-            return ' (You)';
-        }
+  if (contacts.length === 0) return "";
+  for (let contact of contacts) {
+    if (contact.name === user.name) {
+      return " (You)";
     }
-    return '';
+  }
+  return "";
 }
 
 function separateUserFromContacts(task, user) {
-    let defaultHTML = [];
-    let userHTML = [];
-    for (let i = 0; i < task.contacts.length; i++) {
-        const contact = task.contacts[i];
-        if (contact.name !== user.name) {
-            defaultHTML.push(contact)
-        } else {
-            userHTML.push(contact)
-        }
+  let defaultHTML = [];
+  let userHTML = [];
+  for (let i = 0; i < task.contacts.length; i++) {
+    const contact = task.contacts[i];
+    if (contact.name !== user.name) {
+      defaultHTML.push(contact);
+    } else {
+      userHTML.push(contact);
     }
-    return {defaultHTML, userHTML};
+  }
+  return { defaultHTML, userHTML };
 }
 
 function loopTaskSubtasks(task) {
   if (!task.subtasks || typeof task.subtasks !== "object") return "";
   if (Object.entries(task.subtasks).length === 0) return "";
-
   return handleLoopingSubtasks(task);
 }
 
@@ -208,7 +206,6 @@ async function moveMobileTasks(direction, task, event, element) {
   const currColumnName = await checkCurrColumnName(task.id);
   const nextColumn = await checkNextColumnName(task.id, currColumnName);
   const prevColumn = await checkPrevColumnName(task.id, currColumnName);
-
   switch (direction) {
     case "forward":
       handleForwardCase(nextColumn, element, task);
