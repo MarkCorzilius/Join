@@ -84,6 +84,7 @@ async function deleteContact(email) {
   contactsArray = contactsArray.filter((contact) => contact.email.toLowerCase() !== email.toLowerCase());
   const deletedContactKey = sanitizeEmail(deletedContact.email);
   await deleteData("contacts/" + deletedContactKey);
+  await deleteData("ourUsers/" + deletedContactKey);
   renderContacts();
   backToContacts();
   hideContactDetailView();
@@ -127,9 +128,20 @@ async function saveEditedContact() {
 
 async function updateEditedContactInFireBase(email, { newName, newEmail, newPhone }) {
   const contactKey = sanitizeEmail(email);
-  await deleteData("contacts/" + contactKey);
   const newContactKey = sanitizeEmail(newEmail);
+  await deleteData("contacts/" + contactKey);
   await putData("contacts/" + newContactKey, { name: newName, email: newEmail, phone: newPhone });
+  await updateUserIfContactIsUser(contactKey, newContactKey, { name: newName, email: newEmail, phone: newPhone });
+}
+
+async function updateUserIfContactIsUser(contactKey, newContactKey, { name: newName, email: newEmail, phone: newPhone }) {
+  const users = await getData("ourUsers/");
+  for (const user of Object.keys(users || {})) {
+    if (user === contactKey) {
+      await deleteData("ourUsers/" + contactKey);
+      await putData("ourUsers/" + newContactKey, { name: newName, email: newEmail, phone: newPhone });
+    }
+  }
 }
 
 async function saveContactIconInFireBase(contact, initial, bg) {

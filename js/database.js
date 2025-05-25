@@ -56,4 +56,5 @@ async function findUserEmail() {
       userEmail = contact.email;
     }
   }
+  userEmail = '';
 }
