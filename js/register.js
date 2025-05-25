@@ -67,8 +67,11 @@ async function handleSignUp({ name, email, password, confirmPassword }) {
   const initial = getInitials(name);
   const bg = getBackgroundForName(name);
   const icon = { initial, bg };
-  await putData(`ourUsers/${sanitizeEmail(email)}`, { name, email, password, icon });
-  await putData(`contacts/${sanitizeEmail(email)}`, { name, email, icon, phone: "" });
+  contactId = Number(localStorage.getItem('contactId'));
+  await putData(`ourUsers/${sanitizeEmail(email)}`, { name, email, password, icon, contactId });
+  await putData(`contacts/${sanitizeEmail(email)}`, { name, email, icon, phone: "", contactId });
+  contactId += 1;
+  localStorage.setItem('contactId', contactId);
   emptyRegisterData();
 }
 

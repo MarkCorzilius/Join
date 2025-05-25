@@ -1,6 +1,7 @@
 const BASE_URL = "https://join-fce4c-default-rtdb.europe-west1.firebasedatabase.app/";
 
 let taskId = 0;
+let contactId = Number(localStorage.getItem('contactId')) || 0;
 
 const currentUser = JSON.parse(localStorage.getItem("user"));
 let userEmail = null;

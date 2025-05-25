@@ -7,11 +7,14 @@ async function saveBasicContacts() {
     const path = "contacts/" + safeKey;
     const exists = await isDuplicateEmail(path);
     if (!exists) {
+       contact.id = contactId;
       await putData(path, contact);
+      contactId += 1;
     } else {
       continue;
     }
   }
+  localStorage.setItem('contactId',  contactId);
 }
 
 async function getNewContactData() {
@@ -35,14 +38,17 @@ async function saveNewContactToDataBase() {
     alert("contact already exists");
     return;
   }
-  await handlePostingToDataBase({ nameValue, emailValue, phoneValue }, safeKey);
+  contactId = Number(localStorage.getItem('contactId'))
+  await handlePostingToDataBase({ nameValue, emailValue, phoneValue, contactId }, safeKey);
+  contactId += 1;
+  localStorage.setItem('contactId', contactId);
 }
 
-async function handlePostingToDataBase({ nameValue, emailValue, phoneValue }, safeKey) {
+async function handlePostingToDataBase({ nameValue, emailValue, phoneValue, contactId }, safeKey) {
   const path = "contacts/" + safeKey;
   contactsArray = [];
-  await putData(path, { name: nameValue, email: emailValue, phone: phoneValue });
-  contactsArray.push({ name: nameValue, email: emailValue, phone: phoneValue });
+  await putData(path, { name: nameValue, email: emailValue, phone: phoneValue, id: contactId });
+  contactsArray.push({ name: nameValue, email: emailValue, phone: phoneValue, id: contactId });
 }
 
 function inputsFilledOut({ nameValue, emailValue, phoneValue }) {

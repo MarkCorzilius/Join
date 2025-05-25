@@ -44,7 +44,7 @@ async function renderContacts() {
 
 async function displayContactsByAlphabet() {
   contactsArray = [];
-  //await saveBasicContacts();
+  await saveBasicContacts();
   await saveContactsToArray();
   contactsArray.sort((a, b) => a.displayName.localeCompare(b.displayName));
   const container = document.querySelector(".contacts-list");
@@ -247,3 +247,6 @@ function generateToggleMobileHTML(bg, initials, name, email, phone) {
     </button>
   `;
 }
+
+// save id to every contact (signUp | basic | in contacts page)
+// iterate over ids –> insert data of contact.id
