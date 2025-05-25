@@ -1,24 +1,19 @@
 <head>
   <meta charset="UTF-8" />
   <title>Join - Header</title>
-  <!-- Binde hier dein CSS für den Header ein -->
   <link rel="stylesheet" href="../css/header.css" />
   <link rel="stylesheet" href="../style.css" />
-
 </head>
 
 <body>
   <header id="header" class="header">
     <div class="header-container">
-      <!-- Linke Seite: Logo + Titel -->
       <div class="header-left">
         <img src="../img/join-logo.svg" alt="Join Logo" class="header-logo" />
         <h1 class="header-title">Kanban Project Management Tool</h1>
       </div>
 
-      <!-- Rechte Seite: Fragezeichen-Icon + Initialen -->
       <div class="header-right">
-        <!-- <div class="help-icon">?</div> -->
         <a href="../templates/help.html"><img class="help-icon" src="../img/help.png" alt="Go to help"
             onclick="openHelp()" /></a>
         <div onclick="toggleInitialDropdown()" id="userInitial" class="user-initials">G</div>
