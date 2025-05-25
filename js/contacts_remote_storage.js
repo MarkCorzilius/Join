@@ -36,6 +36,7 @@ async function saveNewContactToDataBase() {
     return;
   }
   await handlePostingToDataBase({ nameValue, emailValue, phoneValue }, safeKey);
+  renderContacts();
 }
 
 async function handlePostingToDataBase({ nameValue, emailValue, phoneValue }, safeKey) {

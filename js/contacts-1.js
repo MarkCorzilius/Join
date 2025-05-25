@@ -239,11 +239,23 @@ function generateContactDetails(bg, initials, name, email, phone) {
 
 function generateToggleMobileHTML(bg, initials, name, email, phone) {
   return `
+
+
     <button onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}')">
-      <img class="edit" src="/img/edit_task.png" alt="Edit">
+      <img class="edit" src="/img/edit.png" alt="Edit">
+      <p>Edit</p>
     </button>
+
     <button onclick="deleteContact('${email}')">
-      <img class="delete" src="/img/delete_task.png" alt="Delete">
+      <img class="delete" src="/img/delete.png" alt="Delete">
+      <p>Delete</p>
     </button>
   `;
 }
+
+{/* <button onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}')">
+<img class="edit" src="/img/edit_task.png" alt="Edit">
+</button>
+<button onclick="deleteContact('${email}')">
+<img class="delete" src="/img/delete_task.png" alt="Delete">
+</button> */}
