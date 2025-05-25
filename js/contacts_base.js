@@ -35,13 +35,13 @@ function initializeContactsPage() {
 
 
 async function renderContacts() {
-  document.querySelector(".spinner-overlay").style.display = "block";
+  // document.querySelector(".spinner-overlay").style.display = "block";
   try {
     await displayContactsByAlphabet();
   } catch (error) {
     console.log("rendering contacts failed");
   } finally {
-    document.querySelector(".spinner-overlay").style.display = "none";
+    // document.querySelector(".spinner-overlay").style.display = "none";
   }
 }
 
@@ -304,9 +304,9 @@ function saveNewContact() {
   if (!validateContactInput(name, email, phone)) return;
   if (contactExists(email)) return;
   newContactPushToArray(name, email, phone);
-  renderContacts();
   closeAddContactOverlay();
   overlayForContactSuccesfullyCreated();
+  renderContacts();
 }
 
 
@@ -316,7 +316,6 @@ function overlayForContactSuccesfullyCreated() {
   const containerRect = detailContainer.getBoundingClientRect();
   const computedStyle = getComputedStyle(detailContainer);
   const paddingLeft = parseFloat(computedStyle.paddingLeft);
-  overlay.style.left = containerRect.left + paddingLeft + "px";
   overlay.classList.remove("d-none");
   setTimeout(() => overlay.classList.add("show"), 10);
   setTimeout(() => {
