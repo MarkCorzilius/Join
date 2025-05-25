@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<!-- <html lang="en"> -->
 <html lang="de">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Join</title>
-  <!-- Font für PT Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -19,27 +17,21 @@
   <link rel="stylesheet" href="../css/sidebar.css" />
   <link rel="stylesheet" href="../css/register.css" />
   <link rel="stylesheet" href="../css/login.css" />
-
   <link rel="stylesheet" href="../css/summary.css" />
   <link rel="stylesheet" href="../css/board-1.css" />
   <link rel="stylesheet" href="../css/board-2.css" />
-
   <link rel="stylesheet" href="../css/contacts-1.css" />
   <link rel="stylesheet" href="../css/contacts-2.css" />
   <link rel="stylesheet" href="../css/contacts-3.css" />
   <link rel="stylesheet" href="../css/contacts_responsive.css" />
-
-
   <link rel="stylesheet" href="../css/privacy_policy.css" />
   <link rel="stylesheet" href="../css/legal_notice.css" />
   <link rel="stylesheet" href="../css/footer.css" />
-
   <script src="https://www.w3schools.com/lib/w3.js"></script>
-
   <script src="../js/database.js"></script>
   <script src="../js/contacts_data_storage.js"></script>
-  <script src="../js/contacts-1.js"></script>
-  <script src="../js/contacts-2.js"></script>
+  <script src="../js/contacts_templates.js"></script>
+  <script src="../js/contacts_base.js"></script>
   <script src="../js/contacts_remote_storage.js"></script>
   <script src="../js/header.js"></script>
   <script src="../js/sidebar.js"></script>
@@ -82,10 +74,6 @@
       </div>
     </div>
   </main>
-
-
-
-  <!-- :::::::::  OVERLAY add new Contact ::::::::::::::: -->
 
   <div id="addContactOverlay" class="add-contact-overlay d-none"
     onclick="if(event.target===this){ closeAddContactOverlay(); }">
@@ -151,10 +139,6 @@
     </div>
   </div>
 
-
-
-  <!-- :::::::::  OVERLAY edit Contact ::::::::::::::: -->
-
   <div id="editContactOverlay" class="edit-contact-overlay d-none">
     <div class="edit-content">
       <div class="overlay-left">
@@ -204,10 +188,6 @@
       </div>
     </div>
   </div>
-
-
-
-  <!-- :::::::::  FIXED IMG / OVERLAY contact-succesfully-created ::::::::::::::: -->
 
   <img class="overlay-contact-succesfully-created" id="contactSuccesfullyCreated"
     src="../img/contact-succesfully-created.png" alt="" srcset="" />
