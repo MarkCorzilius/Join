@@ -122,26 +122,26 @@ function helpResetContacts(option, checked, unchecked) {
   }
 }
 
-function styleChosenContact(element, initial, bg, name) {
+function styleChosenContact(element, initial, bg, name, contactId) {
   element.classList.toggle("selected-contact");
   const checked = element.querySelector(".checked");
   const unchecked = element.querySelector(".unchecked");
 
   if (element.classList.contains("selected-contact")) {
-    runIfSelected(checked, unchecked, initial, bg, name);
+    runIfSelected(checked, unchecked, initial, bg, name, contactId);
   } else {
-    runIfNotSelected(checked, unchecked, initial, bg, name);
+    runIfNotSelected(checked, unchecked, initial, bg, name, contactId);
   }
 }
 
-function runIfSelected(checked, unchecked, initial, bg, name) {
+function runIfSelected(checked, unchecked, initial, bg, name, contactId) {
   checked.style.display = "inline";
   unchecked.style.display = "none";
-  addContactToArray(initial, bg, name);
+  addContactToArray(initial, bg, name, contactId);
   visualizeChosenContacts();
 }
 
-function runIfNotSelected(checked, unchecked, initial, bg, name) {
+function runIfNotSelected(checked, unchecked, initial, bg, name, contactId) {
   checked.style.display = "none";
   unchecked.style.display = "inline";
   deleteContactFromArray(initial, bg, name);
@@ -157,11 +157,12 @@ function visualizeChosenContacts() {
   }
 }
 
-function addContactToArray(initial, bg, name) {
+function addContactToArray(initial, bg, name, contactId) {
   chosenContacts.push({
     name: showNameWithoutYou(name),
     initial: initial,
     bg: bg,
+    id: contactId,
   });
 }
 

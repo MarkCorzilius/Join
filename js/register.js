@@ -68,8 +68,8 @@ async function handleSignUp({ name, email, password, confirmPassword }) {
   const bg = getBackgroundForName(name);
   const icon = { initial, bg };
   contactId = Number(localStorage.getItem('contactId'));
-  await putData(`ourUsers/${sanitizeEmail(email)}`, { name, email, password, icon, contactId });
-  await putData(`contacts/${sanitizeEmail(email)}`, { name, email, icon, phone: "", contactId });
+  await putData(`ourUsers/${sanitizeEmail(email)}`, { name, email, password, icon, id: contactId });
+  await putData(`contacts/${sanitizeEmail(email)}`, { name, email, icon, phone: "", id: contactId });
   contactId += 1;
   localStorage.setItem('contactId', contactId);
   emptyRegisterData();
@@ -140,6 +140,6 @@ async function showSignUpToast() {
     setTimeout(() => {
       toast.classList.remove('visible');
       resolve();
-    }, 3000);  
+    }, 1700);  
   })
 }

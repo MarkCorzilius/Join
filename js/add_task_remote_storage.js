@@ -161,7 +161,7 @@ async function renderLoggedInUser(user, contactsContainer) {
   if (currentUser === undefined || currentUser === null) return;
   const sanitizedEmail = sanitizeEmail(currentUser.email);
   const currentIcon = await getData("contacts/" + sanitizedEmail + "/icon");
-  contactsContainer.innerHTML += contactsTemplate(addYouToCurrentUser(currentUser.name), currentIcon.bg, currentIcon.initial);
+  contactsContainer.innerHTML += contactsTemplate(addYouToCurrentUser(currentUser.name), currentIcon.bg, currentIcon.initial, currentUser.id);
 }
 
 function addYouToCurrentUser(name) {
@@ -171,11 +171,11 @@ function addYouToCurrentUser(name) {
 async function renderDefaultUsers(user, contactsContainer) {
   const sanitizedEmail = sanitizeEmail(user.email);
   const currentIcon = await getData("contacts/" + sanitizedEmail + "/icon");
-  contactsContainer.innerHTML += contactsTemplate(user.name, currentIcon.bg, currentIcon.initial);
+  contactsContainer.innerHTML += contactsTemplate(user.name, currentIcon.bg, currentIcon.initial, user.id);
 }
 
-function contactsTemplate(name, bg, initial) {
-  return `<div onclick="styleChosenContact(this, '${initial}', '${bg}', '${name}')" class="option contact-line">
+function contactsTemplate(name, bg, initial, contactId) {
+  return `<div onclick="styleChosenContact(this, '${initial}', '${bg}', '${name}', ${contactId})" class="option contact-line">
                     <div>
                     <div class="initial" style="background-image:url('${bg}')" alt="profile icon">${initial}</div>
                     <span class="contact-name">${(name)}</span>

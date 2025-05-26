@@ -53,7 +53,7 @@ async function isDuplicateEmail(path = "") {
 async function findUserEmail() {
   const contacts = await getData("contacts/");
   for (const contact of Object.values(contacts)) {
-    if (contact.email === currentUser.email) {
+    if (contact.id === currentUser.id) {
       userEmail = contact.email;
     }
   }

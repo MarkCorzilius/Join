@@ -81,7 +81,7 @@ async function visualizeTasks(tasks, firebaseContactsArray, container) {
       for (const key in task.contacts) {
         const contact = task.contacts[key];
         if (!contact) continue;
-        const exists = firebaseContactsArray.find((fc) => fc.name === contact.name);
+        const exists = firebaseContactsArray.find((fc) => fc.id === contact.id);
         if (!exists) {
           delete task.contacts[key];
         }
@@ -197,7 +197,7 @@ async function checkContactsInitials(taskContacts, firebaseContactsArray) {
 
   const theUser = JSON.parse(localStorage.getItem("user"));
   for (const contact of taskContacts) {
-    const match = firebaseContactsArray.find((fc) => fc.name === contact.name);
+    const match = firebaseContactsArray.find((fc) => fc.id === contact.id);
     if (!match) continue;
     if (contact.name === theUser.name) {
       userContacts.push(contact);

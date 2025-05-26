@@ -44,7 +44,7 @@ async function renderContacts() {
 
 async function displayContactsByAlphabet() {
   contactsArray = [];
-  await saveBasicContacts();
+  //await saveBasicContacts();
   await saveContactsToArray();
   contactsArray.sort((a, b) => a.displayName.localeCompare(b.displayName));
   const container = document.querySelector(".contacts-list");
@@ -87,7 +87,7 @@ function getContactVars(c) {
 }
 
 function generateContactHTML(c, vars) {
-  return `<div class="contact-item" onclick="openContactItem('${c.name}', '${c.email}', '${c.phone}'); contactItemClicked(this)">
+  return `<div class="contact-item" onclick="openContactItem('${c.name}', '${c.email}', '${c.phone}', '${c.id}'); contactItemClicked(this)">
   <div class="contact-initials" style="background-image:url('${vars.bg}'); background-size:cover; background-position:center;">
           ${vars.initials}
       </div>
@@ -107,12 +107,12 @@ function getBackgroundForName(name) {
   return bgImages[index];
 }
 
-function openContactItem(name, email, phone) {
+function openContactItem(name, email, phone, id) {
   const initials = getInitials(name);
   const bg = getBackgroundForName(name);
   let contactDetailView = document.getElementById("contactDetailView");
-  currContactData = { bg, initials, name, email, phone };
-  contactDetailView.innerHTML = generateContactDetails(bg, initials, name, email, phone);
+  currContactData = { bg, initials, name, email, phone, id };
+  contactDetailView.innerHTML = generateContactDetails(bg, initials, name, email, phone, id);
   slideEfekt();
   goToContactInfoForMobile();
   detailViewOpen = true;
@@ -192,7 +192,7 @@ function slideEfekt() {
   }, 10);
 }
 
-function generateContactDetails(bg, initials, name, email, phone) {
+function generateContactDetails(bg, initials, name, email, phone, id) {
   return `
     <div class="detail-avatar-name">
       <div class="contact-detail-avatar" id="detailAvatar" style="background-image: url('${bg}'); background-size: cover; background-position: center;">
@@ -201,7 +201,7 @@ function generateContactDetails(bg, initials, name, email, phone) {
       <div class="contact-edit">
         <h2 id="detailName">${name}</h2>
         <div class="edit-or-delete">
-          <button class="edit-btn" type="button" onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}')">
+          <button class="edit-btn" type="button" onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}', ${id})">
             <span class="edit-icon-wrapper icon-left">
               <img class="edit-icon default" src="/img/edit.png" alt="">
               <img class="edit-icon hover" src="/img/edit_hovered.png" alt="">
@@ -209,7 +209,7 @@ function generateContactDetails(bg, initials, name, email, phone) {
             <p>Edit</p>
           </button>
 
-          <button class="delete-btn" type="button" onclick="deleteContact('${email}')">
+          <button class="delete-btn" type="button" onclick="deleteContact(${id})">
             <span class="delete-icon-wrapper icon-left">
               <img class="delete-icon default" src="/img/delete.png" alt="">
               <img class="delete-icon hover" src="/img/delete_hovered.png" alt="">
@@ -237,9 +237,9 @@ function generateContactDetails(bg, initials, name, email, phone) {
   `;
 }
 
-function generateToggleMobileHTML(bg, initials, name, email, phone) {
+function generateToggleMobileHTML(bg, initials, name, email, phone, id) {
   return `
-    <button onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}')">
+    <button onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}', ${id})">
       <img class="edit" src="/img/edit_task.png" alt="Edit">
     </button>
     <button onclick="deleteContact('${email}')">
@@ -247,6 +247,3 @@ function generateToggleMobileHTML(bg, initials, name, email, phone) {
     </button>
   `;
 }
-
-// save id to every contact (signUp | basic | in contacts page)
-// iterate over ids –> insert data of contact.id

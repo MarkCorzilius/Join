@@ -7,14 +7,14 @@ async function saveBasicContacts() {
     const path = "contacts/" + safeKey;
     const exists = await isDuplicateEmail(path);
     if (!exists) {
-       contact.id = contactId;
+      contact.id = contactId;
       await putData(path, contact);
       contactId += 1;
     } else {
       continue;
     }
   }
-  localStorage.setItem('contactId',  contactId);
+  localStorage.setItem("contactId", contactId);
 }
 
 async function getNewContactData() {
@@ -38,10 +38,10 @@ async function saveNewContactToDataBase() {
     alert("contact already exists");
     return;
   }
-  contactId = Number(localStorage.getItem('contactId'))
+  contactId = Number(localStorage.getItem("contactId"));
   await handlePostingToDataBase({ nameValue, emailValue, phoneValue, contactId }, safeKey);
   contactId += 1;
-  localStorage.setItem('contactId', contactId);
+  localStorage.setItem("contactId", contactId);
 }
 
 async function handlePostingToDataBase({ nameValue, emailValue, phoneValue, contactId }, safeKey) {
@@ -85,12 +85,16 @@ async function saveContactsToArray() {
   }
 }
 
-async function deleteContact(email) {
-  const deletedContact = contactsArray.find((contact) => contact.email.toLowerCase() === email.toLowerCase());
-  contactsArray = contactsArray.filter((contact) => contact.email.toLowerCase() !== email.toLowerCase());
-  const deletedContactKey = sanitizeEmail(deletedContact.email);
-  await deleteData("contacts/" + deletedContactKey);
-  await deleteData("ourUsers/" + deletedContactKey);
+// check if contact.id in firebase
+
+async function deleteContact(id) {
+  const contacts = await getData("contacts/");
+  for (const [contactKey, contact] of Object.entries(contacts)) {
+    if (contact.id === id) {
+      await deleteData("contacts/" + contactKey);
+      await deleteData("ourUsers/" + contactKey);
+    }
+  }
   renderContacts();
   backToContacts();
   hideContactDetailView();
@@ -99,11 +103,13 @@ async function deleteContact(email) {
 async function deleteContactForEdit() {
   if (!currentContact) return;
   if (!confirm("Möchten Sie diesen Kontakt wirklich löschen?")) return;
-  const deletedContact = contactsArray.find((contact) => contact.email.toLowerCase() === currentContact.email.toLowerCase());
-  const deletedContactEmail = deletedContact.email;
-  const deletedContactKey = sanitizeEmail(deletedContactEmail);
-  contactsArray = contactsArray.filter((contact) => contact.email.toLowerCase() !== currentContact.email.toLowerCase());
-  await deleteData("contacts/" + deletedContactKey);
+  const contacts = await getData("contacts/");
+  for (const [contactKey, contact] of Object.entries(contacts)) {
+    if (contact.id === currentContact.id) {
+      await deleteData("contacts/" + contactKey);
+      await deleteData("ourUsers/" + contactKey);
+    }
+  }
   renderContacts();
   closeEditContactOverlay();
   hideContactDetailView();
@@ -125,27 +131,27 @@ async function saveEditedContact() {
   const newPhone = document.getElementById("editPhone").value.trim();
   if (!validateContactInput(newName, newEmail, newPhone)) return;
   updateContactArray(newName, newEmail, newPhone);
-  await updateEditedContactInFireBase(currentContact.email, { newName, newEmail, newPhone });
+  await updateEditedContactInFireBase(currentContact.email, { newName, newEmail, newPhone }, currentContact.id);
   renderContacts();
   updateDetailView(newName, newEmail, newPhone);
   closeEditContactOverlay();
   currentContact = null;
 }
 
-async function updateEditedContactInFireBase(email, { newName, newEmail, newPhone }) {
+async function updateEditedContactInFireBase(email, { newName, newEmail, newPhone }, id) {
   const contactKey = sanitizeEmail(email);
   const newContactKey = sanitizeEmail(newEmail);
   await deleteData("contacts/" + contactKey);
-  await putData("contacts/" + newContactKey, { name: newName, email: newEmail, phone: newPhone });
-  await updateUserIfContactIsUser(contactKey, newContactKey, { name: newName, email: newEmail, phone: newPhone });
+  await putData("contacts/" + newContactKey, { name: newName, email: newEmail, phone: newPhone, id: id });
+  await updateUserIfContactIsUser(contactKey, newContactKey, { name: newName, email: newEmail, phone: newPhone, id: id });
 }
 
-async function updateUserIfContactIsUser(contactKey, newContactKey, { name: newName, email: newEmail, phone: newPhone }) {
+async function updateUserIfContactIsUser(contactKey, newContactKey, { name: newName, email: newEmail, phone: newPhone, id }) {
   const users = await getData("ourUsers/");
   for (const user of Object.keys(users || {})) {
     if (user === contactKey) {
       await deleteData("ourUsers/" + contactKey);
-      await putData("ourUsers/" + newContactKey, { name: newName, email: newEmail, phone: newPhone });
+      await putData("ourUsers/" + newContactKey, { name: newName, email: newEmail, phone: newPhone, id });
     }
   }
 }

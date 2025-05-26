@@ -59,16 +59,17 @@ function showChosenPriority(task) {
 
 async function showChosenContacts(task) {
   const contacts = task.contacts;
+  if (!contacts) return "";
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
     if (contact === null) continue;
     const element = checkChosenNames(contact);
     if (element) {
-      styleChosenContact(element, contact.initial, contact.bg, contact.name);
+      styleChosenContact(element, contact.initial, contact.bg, contact.name, contact.id);
     }
   }
 }
-
+// change –>  check with id
 function checkChosenNames(contact) {
   const names = document.querySelectorAll(".contact-name");
   const contactLine = document.querySelectorAll(".contact-line");
@@ -140,9 +141,7 @@ async function handlePostingChangedTask(newTaskData) {
 
 function updatedTaskDataStorage() {
   const { titleValue, descriptionValue, dateValue } = extractTaskValues();
-  console.log(currTask.id);
   const dataSafe = {
-    id: currTask.id,
     title: titleValue,
     description: descriptionValue,
     date: dateValue,

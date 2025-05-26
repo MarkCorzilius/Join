@@ -48,7 +48,7 @@ async function logIn(ev) {
   }
   const contact = await searchingForAccount({ inputEmail, inputPassword });
   showLoginTransition();
-  localStorage.setItem("user", JSON.stringify({ name: contact.name, email: contact.email }));
+  localStorage.setItem("user", JSON.stringify({ name: contact.name, email: contact.email, id: contact.id }));
 }
 
 async function searchingForAccount({ inputEmail, inputPassword }) {

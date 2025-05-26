@@ -114,8 +114,8 @@ function deleteValue() {
   document.getElementById("contactPhone").value = "";
 }
 
-function editContact(name, email, phone, initials, bg) {
-  currentContact = { name, email, phone };
+function editContact(name, email, phone, initials, bg, id) {
+  currentContact = { name, email, phone, id };
   let editContactOverlay = document.getElementById("editContactOverlay");
   editContactOverlay.classList.remove("d-none");
   setTimeout(() => editContactOverlay.classList.add("show"), 10);
@@ -191,9 +191,10 @@ function hideMobileDetails() {
 
 function renderMobileControl() {
   const container = document.getElementById("mobileDetailsDialog");
-  const { name, email, phone, initials, bg } = currContactData;
-  container.innerHTML = `<img onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}')" src="../img/edit_contacts.png" alt="">
-          <img onclick="deleteContact('${email}')" src="../img/delete-contact.png" alt="">`;
+  const { name, email, phone, initials, bg, id } = currContactData;
+  console.log(currContactData)
+  container.innerHTML = `<img onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}', ${id})" src="../img/edit_contacts.png" alt="">
+          <img onclick="deleteContact(${id})" src="../img/delete-contact.png" alt="">`;
 }
 
 function ifMobileContactOverlayOpen(panel, desktopPanel) {
