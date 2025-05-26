@@ -5,10 +5,10 @@
 }
 
 .form-description {
-    resize: none;
-    padding-top: 18px;
+    resize: both;
+    overflow: auto;
+    padding: 18px 0 0 20px;
     text-indent: 0 !important;
-    padding-left: 20px;
     box-sizing: border-box;
 }
 
@@ -71,7 +71,7 @@
     align-items: center;
     width: 100%;
     justify-content: space-between;
-} 
+}
 
 .form-subtask-edit-input-wrapper {
     display: flex;
@@ -79,9 +79,9 @@
     justify-content: space-between;
     position: relative;
     box-sizing: border-box;
-  }
-  
-  .form-subtask-edit-input {
+}
+
+.form-subtask-edit-input {
     box-sizing: border-box;
     border: none;
     outline: none;
@@ -90,15 +90,15 @@
     padding-right: 40%;
     overflow-x: auto;
     white-space: nowrap;
-  
-  }
-  
-  .form-subtask-edit-input:focus {
+
+}
+
+.form-subtask-edit-input:focus {
     border-bottom: 1px solid rgb(41, 171, 226);
     border-top: none !important;
     border-left: none !important;
     border-right: none !important;
-  }
+}
 
 .form-category-options {
     flex-direction: column;
@@ -124,11 +124,11 @@
     border-radius: 10px;
     cursor: pointer;
     height: 50px;
-  }
+}
 
-  .form-category-options span:hover {
+.form-category-options span:hover {
     background-color: rgb(240, 240, 240);
-  }
+}
 
 .form-select {
     width: 100%;
@@ -142,12 +142,12 @@
     position: relative;
     padding-left: 10px;
     padding-right: 10px;
-  }
-  
-  .form-select:focus {
+}
+
+.form-select:focus {
     border: 1px solid rgb(41, 171, 226);
     outline: none;
-  }
+}
 
 .form-select:hover {
     box-shadow: 0.2px 1px 1px rgba(0, 0, 0, 0.1);
@@ -157,6 +157,7 @@
     outline: none;
     box-sizing: border-box;
     text-indent: 10px;
+    cursor: pointer;
 }
 
 .form-subtask-template {
@@ -179,6 +180,7 @@
 .form-subtask-template:hover .subtask-edit-icons {
     display: flex;
 }
+
 /*Many uses*/
 .form-size {
     height: 48px;

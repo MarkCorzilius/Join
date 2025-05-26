@@ -6,6 +6,7 @@ function toggleCategoryOptions() {
   isCategoryOptionsOpen(arrow, section, optionsRef);
 }
 
+
 function isCategoryOptionsOpen(arrow, section, optionsRef) {
   if (optionsRef.style.display === "flex") {
     section.style.marginBottom = "100px";
@@ -21,25 +22,26 @@ function isCategoryOptionsOpen(arrow, section, optionsRef) {
   }
 }
 
+
 function chooseCategory(option) {
   const containerRef = document.getElementById("categoryChoiceInsert");
   const choice = option.innerText;
-
   containerRef.innerText = "";
   containerRef.innerText = choice;
-
   toggleCategoryOptions();
 }
+
 
 function showActionBtns() {
   const input = document.getElementById("subtaskInput");
   const focusBtns = document.getElementById("focusBtns");
   const mainBtn = document.getElementById("subtaskMainBtn");
-
   mainBtn.style.display = "none";
   focusBtns.style.display = "flex";
+  input.style.cursor = "default";
   input.focus();
 }
+
 
 function showMainBtn() {
   const focusBtns = document.getElementById("focusBtns");
@@ -48,6 +50,7 @@ function showMainBtn() {
   mainBtn.style.display = "flex";
   focusBtns.style.display = "none";
 }
+
 
 function addSubtask() {
   const input = document.getElementById("subtaskInput");
@@ -65,6 +68,7 @@ function addSubtask() {
   input.focus();
 }
 
+
 document.addEventListener("click", (e) => {
   const focusBtns = document.getElementById("focusBtns");
   const mainBtn = document.getElementById("subtaskMainBtn");
@@ -75,6 +79,7 @@ document.addEventListener("click", (e) => {
     mainBtn.focus();
   }
 });
+
 
 function subtaskTemplate(subtaskId, valueRef, subtaskClass) {
   return `                    
@@ -110,10 +115,12 @@ function subtaskTemplate(subtaskId, valueRef, subtaskClass) {
                     </div>`;
 }
 
+
 function scrollToCreatedSubtask() {
   const container = document.getElementById("subtaskContainer");
   container.scrollTop = container.scrollHeight;
 }
+
 
 function emptyTaskDocument() {
   const title = document.getElementById("taskTitle");
@@ -130,14 +137,17 @@ function emptyTaskDocument() {
   resetContacts();
 }
 
+
 function resetCategory() {
   document.getElementById("categoryChoiceInsert").innerText = "Select task category";
 }
+
 
 function resetSubtasks() {
   const subtasks = document.getElementById("subtaskContainer");
   subtasks.innerHTML = "";
 }
+
 
 function checkShiftSubtask(event) {
   const input = document.getElementById("subtaskInput");
@@ -153,11 +163,13 @@ function checkShiftSubtask(event) {
   }
 }
 
+
 function blurOnEnter(event) {
   if (event.key === "Enter") {
     event.target.blur();
   }
 }
+
 
 function deleteTask(subtaskId) {
   const task = document.getElementById("subtaskTemplate" + subtaskId);
@@ -166,10 +178,12 @@ function deleteTask(subtaskId) {
   }
 }
 
+
 function emptySubtaskInput() {
   document.getElementById("subtaskInput").value = "";
   showMainBtn();
 }
+
 
 function editTask(subtaskId) {
   const subtask = document.getElementById("subtaskTemplate" + subtaskId);
@@ -178,7 +192,6 @@ function editTask(subtaskId) {
   const titleHTML = document.getElementById("subtaskTitle" + subtaskId);
   const titleValue = titleHTML.innerText;
   const subtaskEditInput = document.getElementById("subtaskEditInput" + subtaskId);
-
   if (subtask) {
     taskNormalState.style.display = "none";
     taskEditState.style.display = "flex";
@@ -187,6 +200,7 @@ function editTask(subtaskId) {
   }
 }
 
+
 function deleteSubtaskEditState(subtaskId) {
   const delBtn = document.getElementById("deleteSubtaskEditState" + subtaskId);
   const task = document.getElementById("subtaskTemplate" + subtaskId);
@@ -194,6 +208,7 @@ function deleteSubtaskEditState(subtaskId) {
     task.remove();
   }
 }
+
 
 function updateTask(subtaskId) {
   const activeTitle = document.getElementById("subtaskTitle" + subtaskId);
@@ -205,6 +220,7 @@ function updateTask(subtaskId) {
   }
 }
 
+
 function exitSubtaskEditState(subtaskId) {
   const subtask = document.getElementById("subtaskTemplate" + subtaskId);
   const taskNormalState = document.getElementById("taskNormalState" + subtaskId);
@@ -214,6 +230,7 @@ function exitSubtaskEditState(subtaskId) {
     taskEditState.style.display = "none";
   }
 }
+
 
 function postSubtaskOnEnter(event, subtaskId) {
   const taskInput = document.getElementById("subtaskEditInput" + subtaskId);
