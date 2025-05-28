@@ -32,19 +32,19 @@ async function initializeContactsPage() {
 }
 
 async function renderContacts() {
-  document.querySelector(".spinner-overlay").style.display = "block";
+  //document.querySelector(".spinner-overlay").style.display = "block";
   try {
     await displayContactsByAlphabet();
   } catch (error) {
     console.log("rendering contacts failed", error);
   } finally {
-    document.querySelector(".spinner-overlay").style.display = "none";
+    //document.querySelector(".spinner-overlay").style.display = "none";
   }
 }
 
 async function displayContactsByAlphabet() {
   contactsArray = [];
-  //BasicContacts();
+  saveBasicContacts();
   await saveContactsToArray();
   contactsArray.sort((a, b) => a.displayName.localeCompare(b.displayName));
   const container = document.querySelector(".contacts-list");

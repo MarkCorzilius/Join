@@ -85,8 +85,6 @@ async function saveContactsToArray() {
   }
 }
 
-// check if contact.id in firebase
-
 async function deleteContact(id) {
   const contacts = await getData("contacts/");
   for (const [contactKey, contact] of Object.entries(contacts)) {
