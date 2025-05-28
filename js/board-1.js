@@ -199,7 +199,7 @@ async function checkContactsInitials(taskContacts, firebaseContactsArray) {
   for (const contact of taskContacts) {
     const match = firebaseContactsArray.find((fc) => fc.id === contact.id);
     if (!match) continue;
-    if (contact.name === theUser.name) {
+    if (contact.id === theUser.id) {
       userContacts.push(contact);
     } else {
       otherContacts.push(contact);
@@ -240,13 +240,12 @@ async function createTaskInBoardFireBase() {
     return;
   } else {
     await handleCreatingTask(column, dataSafe);
+    chosenContacts = [];
   }
-  chosenContacts = [];
 }
 
 async function handleCreatingTask(column, dataSafe) {
-  postData("board/" + column, dataSafe);
-  console.log("board/" + column, dataSafe);
+  await postData("board/" + column, dataSafe);
   taskId += 1;
   localStorage.setItem("taskId", taskId.toString());
   emptyTaskDocument();

@@ -11,7 +11,7 @@ function contactItemClicked(itemElement) {
 function toggleMobileActions(bg, initials, name, email, phone) {
   const menu = document.getElementById("mobileActionsMenu");
   menu.classList.toggle("d-none");
-  menu.innerHTML = generateToggleMobileHTML(bg, initials, name, email, phone);
+  menu.innerHTML = generateToggleMobileHTML(bg, initials, name, email, phone, currContactData.id);
 }
 
 function bindMobileButton(bg, initials, name, email, phone) {
@@ -114,8 +114,8 @@ function deleteValue() {
   document.getElementById("contactPhone").value = "";
 }
 
-function editContact(name, email, phone, initials, bg, id) {
-  currentContact = { name, email, phone, id };
+function editContact(name, email, phone, initials, bg) {
+  currentContact = { name, email, phone, id: currContactData.id };
   let editContactOverlay = document.getElementById("editContactOverlay");
   editContactOverlay.classList.remove("d-none");
   setTimeout(() => editContactOverlay.classList.add("show"), 10);
@@ -138,7 +138,7 @@ async function updateDetailView(newName, newEmail, newPhone) {
   let detailView = document.getElementById("contactDetailView");
   if (!detailView.classList.contains("d-none")) {
     const vars = getContactVars({ name: newName });
-    detailView.innerHTML = generateContactDetails(vars.bg, vars.initials, newName, newEmail, newPhone);
+    detailView.innerHTML = generateContactDetails(vars.bg, vars.initial, newName, newEmail, newPhone);
     slideEfekt();
   }
 }
@@ -191,9 +191,8 @@ function hideMobileDetails() {
 
 function renderMobileControl() {
   const container = document.getElementById("mobileDetailsDialog");
-  const { name, email, phone, initials, bg, id } = currContactData;
-  console.log(currContactData)
-  container.innerHTML = `<img onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}', ${id})" src="../img/edit_contacts.png" alt="">
+  const { name, email, phone, initial, bg, id } = currContactData;
+  container.innerHTML = `<img onclick="editContact('${name}', '${email}', '${phone}', '${initial}', '${bg}', ${id})" src="../img/edit_contacts.png" alt="">
           <img onclick="deleteContact(${id})" src="../img/delete-contact.png" alt="">`;
 }
 

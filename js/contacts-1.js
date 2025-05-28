@@ -17,12 +17,12 @@ async function waitForHTMLIncludes() {
   });
 }
 
-function initializeContactsPage() {
+async function initializeContactsPage() {
   try {
     markCurrentPage();
     ifGuestShowDropdownHelp();
     adjustInitialAfterLogin();
-    renderContacts();
+    await renderContacts();
     findUserEmail();
     adjustHelpForMobile();
     window.addEventListener("resize", adjustHelpForMobile);
@@ -36,7 +36,7 @@ async function renderContacts() {
   try {
     await displayContactsByAlphabet();
   } catch (error) {
-    console.log("rendering contacts failed");
+    console.log("rendering contacts failed", error);
   } finally {
     document.querySelector(".spinner-overlay").style.display = "none";
   }
@@ -44,7 +44,7 @@ async function renderContacts() {
 
 async function displayContactsByAlphabet() {
   contactsArray = [];
-  //await saveBasicContacts();
+  //BasicContacts();
   await saveContactsToArray();
   contactsArray.sort((a, b) => a.displayName.localeCompare(b.displayName));
   const container = document.querySelector(".contacts-list");
@@ -80,16 +80,16 @@ function getInitials(name) {
 }
 
 function getContactVars(c) {
-  let initials = getInitials(c.name);
+  let initial = getInitials(c.name);
   let bg = getBackgroundForName(c.name);
-  saveContactIconInFireBase(c, initials, bg);
-  return { initials, bg };
+  saveContactIconInFireBase(c, initial, bg);
+  return { initial, bg };
 }
 
 function generateContactHTML(c, vars) {
-  return `<div class="contact-item" onclick="openContactItem('${c.name}', '${c.email}', '${c.phone}', '${c.id}'); contactItemClicked(this)">
+  return `<div class="contact-item" onclick="openContactItem('${c.name}', '${c.email}', '${c.phone}', ${c.id}); contactItemClicked(this)">
   <div class="contact-initials" style="background-image:url('${vars.bg}'); background-size:cover; background-position:center;">
-          ${vars.initials}
+          ${vars.initial}
       </div>
       <div class="contact-details">
           <p class="contact-name">${c.name}</p>
@@ -108,11 +108,11 @@ function getBackgroundForName(name) {
 }
 
 function openContactItem(name, email, phone, id) {
-  const initials = getInitials(name);
+  const initial = getInitials(name);
   const bg = getBackgroundForName(name);
   let contactDetailView = document.getElementById("contactDetailView");
-  currContactData = { bg, initials, name, email, phone, id };
-  contactDetailView.innerHTML = generateContactDetails(bg, initials, name, email, phone, id);
+  currContactData = { bg, initial, name, email, phone, id };
+  contactDetailView.innerHTML = generateContactDetails(bg, initial, name, email, phone, id);
   slideEfekt();
   goToContactInfoForMobile();
   detailViewOpen = true;
@@ -192,16 +192,16 @@ function slideEfekt() {
   }, 10);
 }
 
-function generateContactDetails(bg, initials, name, email, phone, id) {
+function generateContactDetails(bg, initial, name, email, phone, id) {
   return `
     <div class="detail-avatar-name">
       <div class="contact-detail-avatar" id="detailAvatar" style="background-image: url('${bg}'); background-size: cover; background-position: center;">
-        ${initials}
+        ${initial}
       </div>
       <div class="contact-edit">
         <h2 id="detailName">${name}</h2>
         <div class="edit-or-delete">
-          <button class="edit-btn" type="button" onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}', ${id})">
+          <button class="edit-btn" type="button" onclick="editContact('${name}', '${email}', '${phone}', '${initial}', '${bg}', ${id})">
             <span class="edit-icon-wrapper icon-left">
               <img class="edit-icon default" src="/img/edit.png" alt="">
               <img class="edit-icon hover" src="/img/edit_hovered.png" alt="">
@@ -228,7 +228,7 @@ function generateContactDetails(bg, initials, name, email, phone, id) {
     </div>
 
     <div class="mobile-more-container">
-      <button class="mobile-more-btn" onclick="toggleMobileActions('${bg}', '${initials}', '${name}', '${email}', '${phone}')">
+      <button class="mobile-more-btn" onclick="toggleMobileActions('${bg}', '${initial}', '${name}', '${email}', '${phone}')">
         <img src="/img/mobile_more_btn.png" alt="Mehr Optionen">
       </button>
       <div id="mobileActionsMenu" class="mobile-actions d-none">
@@ -237,12 +237,12 @@ function generateContactDetails(bg, initials, name, email, phone, id) {
   `;
 }
 
-function generateToggleMobileHTML(bg, initials, name, email, phone, id) {
+function generateToggleMobileHTML(bg, initial, name, email, phone, id) {
   return `
-    <button onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}', ${id})">
+    <button onclick="editContact('${name}', '${email}', '${phone}', '${initial}', '${bg}', ${id})">
       <img class="edit" src="/img/edit_task.png" alt="Edit">
     </button>
-    <button onclick="deleteContact('${email}')">
+    <button onclick="deleteContact(${id})">
       <img class="delete" src="/img/delete_task.png" alt="Delete">
     </button>
   `;

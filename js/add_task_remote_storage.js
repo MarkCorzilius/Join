@@ -169,6 +169,7 @@ function addYouToCurrentUser(name) {
 }
 
 async function renderDefaultUsers(user, contactsContainer) {
+  if (!user) return;
   const sanitizedEmail = sanitizeEmail(user.email);
   const currentIcon = await getData("contacts/" + sanitizedEmail + "/icon");
   contactsContainer.innerHTML += contactsTemplate(user.name, currentIcon.bg, currentIcon.initial, user.id);

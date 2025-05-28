@@ -132,8 +132,9 @@ async function saveEditedContact() {
   if (!validateContactInput(newName, newEmail, newPhone)) return;
   updateContactArray(newName, newEmail, newPhone);
   await updateEditedContactInFireBase(currentContact.email, { newName, newEmail, newPhone }, currentContact.id);
+  await adjustChangedContactInTasks();
+  await updateDetailView(newName, newEmail, newPhone);
   renderContacts();
-  updateDetailView(newName, newEmail, newPhone);
   closeEditContactOverlay();
   currentContact = null;
 }
@@ -173,6 +174,37 @@ async function iterateAndsaveIcon(data, sanitizedEmail, initial, bg) {
       await putData("contacts/" + sanitizedEmail + "/icon", { initial, bg });
     } else {
       continue;
+    }
+  }
+}
+
+async function getUpdatedContact(id) {
+  const rawContacts = await getData("contacts/");
+  const contacts = Object.values(rawContacts);
+  for (let i = 0; i < contacts.length; i++) {
+    const contact = contacts[i];
+    if (contact.id === id) {
+      const contactInfo = {
+        name: contact.name,
+        id: contact.id,
+        bg: getBackgroundForName(contact.name),
+        initial: await getInitials(contact.name),
+      };
+      return contactInfo;
+    }
+  }
+}
+
+async function adjustChangedContactInTasks() {
+  const board = await getData("board/");
+  for (const [columnKey, tasks] of Object.entries(board)) {
+    for (const [taskKey, task] of Object.entries(tasks)) {
+      for (const [contactKey, contact] of Object.entries(task.contacts)) {
+        if (currContactData.id === contact.id) {
+          const contactInfo = await getUpdatedContact(contact.id);
+            await putData(`board/${columnKey}/${taskKey}/contacts/${contactKey}`, contactInfo);
+        }
+      }
     }
   }
 }
