@@ -93,6 +93,7 @@ async function deleteContact(id) {
     if (contact.id === id) {
       await deleteData("contacts/" + contactKey);
       await deleteData("ourUsers/" + contactKey);
+      await adjustChangedContactInTasks(deleteData);
     }
   }
   renderContacts();
@@ -108,6 +109,7 @@ async function deleteContactForEdit() {
     if (contact.id === currentContact.id) {
       await deleteData("contacts/" + contactKey);
       await deleteData("ourUsers/" + contactKey);
+      await adjustChangedContactInTasks(deleteData);
     }
   }
   renderContacts();
@@ -132,7 +134,7 @@ async function saveEditedContact() {
   if (!validateContactInput(newName, newEmail, newPhone)) return;
   updateContactArray(newName, newEmail, newPhone);
   await updateEditedContactInFireBase(currentContact.email, { newName, newEmail, newPhone }, currentContact.id);
-  await adjustChangedContactInTasks();
+  await adjustChangedContactInTasks(putData);
   await updateDetailView(newName, newEmail, newPhone);
   renderContacts();
   closeEditContactOverlay();
@@ -195,14 +197,14 @@ async function getUpdatedContact(id) {
   }
 }
 
-async function adjustChangedContactInTasks() {
+async function adjustChangedContactInTasks(httpMethodFunc) {
   const board = await getData("board/");
   for (const [columnKey, tasks] of Object.entries(board)) {
     for (const [taskKey, task] of Object.entries(tasks)) {
       for (const [contactKey, contact] of Object.entries(task.contacts)) {
         if (currContactData.id === contact.id) {
           const contactInfo = await getUpdatedContact(contact.id);
-            await putData(`board/${columnKey}/${taskKey}/contacts/${contactKey}`, contactInfo);
+            await httpMethodFunc(`board/${columnKey}/${taskKey}/contacts/${contactKey}`, contactInfo);
         }
       }
     }

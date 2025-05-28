@@ -51,6 +51,7 @@ function separateUserFromContacts(task, user) {
   if (!task.contacts) return "";
   for (let i = 0; i < task.contacts.length; i++) {
     const contact = task.contacts[i];
+    if (!contact || !contact.id) continue;
     if (contact.id !== user.id) {
       defaultHTML.push(contact);
     } else {
