@@ -8,24 +8,54 @@ function contactItemClicked(itemElement) {
   }
 }
 
+
 function toggleMobileActions(bg, initials, name, email, phone) {
-  const menu = document.getElementById("mobileActionsMenu");
-  menu.classList.toggle("d-none");
-  menu.innerHTML = generateToggleMobileHTML(bg, initials, name, email, phone, currContactData.id);
+  const menu = document.querySelector(".mobile-actions");
+  if (!menu || menu.classList.contains("slide-out")) return;
+  if (menu.classList.contains("slide-in")) {
+    closeMobileActionsMenu(menu);
+  } else {
+    menu.innerHTML = generateToggleMobileHTML(bg, initials, name, email, phone, currContactData.id);
+    menu.classList.remove("d-none");
+    setTimeout(() => {
+      menu.classList.add("slide-in");
+      setupMobileActionButtons(menu);
+    }, 10);
+  }
 }
 
-function bindMobileButton(bg, initials, name, email, phone) {
-  const button = document.querySelector(".mobile-more-btn");
-  button.onclick = () => toggleMobileActions(bg, initials, name, email, phone);
+
+function closeMobileActionsMenu(menu) {
+  menu.classList.remove("slide-in");
+  menu.classList.add("slide-out");
+  setTimeout(() => {
+    menu.classList.add("d-none");
+    menu.classList.remove("slide-out");
+    menu.innerHTML = "";
+  }, 300);
+}
+
+
+function setupMobileActionButtons(menu) {
+  const buttons = menu.querySelectorAll("button");
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    });
+  });
 }
 
 document.addEventListener("click", function (e) {
   const btn = document.querySelector(".mobile-more-btn");
-  const menu = document.getElementById("mobileActionsMenu");
-  if (!btn || !menu) return;
-  if (!btn.contains(e.target) && !menu.contains(e.target)) {
-    menu.classList.add("d-none");
-  }
+  const menu = document.querySelector(".mobile-actions");
+  const editOverlay = document.getElementById("editContactOverlay");
+  if (!btn || !menu || !menu.classList.contains("slide-in")) return;
+  const outsideClick =
+    !btn.contains(e.target) &&
+    !menu.contains(e.target) &&
+    !(editOverlay && editOverlay.contains(e.target));
+  if (outsideClick) closeMobileActionsMenu(menu);
 });
 
 function openAddContactOverlay() {
@@ -192,6 +222,7 @@ function hideMobileDetails() {
 function renderMobileControl() {
   const container = document.getElementById("mobileDetailsDialog");
   const { name, email, phone, initial, bg, id } = currContactData;
+  console.log(id)
   container.innerHTML = `<img onclick="editContact('${name}', '${email}', '${phone}', '${initial}', '${bg}', ${id})" src="../img/edit_contacts.png" alt="">
           <img onclick="deleteContact(${id})" src="../img/delete-contact.png" alt="">`;
 }
