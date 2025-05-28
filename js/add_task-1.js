@@ -153,7 +153,7 @@ function visualizeChosenContacts() {
   container.innerHTML = "";
   for (let i = 0; i < chosenContacts.length; i++) {
     const contact = chosenContacts[i];
-    container.innerHTML += `<div class="initial" style="background-image:url('${contact.bg}')">${contact.initial}</div>`;
+    container.innerHTML += generateBgAndInitialForChosenContactsBox(contact.bg, contact.initial);
   }
 }
 

@@ -7,7 +7,9 @@
   <title>Join - Login</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet" />
 
   <link rel="icon" type="image/x-icon" href="./img/join-logo.svg" />
 
@@ -24,11 +26,10 @@
 </head>
 
 <body class="log-in">
-
   <div id="greetingOverlay" class="hidden">
     <h2 id="logedInGreeting"></h2>
     <h1 id="logedInUser"></h1>
-</div>
+  </div>
 
   <header class="log-in-header">
     <div class="splash-logo-container">
@@ -42,7 +43,6 @@
       </div>
     </div>
   </header>
-
 
   <main class="log-in-main">
     <div class="log-in-box">
@@ -65,7 +65,6 @@
         </div>
         <p class="wrong-data-alert" id="wrongDataAlert">Check your email and password</p>
         <div class="buttons">
-          <!-- <a href="../templates/summary.html" class="log-in-btn">Log In</a> -->
           <button onclick="logIn(event)" type="submit" class="log-in-btn">Log In</button>
           <button type="button" class="guest-btn" onclick="guestLogin()">Guest Log In</button>
         </div>
@@ -73,12 +72,14 @@
     </div>
   </main>
 
-
   <footer class="log-in-footer">
-    <a href="../templates/privacy_policy.html" onclick="setViewerStateLocalStorage()" class="nav-button">Privacy Policy</a>
-    <a href="../templates/legal_notice.html" onclick="setViewerStateLocalStorage()" class="nav-button">Legal Notice</a>
+    <a href="../templates/privacy_policy.html" onclick="setViewerStateLocalStorage()" class="nav-button">
+      Privacy Policy
+    </a>
+    <a href="../templates/legal_notice.html" onclick="setViewerStateLocalStorage()" class="nav-button">
+      Legal Notice
+    </a>
   </footer>
-
 </body>
 
 </html>

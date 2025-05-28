@@ -1,9 +1,7 @@
 let currContactData = [];
-
 let currentContact = null;
-
 let detailViewOpen = false;
-
+let contactsArray = [];
 const basicContacts = [
   {
     name: "Alice Johnson",
@@ -57,7 +55,6 @@ const basicContacts = [
   },
 ];
 
-let contactsArray = [];
 
 const bgImages = [
   "../img/variante1.png",

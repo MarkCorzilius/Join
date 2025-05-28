@@ -1,59 +1,71 @@
 let currOverlay = 1;
+const paths = [
+    'summary.',
+    'add_task',
+    'board',
+    'contacts',
+    'help.html',
+    'privacy_policy',
+    'legal_notice',
+];
 
-document.addEventListener("DOMContentLoaded", function () {
-    window.dispatchEvent(new Event("resize"));
+
+document.addEventListener("DOMContentLoaded", () => {
+    const check = setInterval(() => {
+        const warning = document.getElementById("landscapeWarning");
+        if (!warning) return;
+        clearInterval(check);
+        function toggleLandscapeWarning() {
+            const isLandscape = window.innerWidth > window.innerHeight;
+            const isMobile = window.innerWidth < 800;
+            warning.classList.toggle("d-none", !(isLandscape && isMobile));
+        }
+        toggleLandscapeWarning();
+        window.addEventListener("resize", toggleLandscapeWarning);
+    }, 100);
 });
+
 
 async function showLegalNoticeAndPrivacyPolicy() {
     w3.includeHTML();
-  
     try {
-      await waitForInclude();
-      initializeLegalNoticePage();
+        await waitForInclude();
+        initializeLegalNoticePage();
     } catch (error) {
-      console.log('error in showLegalNoticeAndPrivacyPolicy():', error);
+        console.log('error in showLegalNoticeAndPrivacyPolicy():', error);
     }
-  }
-  
-  function waitForInclude() {
+}
+
+
+function waitForInclude() {
     return new Promise((resolve) => {
-      const checkExist = setInterval(() => {
-        const sidebarLoaded = document.querySelector('#sidebar');
-        const headerLoaded = document.querySelector('#header');
-        if (sidebarLoaded && headerLoaded) {
-          clearInterval(checkExist);
-          resolve();
-        }
-      }, 50);
+        const checkExist = setInterval(() => {
+            const sidebarLoaded = document.querySelector('#sidebar');
+            const headerLoaded = document.querySelector('#header');
+            if (sidebarLoaded && headerLoaded) {
+                clearInterval(checkExist);
+                resolve();
+            }
+        }, 50);
     });
-  }
-  
-  function initializeLegalNoticePage() {
+}
+
+
+function initializeLegalNoticePage() {
     adjustSideBar();
     markCurrentPage();
     ifGuestShowDropdownHelp();
     adjustInitialAfterLogin();
-  
     adjustHelpForMobile();
     window.addEventListener('resize', adjustHelpForMobile);
-  }
-
-function setViewSubtask() {
-    const user = JSON.stringify({name: 'Guest', email: 'guest@example.com'});
-    localStorage.setItem(user);
-    showLegalNoticeAndPrivacyPolicy();
 }
 
 
-const paths = [
-'summary.',
-'add_task',
-'board',
-'contacts',
-'help.html',
-'privacy_policy',
-'legal_notice',
-];
+function setViewSubtask() {
+    const user = JSON.stringify({ name: 'Guest', email: 'guest@example.com' });
+    localStorage.setItem(user);
+    showLegalNoticeAndPrivacyPolicy();
+}
 
 
 function markCurrentPage() {
@@ -64,7 +76,7 @@ function markCurrentPage() {
                 buttons.forEach(btn => {
                     btn.classList.remove('activeBtn');
                 });
-            buttons[index].classList.add('activeBtn');
+                buttons[index].classList.add('activeBtn');
             }
         }
     });
@@ -82,16 +94,16 @@ function adjustHelpForMobile() {
 
 
 function decideCurrentTaskOverlay() {
-
     switch (currOverlay) {
         case 'boardAddTaskOverlay':
             return 'form-size';
         case 'editOverlay':
             return 'edit-form-size';
-        default: 
+        default:
             return 'basic-size';
     }
 }
+
 
 function togglePasswordVisibility(inputId, element, path) {
     const passwordInputId = document.getElementById(inputId);

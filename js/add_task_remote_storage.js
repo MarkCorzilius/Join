@@ -9,6 +9,7 @@ function restrictAddingTask() {
   }
 }
 
+
 function isNotInTheFuture(inputDate) {
   const currentDate = new Date();
   const inputDateObject = new Date(inputDate);
@@ -18,6 +19,7 @@ function isNotInTheFuture(inputDate) {
     return false;
   }
 }
+
 
 function extractTaskValues() {
   const title = document.getElementById("taskTitle");
@@ -32,6 +34,7 @@ function extractTaskValues() {
     return { titleValue, descriptionValue, dateValue };
   }
 }
+
 
 function taskDataStorage() {
   const { titleValue, descriptionValue, dateValue } = extractTaskValues();
@@ -48,6 +51,7 @@ function taskDataStorage() {
   return dataSafe;
 }
 
+
 async function getTaskData() {
   document.querySelector(".create-task-button").disabled = true;
   try {
@@ -58,6 +62,7 @@ async function getTaskData() {
     document.querySelector(".create-task-button").disabled = false;
   }
 }
+
 
 async function validateAndPostTask() {
   if (!extractTaskValues()) {
@@ -70,6 +75,7 @@ async function validateAndPostTask() {
     window.location.href = "../templates/board.html";
 }
 
+
 async function handlePostingTask(dataSafe) {
   const columnNum = localStorage.getItem("taskColumn");
   const columnName = checkChosenColummn(columnNum);
@@ -81,6 +87,7 @@ async function handlePostingTask(dataSafe) {
   renderAllTasks();
   closeTaskOverlay();
 }
+
 
 function checkChosenColummn(columnNum) {
   switch (columnNum) {
@@ -97,12 +104,14 @@ function checkChosenColummn(columnNum) {
   }
 }
 
+
 function saveActivePriority() {
   const priorities = document.querySelectorAll(".priority-button");
   const active = Array.from(priorities).find((btn) => btn.classList.contains("active"));
   const priority = active ? ["medium", "urgent", "low"].find((p) => active.classList.contains(p)) : null;
   return priority;
 }
+
 
 function saveCategory() {
   const containerRef = document.getElementById("categoryChoiceInsert");
@@ -114,6 +123,7 @@ function saveCategory() {
     return category;
   }
 }
+
 
 function saveSubtasks() {
   const subtaskContainer = document.getElementById("subtaskContainer");
@@ -130,6 +140,7 @@ function saveSubtasks() {
   return Object.keys(subtasks).length > 0 ? subtasks : null;
 }
 
+
 async function fetchContacts(currentContainer) {
   let contactsContainer = document.getElementById(currentContainer);
   contactsContainer.innerHTML = "";
@@ -141,6 +152,7 @@ async function fetchContacts(currentContainer) {
     await renderDefaultUsers(user, contactsContainer);
   }
 }
+
 
 function sortContacts(contacts) {
   let loggedIn = [];
@@ -156,6 +168,7 @@ function sortContacts(contacts) {
   return {loggedIn, defaults}
 }
 
+
 async function renderLoggedInUser(user, contactsContainer) {
   const currentUser = user[0];
   if (currentUser === undefined || currentUser === null) return;
@@ -164,9 +177,11 @@ async function renderLoggedInUser(user, contactsContainer) {
   contactsContainer.innerHTML += contactsTemplate(addYouToCurrentUser(currentUser.name), currentIcon.bg, currentIcon.initial, currentUser.id);
 }
 
+
 function addYouToCurrentUser(name) {
   return `${name + ' (You)'}`;
 }
+
 
 async function renderDefaultUsers(user, contactsContainer) {
   if (!user) return;
@@ -201,10 +216,12 @@ function showUser(name) {
   }
 }
 
+
 function showNameWithoutYou(name) {
   const newName = name.replace(' (You)', '');
   return newName;
 }
+
 
 function sanitizeEmail(email) {
   return email.replace(/[@.]/g, "_");

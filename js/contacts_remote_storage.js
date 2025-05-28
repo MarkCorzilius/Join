@@ -1,5 +1,6 @@
 const user = JSON.parse(localStorage.getItem("user"));
 
+
 async function saveBasicContacts() {
   for (let i = 0; i < basicContacts.length; i++) {
     const contact = basicContacts[i];
@@ -17,6 +18,7 @@ async function saveBasicContacts() {
   localStorage.setItem("contactId", contactId);
 }
 
+
 async function getNewContactData() {
   const nameInput = document.getElementById("contactName");
   const nameValue = nameInput.value;
@@ -24,9 +26,9 @@ async function getNewContactData() {
   const emailValue = emailInput.value;
   const phoneInput = document.getElementById("contactPhone");
   const phoneValue = phoneInput.value;
-
   return { nameValue, emailValue, phoneValue };
 }
+
 
 async function saveNewContactToDataBase() {
   const { nameValue, emailValue, phoneValue } = await getNewContactData();
@@ -44,12 +46,14 @@ async function saveNewContactToDataBase() {
   localStorage.setItem("contactId", contactId);
 }
 
+
 async function handlePostingToDataBase({ nameValue, emailValue, phoneValue, contactId }, safeKey) {
   const path = "contacts/" + safeKey;
   contactsArray = [];
   await putData(path, { name: nameValue, email: emailValue, phone: phoneValue, id: contactId });
   contactsArray.push({ name: nameValue, email: emailValue, phone: phoneValue, id: contactId });
 }
+
 
 function inputsFilledOut({ nameValue, emailValue, phoneValue }) {
   if (nameValue == "" || emailValue == "" || phoneValue == "") {
@@ -58,6 +62,7 @@ function inputsFilledOut({ nameValue, emailValue, phoneValue }) {
     return true;
   }
 }
+
 
 async function doesContactExists({ emailValue }) {
   const response = await fetch(BASE_URL + "contacts/" + ".json");
@@ -70,6 +75,7 @@ async function doesContactExists({ emailValue }) {
   }
   return false;
 }
+
 
 async function saveContactsToArray() {
   const response = await fetch(BASE_URL + "contacts/" + ".json");
@@ -84,6 +90,7 @@ async function saveContactsToArray() {
     }
   }
 }
+
 
 // check if contact.id in firebase
 
@@ -100,6 +107,7 @@ async function deleteContact(id) {
   backToContacts();
   hideContactDetailView();
 }
+
 
 async function deleteContactForEdit() {
   if (!currentContact) return;
@@ -118,6 +126,7 @@ async function deleteContactForEdit() {
   currentContact = null;
 }
 
+
 function hideContactDetailView() {
   let detailView = document.getElementById("contactDetailView");
   if (detailView) {
@@ -125,6 +134,7 @@ function hideContactDetailView() {
     detailView.innerHTML = "";
   }
 }
+
 
 async function saveEditedContact() {
   if (!currentContact) return;
@@ -141,6 +151,7 @@ async function saveEditedContact() {
   currentContact = null;
 }
 
+
 async function updateEditedContactInFireBase(email, { newName, newEmail, newPhone }, id) {
   const contactKey = sanitizeEmail(email);
   const newContactKey = sanitizeEmail(newEmail);
@@ -148,6 +159,7 @@ async function updateEditedContactInFireBase(email, { newName, newEmail, newPhon
   await putData("contacts/" + newContactKey, { name: newName, email: newEmail, phone: newPhone, id: id });
   await updateUserIfContactIsUser(contactKey, newContactKey, { name: newName, email: newEmail, phone: newPhone, id: id });
 }
+
 
 async function updateUserIfContactIsUser(contactKey, newContactKey, { name: newName, email: newEmail, phone: newPhone, id }) {
   const users = await getData("ourUsers/");
@@ -159,6 +171,7 @@ async function updateUserIfContactIsUser(contactKey, newContactKey, { name: newN
   }
 }
 
+
 async function saveContactIconInFireBase(contact, initial, bg) {
   let response = await fetch(BASE_URL + "contacts/" + ".json");
   let data = await response.json();
@@ -167,6 +180,7 @@ async function saveContactIconInFireBase(contact, initial, bg) {
     await iterateAndsaveIcon(data, sanitizedEmail, initial, bg);
   }
 }
+
 
 async function iterateAndsaveIcon(data, sanitizedEmail, initial, bg) {
   for (const key in data) {
