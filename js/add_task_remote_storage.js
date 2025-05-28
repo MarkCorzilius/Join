@@ -175,6 +175,7 @@ async function renderDefaultUsers(user, contactsContainer) {
   contactsContainer.innerHTML += contactsTemplate(user.name, currentIcon.bg, currentIcon.initial, user.id);
 }
 
+
 function showUser(name) {
   const email = findUserEmail();
   if (currentUser.name === "Guest") {
