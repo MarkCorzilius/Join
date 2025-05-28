@@ -148,7 +148,9 @@
   cursor: not-allowed;
 }
 
-
+#editName, #contactName {
+  text-indent: 0 !important;
+}
 
 
 /*   :::::::::::::::::    Anderungen::::::::::::: */
