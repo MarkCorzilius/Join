@@ -222,7 +222,6 @@ function hideMobileDetails() {
 function renderMobileControl() {
   const container = document.getElementById("mobileDetailsDialog");
   const { name, email, phone, initial, bg, id } = currContactData;
-  console.log(id)
   container.innerHTML = `<img onclick="editContact('${name}', '${email}', '${phone}', '${initial}', '${bg}', ${id})" src="../img/edit_contacts.png" alt="">
           <img onclick="deleteContact(${id})" src="../img/delete-contact.png" alt="">`;
 }

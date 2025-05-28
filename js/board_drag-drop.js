@@ -101,7 +101,6 @@ async function moveTaskFireBase(containerEl, draggedTaskNum) {
 }
 
 function checkNewColumn(container) {
-  console.log(container);
   switch (container) {
     case "tasksContainer-0":
       return "toDo/";

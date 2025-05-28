@@ -79,8 +79,6 @@ async function saveContactsToArray() {
       const contactCopy = { ...contact };
       contactCopy.displayName = contact.name;
       contactsArray.push(contactCopy);
-    } else {
-      console.log("Skipping user:", user.email);
     }
   }
 }
