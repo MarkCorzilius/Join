@@ -203,16 +203,16 @@ function generateContactDetails(bg, initial, name, email, phone, id) {
         <div class="edit-or-delete">
           <button class="edit-btn" type="button" onclick="editContact('${name}', '${email}', '${phone}', '${initial}', '${bg}', ${id})">
             <span class="edit-icon-wrapper icon-left">
-              <img class="edit-icon default" src="/img/edit.png" alt="">
-              <img class="edit-icon hover" src="/img/edit_hovered.png" alt="">
+              <img class="edit-icon default" src="../img/edit.png" alt="">
+              <img class="edit-icon hover" src="../img/edit_hovered.png" alt="">
             </span>
             <p>Edit</p>
           </button>
 
           <button class="delete-btn" type="button" onclick="deleteContact(${id})">
             <span class="delete-icon-wrapper icon-left">
-              <img class="delete-icon default" src="/img/delete.png" alt="">
-              <img class="delete-icon hover" src="/img/delete_hovered.png" alt="">
+              <img class="delete-icon default" src="../img/delete.png" alt="">
+              <img class="delete-icon hover" src="../img/delete_hovered.png" alt="">
             </span>
             <p>Delete</p>
           </button>
@@ -229,7 +229,7 @@ function generateContactDetails(bg, initial, name, email, phone, id) {
 
     <div class="mobile-more-container">
       <button class="mobile-more-btn" onclick="toggleMobileActions('${bg}', '${initial}', '${name}', '${email}', '${phone}')">
-        <img src="/img/mobile_more_btn.png" alt="Mehr Optionen">
+        <img src="../img/mobile_more_btn.png" alt="Mehr Optionen">
       </button>
       <div id="mobileActionsMenu" class="mobile-actions d-none">
       </div>
@@ -240,10 +240,10 @@ function generateContactDetails(bg, initial, name, email, phone, id) {
 function generateToggleMobileHTML(bg, initial, name, email, phone, id) {
   return `
     <button onclick="editContact('${name}', '${email}', '${phone}', '${initial}', '${bg}', ${id})">
-      <img class="edit" src="/img/edit_task.png" alt="Edit">
+      <img class="edit" src="../img/edit_task.png" alt="Edit">
     </button>
     <button onclick="deleteContact(${id})">
-      <img class="delete" src="/img/delete_task.png" alt="Delete">
+      <img class="delete" src="../img/delete_task.png" alt="Delete">
     </button>
   `;
 }
