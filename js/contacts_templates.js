@@ -22,16 +22,16 @@ function generateContactDetails(bg, initials, name, email, phone) {
           <div class="edit-or-delete">
             <button class="edit-btn" type="button" onclick="editContact('${name}', '${email}', '${phone}', '${initials}', '${bg}')">
               <span class="edit-icon-wrapper icon-left">
-                <img class="edit-icon default" src="/img/edit.png" alt="">
-                <img class="edit-icon hover" src="/img/edit_hovered.png" alt="">
+                <img class="edit-icon default" src="../img/edit.png" alt="">
+                <img class="edit-icon hover" src="../img/edit_hovered.png" alt="">
               </span>
               <p>Edit</p>
             </button>
   
             <button class="delete-btn" type="button" onclick="deleteContact('${email}')">
               <span class="delete-icon-wrapper icon-left">
-                <img class="delete-icon default" src="/img/delete.png" alt="">
-                <img class="delete-icon hover" src="/img/delete_hovered.png" alt="">
+                <img class="delete-icon default" src="../img/delete.png" alt="">
+                <img class="delete-icon hover" src="../img/delete_hovered.png" alt="">
               </span>
               <p>Delete</p>
             </button>
