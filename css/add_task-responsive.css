@@ -33,14 +33,21 @@
         width: 360px;
     }
 
-  }
+    .description-block {
+        width: 360px;
+      }
 
+  }
 
   @media (max-width: 1219px) {
 
     .basic-size {
         width: 320px;
     }
+
+    .description-block {
+        width: 320px;
+      }
 
     .priority-button {
         width: 106px;
@@ -107,7 +114,12 @@
 
     .description-area {
         width: 85.2vw;
+        resize: none;
     }
+
+    .description-block {
+        width: 85vw;
+      }
 
     .contacts-options {
         width: 85vw;

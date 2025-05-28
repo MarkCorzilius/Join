@@ -142,6 +142,7 @@ async function handlePostingChangedTask(newTaskData) {
 function updatedTaskDataStorage() {
   const { titleValue, descriptionValue, dateValue } = extractTaskValues();
   const dataSafe = {
+    id: currTask.id,
     title: titleValue,
     description: descriptionValue,
     date: dateValue,
