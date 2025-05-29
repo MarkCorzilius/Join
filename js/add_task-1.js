@@ -207,21 +207,6 @@ function handleContactAssignment(closedRef, searchState, optionsRef, wrapperRef,
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  document.addEventListener("click", function(event) {
-    const box = document.getElementById("dropdownBox");
-    const searchState = document.getElementById("searchState");
-    const optionsRef = document.getElementById("contactOptions");
-    if (!box) return;
-    const isSearchOpen = searchState && searchState.style.display === 'flex';
-    const isOptionsOpen = optionsRef && optionsRef.style.display === 'flex';
-    if (!isSearchOpen && !isOptionsOpen) return;
-    if (!box.contains(event.target)) {
-      closeContactAssignment();
-    }
-  });
-});
-
 function closeContactAssignment() {
   const closedRef = document.getElementById("closedState");
   const searchRef = document.getElementById("searchState");

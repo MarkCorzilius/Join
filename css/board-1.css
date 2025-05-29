@@ -167,6 +167,8 @@ body {
   padding: 20px 40px 20px;
   height: 90vh;
   width: 80vw;
+  max-width: 1000px !important;
+  max-height: 800px;
 }
 
 .task-body {

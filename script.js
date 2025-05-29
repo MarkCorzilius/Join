@@ -117,3 +117,36 @@ function togglePasswordVisibility(inputId, element, path) {
 
     }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("click", function (event) {
+      closeContactDropdownTaskPage(event);
+      closeCategoryDropdownTaskPage(event);
+    });
+  });
+  
+  function closeCategoryDropdownTaskPage(event) {
+    const box = document.querySelector(".category-btn-and-options");
+  
+    const arrow = document.getElementById("categoryArrow");
+    const section = document.querySelector(".category-section");
+    const optionsRef = document.querySelector(".category-options");
+    if (!box || !arrow || !section || !optionsRef) return;
+    if (!box.contains(event.target)) {
+      optionsRef.style.display = optionsRef.style.display = "none";
+      isCategoryOptionsOpen(arrow, section, optionsRef);
+    }
+  }
+  
+  function closeContactDropdownTaskPage(event) {
+    const box = document.querySelector('.dropdown-wrapper')
+    const searchState = document.getElementById("searchState");
+    const optionsRef = document.getElementById("contactOptions");
+    if (!box) return;
+    const isSearchOpen = searchState && searchState.style.display === "flex";
+    const isOptionsOpen = optionsRef && optionsRef.style.display === "flex";
+    if (!isSearchOpen && !isOptionsOpen) return;
+    if (!box.contains(event.target)) {
+      closeContactAssignment();
+    }
+  }
