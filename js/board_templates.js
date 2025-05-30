@@ -80,7 +80,7 @@ function taskDetailTemplate(task, user) {
 }
 
 function editStateOverlayTemplate(task, user) {
-  return `<div onclick="event.stopPropagation()" id="taskDetailedOverlay">
+  return `<div onclick="closeDropdownsIfClickedOutside(event); event.stopPropagation()" id="taskDetailedOverlay">
     <div class="question-blocks">
       <div class="task-left-block">
         <div class="title-field-space">
@@ -234,7 +234,7 @@ function editStateOverlayTemplate(task, user) {
 }
 
 function tasksDialogTemplate() {
-  return `      <div id="overlayDialogBoard" onclick="event.stopPropagation()">
+  return `      <div onclick="closeDropdownsIfClickedOutside(event); event.stopPropagation()" id="overlayDialogBoard">
           <div class="content-in-main">
           <div class="add-task-page-header">
             <h1 class="add-task-page-title">Add Task</h1>
@@ -399,7 +399,7 @@ function tasksDialogTemplate() {
 }
 
 function editTaskTemplate() {
-  return `<div onclick="event.stopPropagation()" class="detailed-overlay" id="taskDetailedOverlay">
+  return `<div onclick="closeDropdownsIfClickedOutside(event); event.stopPropagation()" class="detailed-overlay" id="taskDetailedOverlay">
   <div class="leave-edit-icon-wrapper">
    <div onclick="closeTaskInfoOverlay()" class="leave-edit-icon">
     <img src="../img/close.png">

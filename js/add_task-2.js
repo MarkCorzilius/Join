@@ -1,9 +1,8 @@
 function toggleCategoryOptions() {
   const arrow = document.getElementById("categoryArrow");
-  const section = document.querySelector(".category-section");
+  const section = document.querySelector(".category-btn-and-options");
   const optionsRef = document.querySelector(".category-options");
-  optionsRef.style.display = optionsRef.style.display === "flex" ? "none" : "flex";
-  isCategoryOptionsOpen(arrow, section, optionsRef);
+  optionsRef.style.display = optionsRef.style.display === "flex" ? "none" : "flex";  isCategoryOptionsOpen(arrow, section, optionsRef);
 }
 
 

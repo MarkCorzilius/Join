@@ -38,7 +38,7 @@
     <main class="main">
       <div w3-include-html="../templates/sidebar.html" id="sidebarContainer"></div>
       <div class="content">
-          <div class="add-task-main">
+          <div onclick="closeDropdownsIfClickedOutside(event)" class="add-task-main" id="addTaskMain">
             <div class="content-in-main">
               <h1 class="add-task-page-title">Add Task</h1>
               <div class="question-blocks">

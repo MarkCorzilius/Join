@@ -273,6 +273,7 @@ async function closeTaskInfoOverlay() {
   try {
     const overlay = document.getElementById("taskInfoOverlay");
     overlay.classList.remove("active");
+    overlay.innerHTML = '';
     chosenContacts = [];
     await renderAllTasks();
   } catch (error) {
