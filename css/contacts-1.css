@@ -162,7 +162,7 @@
   height: 36px;
   display: flex;
   align-items: center;
-  font-size: 48px;
+  font-size: clamp(32px, 5vw, 48px);
 }
 
 
@@ -173,7 +173,7 @@
   color: rgb(42, 54, 71);
   display: flex;
   align-items: center;
-  font-size: 24px;
+  font-size: clamp(20px, 2vw, 24px);
   position: relative;
 }
 

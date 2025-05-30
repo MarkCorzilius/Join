@@ -30,16 +30,38 @@ async function getNewContactData() {
 
 async function saveNewContactToDataBase() {
   const { nameValue, emailValue, phoneValue } = await getNewContactData();
-  const filled = inputsFilledOut({ nameValue, emailValue, phoneValue });
-  const safeKey = sanitizeEmail(emailValue);
-  const exists = await doesContactExists({ emailValue });
-  if (!filled) return;
-  if (exists) {
+
+  if (!inputsFilledOut({ nameValue, emailValue, phoneValue })) return;
+
+  if (!(await validateContactInputs(emailValue, phoneValue))) return;
+
+  if (await doesContactExists({ emailValue })) {
     alert("contact already exists");
     return;
   }
-  contactId = Number(localStorage.getItem("contactId"));
+
+  await saveContact({ nameValue, emailValue, phoneValue });
+}
+
+async function validateContactInputs(email, phone) {
+  if (!isRealEmail(email)) {
+    showNotRealEmailAlert();
+    return false;
+  }
+  if (!isRealNumber(phone)) {
+    showNotRealNumberAlert();
+    return false;
+  }
+  return true;
+}
+
+async function saveContact({ nameValue, emailValue, phoneValue }) {
+  const safeKey = sanitizeEmail(emailValue);
+  let contactId = Number(localStorage.getItem("contactId"));
   await handlePostingToDataBase({ nameValue, emailValue, phoneValue, contactId }, safeKey);
+  closeAddContactOverlay();
+  deleteValue();
+  overlayForContactSuccesfullyCreated();
   contactId += 1;
   localStorage.setItem("contactId", contactId);
 }

@@ -8,7 +8,6 @@ function contactItemClicked(itemElement) {
   }
 }
 
-
 function toggleMobileActions(bg, initials, name, email, phone) {
   const menu = document.querySelector(".mobile-actions");
   if (!menu || menu.classList.contains("slide-out")) return;
@@ -24,7 +23,6 @@ function toggleMobileActions(bg, initials, name, email, phone) {
   }
 }
 
-
 function closeMobileActionsMenu(menu) {
   menu.classList.remove("slide-in");
   menu.classList.add("slide-out");
@@ -35,12 +33,11 @@ function closeMobileActionsMenu(menu) {
   }, 300);
 }
 
-
 function setupMobileActionButtons(menu) {
   const buttons = menu.querySelectorAll("button");
-  buttons.forEach(btn => {
+  buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      buttons.forEach(b => b.classList.remove("active"));
+      buttons.forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
     });
   });
@@ -51,10 +48,7 @@ document.addEventListener("click", function (e) {
   const menu = document.querySelector(".mobile-actions");
   const editOverlay = document.getElementById("editContactOverlay");
   if (!btn || !menu || !menu.classList.contains("slide-in")) return;
-  const outsideClick =
-    !btn.contains(e.target) &&
-    !menu.contains(e.target) &&
-    !(editOverlay && editOverlay.contains(e.target));
+  const outsideClick = !btn.contains(e.target) && !menu.contains(e.target) && !(editOverlay && editOverlay.contains(e.target));
   if (outsideClick) closeMobileActionsMenu(menu);
 });
 
@@ -88,19 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-function saveNewContact() {
-  const name = document.getElementById("contactName").value.trim();
-  const email = document.getElementById("contactEmail").value.trim();
-  const phone = document.getElementById("contactPhone").value.trim();
-  if (!validateContactInput(name, email, phone)) return;
-  if (contactExists(email)) return;
-  newContactPushToArray(name, email, phone);
-  renderContacts();
-  closeAddContactOverlay();
-  deleteValue();
-  overlayForContactSuccesfullyCreated();
-}
-
 function overlayForContactSuccesfullyCreated() {
   const overlay = document.getElementById("contactSuccesfullyCreated");
   const detailContainer = document.getElementById("contactDetailContainer");
@@ -114,23 +95,6 @@ function overlayForContactSuccesfullyCreated() {
     overlay.classList.remove("show");
     setTimeout(() => overlay.classList.add("d-none"), 500);
   }, 2000);
-}
-
-function validateContactInput(name, email, phone) {
-  if (!name || !email || !phone) {
-    alert("Bitte Name, E-Mail und Telefonnummer angeben!");
-    return false;
-  }
-  return true;
-}
-
-function contactExists(email) {
-  const exists = contactsArray.some((contact) => contact.email.toLowerCase() === email.toLowerCase());
-  if (exists) {
-    alert("Kontakt existiert bereits!");
-    return true;
-  }
-  return false;
 }
 
 function newContactPushToArray(name, email, phone) {
@@ -238,5 +202,61 @@ function ifDesktopContactOverlayOpen(container, panel, desktopPanel) {
   panel.style.display = "none";
   if (desktopPanel) {
     desktopPanel.style.display = "flex";
+  }
+}
+
+function isRealEmail(email) {
+  const trimmed = email.trim();
+  const atIndex = trimmed.indexOf("@");
+  const isAtValid = checkAtConditions(trimmed, atIndex);
+  const isDotValid = checkDotConditions(trimmed, atIndex);
+  if (!isAtValid || !isDotValid) return false;
+  return true;
+}
+
+function checkAtConditions(trimmed, atIndex) {
+  if (atIndex === -1) return false;
+  if (trimmed.indexOf("@", atIndex + 1) !== -1) return false;
+  return true;
+}
+
+function checkDotConditions(trimmed, atIndex) {
+  const dotIndex = trimmed.indexOf(".");
+  if (dotIndex === -1) return false;
+  if (trimmed.indexOf(".", dotIndex + 1) !== -1) return false;
+  if (atIndex === 0) return false;
+  if (dotIndex - atIndex <= 1) return false;
+  if (dotIndex === trimmed.length - 1) return false;
+  return true;
+}
+
+function showNotRealEmailAlert() {
+  alert(
+    "Invalid email address! Please make sure your email:\n" +
+      '- Contains exactly one "@" symbol\n' +
+      '- Has at least one "." after the "@"\n' +
+      '- The "." is not immediately after "@"\n' +
+      '- The "." is not the last character\n' +
+      '- The "@" is not the first character'
+  );
+}
+
+function showNotRealNumberAlert() {
+  alert(
+    "Invalid phone number! Please make sure your phone number:\n" +
+      "- Is not empty\n" +
+      "- Contains only digits\n" +
+      '- May start with a "+" followed by digits\n' +
+      "- Does NOT contain spaces or other characters"
+  );
+}
+
+function isRealNumber(number) {
+  const trimmed = number.trim();
+  if (trimmed.length === 0) return false;
+  if (trimmed[0] === "+") {
+    return /^\+\d+$/.test(trimmed);
+  } else {
+    return /^\d+$/.test(trimmed);
   }
 }
