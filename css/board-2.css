@@ -63,8 +63,6 @@
   
   #tasksContainer-0,#tasksContainer-1, #tasksContainer-2, #tasksContainer-3 {
     width: 244px;
-    max-height: 550px;
-    height: 550px;
   }
   
   .overlay-priority-button {

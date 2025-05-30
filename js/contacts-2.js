@@ -224,11 +224,12 @@ function checkDotConditions(trimmed, atIndex) {
   const dotIndex = trimmed.indexOf(".");
   if (dotIndex === -1) return false;
   if (atIndex === 0) return false;
-  if (dotIndex === trimmed.length - 1) return false
+  if (dotIndex === trimmed.length - 1) return false;
   return true;
 }
 
-async function validateContactInputs(email, phone) {
+async function validateContactInputs(email, phone, name) {
+  if (name.length < 4) return;
   if (!isRealEmail(email)) {
     showNotRealEmailAlert();
     return false;
@@ -264,7 +265,6 @@ function showNotRealNumberAlert() {
 function isRealNumber(number) {
   const trimmed = number.trim();
   if (trimmed.length < 7) return false;
-  console.log(/^\+\d+$/.test(trimmed))
+  console.log(/^\+\d+$/.test(trimmed));
   return /^\+\d+$/.test(trimmed);
-
 }

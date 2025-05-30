@@ -33,7 +33,7 @@ async function saveNewContactToDataBase() {
 
   if (!inputsFilledOut({ nameValue, emailValue, phoneValue })) return;
 
-  if (!(await validateContactInputs(emailValue, phoneValue))) return;
+  if (!(await validateContactInputs(emailValue, phoneValue, nameValue))) return;
 
   if (await doesContactExists({ emailValue })) {
     alert("contact already exists");
@@ -137,7 +137,7 @@ async function saveEditedContact() {
   const newName = document.getElementById("editName").value.trim();
   const newEmail = document.getElementById("editEmail").value.trim();
   const newPhone = document.getElementById("editPhone").value.trim();
-  if (!(await validateContactInputs(newEmail, newPhone))) return;
+  if (!(await validateContactInputs(newEmail, newPhone, newName))) return;
   updateContactArray(newName, newEmail, newPhone);
   await updateEditedContactInFireBase(currentContact.email, { newName, newEmail, newPhone }, currentContact.id);
   await adjustChangedContactInTasks(putData);
