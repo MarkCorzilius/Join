@@ -223,10 +223,20 @@ function checkAtConditions(trimmed, atIndex) {
 function checkDotConditions(trimmed, atIndex) {
   const dotIndex = trimmed.indexOf(".");
   if (dotIndex === -1) return false;
-  if (trimmed.indexOf(".", dotIndex + 1) !== -1) return false;
   if (atIndex === 0) return false;
-  if (dotIndex - atIndex <= 1) return false;
-  if (dotIndex === trimmed.length - 1) return false;
+  if (dotIndex === trimmed.length - 1) return false
+  return true;
+}
+
+async function validateContactInputs(email, phone) {
+  if (!isRealEmail(email)) {
+    showNotRealEmailAlert();
+    return false;
+  }
+  if (!isRealNumber(phone)) {
+    showNotRealNumberAlert();
+    return false;
+  }
   return true;
 }
 
@@ -253,10 +263,8 @@ function showNotRealNumberAlert() {
 
 function isRealNumber(number) {
   const trimmed = number.trim();
-  if (trimmed.length === 0) return false;
-  if (trimmed[0] === "+") {
-    return /^\+\d+$/.test(trimmed);
-  } else {
-    return /^\d+$/.test(trimmed);
-  }
+  if (trimmed.length < 7) return false;
+  console.log(/^\+\d+$/.test(trimmed))
+  return /^\+\d+$/.test(trimmed);
+
 }

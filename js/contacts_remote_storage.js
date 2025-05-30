@@ -43,18 +43,6 @@ async function saveNewContactToDataBase() {
   await saveContact({ nameValue, emailValue, phoneValue });
 }
 
-async function validateContactInputs(email, phone) {
-  if (!isRealEmail(email)) {
-    showNotRealEmailAlert();
-    return false;
-  }
-  if (!isRealNumber(phone)) {
-    showNotRealNumberAlert();
-    return false;
-  }
-  return true;
-}
-
 async function saveContact({ nameValue, emailValue, phoneValue }) {
   const safeKey = sanitizeEmail(emailValue);
   let contactId = Number(localStorage.getItem("contactId"));
@@ -149,7 +137,7 @@ async function saveEditedContact() {
   const newName = document.getElementById("editName").value.trim();
   const newEmail = document.getElementById("editEmail").value.trim();
   const newPhone = document.getElementById("editPhone").value.trim();
-  if (!validateContactInput(newName, newEmail, newPhone)) return;
+  if (!(await validateContactInputs(newEmail, newPhone))) return;
   updateContactArray(newName, newEmail, newPhone);
   await updateEditedContactInFireBase(currentContact.email, { newName, newEmail, newPhone }, currentContact.id);
   await adjustChangedContactInTasks(putData);
