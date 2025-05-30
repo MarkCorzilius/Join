@@ -105,15 +105,32 @@ function toggleMobileTaskAddBtn(event) {
 }
 
 function searchTasks() {
+  let foundCount = 0;
   const tasks = document.querySelectorAll(".task-body");
   const input = document.getElementById("searchTasksInput").value.toLowerCase();
   for (let i = 0; i < tasks.length; i++) {
     const title = tasks[i].querySelector(".task-title").innerText.toLowerCase();
-    if (title.includes(input)) {
+    const description = tasks[i].querySelector(".task-description").innerText.toLowerCase();
+    if (title.includes(input) || description.includes(input)) {
       tasks[i].style.display = "flex";
+      foundCount++;
     } else {
       tasks[i].style.display = "none";
     }
+  }
+  showNoTasksMessage(foundCount);
+}
+
+function showNoTasksMessage(foundCount) {
+  const container = document.querySelector(".board-all-tasks-section");
+  const message = document.getElementById("emptyBoardMessage");
+
+  if (foundCount === 0) {
+    container.style.display = "none";
+    message.style.display = "flex";
+  } else {
+    container.style.display = "flex";
+    message.style.display = "none";
   }
 }
 
