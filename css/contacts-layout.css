@@ -1,0 +1,233 @@
+.contacts-container {
+  display: flex;
+  max-width: 1920px;
+}
+
+.contacts {
+  width: 40%;
+  height: calc(100vh - 80px);
+  overflow-y: auto;
+  border-right: 1px solid #ddd;
+  padding: 24px 36px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+.contacts::-webkit-scrollbar {
+  display: none;
+}
+
+.contacts-list h2 {
+  padding-left: 16px;
+  border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-left: 16px;
+  height: 60px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.contact-item:hover {
+  background-color: rgb(246, 247, 248);
+}
+
+.contact-item.clicked-color:hover {
+  background-color: rgb(9, 25, 49);
+}
+
+.contact-initials {
+  width: 40px;
+  height: 40px;
+  background-color: #ccc;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-right: 10px;
+  border: solid 2px white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.contact-header {
+  margin: 36px 0 20px;
+  display: flex;
+  align-items: center;
+}
+
+.contact-header h1 {
+  padding-right: 20px;
+  margin: 0;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  font-size: clamp(32px,  5vw,  48px);
+}
+
+.contact-header p {
+  margin: 0;
+  height: 36px;
+  padding-left: 20px;
+  color: rgb(42, 54, 71);
+  display: flex;
+  align-items: center;
+  font-size: clamp(20px, 2vw, 24px);
+  position: relative;
+}
+
+.contact-header p::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -8px;
+  bottom: -8px;
+  width: 3px;
+  background-color: rgb(41, 171, 226);
+  border-radius: 2px;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.contact-name {
+  font-size: 16px;
+  margin: 0;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.contact-email {
+  margin: 0;
+  font-size: 14px;
+  color: rgb(128, 189, 247);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.contact-info {
+  height: calc(100vh - 80px);
+  background-color: rgb(246, 247, 248);
+  padding: 80px 48px;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+
+.add-contact-btn {
+  display: inline-block;
+  background-color: rgb(42, 54, 71);
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  height: 48px;
+  font-weight: bold;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.add-contact-btn:hover {
+  background-color: rgb(41, 171, 226);
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.add-contact-btn img {
+  margin-left: 12px;
+  width: 24px;
+  height: 24px;
+}
+
+.overlay-contact-succesfully-created {
+  position: fixed;
+  bottom: 25%;
+  right: 15%;
+  object-fit: contain;
+  background-color: rgba(0, 0, 0, 0);
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.overlay-contact-succesfully-created.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.btn-delete:hover {
+  color: rgb(41, 171, 226);
+  border: 2px solid rgb(41, 171, 226);
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+#editName,
+#contactName {
+  text-indent: 0 !important;
+}
+.overlay-add-avatar img {
+  height: 100%;
+  border-radius: 50%;
+  background-color: #ccc;
+  border: solid 2px white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.btn-cancel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 100px;
+  padding-right: 24px;
+}
+
+.cancel-icon-wrapper {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+}
+
+.cancel-icon-wrapper .cancel-icon {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.cancel-icon-wrapper .cancel-icon.hover {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.btn-cancel:hover .cancel-icon-wrapper .cancel-icon.default {
+  opacity: 0;
+}
+
+.btn-cancel:hover .cancel-icon-wrapper .cancel-icon.hover {
+  opacity: 1;
+}

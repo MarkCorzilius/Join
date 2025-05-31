@@ -1,7 +1,5 @@
 .mobile-more-container {
   position: absolute;
-  /* bottom: 16px; */
-  /* right: 0; */
   bottom: 14px;
   right: 14px;
   cursor: pointer;
@@ -51,22 +49,6 @@
   transform: translateX(100%);
   opacity: 0;
 }
-
-
-/* .mobile-actions button {
-  background: none;
-  border: none;
-  width: 100%;
-  padding: 12px;
-  text-align: left;
-  font-size: 14px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  border-radius: 8px;
-} */
-
 
 .mobile-actions button {
   background: none;
@@ -145,8 +127,6 @@
   }
 
   .close-white {
-    /* width: 12px; */
-    /* height: 12px; */
     display: flex;
   }
 
@@ -164,11 +144,6 @@
     align-items: center;
     justify-content: center;
   }
-
-  /* ???????? */
-  /* .btn-save {
-    max-width: 70%;
-  } */
 
   .add-contact-join-logo {
     display: flex;

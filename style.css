@@ -199,14 +199,12 @@ input[type="date"]:valid {
   cursor: pointer;
 }
 
-
 @media (max-width: 1000px) {
   .content {
     width: 100vw;
     overflow-y: auto;
   }
 }
-
 
 @media screen and (orientation: landscape) and (max-width: 800px) {
   #landscapeWarning {
@@ -234,4 +232,8 @@ input[type="date"]:valid {
   .log-in-footer {
     display: none !important;
   }
+}
+
+.color-white {
+  color: white;
 }

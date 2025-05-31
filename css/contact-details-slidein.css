@@ -1,0 +1,154 @@
+.contact-detail-view {
+  position: relative;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  height: 100%;
+  opacity: 0;
+}
+
+.contact-detail-view.slide-in {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.back-arrow {
+  position: absolute;
+  top: 140px;
+  right: 20px;
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.back-arrow:hover {
+  background-color: rgb(221 221 221);
+}
+
+.edit-delete {
+  margin: 0 0 0 36px;
+  min-width: 0;
+}
+
+.detail-avatar-name {
+  display: flex;
+  align-items: center;
+}
+
+.email-phone {
+  margin-top: 20px;
+}
+
+.email-phone b {
+  margin-top: 12px;
+}
+
+.email-phone p {
+  margin: 12px 0;
+}
+
+.email {
+  color: rgb(128, 189, 247);
+}
+
+.contact-detail-avatar {
+  min-width: 80px;
+  min-height: 80px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #fff;
+  font-size: 24px;
+  border: solid 2px white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+#detailName {
+  margin: 16px 0 8px;
+  font-size: 36px;
+  font-weight: 300;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.contact-edit {
+  margin: 0 0 0 36px;
+  min-width: 0;
+}
+
+.edit-or-delete {
+  display: flex;
+  gap: 8px;
+}
+
+.edit-btn,
+.delete-btn {
+  position: relative;
+  background-color: transparent;
+  color: rgb(42, 54, 71);
+  border: none;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  height: 40px;
+  padding: 0;
+  transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
+}
+
+.edit-btn p,
+.delete-btn p {
+  display: flex;
+  justify-content: flex-start;
+  width: 48px;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  color: rgb(41, 171, 226);
+  transform: scale(1.01);
+  font-weight: bold;
+}
+
+.icon-left {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
+.edit-icon,
+.delete-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.edit-icon.hover,
+.delete-icon.hover {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.edit-btn:hover .edit-icon-wrapper .default,
+.delete-btn:hover .delete-icon-wrapper .default {
+  opacity: 0;
+}
+
+.edit-btn:hover .edit-icon-wrapper .hover,
+.delete-btn:hover .delete-icon-wrapper .hover {
+  opacity: 1;
+}
