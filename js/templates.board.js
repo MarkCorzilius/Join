@@ -535,3 +535,16 @@ function editTaskTemplate() {
       </div>
   </div>`;
 }
+
+function subtasksTemplate(subtaskKey, className, src, subtask) {
+  return `
+            <div class="overlay-subtask-template">
+                <img class="subtask-icon ${className}" 
+                    onclick="toggleSubtaskIcon(event, this, '${subtaskKey}')" 
+                    onmouseover="toggleSubtaskIcon(event, this, '${subtaskKey}')" 
+                    onmouseout="toggleSubtaskIcon(event, this, '${subtaskKey}')" 
+                    id="subtaskIcon-${subtaskKey}" 
+                    src="${src}">
+                <p id="subtaskText-${subtaskKey}">${subtask.title}</p>
+            </div>`;
+}

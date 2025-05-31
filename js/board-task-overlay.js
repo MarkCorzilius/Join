@@ -69,7 +69,7 @@ async function showChosenContacts(task) {
     }
   }
 }
-// change –>  check with id
+
 function checkChosenNames(contact) {
   const names = document.querySelectorAll(".contact-name");
   const contactLine = document.querySelectorAll(".contact-line");
@@ -126,19 +126,6 @@ async function changeCurrTask() {
   }
 }
 
-async function handlePostingChangedTask(newTaskData) {
-  const rawBoard = await getData("board/");
-  for (const [columnKey, tasks] of Object.entries(rawBoard)) {
-    for (const [tasksKey, task] of Object.entries(tasks)) {
-      if (task.id === currTask.id) {
-        await putData(`board/${columnKey}/${tasksKey}`, newTaskData);
-        return true;
-      }
-    }
-  }
-  return false;
-}
-
 function updatedTaskDataStorage() {
   const { titleValue, descriptionValue, dateValue } = extractTaskValues();
   const dataSafe = {
@@ -161,4 +148,81 @@ function getUpdatedCategory() {
   } else {
     return newCategory;
   }
+}
+
+function closeTaskOverlay() {
+  const overlay = document.getElementById("createTaskInBoardOverlay");
+  overlay.style.display = "none";
+  localStorage.removeItem("taskColumn");
+}
+
+function openTaskOverlay(column) {
+  currOverlay = "boardAddTaskOverlay";
+  localStorage.setItem("taskColumn", column);
+  if (window.innerWidth < 700) {
+    window.location.href = "../templates/add_task.html";
+  } else {
+    const overlay = document.getElementById("createTaskInBoardOverlay");
+    overlay.style.display = "flex";
+    renderTaskDialog();
+    resetPriorityBtn();
+    currentColumn = column;
+  }
+  fetchContacts("contactOptions");
+}
+
+async function closeTaskInfoOverlay() {
+  document.querySelector(".spinner-overlay").style.display = "flex";
+  try {
+    const overlay = document.getElementById("taskInfoOverlay");
+    overlay.classList.remove("active");
+    overlay.innerHTML = "";
+    chosenContacts = [];
+    await renderAllTasks();
+  } catch (error) {
+    console.log("error in closeTaskInfoOverlay()", error);
+  } finally {
+    document.querySelector(".spinner-overlay").style.display = "none";
+  }
+}
+
+async function openTaskInfoOverlay(task) {
+  currOverlay = "editOverlay";
+  const overlay = document.getElementById("taskInfoOverlay");
+  overlay.classList.add("active");
+  await renderDetailedTask(task);
+  const subtasksList = document.getElementById("subtasksList");
+  const container = document.querySelector(".task-overlay-subtasks");
+  if (subtasksList.children.length === 0) {
+    container.style.display = "none";
+  }
+}
+
+function toggleDeleteBtn(event) {
+  const img = event.target;
+  if (event.type === "mouseover") {
+    img.src = "../img/delete_task_hovered.png";
+  } else if (event.type === "mouseout") {
+    img.src = "../img/delete_task.png";
+  }
+}
+
+function toggleEditBtn(event) {
+  const overlay = document.getElementById("taskInfoOverlay");
+  const boardAddTask = document.getElementById("overlayDialogBoard");
+  const img = event.target;
+  if (event.type === "mouseover") {
+    img.src = "../img/edit_task_hovered.png";
+  } else if (event.type === "mouseout") {
+    img.src = "../img/edit_task.png";
+  } else if ("click") {
+    handleEditBtnClick(overlay, boardAddTask);
+  }
+}
+
+function handleEditBtnClick(overlay, boardAddTask) {
+  currOverlay = "editOverlay";
+  overlay.innerHTML = "";
+  boardAddTask.innerHTML = "";
+  overlay.innerHTML = editTaskTemplate();
 }
