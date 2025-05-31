@@ -1,87 +1,67 @@
-let subtaskId = null;
 let chosenContacts = [];
 
-async function taskPageOnLoad() {
-  w3.includeHTML();
-  try {
-    await waitForSidebarAndHeader();
-    setupTaskPageEnvironment();
-    loadTaskPageData();
-  } catch (error) {
-    console.log("error in taskPageOnLoad()");
+async function fetchContacts(currentContainer) {
+  let contactsContainer = document.getElementById(currentContainer);
+  contactsContainer.innerHTML = "";
+  let response = await fetch(BASE_URL + "contacts/" + ".json");
+  let contacts = await response.json();
+  const { loggedIn, defaults } = sortContacts(contacts);
+  await renderLoggedInUser(loggedIn, contactsContainer);
+  for (const user of defaults) {
+    await renderDefaultUsers(user, contactsContainer);
   }
 }
 
-function waitForSidebarAndHeader() {
-  return new Promise((resolve) => {
-    const checkExist = setInterval(() => {
-      const sidebarLoaded = document.querySelector("#sidebar");
-      const headerLoaded = document.querySelector("#header");
-      if (sidebarLoaded && headerLoaded) {
-        clearInterval(checkExist);
-        resolve();
-      }
-    }, 50);
-  });
-}
-
-function setupTaskPageEnvironment() {
-  markCurrentPage();
-  ifGuestShowDropdownHelp();
-  adjustInitialAfterLogin();
-  taskId = Number(localStorage.getItem("taskId")) || 0;
-}
-
-function loadTaskPageData() {
-  resetPriorityBtn();
-  fetchContacts("contactOptions");
-  findUserEmail();
-  adjustHelpForMobile();
-  window.addEventListener("resize", adjustHelpForMobile);
-}
-
-function clearBtnToBlue() {
-  document.getElementById("clearBtn").src = "../img/clear_btn_hovered.png";
-}
-
-function clearBtnToBlack() {
-  document.getElementById("clearBtn").src = "../img/close.png";
-}
-
-function setActivePriority(button, color, id) {
-  document.querySelectorAll(".priority-button").forEach((btn) => {
-    btn.classList.remove("active");
-    btn.style.backgroundColor = "";
-    btn.style.color = "";
-  });
-  button.classList.add("active");
-  button.style.backgroundColor = color;
-  button.style.color = "white";
-  changePriorityBtnColor(id);
-}
-
-function changePriorityBtnColor(id) {
-  const svgRef = document.querySelectorAll(".priority-icon");
-  for (let i = 0; i < svgRef.length; i++) {
-    const icon = svgRef[i];
-    icon.classList.remove("clicked-priority-color");
-    if (icon.classList.contains(`priority-icon-${id}`)) {
-      icon.classList.add("clicked-priority-color");
+function sortContacts(contacts) {
+  let loggedIn = [];
+  let defaults = [];
+  const theUser = JSON.parse(localStorage.getItem("user"));
+  for (const contact of Object.values(contacts)) {
+    if (contact.email !== theUser.email) {
+      defaults.push(contact);
+    } else {
+      loggedIn.push(contact);
     }
   }
+  return { loggedIn, defaults };
 }
 
-function resetPriorityBtn() {
-  const inactiveBtns = [document.getElementsByClassName("priority-button")[0], document.getElementsByClassName("priority-button")[2]];
-  const medium = document.getElementsByClassName("priority-button")[1];
-  inactiveBtns.forEach((btn) => {
-    btn.style.backgroundColor = "white";
-    btn.style.color = "black";
-  });
-  medium.classList.add("active");
-  medium.style.backgroundColor = "rgb(255, 168, 1)";
-  medium.style.color = "white";
-  changePriorityBtnColor(1);
+async function renderLoggedInUser(user, contactsContainer) {
+  const currentUser = user[0];
+  if (currentUser === undefined || currentUser === null) return;
+  const sanitizedEmail = sanitizeEmail(currentUser.email);
+  const currentIcon = await getData("contacts/" + sanitizedEmail + "/icon");
+  contactsContainer.innerHTML += contactsTemplate(addYouToCurrentUser(currentUser.name), currentIcon.bg, currentIcon.initial, currentUser.id);
+}
+
+function addYouToCurrentUser(name) {
+  return `${name + " (You)"}`;
+}
+
+async function renderDefaultUsers(user, contactsContainer) {
+  if (!user) return;
+  const sanitizedEmail = sanitizeEmail(user.email);
+  const currentIcon = await getData("contacts/" + sanitizedEmail + "/icon");
+  contactsContainer.innerHTML += contactsTemplate(user.name, currentIcon.bg, currentIcon.initial, user.id);
+}
+
+function showUser(name) {
+  const email = findUserEmail();
+  if (currentUser.name === "Guest") {
+    return name;
+  } else {
+    const markedName = name + " (You)";
+    return markedName;
+  }
+}
+
+function showNameWithoutYou(name) {
+  const newName = name.replace(" (You)", "");
+  return newName;
+}
+
+function sanitizeEmail(email) {
+  return email.replace(/[@.]/g, "_");
 }
 
 function resetContactCheckedBtn() {

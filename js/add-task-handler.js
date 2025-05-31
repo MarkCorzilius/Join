@@ -1,10 +1,130 @@
+
+
+function taskDataStorage() {
+  const { titleValue, descriptionValue, dateValue } = extractTaskValues();
+  const dataSafe = {
+    id: taskId,
+    title: titleValue,
+    description: descriptionValue,
+    date: dateValue,
+    priority: saveActivePriority(),
+    contacts: chosenContacts,
+    category: saveCategory(),
+    subtasks: saveSubtasks(),
+  };
+  return dataSafe;
+}
+
+async function getTaskData() {
+  document.querySelector(".create-task-button").disabled = true;
+  try {
+    await validateAndPostTask();
+  } catch (error) {
+    console.log("error in getTaskData", error);
+  } finally {
+    document.querySelector(".create-task-button").disabled = false;
+  }
+}
+
+async function validateAndPostTask() {
+  if (!extractTaskValues()) {
+    alert("chosen date is not in the future!");
+    return;
+  }
+  const dataSafe = taskDataStorage();
+  if (!restrictAddingTask()) return;
+  await handlePostingTask(dataSafe);
+  window.location.href = "../templates/board.html";
+}
+
+async function handlePostingTask(dataSafe) {
+  const columnNum = localStorage.getItem("taskColumn");
+  const columnName = checkChosenColummn(columnNum);
+  await postData(`board/${columnName}/`, dataSafe);
+  taskId += 1;
+  localStorage.setItem("taskId", taskId.toString());
+  emptyTaskDocument();
+  if (window.location.href.includes("task")) return;
+  renderAllTasks();
+  closeTaskOverlay();
+}
+
+function saveActivePriority() {
+  const priorities = document.querySelectorAll(".priority-button");
+  const active = Array.from(priorities).find((btn) => btn.classList.contains("active"));
+  const priority = active ? ["medium", "urgent", "low"].find((p) => active.classList.contains(p)) : null;
+  return priority;
+}
+
+function saveCategory() {
+  const containerRef = document.getElementById("categoryChoiceInsert");
+  if (containerRef.innerText !== "Select task category") {
+    const category = containerRef.innerText;
+    return category;
+  } else {
+    const category = null;
+    return category;
+  }
+}
+
+function saveSubtasks() {
+  const subtaskContainer = document.getElementById("subtaskContainer");
+  const subtaskTitles = document.querySelectorAll(".subtask-titles");
+  if (!subtaskContainer) return null;
+  if (!subtaskTitles) return;
+  const subtasks = {};
+  for (let i = 0; i < subtaskTitles.length; i++) {
+    const titleText = subtaskTitles[i].innerText.trim();
+    if (titleText !== "") {
+      subtasks[`subtask-${i + 1}`] = { title: titleText, state: false };
+    }
+  }
+  return Object.keys(subtasks).length > 0 ? subtasks : null;
+}
+
+function setActivePriority(button, color, id) {
+  document.querySelectorAll(".priority-button").forEach((btn) => {
+    btn.classList.remove("active");
+    btn.style.backgroundColor = "";
+    btn.style.color = "";
+  });
+  button.classList.add("active");
+  button.style.backgroundColor = color;
+  button.style.color = "white";
+  changePriorityBtnColor(id);
+}
+
+function changePriorityBtnColor(id) {
+  const svgRef = document.querySelectorAll(".priority-icon");
+  for (let i = 0; i < svgRef.length; i++) {
+    const icon = svgRef[i];
+    icon.classList.remove("clicked-priority-color");
+    if (icon.classList.contains(`priority-icon-${id}`)) {
+      icon.classList.add("clicked-priority-color");
+    }
+  }
+}
+
+function resetPriorityBtn() {
+  const inactiveBtns = [document.getElementsByClassName("priority-button")[0], document.getElementsByClassName("priority-button")[2]];
+  const medium = document.getElementsByClassName("priority-button")[1];
+  inactiveBtns.forEach((btn) => {
+    btn.style.backgroundColor = "white";
+    btn.style.color = "black";
+  });
+  medium.classList.add("active");
+  medium.style.backgroundColor = "rgb(255, 168, 1)";
+  medium.style.color = "white";
+  changePriorityBtnColor(1);
+}
+
 function toggleCategoryOptions() {
   const arrow = document.getElementById("categoryArrow");
   const section = document.querySelector(".category-btn-and-options");
   const optionsRef = document.querySelector(".category-options");
-  optionsRef.style.display = optionsRef.style.display === "flex" ? "none" : "flex";  isCategoryOptionsOpen(arrow, section, optionsRef);
+  optionsRef.style.display = optionsRef.style.display === "flex" ? "none" : "flex";
+  isCategoryOptionsOpen(arrow, section, optionsRef);
 }
-
 
 function isCategoryOptionsOpen(arrow, section, optionsRef) {
   if (optionsRef.style.display === "flex") {
@@ -21,7 +141,6 @@ function isCategoryOptionsOpen(arrow, section, optionsRef) {
   }
 }
 
-
 function chooseCategory(option) {
   const containerRef = document.getElementById("categoryChoiceInsert");
   const choice = option.innerText;
@@ -29,7 +148,6 @@ function chooseCategory(option) {
   containerRef.innerText = choice;
   toggleCategoryOptions();
 }
-
 
 function showActionBtns() {
   const input = document.getElementById("subtaskInput");
@@ -41,7 +159,6 @@ function showActionBtns() {
   input.focus();
 }
 
-
 function showMainBtn() {
   const focusBtns = document.getElementById("focusBtns");
   const mainBtn = document.getElementById("subtaskMainBtn");
@@ -49,7 +166,6 @@ function showMainBtn() {
   mainBtn.style.display = "flex";
   focusBtns.style.display = "none";
 }
-
 
 function addSubtask() {
   const input = document.getElementById("subtaskInput");
@@ -67,7 +183,6 @@ function addSubtask() {
   input.focus();
 }
 
-
 document.addEventListener("click", (e) => {
   const focusBtns = document.getElementById("focusBtns");
   const mainBtn = document.getElementById("subtaskMainBtn");
@@ -79,47 +194,10 @@ document.addEventListener("click", (e) => {
   }
 });
 
-
-function subtaskTemplate(subtaskId, valueRef, subtaskClass) {
-  return `                    
-                                          <div class="template-subtask" id="subtaskTemplate${subtaskId}">
-                        <div class="form-subtask-template task-active-state" id="taskNormalState${subtaskId}">
-                         <div class="subtask-title">
-                           <p>•</p>
-                           <span id="subtaskTitle${subtaskId}" class="subtask-titles">${valueRef}</span>
-                         </div>
-                         <div class="control-subtask">
-                           <div class="subtask-edit-icons">
-                           <img onclick="editTask(${subtaskId})" src="../img/subtask_pencil.png" alt="edit">
-                           <div class="subtask-separator"></div>
-                           <img onclick="deleteTask(${subtaskId})" src="../img/subtask_trash.png" alt="delete">
-                           </div>
-                         </div>
-                        </div>
-  
-                      <div class="task-active-state task-edit-state" id="taskEditState${subtaskId}" style="display: none;">
-                        <div class="subtask-template-edit-state ${subtaskClass} subtask-edit-state" class="form-subtask-edit-input-wrapper">
-                          <input onkeydown="postSubtaskOnEnter(event, ${subtaskId})" id="subtaskEditInput${subtaskId}" class="form-subtask-edit-input ${subtaskClass}" type="text">
-                          <div class="subtask-icons-on-edit">
-                            <div onclick="deleteSubtaskEditState(${subtaskId})" id="deleteSubtaskEditState${subtaskId}" class="subtask-icon-wrapper">
-                            <img src="../img/subtask_trash.png" alt="delete">
-                            </div>
-                            <div class="subtask-separator"></div>
-                            <div onclick="updateTask(${subtaskId})" class="subtask-icon-wrapper">
-                            <img src="../img/subtask_edit_confirm.png" alt="confirm">
-                            </div>
-                            </div>
-                        </div>
-                      </div>
-                    </div>`;
-}
-
-
 function scrollToCreatedSubtask() {
   const container = document.getElementById("subtaskContainer");
   container.scrollTop = container.scrollHeight;
 }
-
 
 function emptyTaskDocument() {
   const title = document.getElementById("taskTitle");
@@ -136,17 +214,14 @@ function emptyTaskDocument() {
   resetContacts();
 }
 
-
 function resetCategory() {
   document.getElementById("categoryChoiceInsert").innerText = "Select task category";
 }
-
 
 function resetSubtasks() {
   const subtasks = document.getElementById("subtaskContainer");
   subtasks.innerHTML = "";
 }
-
 
 function checkShiftSubtask(event) {
   const input = document.getElementById("subtaskInput");
@@ -162,13 +237,11 @@ function checkShiftSubtask(event) {
   }
 }
 
-
 function blurOnEnter(event) {
   if (event.key === "Enter") {
     event.target.blur();
   }
 }
-
 
 function deleteTask(subtaskId) {
   const task = document.getElementById("subtaskTemplate" + subtaskId);
@@ -177,12 +250,10 @@ function deleteTask(subtaskId) {
   }
 }
 
-
 function emptySubtaskInput() {
   document.getElementById("subtaskInput").value = "";
   showMainBtn();
 }
-
 
 function editTask(subtaskId) {
   const subtask = document.getElementById("subtaskTemplate" + subtaskId);
@@ -199,7 +270,6 @@ function editTask(subtaskId) {
   }
 }
 
-
 function deleteSubtaskEditState(subtaskId) {
   const delBtn = document.getElementById("deleteSubtaskEditState" + subtaskId);
   const task = document.getElementById("subtaskTemplate" + subtaskId);
@@ -207,7 +277,6 @@ function deleteSubtaskEditState(subtaskId) {
     task.remove();
   }
 }
-
 
 function updateTask(subtaskId) {
   const activeTitle = document.getElementById("subtaskTitle" + subtaskId);
@@ -219,7 +288,6 @@ function updateTask(subtaskId) {
   }
 }
 
-
 function exitSubtaskEditState(subtaskId) {
   const subtask = document.getElementById("subtaskTemplate" + subtaskId);
   const taskNormalState = document.getElementById("taskNormalState" + subtaskId);
@@ -229,7 +297,6 @@ function exitSubtaskEditState(subtaskId) {
     taskEditState.style.display = "none";
   }
 }
-
 
 function postSubtaskOnEnter(event, subtaskId) {
   const taskInput = document.getElementById("subtaskEditInput" + subtaskId);
