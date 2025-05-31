@@ -218,11 +218,13 @@ function formatDate(date) {
 
 async function findOverallTasksAmount() {
   const container = document.getElementById("tasksInBoard");
-  let tasksCounter = null;
+  let tasksCounter = 0;
   const board = await getData("board/");
   if (!board) return 0;
   for (const [columnKey, tasks] of Object.entries(board)) {
-    tasksCounter += 1;
+    for (const taskKey of Object.entries(tasks)) {
+      tasksCounter += 1;
+    }
   }
   container.innerText = tasksCounter;
 }

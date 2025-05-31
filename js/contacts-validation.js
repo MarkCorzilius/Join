@@ -69,7 +69,10 @@ function showNotRealNumberAlert() {
 
 function isRealNumber(number) {
   const trimmed = number.trim();
-  if (trimmed.length < 7) return false;
-  console.log(/^\+\d+$/.test(trimmed));
-  return /^\+\d+$/.test(trimmed);
+
+  if (!/^\+?[ \d]+$/.test(trimmed)) return false;
+
+  const digitCount = trimmed.replace(/\D/g, "").length;
+
+  return digitCount >= 7;
 }
