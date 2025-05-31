@@ -1,27 +1,26 @@
 .edit-form-size {
-    height: 48px;
-    width: 100%;
+  height: 48px;
+  width: 100%;
 }
 
-  .detailed-overlay {
-    box-sizing: border-box;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    padding: 0px 40px 10px;
-    background-color: white;
-    border-radius: 30px;
-    width: clamp(310px, 60vw, 1000px);
-    height: 90vh;
-    max-width: 600px;
-    position: relative;
-    overflow: auto;
-  }
+.detailed-overlay {
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 0px 40px 10px;
+  background-color: white;
+  border-radius: 30px;
+  width: clamp(310px, 60vw, 1000px);
+  height: 90vh;
+  max-width: 600px;
+  position: relative;
+  overflow: auto;
+}
 
-  .detailed-overlay::-webkit-scrollbar {
-    display: none;
-  }
-  
+.detailed-overlay::-webkit-scrollbar {
+  display: none;
+}
 
 .edit-form-description {
   height: 60px;
@@ -33,129 +32,128 @@
   box-sizing: border-box;
   text-indent: 0 !important;
 
-
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center
+  text-align: center;
 }
 
 .accept-changes-btn {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .accept-changes-btn:hover {
-    color: 1px solid rgb(41, 171, 226);
+  color: 1px solid rgb(41, 171, 226);
 }
-    
+
+.title-field {
+  box-sizing: border-box;
+}
 
 .accept-btn-wrapper {
-    position: sticky;
-    width: 100%;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+  position: sticky;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .input-wrapper-subtask {
-    width: 100%;
+  width: 100%;
 }
 
 .edit-subtask-section {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    margin-bottom: 28px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-bottom: 28px;
 }
 
 .edit-state-subtitle {
-    margin-bottom: 8px;
+  margin-bottom: 8px;
 }
 
 .space-between {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
-
 .prio-buttons {
-    display: flex;
-    gap: 16px;
+  display: flex;
+  gap: 16px;
 }
 
 .prio-small {
-    width: 90px !important;
-    height: 48px !important;
+  width: 90px !important;
+  height: 48px !important;
 }
 
 .leave-edit-icon {
-    position: sticky;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border-radius: 50%;
+  position: sticky;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
 }
 
 .leave-edit-icon-wrapper {
-    top:0;
-    position: sticky;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 30px 10px 20px;
-    background-color: white;
-    box-sizing: border-box;
-
+  top: 0;
+  position: sticky;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 30px 10px 20px;
+  background-color: white;
+  box-sizing: border-box;
 }
 
 .leave-edit-icon:hover {
-    background-color: rgb(233, 233, 233);
+  background-color: rgb(233, 233, 233);
 }
 
 .edit-subtask-container {
-    max-height: 150px !important;
+  max-height: 150px !important;
 }
 
 .prio-txt {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .edit-data-container {
-    height: 100%;
-    width: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
-    box-sizing: border-box;
-    padding-right: 5px;
-  }
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding-right: 5px;
+}
 
 .edit-data-container::-webkit-scrollbar {
-    display: none;             /* Width of vertical scrollbar */
-  }
-  
+  display: none; /* Width of vertical scrollbar */
+}
+
 @media (max-width: 650px) {
-    .prio-small {
-        width: 86px !important;
-        height: 44px !important;
-    }
+  .prio-small {
+    width: 86px !important;
+    height: 44px !important;
+  }
 
-    .prio-small svg {
-        height: 12px;
-        width: auto;
-    }
+  .prio-small svg {
+    height: 12px;
+    width: auto;
+  }
 
-    .prio-buttons {
-        gap: 4px;
-    }
+  .prio-buttons {
+    gap: 4px;
+  }
 
-    .prio-txt {
-        font-size: 14px;
-    }
+  .prio-txt {
+    font-size: 14px;
+  }
 
-    .detailed-overlay {
-        padding: 0 20px 10px;
-    }
-
+  .detailed-overlay {
+    padding: 0 20px 10px;
+  }
 }

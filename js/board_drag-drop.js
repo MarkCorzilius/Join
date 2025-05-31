@@ -6,7 +6,6 @@ let currentX = 0;
 let currentY = 0;
 let rotation = 0;
 let wasDropped = false;
-//let taskPlaceholder = null;
 
 function allowDrop(ev) {
   ev.preventDefault();
@@ -31,13 +30,6 @@ function prepareDraggedTask(id, ev) {
   dragStartX = ev.pageX;
   dragStartY = ev.pageY;
   wasDropped = false;
-
-  //taskPlaceholder = document.createElement("div");
-  //taskPlaceholder.style.height = `${task.offsetHeight}px`;
-  //taskPlaceholder.style.marginBottom = "16px"; // match task spacing
-  //taskPlaceholder.classList.add("task-placeholder");
-  //task.parentNode.insertBefore(taskPlaceholder, task.nextSibling);
-
   task.style.position = "absolute";
   task.style.zIndex = "1000";
   task.style.boxShadow = "0 8px 20px rgba(0,0,0,0.2)";
@@ -71,10 +63,6 @@ function stopDragging(id) {
   checkIfMobileLayout();
   if (isMobileLayout) return;
   const task = document.getElementById(`taskBody${id}`);
-  //if (taskPlaceholder) {
-  //  taskPlaceholder.remove();
-  //  taskPlaceholder = null;
-  //}
   task.style.position = "static";
   task.style.zIndex = "";
   task.style.pointerEvents = "none";
