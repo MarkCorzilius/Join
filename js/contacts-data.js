@@ -1,5 +1,88 @@
 const user = JSON.parse(localStorage.getItem("user"));
 
+let currContactData = [];
+
+let currentContact = null;
+
+let detailViewOpen = false;
+
+let contactsArray = [];
+
+const basicContacts = [
+  {
+    name: "Alice Johnson",
+    email: "alice.johnson@example.com",
+    phone: "+1 555-123-4567",
+  },
+  {
+    name: "Bob Smith",
+    email: "bob.smith@example.com",
+    phone: "+1 555-987-6543",
+  },
+  {
+    name: "Charlie Lee",
+    email: "charlie.lee@example.com",
+    phone: "+1 555-222-3344",
+  },
+  {
+    name: "Diana Adams",
+    email: "diana.adams@example.com",
+    phone: "+1 555-444-7788",
+  },
+  {
+    name: "Ethan Wright",
+    email: "ethan.wright@example.com",
+    phone: "+1 555-666-1122",
+  },
+  {
+    name: "Fiona Green",
+    email: "fiona.green@example.com",
+    phone: "+1 555-321-7654",
+  },
+  {
+    name: "George Harris",
+    email: "george.harris@example.com",
+    phone: "+1 555-888-9900",
+  },
+  {
+    name: "Hannah Clark",
+    email: "hannah.clark@example.com",
+    phone: "+1 555-111-2233",
+  },
+  {
+    name: "Ian Baker",
+    email: "ian.baker@example.com",
+    phone: "+1 555-444-5566",
+  },
+  {
+    name: "Julia Carter",
+    email: "julia.carter@example.com",
+    phone: "+1 555-999-0001",
+  },
+];
+
+const bgImages = [
+  "../img/variante1.png",
+  "../img/variante2.png",
+  "../img/variante3.png",
+
+  "../img/variante4.png",
+  "../img/variante5.png",
+  "../img/variante6.png",
+
+  "../img/variante7.png",
+  "../img/variante8.png",
+  "../img/variante9.png",
+
+  "../img/variante10.png",
+  "../img/variante11.png",
+  "../img/variante12.png",
+
+  "../img/variante13.png",
+  "../img/variante14.png",
+  "../img/variante15.png",
+];
+
 async function saveBasicContacts() {
   for (let i = 0; i < basicContacts.length; i++) {
     const contact = basicContacts[i];
@@ -15,32 +98,6 @@ async function saveBasicContacts() {
     }
   }
   localStorage.setItem("contactId", contactId);
-}
-
-async function getNewContactData() {
-  const nameInput = document.getElementById("contactName");
-  const nameValue = nameInput.value;
-  const emailInput = document.getElementById("contactEmail");
-  const emailValue = emailInput.value;
-  const phoneInput = document.getElementById("contactPhone");
-  const phoneValue = phoneInput.value;
-
-  return { nameValue, emailValue, phoneValue };
-}
-
-async function saveNewContactToDataBase() {
-  const { nameValue, emailValue, phoneValue } = await getNewContactData();
-
-  if (!inputsFilledOut({ nameValue, emailValue, phoneValue })) return;
-
-  if (!(await validateContactInputs(emailValue, phoneValue, nameValue))) return;
-
-  if (await doesContactExists({ emailValue })) {
-    alert("contact already exists");
-    return;
-  }
-
-  await saveContact({ nameValue, emailValue, phoneValue });
 }
 
 async function saveContact({ nameValue, emailValue, phoneValue }) {
@@ -69,18 +126,6 @@ function inputsFilledOut({ nameValue, emailValue, phoneValue }) {
   }
 }
 
-async function doesContactExists({ emailValue }) {
-  const response = await fetch(BASE_URL + "contacts/" + ".json");
-  const data = await response.json();
-  const sanitizedEmailValue = sanitizeEmail(emailValue);
-  for (const key in data) {
-    if (data[key].email === sanitizedEmailValue) {
-      return true;
-    }
-  }
-  return false;
-}
-
 async function saveContactsToArray() {
   const response = await fetch(BASE_URL + "contacts/" + ".json");
   const data = await response.json();
@@ -91,60 +136,6 @@ async function saveContactsToArray() {
       contactsArray.push(contactCopy);
     }
   }
-}
-
-async function deleteContact(id) {
-  const contacts = await getData("contacts/");
-  for (const [contactKey, contact] of Object.entries(contacts)) {
-    if (contact.id === id) {
-      await deleteData("contacts/" + contactKey);
-      await deleteData("ourUsers/" + contactKey);
-      await adjustChangedContactInTasks(deleteData);
-    }
-  }
-  renderContacts();
-  backToContacts();
-  hideContactDetailView();
-}
-
-async function deleteContactForEdit() {
-  if (!currentContact) return;
-  if (!confirm("Möchten Sie diesen Kontakt wirklich löschen?")) return;
-  const contacts = await getData("contacts/");
-  for (const [contactKey, contact] of Object.entries(contacts)) {
-    if (contact.id === currentContact.id) {
-      await deleteData("contacts/" + contactKey);
-      await deleteData("ourUsers/" + contactKey);
-      await adjustChangedContactInTasks(deleteData);
-    }
-  }
-  renderContacts();
-  closeEditContactOverlay();
-  hideContactDetailView();
-  currentContact = null;
-}
-
-function hideContactDetailView() {
-  let detailView = document.getElementById("contactDetailView");
-  if (detailView) {
-    detailView.classList.add("d-none");
-    detailView.innerHTML = "";
-  }
-}
-
-async function saveEditedContact() {
-  if (!currentContact) return;
-  const newName = document.getElementById("editName").value.trim();
-  const newEmail = document.getElementById("editEmail").value.trim();
-  const newPhone = document.getElementById("editPhone").value.trim();
-  if (!(await validateContactInputs(newEmail, newPhone, newName))) return;
-  updateContactArray(newName, newEmail, newPhone);
-  await updateEditedContactInFireBase(currentContact.email, { newName, newEmail, newPhone }, currentContact.id);
-  await adjustChangedContactInTasks(putData);
-  await updateDetailView(newName, newEmail, newPhone);
-  renderContacts();
-  closeEditContactOverlay();
-  currentContact = null;
 }
 
 async function updateEditedContactInFireBase(email, { newName, newEmail, newPhone }, id) {
@@ -210,9 +201,30 @@ async function adjustChangedContactInTasks(httpMethodFunc) {
       for (const [contactKey, contact] of Object.entries(task.contacts)) {
         if (currContactData.id === contact.id) {
           const contactInfo = await getUpdatedContact(contact.id);
-            await httpMethodFunc(`board/${columnKey}/${taskKey}/contacts/${contactKey}`, contactInfo);
+          await httpMethodFunc(`board/${columnKey}/${taskKey}/contacts/${contactKey}`, contactInfo);
         }
       }
     }
   }
+}
+
+async function getNewContactData() {
+  const nameInput = document.getElementById("contactName");
+  const nameValue = nameInput.value;
+  const emailInput = document.getElementById("contactEmail");
+  const emailValue = emailInput.value;
+  const phoneInput = document.getElementById("contactPhone");
+  const phoneValue = phoneInput.value;
+
+  return { nameValue, emailValue, phoneValue };
+}
+
+function newContactPushToArray(name, email, phone) {
+  const newContact = { name, email, phone };
+  contactsArray.push(newContact);
+}
+
+function updateContactArray(newName, newEmail, newPhone) {
+  contactsArray = contactsArray.filter((contact) => contact.email.toLowerCase() !== currentContact.email.toLowerCase());
+  contactsArray.push({ email: newEmail, name: newName, phone: newPhone });
 }
