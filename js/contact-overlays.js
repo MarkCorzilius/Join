@@ -164,21 +164,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-function overlayForContactSuccesfullyCreated() {
-  const overlay = document.getElementById("contactSuccesfullyCreated");
-  const detailContainer = document.getElementById("contactDetailContainer");
-  const containerRect = detailContainer.getBoundingClientRect();
-  const computedStyle = getComputedStyle(detailContainer);
-  const paddingLeft = parseFloat(computedStyle.paddingLeft);
-  overlay.style.left = containerRect.left + paddingLeft + "px";
-  overlay.classList.remove("d-none");
-  setTimeout(() => overlay.classList.add("show"), 10);
-  setTimeout(() => {
-    overlay.classList.remove("show");
-    setTimeout(() => overlay.classList.add("d-none"), 500);
-  }, 2000);
-}
-
 async function updateDetailView(newName, newEmail, newPhone) {
   let detailView = document.getElementById("contactDetailView");
   if (!detailView.classList.contains("d-none")) {
@@ -194,4 +179,17 @@ function closeEditContactOverlay() {
   overlayEditContent.classList.remove("slide-in");
   editContactOverlay.classList.remove("show");
   setTimeout(() => editContactOverlay.classList.add("d-none"), 300);
+}
+
+async function overlayForContactSuccesfullyCreated() {
+  const toast = document.getElementById("contactSuccesfullyCreated");
+  toast.classList.add('visible');
+
+  await new Promise((resolve) => {
+    setTimeout(() => {
+      toast.classList.remove('visible');
+      window.location.reload();
+      resolve();
+    }, 1700);  
+  })
 }

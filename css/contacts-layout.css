@@ -161,22 +161,6 @@
   height: 24px;
 }
 
-.overlay-contact-succesfully-created {
-  position: fixed;
-  bottom: 25%;
-  right: 15%;
-  object-fit: contain;
-  background-color: rgba(0, 0, 0, 0);
-  transform: translateX(100%);
-  opacity: 0;
-  transition: transform 0.5s ease, opacity 0.5s ease;
-}
-
-.overlay-contact-succesfully-created.show {
-  transform: translateX(0);
-  opacity: 1;
-}
-
 .btn-delete:hover {
   color: rgb(41, 171, 226);
   border: 2px solid rgb(41, 171, 226);
@@ -229,5 +213,24 @@
 }
 
 .btn-cancel:hover .cancel-icon-wrapper .cancel-icon.hover {
+  opacity: 1;
+}
+
+#contactSuccesfullyCreated {
+  z-index: 999;
+  position: fixed;
+  bottom: 15vh;
+  left: 50%;
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+#contactSuccesfullyCreated.visible {
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%);
   opacity: 1;
 }
