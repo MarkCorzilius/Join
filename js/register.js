@@ -23,13 +23,38 @@ function areAllFieldsFilled({ name, email, password, confirmPassword }) {
   }
 }
 
-function isPasswordMatch({ name, email, password, confirmPassword }) {
-  if (password === confirmPassword) {
-    return true;
-  } else {
-    alert("passwords does not match!");
+function hasSpecialChar(password) {
+  return (password.match(/[^a-zA-Z0-9]/g) || []).length >= 1;
+}
+
+function hasEnoughLetters(password) {
+  return (password.match(/[a-zA-Z]/g) || []).length >= 5;
+}
+
+function hasEnoughNumbers(password) {
+  return (password.match(/[0-9]/g) || []).length >= 3;
+}
+
+function isPasswordMatchConditions({ name, email, password, confirmPassword }) {
+  if (password !== confirmPassword) {
+    alert("Passwords do not match!");
     return false;
   }
+
+  if (!hasSpecialChar(password)) {
+    alert("Password must contain at least 1 special character.");
+    return false;
+  }
+  if (!hasEnoughLetters(password)) {
+    alert("Password must contain at least 5 letters.");
+    return false;
+  }
+  if (!hasEnoughNumbers(password)) {
+    alert("Password must contain at least 3 numbers.");
+    return false;
+  }
+
+  return true;
 }
 
 function isPrivacyPolicyAccepted() {
@@ -56,7 +81,12 @@ async function signUp(ev) {
     return;
   }
   if (!areAllFieldsFilled({ name, email, password, confirmPassword })) return;
-  if (!isPasswordMatch({ name, email, password, confirmPassword })) return;
+  if (!isRealEmail(email)) {
+    showNotRealEmailAlert();
+    return;
+  }
+
+  if (!isPasswordMatchConditions({ name, email, password, confirmPassword })) return;
   if (!isPrivacyPolicyAccepted()) return;
   await handleSignUp({ name, email, password, confirmPassword });
   await showSignUpToast();

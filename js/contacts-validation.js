@@ -10,15 +10,6 @@ async function doesContactExists({ emailValue }) {
   return false;
 }
 
-function isRealEmail(email) {
-  const trimmed = email.trim();
-  const atIndex = trimmed.indexOf("@");
-  const isAtValid = checkAtConditions(trimmed, atIndex);
-  const isDotValid = checkDotConditions(trimmed, atIndex);
-  if (!isAtValid || !isDotValid) return false;
-  return true;
-}
-
 function checkAtConditions(trimmed, atIndex) {
   if (atIndex === -1) return false;
   if (trimmed.indexOf("@", atIndex + 1) !== -1) return false;

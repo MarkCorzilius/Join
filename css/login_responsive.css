@@ -26,7 +26,7 @@
     }
 
     .log-in-box {
-        padding: 20px 12px;
+        padding: 20px 12px !important;
         margin: 30px 20px 0;
     }
 
@@ -57,5 +57,10 @@
 
     .log-in-footer {
         height: 60px;
+        margin-top: 30px
+    }
+
+    .signup-container {
+        margin-top: 40px;
     }
 }

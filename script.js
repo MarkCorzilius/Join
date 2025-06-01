@@ -101,8 +101,8 @@ function togglePasswordVisibility(inputId, element, path) {
 }
 
 function closeDropdownsIfClickedOutside(event) {
-    ifContactsBoxOpen(event);
-    ifCategoryBoxOpen(event);
+  ifContactsBoxOpen(event);
+  ifCategoryBoxOpen(event);
 }
 
 function ifContactsBoxOpen(event) {
@@ -118,12 +118,21 @@ function ifContactsBoxOpen(event) {
 }
 
 function ifCategoryBoxOpen(event) {
-    const arrow = document.getElementById("categoryArrow");
-    const section = document.querySelector(".category-btn-and-options");
-    const optionsRef = document.querySelector(".category-options");
-    if (!arrow || !section || !optionsRef) return;
-    if (!section.contains(event.target)) {
-        optionsRef.style.display = 'none';
-        isCategoryOptionsOpen(arrow, section, optionsRef);     
-    }
+  const arrow = document.getElementById("categoryArrow");
+  const section = document.querySelector(".category-btn-and-options");
+  const optionsRef = document.querySelector(".category-options");
+  if (!arrow || !section || !optionsRef) return;
+  if (!section.contains(event.target)) {
+    optionsRef.style.display = "none";
+    isCategoryOptionsOpen(arrow, section, optionsRef);
+  }
+}
+
+function isRealEmail(email) {
+  const trimmed = email.trim();
+  const atIndex = trimmed.indexOf("@");
+  const isAtValid = checkAtConditions(trimmed, atIndex);
+  const isDotValid = checkDotConditions(trimmed, atIndex);
+  if (!isAtValid || !isDotValid) return false;
+  return true;
 }
