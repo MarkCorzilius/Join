@@ -47,6 +47,9 @@ async function logIn(ev) {
     return;
   }
   const contact = await searchingForAccount({ inputEmail, inputPassword });
+  if (!contact) {
+    return
+  }
   showLoginTransition();
   localStorage.setItem("user", JSON.stringify({ name: contact.name, email: contact.email, id: contact.id }));
 }
@@ -58,8 +61,7 @@ async function searchingForAccount({ inputEmail, inputPassword }) {
       return contact;
     }
   }
-
-  alert("Wrong email or password!");
+  showWarningOverlay(wrongEmailOrPasswordTemplate())
   return;
 }
 
