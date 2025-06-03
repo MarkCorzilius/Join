@@ -128,11 +128,87 @@ function ifCategoryBoxOpen(event) {
   }
 }
 
-function isRealEmail(email) {
-  const trimmed = email.trim();
-  const atIndex = trimmed.indexOf("@");
-  const isAtValid = checkAtConditions(trimmed, atIndex);
-  const isDotValid = checkDotConditions(trimmed, atIndex);
-  if (!isAtValid || !isDotValid) return false;
+function showWarningOverlay(message) {
+  const overlay = document.querySelector(".warning-overlay");
+  const dialog = overlay.querySelector(".warning-dialog");
+  dialog.innerHTML = "";
+  dialog.innerHTML = message;
+
+  overlay.classList.replace("hidden", "show");
+  setTimeout(() => dialog.classList.add("show"), 10);
+}
+
+function hideWarningOverlay() {
+  const overlay = document.querySelector(".warning-overlay");
+  const dialog = overlay.querySelector(".warning-dialog");
+
+  dialog.classList.remove("show");
+  setTimeout(() => overlay.classList.replace("show", "hidden"), 750);
+}
+
+function isPasswordValid(password) {
+  const specialCharPattern = /[^a-zA-Z0-9]/g;
+  const letterPattern = /[a-zA-Z]/g;
+  const numberPattern = /\d/g;
+
+  const specialChars = (password.match(specialCharPattern) || []).length;
+  const letters = (password.match(letterPattern) || []).length;
+  const numbers = (password.match(numberPattern) || []).length;
+
+  if (specialChars < 1) return false;
+  if (letters < 5) return false;
+  if (numbers < 3) return false;
+
   return true;
+}
+
+function passwordWarningTemplate() {
+  return `
+<div class="email-warning">
+  <p class="email-warning-title">Password requirements:</p>
+  <ul class="email-warning-list">
+    <li>Password must contain at least 1 special character.</li>
+    <li>Password must contain at least 5 letters.</li>
+    <li>Password must contain at least 3 numbers.</li>
+  </ul>
+</div>
+`.trim();
+}
+
+function passwordsNotMatchTemplate() {
+  return `
+<div class="email-warning">
+  <p class="email-warning-title">Password requirements:</p>
+  <ul class="email-warning-list">
+    <li>Passwords do not match</li>
+    <li>Ensure both entries are identical</li>
+  </ul>
+</div>
+`.trim();
+}
+
+function emailExistsTemplate() {
+  return `
+<div class="email-warning">
+  <p class="email-warning-title">Email already exists:</p>
+  <ul class="email-warning-list">
+    <li>Please use a different email address</li>
+  </ul>
+</div>
+`.trim();
+}
+
+function getEmailValidationTemplate() {
+  return `
+<div class="email-warning">
+  <p class="email-warning-title">Email must meet the following requirements:</p>
+  <ul class="email-warning-list">
+    <li>Must contain exactly one "@" symbol</li>
+    <li>"@" must not be the first character</li>
+    <li>"@" must not appear more than once</li>
+    <li>Must contain at least one "." character</li>
+    <li>"." must not be the last character</li>
+  </ul>
+</div>
+`.trim();
 }

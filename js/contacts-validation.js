@@ -37,27 +37,6 @@ async function validateContactInputs(email, phone, name) {
   return true;
 }
 
-function showNotRealEmailAlert() {
-  alert(
-    "Invalid email address! Please make sure your email:\n" +
-      '- Contains exactly one "@" symbol\n' +
-      '- Has at least one "." after the "@"\n' +
-      '- The "." is not immediately after "@"\n' +
-      '- The "." is not the last character\n' +
-      '- The "@" is not the first character'
-  );
-}
-
-function showNotRealNumberAlert() {
-  alert(
-    "Invalid phone number! Please make sure your phone number:\n" +
-      "- Is not empty\n" +
-      "- Contains only digits\n" +
-      '- May start with a "+" followed by digits\n' +
-      "- Does NOT contain spaces or other characters"
-  );
-}
-
 function isRealNumber(number) {
   const trimmed = number.trim();
 
@@ -66,4 +45,13 @@ function isRealNumber(number) {
   const digitCount = trimmed.replace(/\D/g, "").length;
 
   return digitCount >= 7;
+}
+
+function isRealEmail(email) {
+  const trimmed = email.trim();
+  const atIndex = trimmed.indexOf("@");
+  const isAtValid = checkAtConditions(trimmed, atIndex);
+  const isDotValid = checkDotConditions(trimmed, atIndex);
+  if (!isAtValid || !isDotValid) return false;
+  return true;
 }

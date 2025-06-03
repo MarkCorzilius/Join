@@ -237,3 +237,55 @@ input[type="date"]:valid {
 .color-white {
   color: white;
 }
+
+.hidden {
+  display: none;
+}
+
+.warning-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.1);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.warning-overlay.show {
+  display: flex;
+}
+
+.warning-dialog {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+
+  font-size: clamp(14px, 2vw, 20px);
+  width: clamp(260px, 40vw, 500px);
+  height: auto;
+
+  background-color: #ff4d4f;
+  color: white;
+
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  border-left: 6px solid #b30000;
+
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 0.75s ease, opacity 0.75s ease;
+}
+
+.warning-dialog.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.email-warning {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

@@ -44,7 +44,7 @@ async function renderContacts() {
 
 async function displayContactsByAlphabet() {
   contactsArray = [];
-  //saveBasicContacts();
+  // saveBasicContacts();
   await saveContactsToArray();
   contactsArray.sort((a, b) => a.displayName.localeCompare(b.displayName));
   const container = document.querySelector(".contacts-list");

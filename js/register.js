@@ -23,38 +23,8 @@ function areAllFieldsFilled({ name, email, password, confirmPassword }) {
   }
 }
 
-function hasSpecialChar(password) {
-  return (password.match(/[^a-zA-Z0-9]/g) || []).length >= 1;
-}
-
-function hasEnoughLetters(password) {
-  return (password.match(/[a-zA-Z]/g) || []).length >= 5;
-}
-
-function hasEnoughNumbers(password) {
-  return (password.match(/[0-9]/g) || []).length >= 3;
-}
-
 function isPasswordMatchConditions({ name, email, password, confirmPassword }) {
-  if (password !== confirmPassword) {
-    alert("Passwords do not match!");
-    return false;
-  }
-
-  if (!hasSpecialChar(password)) {
-    alert("Password must contain at least 1 special character.");
-    return false;
-  }
-  if (!hasEnoughLetters(password)) {
-    alert("Password must contain at least 5 letters.");
-    return false;
-  }
-  if (!hasEnoughNumbers(password)) {
-    alert("Password must contain at least 3 numbers.");
-    return false;
-  }
-
-  return true;
+  return password === confirmPassword;
 }
 
 function isPrivacyPolicyAccepted() {
@@ -77,16 +47,22 @@ async function signUp(ev) {
   ev.preventDefault();
   const { name, email, password, confirmPassword } = getRegisterData();
   if (await isExistingContact({ name, email, password, confirmPassword })) {
-    alert("contact with this email is already registered");
+    showWarningOverlay(emailExistsTemplate());
     return;
   }
   if (!areAllFieldsFilled({ name, email, password, confirmPassword })) return;
   if (!isRealEmail(email)) {
-    showNotRealEmailAlert();
+    showWarningOverlay(getEmailValidationTemplate());
     return;
   }
-
-  if (!isPasswordMatchConditions({ name, email, password, confirmPassword })) return;
+  if (!isPasswordMatchConditions({ name, email, password, confirmPassword })) {
+    showWarningOverlay(passwordsNotMatchTemplate());
+    return;
+  }
+  if (!isPasswordValid(password)) {
+    showWarningOverlay(passwordWarningTemplate());
+    return;
+  }
   if (!isPrivacyPolicyAccepted()) return;
   await handleSignUp({ name, email, password, confirmPassword });
   await showSignUpToast();
@@ -97,11 +73,11 @@ async function handleSignUp({ name, email, password, confirmPassword }) {
   const initial = getInitials(name);
   const bg = getBackgroundForName(name);
   const icon = { initial, bg };
-  contactId = Number(localStorage.getItem('contactId'));
+  contactId = Number(localStorage.getItem("contactId"));
   await putData(`ourUsers/${sanitizeEmail(email)}`, { name, email, password, icon, id: contactId });
   await putData(`contacts/${sanitizeEmail(email)}`, { name, email, icon, phone: "", id: contactId });
   contactId += 1;
-  localStorage.setItem('contactId', contactId);
+  localStorage.setItem("contactId", contactId);
   emptyRegisterData();
 }
 
@@ -164,12 +140,12 @@ function toggleSignupArrow(ev) {
 
 async function showSignUpToast() {
   const toast = document.getElementById("registerBanner");
-  toast.classList.add('visible');
+  toast.classList.add("visible");
 
   await new Promise((resolve) => {
     setTimeout(() => {
-      toast.classList.remove('visible');
+      toast.classList.remove("visible");
       resolve();
-    }, 1700);  
-  })
+    }, 1700);
+  });
 }
