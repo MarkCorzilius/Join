@@ -1,7 +1,7 @@
 const BASE_URL = "https://join-fce4c-default-rtdb.europe-west1.firebasedatabase.app/";
 
 let taskId = 0;
-let contactId = Number(localStorage.getItem('contactId')) || 0;
+let contactId = Number(localStorage.getItem("contactId")) || 0;
 
 const currentUser = JSON.parse(localStorage.getItem("user"));
 let userEmail = null;
@@ -52,10 +52,14 @@ async function isDuplicateEmail(path = "") {
 
 async function findUserEmail() {
   const contacts = await getData("contacts/");
+  if (!contacts) {
+    userEmail = '';
+    return
+  }
   for (const contact of Object.values(contacts)) {
     if (contact.id === currentUser.id) {
       userEmail = contact.email;
     }
   }
-  userEmail = '';
+  userEmail = "";
 }

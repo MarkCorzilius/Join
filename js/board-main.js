@@ -39,6 +39,7 @@ function prepareBoardEnvironment() {
 
 async function loadBoardTasks() {
   await renderAllTasks();
+  await checkContactsExistance();
   adjustHelpForMobile();
   window.addEventListener("resize", adjustHelpForMobile);
   checkIfMobileLayout();

@@ -279,4 +279,8 @@
   .priority-buttons {
     gap: 4px;
   }
+
+  .no-contacts-exist-message {
+    font-size: 14px;
+  }
 }

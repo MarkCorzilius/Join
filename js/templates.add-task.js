@@ -55,3 +55,9 @@ function subtaskTemplate(subtaskId, valueRef, subtaskClass) {
                         </div>
                       </div>`;
 }
+
+function getNoContactsTemplate() {
+  return `
+    <p class="no-contacts-exist-message">No contacts existing. Create some contacts.</p>
+  `;
+}

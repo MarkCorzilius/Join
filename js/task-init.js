@@ -34,7 +34,18 @@ function setupTaskPageEnvironment() {
 function loadTaskPageData() {
   resetPriorityBtn();
   fetchContacts("contactOptions");
+  checkContactsExistance();
   findUserEmail();
   adjustHelpForMobile();
   window.addEventListener("resize", adjustHelpForMobile);
+}
+
+async function checkContactsExistance() {
+  const contacts = await getData("contacts/");
+  if (!contacts) {
+    localStorage.setItem("contactsExist", "false");
+    return false;
+  }
+  localStorage.setItem("contactsExist", "true");
+  return true;
 }

@@ -1,15 +1,34 @@
 let chosenContacts = [];
+let defaultContacts = [];
+let currentIndex = 0;
+const CHUNK_SIZE = 10;
+
+//
+// if no contacts –> show message: No contacts existing
+// if more contacts –> show  button & amount in ( )
+
+function renderNextChunk(contactsContainer) {
+  const nextChunk = defaultContacts.slice(currentIndex, currentIndex + CHUNK_SIZE);
+  for (const user of nextChunk) {
+    renderDefaultUsers(user, contactsContainer);
+  }
+  currentIndex += CHUNK_SIZE;
+}
 
 async function fetchContacts(currentContainer) {
   let contactsContainer = document.getElementById(currentContainer);
   contactsContainer.innerHTML = "";
   let response = await fetch(BASE_URL + "contacts/" + ".json");
   let contacts = await response.json();
-  const { loggedIn, defaults } = sortContacts(contacts);
-  await renderLoggedInUser(loggedIn, contactsContainer);
-  for (const user of defaults) {
-    await renderDefaultUsers(user, contactsContainer);
+  if (!contacts && currentContainer !== "contactsContainer") {
+    contactsContainer.innerHTML = getNoContactsTemplate();
+    return;
   }
+  const { loggedIn, defaults } = sortContacts(contacts);
+  defaultContacts = defaults;
+  currentIndex = 0;
+  await renderLoggedInUser(loggedIn, contactsContainer);
+  renderNextChunk(contactsContainer);
 }
 
 function sortContacts(contacts) {
@@ -180,7 +199,12 @@ function handleContactAssignment(closedRef, searchState, optionsRef, wrapperRef,
   closedRef.style.display = "none";
   searchState.style.display = "flex";
   optionsRef.style.display = "flex";
-  wrapperRef.style.marginBottom = "210px";
+  const contactsExist = localStorage.getItem("contactsExist");
+  if (contactsExist === 'false') {
+    wrapperRef.style.marginBottom = "50px";
+  } else {
+    wrapperRef.style.marginBottom = "210px";
+  }
   container.style.display = "none";
   if (window.innerWidth <= 1000) {
     document.querySelector(".content").style.overflow = "hidden";
