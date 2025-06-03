@@ -1,34 +1,59 @@
-@media (max-width: 800px) {
-    .log-in-main {
-        height: calc(100vh - 60px);
+@media (max-width: 1000px) {
+    .splash-logo-container {
+        background-color: rgb(42, 54, 71);
     }
 
-    .header-content {
+    .logo-image {
+        display: none;
+    }
+
+    .mobile-logo-image {
+        display: flex;
+    }
+
+    .mobile-logo-image.animate-logo {
+        position: absolute;
+        animation: logoFlyUp 0.7s ease-in-out forwards;
+    }
+
+    .log-in-box {
+        margin: 0px 40px;
+    }
+}
+
+
+@media (max-width: 800px) {
+    .log-in-main {
+        height: calc(100vh - 210px);
+    }
+
+    .signup-container {
+        width: 100%;
         position: fixed;
-        bottom: 60px;
+        bottom: 90px;
         left: 0;
         right: 0;
         z-index: 1;
         display: flex;
         align-items: center;
-        flex-direction: column;
         justify-content: center;
         height: 60px;
         padding: 0;
     }
-    .signup-container a {
+
+    /* .signup-container a {
         margin-left: 48px;
         font-size: 14px;
-    }
+    } */
 
-    .logo-image {
+    /* .logo-image {
         width: 60px;
-    }
+    } */
 
-    .log-in-box {
+    /* .log-in-box {
         padding: 20px 12px !important;
         margin: 30px 20px 0;
-    }
+    } */
 
     .log-in-box h2 {
         font-size: 32px;
@@ -60,7 +85,7 @@
         margin-top: 30px
     }
 
-    .signup-container {
+    /* .signup-container {
         margin-top: 40px;
-    }
+    } */
 }
