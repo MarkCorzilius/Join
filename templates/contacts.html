@@ -31,6 +31,8 @@
   <link rel="stylesheet" href="../css/footer.css" />
 
   <script src="../js/database.js"></script>
+  <script src="../js/templates.warnings.js"></script>
+
   <script src="../js/templates.contact.js"></script>
   <script src="../js/contacts-data.js"></script>
   <script src="../js/contacts-logic.js"></script>
@@ -55,6 +57,11 @@
   <!-- <div class="spinner-overlay">
     <div class="spinner"></div>
   </div> -->
+
+  <div id="warningOverlay" class="warning-overlay hidden" onclick="hideWarningOverlay()">
+    <div class="warning-dialog" id="warningDialog"></div>
+  </div>
+  
   <header w3-include-html="../templates/header.html" id="headerContainer"></header>
   <main class="main">
     <div w3-include-html="../templates/sidebar.html" id="sidebarContainer"></div>
@@ -107,7 +114,7 @@
             <img src="../img/person.png" alt="User Avatar" />
           </div>
 
-          <form class="add-contact-inputs" onsubmit="saveNewContactToDataBase(); return false;">
+          <form class="add-contact-inputs" onsubmit="saveNewContactToDataBase(event ); return false;">
             <div class="overlay-input-group">
               <div class="input-wrapper">
                 <input type="text" id="contactName" placeholder="Name" required />
@@ -138,7 +145,7 @@
                 </span>
               </button>
 
-              <button onclick="saveNewContactToDataBase()" type="submit" class="btn-create-contact">
+              <button type="submit" class="btn-create-contact">
                 <p>Create Contact</p>
                 <img src="../img/check.png" alt="" />
               </button>
@@ -167,7 +174,7 @@
           <div class="overlay-edit-avatar" id="editAvatar">
 
           </div>
-          <form class="edit-contact-inputs" onsubmit="saveEditedContact(); return false;">
+          <form class="edit-contact-inputs" onsubmit="saveEditedContact(event); return false;">
             <div class="overlay-input-group">
               <div class="input-wrapper">
                 <input type="text" id="editName" required />

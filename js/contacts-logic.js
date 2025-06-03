@@ -1,14 +1,14 @@
-async function saveNewContactToDataBase() {
+async function saveNewContactToDataBase(event) {
+  event.stopPropagation()
   const { nameValue, emailValue, phoneValue } = await getNewContactData();
 
   if (!inputsFilledOut({ nameValue, emailValue, phoneValue })) return;
 
-  if (!(await validateContactInputs(emailValue, phoneValue, nameValue))) return;
-
-  if (await doesContactExists({ emailValue })) {
-    alert("contact already exists");
+  if ((await doesContactExists(emailValue))) {
+    showWarningOverlay(emailExistsTemplate());
     return;
   }
+  if (!(await validateContactInputs(emailValue, phoneValue, nameValue))) return;
 
   await saveContact({ nameValue, emailValue, phoneValue });
 }
@@ -44,11 +44,17 @@ async function deleteContactForEdit() {
   currentContact = null;
 }
 
-async function saveEditedContact() {
+async function saveEditedContact(event) {
+  event.stopPropagation()
   if (!currentContact) return;
   const newName = document.getElementById("editName").value.trim();
   const newEmail = document.getElementById("editEmail").value.trim();
   const newPhone = document.getElementById("editPhone").value.trim();
+  console.log(currentContact)
+  if ((await doesContactExists(newEmail))) {
+    showWarningOverlay(emailExistsTemplate());
+    return;
+  }
   if (!(await validateContactInputs(newEmail, newPhone, newName))) return;
   updateContactArray(newName, newEmail, newPhone);
   await updateEditedContactInFireBase(currentContact.email, { newName, newEmail, newPhone }, currentContact.id);

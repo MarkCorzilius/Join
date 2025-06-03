@@ -1,9 +1,10 @@
-async function doesContactExists({ emailValue }) {
-  const response = await fetch(BASE_URL + "contacts/" + ".json");
+async function doesContactExists(emailValue) {
+  const response = await fetch(BASE_URL + "contacts" + ".json");
   const data = await response.json();
-  const sanitizedEmailValue = sanitizeEmail(emailValue);
+  if (!data) return false;
   for (const key in data) {
-    if (data[key].email === sanitizedEmailValue) {
+    if (data[key].email === emailValue) {
+      if (emailValue === currentContact.email) continue;
       return true;
     }
   }
@@ -27,11 +28,11 @@ function checkDotConditions(trimmed, atIndex) {
 async function validateContactInputs(email, phone, name) {
   if (name.length < 4) return;
   if (!isRealEmail(email)) {
-    showNotRealEmailAlert();
+    showWarningOverlay(getEmailValidationTemplate())
     return false;
   }
   if (!isRealNumber(phone)) {
-    showNotRealNumberAlert();
+    showWarningOverlay(invalidPhoneNumberTemplate())
     return false;
   }
   return true;
@@ -40,7 +41,7 @@ async function validateContactInputs(email, phone, name) {
 function isRealNumber(number) {
   const trimmed = number.trim();
 
-  if (!/^\+?[ \d]+$/.test(trimmed)) return false;
+  if (!/^\+?[0-9\s\-().]+$/.test(trimmed)) return false;
 
   const digitCount = trimmed.replace(/\D/g, "").length;
 
