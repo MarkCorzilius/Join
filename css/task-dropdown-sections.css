@@ -154,6 +154,10 @@
   display: inline;
 }
 
+#searchContacts {
+  text-indent: 0;
+}
+
 .contacts-search {
   display: flex;
   justify-content: space-between;
