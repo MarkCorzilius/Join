@@ -38,6 +38,10 @@
   </head>
 
   <body onload="taskPageOnLoad()">
+    <div id="warningOverlay" class="warning-overlay hidden" onclick="hideWarningOverlay()">
+      <div class="warning-dialog" id="warningDialog"></div>
+    </div>
+    
     <header w3-include-html="../templates/header.html" id="headerContainer"></header>
     <main class="main">
       <div w3-include-html="../templates/sidebar.html" id="sidebarContainer"></div>

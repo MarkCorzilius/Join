@@ -1,68 +1,66 @@
 <!DOCTYPE html>
 <!-- <html lang="en"> -->
 <html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join</title>
+    <!-- Font für PT Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="../img/join-logo.svg" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Join</title>
-  <!-- Font für PT Sans -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/x-icon" href="../img/join-logo.svg" />
+    <link rel="stylesheet" href="../css/add-task-layout.css" />
+    <link rel="stylesheet" href="../css/add-task-shared-styles.css" />
+    <link rel="stylesheet" href="../css/subtasks-section.css" />
+    <link rel="stylesheet" href="../css/task-dropdown-sections.css" />
 
+    <link rel="stylesheet" href="../css/task-card.css" />
+    <link rel="stylesheet" href="../css/board-layout.css" />
 
-  <link rel="stylesheet" href="../css/add-task-layout.css" />
-  <link rel="stylesheet" href="../css/add-task-shared-styles.css" />
-  <link rel="stylesheet" href="../css/subtasks-section.css" />
-  <link rel="stylesheet" href="../css/task-dropdown-sections.css" />
+    <link rel="stylesheet" href="../css/edit-task-overlay.css" />
+    <link rel="stylesheet" href="../css/task-details-overlay.css" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/sidebar.css" />
+    <link rel="stylesheet" href="../css/responsive.task-overlay.css" />
+    <link rel="stylesheet" href="../css/responsive.board.css" />
 
-  <link rel="stylesheet" href="../css/task-card.css" />
-  <link rel="stylesheet" href="../css/board-layout.css" />
+    <script src="../js/database.js"></script>
 
-  <link rel="stylesheet" href="../css/edit-task-overlay.css" />
-  <link rel="stylesheet" href="../css/task-details-overlay.css" />
-  <link rel="stylesheet" href="../style.css" />
-  <link rel="stylesheet" href="../css/header.css" />
-  <link rel="stylesheet" href="../css/sidebar.css" />
-  <link rel="stylesheet" href="../css/responsive.task-overlay.css" />
-  <link rel="stylesheet" href="../css/responsive.board.css" />
+    <script src="../js/templates.add-task.js"></script>
+    <script src="../js/add-task-contacts.js"></script>
+    <script src="../js/add-task-handler.js"></script>
+    <script src="../js/task-init.js"></script>
+    <script src="../js/task-utils.js"></script>
 
+    <script src="../script.js" defer></script>
+    <script src="../js/templates.board.js"></script>
+    <script src="../js/board-main.js"></script>
+    <script src="../js/board-task-overlay.js"></script>
+    <script src="../js/board-task-update.js"></script>
+    <script src="../js/board-task-render.js"></script>
+    <script src="../js/board-task-transfer.js"></script>
+    <script src="../js/board-drag-drop.js"></script>
 
-  <script src="../js/database.js"></script>
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/header.js"></script>
+  </head>
 
-  <script src="../js/templates.add-task.js"></script>
-  <script src="../js/add-task-contacts.js"></script>
-  <script src="../js/add-task-handler.js"></script>
-  <script src="../js/task-init.js"></script>
-  <script src="../js/task-utils.js"></script>
+  <body onload="boardOnLoad()" onresize="checkIfMobileLayout()">
+    <div class="spinner-overlay">
+      <div class="spinner"></div>
+    </div>
 
-  <script src="../script.js" defer></script>
-  <script src="../js/templates.board.js"></script>
-  <script src="../js/board-main.js"></script>
-  <script src="../js/board-task-overlay.js"></script>
-  <script src="../js/board-task-update.js"></script>
-  <script src="../js/board-task-render.js"></script>
-  <script src="../js/board-task-transfer.js"></script>
-  <script src="../js/board-drag-drop.js"></script>
+    <div id="warningOverlay" class="warning-overlay hidden" onclick="hideWarningOverlay()">
+      <div class="warning-dialog" id="warningDialog"></div>
+    </div>
 
-  <script src="https://www.w3schools.com/lib/w3.js"></script>
-  <script src="../js/sidebar.js"></script>
-  <script src="../js/header.js"></script>
-</head>
+    <div style="display: none" id="createTaskInBoardOverlay" onclick="closeTaskOverlay()"></div>
 
-<body onload="boardOnLoad()" onresize="checkIfMobileLayout()">
-
-  <div class="spinner-overlay">
-    <div class="spinner"></div>
-  </div>
-
-  <div style="display: none;" id="createTaskInBoardOverlay" onclick="closeTaskOverlay()">
-  </div>
-
-  <div onclick="closeTaskInfoOverlay()" id="taskInfoOverlay">
-  </div>
+    <div onclick="closeTaskInfoOverlay()" id="taskInfoOverlay"></div>
 
     <header w3-include-html="../templates/header.html" id="headerContainer"></header>
     <main class="main">
@@ -71,72 +69,94 @@
         <div class="board">
           <div class="board-upper-line">
             <div class="mobile-title-and-btn">
-            <p class="board-title">Board</p>
-            <img onclick="openTaskOverlay(0)" onmouseover="toggleMobileTaskAddBtn(event)"
-              onmouseout="toggleMobileTaskAddBtn(event)" class="mobile-add-task-btn" id="mobileAddTaskBtn"
-              src="../img/mobile_add_task_btn.png" alt="add task">
-          </div>
-          <div class="add-task-buttons-wrapper">
-            <div class="search-container">
-              <input oninput="searchTasks()" onblur="bluredSearchContainer()" onfocus="focusedSearchContainer()"
-                type="text" class="search-tasks-input" id="searchTasksInput" placeholder="Search..." />
-              <div class="search-loop">
-                <div class="vertical-bar"></div>
-                <img class="search-loop-img" src="../img/search.png" alt="Search Loop Image" class="loop-image" />
+              <p class="board-title">Board</p>
+              <img
+                onclick="openTaskOverlay(0)"
+                onmouseover="toggleMobileTaskAddBtn(event)"
+                onmouseout="toggleMobileTaskAddBtn(event)"
+                class="mobile-add-task-btn"
+                id="mobileAddTaskBtn"
+                src="../img/mobile_add_task_btn.png"
+                alt="add task"
+              />
+            </div>
+            <div class="add-task-buttons-wrapper">
+              <div class="search-container">
+                <input
+                  oninput="searchTasks()"
+                  onblur="bluredSearchContainer()"
+                  onfocus="focusedSearchContainer()"
+                  type="text"
+                  class="search-tasks-input"
+                  id="searchTasksInput"
+                  placeholder="Search..."
+                />
+                <div class="search-loop">
+                  <div class="vertical-bar"></div>
+                  <img class="search-loop-img" src="../img/search.png" alt="Search Loop Image" class="loop-image" />
+                </div>
               </div>
-            </div>
-            <button onclick="openTaskOverlay(0)" class="add-task-button">
-              <p class="add-task-button-text">Add Task</p>
-              <img src="../img/add-white.png" alt="add" />
-            </button>
-          </div>
-        </div>
-        <div style="display: none;" id="emptyBoardMessage" class="empty-board">
-          <span>No tasks found</span>
-        </div>
-        <div class="board-all-tasks-section">
-          <div class="board-section-column">
-            <div class="board-column-control">
-              <p class="board-section-title">To do</p>
-              <img onclick="openTaskOverlay(0)" onmouseover="hoveredAddTaskIcon(0)" onmouseout="normalAddTaskIcon(0)"
-                class="new-board-task" src="../img/add_task_in_board.png" alt="" />
-            </div>
-            <div class="tasks-container" id="tasksContainer-0" ondragover="allowDrop(event)"
-              ondrop="moveElementTo(event, this)">
+              <button onclick="openTaskOverlay(0)" class="add-task-button">
+                <p class="add-task-button-text">Add Task</p>
+                <img src="../img/add-white.png" alt="add" />
+              </button>
             </div>
           </div>
-          <div class="board-section-column">
-            <div class="board-column-control">
-              <p class="board-section-title">In progress</p>
-              <img onclick="openTaskOverlay(1)" onmouseover="hoveredAddTaskIcon(1)" onmouseout="normalAddTaskIcon(1)"
-                class="new-board-task" src="../img/add_task_in_board.png" alt="" />
+          <div style="display: none" id="emptyBoardMessage" class="empty-board">
+            <span>No tasks found</span>
+          </div>
+          <div class="board-all-tasks-section">
+            <div class="board-section-column">
+              <div class="board-column-control">
+                <p class="board-section-title">To do</p>
+                <img
+                  onclick="openTaskOverlay(0)"
+                  onmouseover="hoveredAddTaskIcon(0)"
+                  onmouseout="normalAddTaskIcon(0)"
+                  class="new-board-task"
+                  src="../img/add_task_in_board.png"
+                  alt=""
+                />
+              </div>
+              <div class="tasks-container" id="tasksContainer-0" ondragover="allowDrop(event)" ondrop="moveElementTo(event, this)"></div>
             </div>
-            <div class="tasks-container" id="tasksContainer-1" ondragover="allowDrop(event)"
-              ondrop="moveElementTo(event, this)">
+            <div class="board-section-column">
+              <div class="board-column-control">
+                <p class="board-section-title">In progress</p>
+                <img
+                  onclick="openTaskOverlay(1)"
+                  onmouseover="hoveredAddTaskIcon(1)"
+                  onmouseout="normalAddTaskIcon(1)"
+                  class="new-board-task"
+                  src="../img/add_task_in_board.png"
+                  alt=""
+                />
+              </div>
+              <div class="tasks-container" id="tasksContainer-1" ondragover="allowDrop(event)" ondrop="moveElementTo(event, this)"></div>
+            </div>
+            <div class="board-section-column">
+              <div class="board-column-control">
+                <p class="board-section-title">Await feedback</p>
+                <img
+                  onclick="openTaskOverlay(2)"
+                  onmouseover="hoveredAddTaskIcon(2)"
+                  onmouseout="normalAddTaskIcon(2)"
+                  class="new-board-task"
+                  src="../img/add_task_in_board.png"
+                  alt=""
+                />
+              </div>
+              <div class="tasks-container" id="tasksContainer-2" ondragover="allowDrop(event)" ondrop="moveElementTo(event, this)"></div>
+            </div>
+            <div class="board-section-column">
+              <div class="board-column-control">
+                <p class="board-section-title">Done</p>
+              </div>
+              <div class="tasks-container" id="tasksContainer-3" ondragover="allowDrop(event)" ondrop="moveElementTo(event, this)"></div>
             </div>
           </div>
-          <div class="board-section-column">
-            <div class="board-column-control">
-              <p class="board-section-title">Await feedback</p>
-              <img onclick="openTaskOverlay(2)" onmouseover="hoveredAddTaskIcon(2)" onmouseout="normalAddTaskIcon(2)"
-                class="new-board-task" src="../img/add_task_in_board.png" alt="" />
-            </div>
-            <div class="tasks-container" id="tasksContainer-2" ondragover="allowDrop(event)"
-              ondrop="moveElementTo(event, this)"></div>
-          </div>
-          <div class="board-section-column">
-            <div class="board-column-control">
-              <p class="board-section-title">Done</p>
-            </div>
-            <div class="tasks-container" id="tasksContainer-3" ondragover="allowDrop(event)"
-              ondrop="moveElementTo(event, this)"></div>
-          </div>
-
         </div>
       </div>
-    </div>
-    </div>
-  </main>
-</body>
-
+    </main>
+  </body>
 </html>

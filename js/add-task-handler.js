@@ -28,7 +28,7 @@ async function getTaskData() {
 
 async function validateAndPostTask() {
   if (!extractTaskValues()) {
-    alert("chosen date is not in the future!");
+    showWarningOverlay(taskDateInPastTemplate())
     return;
   }
   const dataSafe = taskDataStorage();
@@ -81,6 +81,7 @@ function saveSubtasks() {
   }
   return Object.keys(subtasks).length > 0 ? subtasks : null;
 }
+
 
 function setActivePriority(button, color, id) {
   document.querySelectorAll(".priority-button").forEach((btn) => {

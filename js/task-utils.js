@@ -2,7 +2,7 @@ function restrictAddingTask() {
   const title = document.getElementById("taskTitle");
   const date = document.getElementById("taskDate");
   if (chosenContacts.length === 0 || !title.value || !date.value) {
-    alert("title, date and contacts are required!");
+    showWarningOverlay(taskMissingFieldsTemplate())
     return false;
   } else {
     return true;

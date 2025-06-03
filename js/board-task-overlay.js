@@ -115,7 +115,7 @@ function handleOkBtnEvents(event) {
 
 async function changeCurrTask() {
   if (!extractTaskValues()) {
-    alert("chosen date is not in the future!");
+    showWarningOverlay(taskDateInPastTemplate())
     return;
   }
   const newTaskData = updatedTaskDataStorage();

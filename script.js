@@ -224,3 +224,28 @@ function wrongEmailOrPasswordTemplate() {
 </div>
 `.trim();
 }
+
+function taskMissingFieldsTemplate() {
+  return `
+<div class="email-warning">
+  <p class="email-warning-title">Missing required fields:</p>
+  <ul class="email-warning-list">
+    <li>Title is required</li>
+    <li>Due date must be set</li>
+    <li>At least one contact must be assigned</li>
+  </ul>
+</div>
+`.trim();
+}
+
+function taskDateInPastTemplate() {
+  return `
+<div class="email-warning">
+  <p class="email-warning-title">Invalid date selected:</p>
+  <ul class="email-warning-list">
+    <li>The selected due date is in the past</li>
+    <li>Please choose a date in the future</li>
+  </ul>
+</div>
+`.trim();
+}
