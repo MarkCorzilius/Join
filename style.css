@@ -1,5 +1,6 @@
 body {
-  font-family: "PT Sans", sans-serif;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
   margin: 0;
   height: 100vh;
   background-color: rgb(246 247 248);

@@ -12,6 +12,11 @@ function taskTemplate(task, initialsHTML) {
                   <h3 class="task-title">${task.title}</h2>
                     <p class="task-description">${task.description}</p>
                     <div class="progress-section">
+                      <div class="progress-container">
+                       <div class="progress-bar" id="progressBar${task.id}"></div>
+                      </div>
+                      <span class="tasks-done"> ${renderSubtasksDone(task)}/${renderSubtasksAmount(task)} Subtasks</span>
+                    </div>
                     <div class="user-task-footer">
                       <div class="contacts-assigned">${initialsHTML}</div>
                       <img class='priority-png' src="${renderPriorityIcon(task)}">
