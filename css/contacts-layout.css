@@ -22,6 +22,8 @@
 .contacts-list h2 {
   padding-left: 16px;
   border-bottom: 1px solid rgb(221, 221, 221);
+  font-size: 20px;
+  font-weight: 400;
 }
 
 .contact-item {
@@ -44,8 +46,8 @@
 }
 
 .contact-initials {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   background-color: #ccc;
   color: #fff;
   border-radius: 50%;
@@ -70,7 +72,8 @@
   height: 36px;
   display: flex;
   align-items: center;
-  font-size: clamp(32px,  5vw,  48px);
+  font-size: clamp(32px, 5vw, 61px);
+  font-weight: 700;
 }
 
 .contact-header p {
@@ -80,7 +83,7 @@
   color: rgb(42, 54, 71);
   display: flex;
   align-items: center;
-  font-size: clamp(20px, 2vw, 24px);
+  font-size: clamp(20px, 2vw, 27px);
   position: relative;
 }
 
@@ -105,9 +108,9 @@
 }
 
 .contact-name {
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: 400;
   margin: 0;
-  font-weight: 600;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -116,8 +119,10 @@
 
 .contact-email {
   margin: 0;
-  font-size: 14px;
-  color: rgb(128, 189, 247);
+  padding-top: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #007CEE;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -142,12 +147,13 @@
   cursor: pointer;
   margin-bottom: 20px;
   height: 48px;
-  font-weight: bold;
-  font-size: 16px;
+  font-weight: 700;
+  font-size: 21px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  font-family: "Inter", sans-serif;
 }
 
 .add-contact-btn:hover {
@@ -185,6 +191,7 @@
   gap: 8px;
   width: 100px;
   padding-right: 24px;
+  font-family: "Inter", sans-serif;
 }
 
 .cancel-icon-wrapper {

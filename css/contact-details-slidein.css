@@ -37,6 +37,8 @@
 .detail-avatar-name {
   display: flex;
   align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .email-phone {
@@ -52,12 +54,12 @@
 }
 
 .email {
-  color: rgb(128, 189, 247);
+  color: #007CEE;
 }
 
 .contact-detail-avatar {
-  min-width: 80px;
-  min-height: 80px;
+  min-width: 120px;
+  min-height: 120px;
   border-radius: 50%;
   background-color: #ccc;
   display: flex;
@@ -65,15 +67,16 @@
   justify-content: center;
   font-weight: bold;
   color: #fff;
-  font-size: 24px;
+  font-size: 47px;
+  font-weight: 500;
   border: solid 2px white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 #detailName {
   margin: 16px 0 8px;
-  font-size: 36px;
-  font-weight: 300;
+  font-size: 47px;
+  font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -104,6 +107,7 @@
   height: 40px;
   padding: 0;
   transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
+  font-family: "Inter", sans-serif;
 }
 
 .edit-btn p,
@@ -135,6 +139,10 @@
   width: 16px;
   height: 16px;
   transition: opacity 0.3s ease-in-out;
+}
+
+.fontTwenty {
+  font-size: 20px;
 }
 
 .edit-icon.hover,
