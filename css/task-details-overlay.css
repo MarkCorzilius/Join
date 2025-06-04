@@ -76,7 +76,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    font-size: clamp(16px, 1.8vw, 24px);
+    font-size: clamp(16px, 1.8vw, 20px);
   }
 
   .prio-section {
@@ -84,17 +84,20 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    font-size: clamp(16px, 1.8vw, 24px);  }
+    font-size: clamp(16px, 1.8vw, 20px);  }
 
   .task-overlay-description {
-    font-size: clamp(16px, 2vw, 24px);
-    color: rgba(42, 54, 71, 1);
+    font-size: clamp(16px, 2vw, 20px);
+  }
+
+  .greyColor {
+    color: #2A3647;
   }
 
   .assigned-to {
     margin-bottom: 10px;
-    font-size: clamp(20px, 3vw, 26px);
-    color: rgba(42, 54, 71, 1);
+    font-size: clamp(20px, 3vw, 20px);
+    color: #2A3647;
   }
 
   .contacts-assignment {
@@ -121,8 +124,8 @@
   }
 
   .title-subtask {
-    font-size: clamp(20px, 3vw, 26px);
-    color: rgba(42, 54, 71, 1);
+    font-size: clamp(20px, 3vw, 20px);
+    color: #2A3647;
   }
 
   .task-overlay-subtasks {
