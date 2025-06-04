@@ -8,13 +8,17 @@ const CHUNK_SIZE = 10;
 // if more contacts –> show  button & amount in ( )
 
 async function renderNextChunk(contactsContainer) {
+    const container = document.getElementById('contactOptions');
   const nextChunk = defaultContacts.slice(currentIndex, currentIndex + CHUNK_SIZE);
   const btn = document.getElementById("moreContactsContainer");
   if (btn) btn.remove(); 
   if (nextChunk.length === 0) return;
-  console.log("defaultContacts: ", defaultContacts);
   for (const user of nextChunk) {
       await renderDefaultUsers(user, contactsContainer);
+      container.scrollTo({
+        top: container.scrollHeight,
+        behavior: "smooth"
+      });
     }
     currentIndex += CHUNK_SIZE;
 
@@ -25,7 +29,6 @@ async function renderNextChunk(contactsContainer) {
         btn.remove();
       }
     }
-  console.log("currentIndex: ", currentIndex);
 }
 
 function hasMoreContacts() {}

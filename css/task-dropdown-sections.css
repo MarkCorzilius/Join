@@ -219,7 +219,7 @@
 .more-contacts-button {
   width: 200px;
   height: 30px;
-  font-size: clamp(16px, 2vw, 24px);
+  font-size: clamp(14px, 2vw, 18px);
   color: white;
   background-color: rgb(42, 54, 71);
 }

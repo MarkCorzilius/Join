@@ -111,6 +111,7 @@ function ifContactsBoxOpen(event) {
   const optionsRef = document.getElementById("contactOptions");
   const isSearchOpen = searchState && searchState.style.display === "flex";
   const isOptionsOpen = optionsRef && optionsRef.style.display === "flex";
+  if (event.target.id === 'moreContactsButton') return;
   if (!isSearchOpen && !isOptionsOpen) return;
   if (!box.contains(event.target)) {
     closeContactAssignment();
