@@ -208,3 +208,22 @@
 .category-btn:hover {
   box-shadow: 0.5px -1px 1px rgba(209, 209, 209, 1);
 }
+
+.more-contacts-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.more-contacts-button {
+  width: 200px;
+  height: 30px;
+  font-size: clamp(14px, 2vw, 18px);
+  color: white;
+  background-color: rgb(42, 54, 71);
+}
+
+.more-contacts-button:hover {
+  background-color: rgb(41, 171, 226);
+}
