@@ -61,3 +61,9 @@ function getNoContactsTemplate() {
     <p class="no-contacts-exist-message">No contacts existing. Create some contacts.</p>
   `;
 }
+
+function noContactsFoundTemplate() {
+  return `
+    <p id="noContactsFoundMessage" class="no-contacts-exist-message">No contacts found.</p>
+  `;
+}

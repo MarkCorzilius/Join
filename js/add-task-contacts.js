@@ -173,14 +173,31 @@ function deleteContactFromArray(initial, bg, name) {
 }
 
 function searchForContacts() {
+  let foundCounter = 0;
   const input = document.getElementById("searchContacts").value.toLowerCase();
   const contacts = document.querySelectorAll(".option");
   for (let i = 0; i < contacts.length; i++) {
     const name = contacts[i].querySelector(".contact-name").innerText.toLowerCase();
     if (name.includes(input)) {
       contacts[i].style.display = "flex";
+      foundCounter += 1;
     } else {
       contacts[i].style.display = "none";
+    }
+  }
+  displayNoResultMessage(foundCounter);
+}
+
+function displayNoResultMessage(foundCounter) {
+  const container = document.getElementById("contactOptions");
+  const message = document.getElementById("noContactsFoundMessage");
+  if (foundCounter === 0) {
+    if (!message) {
+      container.insertAdjacentHTML("beforeend", noContactsFoundTemplate());
+    }
+  } else {
+    if (message) {
+      message.remove();
     }
   }
 }
@@ -200,7 +217,7 @@ function handleContactAssignment(closedRef, searchState, optionsRef, wrapperRef,
   searchState.style.display = "flex";
   optionsRef.style.display = "flex";
   const contactsExist = localStorage.getItem("contactsExist");
-  if (contactsExist === 'false') {
+  if (contactsExist === "false") {
     wrapperRef.style.marginBottom = "50px";
   } else {
     wrapperRef.style.marginBottom = "210px";

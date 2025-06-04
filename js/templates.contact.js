@@ -38,10 +38,10 @@ function generateContactDetails(bg, initial, name, email, phone, id) {
       </div>
     </div>
     <div class="email-phone">
-      <p>Contact Information</p>
-      <b>Email</b>
+      <p class="fontTwenty">Contact Information</p>
+      <b class="fontTwenty">Email</b>
       <p class="email" id="detailEmail">${email}</p>
-      <b>Phone</b>
+      <b class="fontTwenty">Phone</b>
       <p class="phone" id="detailPhone">${phone}</p>
     </div>
 

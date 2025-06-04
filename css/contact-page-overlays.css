@@ -261,6 +261,7 @@
   height: 40px;
   font-size: 16px;
   transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  font-family: "Inter", sans-serif;
 }
 
 .btn-cancel:after,
@@ -275,6 +276,7 @@
   border-radius: inherit;
   transition: border-color 0.3s ease-in-out;
   pointer-events: none;
+  font-family: "Inter", sans-serif;
 }
 
 .btn-cancel:hover,
@@ -303,6 +305,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: "Inter", sans-serif;
 }
 
 .btn-create-contact:hover,
@@ -338,6 +341,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: "Inter", sans-serif;
 }
 
 .btn-create-contact:hover,
