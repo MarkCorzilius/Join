@@ -180,6 +180,7 @@ async function iterateAndsaveIcon(data, sanitizedEmail, initial, bg) {
 
 async function getUpdatedContact(id) {
   const rawContacts = await getData("contacts/");
+  if (!rawContacts) return;
   const contacts = Object.values(rawContacts);
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
@@ -200,6 +201,7 @@ async function adjustChangedContactInTasks(httpMethodFunc) {
   for (const [columnKey, tasks] of Object.entries(board)) {
     for (const [taskKey, task] of Object.entries(tasks)) {
       for (const [contactKey, contact] of Object.entries(task.contacts)) {
+        if (!contact) continue;
         if (currContactData.id === contact.id) {
           const contactInfo = await getUpdatedContact(contact.id);
           await httpMethodFunc(`board/${columnKey}/${taskKey}/contacts/${contactKey}`, contactInfo);

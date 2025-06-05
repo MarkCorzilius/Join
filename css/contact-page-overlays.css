@@ -166,12 +166,13 @@
   display: flex;
   align-items: center;
   width: 100%;
+  margin-top: 18px;
 }
 
 .add-contact-inputs,
 .edit-contact-inputs {
   width: 100%;
-  color: #D1D1D1;
+  color: #d1d1d1;
 }
 
 .overlay-add-avatar,
@@ -215,9 +216,8 @@
   width: 100%;
   padding: 10px 40px 10px 10px;
   box-sizing: border-box;
-  border: 1px solid  #D1D1D1;
+  border: 1px solid #d1d1d1;
   border-radius: 6px;
-  color: #D1D1D1;
 }
 
 .input-wrapper img {
@@ -260,12 +260,15 @@
   border: 1px solid rgb(42, 54, 71);
   color: rgb(42, 54, 71);
   border-radius: 10px;
-  padding: 8px 16px;
   cursor: pointer;
   height: 40px;
   font-size: 20px;
   transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out;
   font-family: "Inter", sans-serif;
+}
+
+.btn-delete {
+  padding: 8px 16px;  
 }
 
 .btn-cancel:after,
@@ -329,7 +332,7 @@
 .overlay-buttons img {
   width: 12px;
   height: 12px;
-  margin-left: 4px;
+  margin-left: 8px;
 }
 
 .btn-create-contact,
