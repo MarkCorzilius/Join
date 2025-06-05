@@ -97,3 +97,15 @@ function passwordWarningTemplate() {
   </div>
   `.trim();
   }
+
+  function invalidNameTemplate() {
+    return `
+    <div class="email-warning">
+      <p class="email-warning-title">Invalid name provided:</p>
+      <ul class="email-warning-list">
+        <li>The name seems too short to be valid</li>
+        <li>Please enter your full, real name</li>
+      </ul>
+    </div>
+    `.trim();
+  }

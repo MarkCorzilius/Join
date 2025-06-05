@@ -26,7 +26,10 @@ function checkDotConditions(trimmed, atIndex) {
 }
 
 async function validateContactInputs(email, phone, name) {
-  if (name.length < 4) return;
+  if (name.length < 4) {
+    showWarningOverlay(invalidNameTemplate());
+    return;
+  }
   if (!isRealEmail(email)) {
     showWarningOverlay(getEmailValidationTemplate())
     return false;
