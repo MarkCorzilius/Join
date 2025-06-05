@@ -65,3 +65,12 @@ function generateToggleMobileHTML(bg, initial, name, email, phone, id) {
     </button>
   `;
 }
+
+function noContactsMessageTemplate() {
+  return `
+    <div class="no-contacts-found" id="noContactsFound">
+      <p>No contacts existing.</p> 
+      <p>You can create some.</p>
+    </div>
+  `;
+}

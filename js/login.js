@@ -60,15 +60,17 @@ async function logIn(ev) {
     return;
   }
   const contact = await searchingForAccount({ inputEmail, inputPassword });
-  if (!contact) {
-    return
-  }
+  if (!contact) return;
   showLoginTransition();
   localStorage.setItem("user", JSON.stringify({ name: contact.name, email: contact.email, id: contact.id }));
 }
 
 async function searchingForAccount({ inputEmail, inputPassword }) {
   const contacts = await getData("ourUsers/");
+  if (!contacts) {
+    showWarningOverlay(wrongEmailOrPasswordTemplate())
+    return;
+  }
   for (const contact of Object.values(contacts)) {
     if (contact.email === inputEmail && contact.password === inputPassword) {
       return contact;
