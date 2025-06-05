@@ -1,26 +1,39 @@
 window.addEventListener("DOMContentLoaded", () => {
-  applyFadeEffectsToLoginSections();
-  disableSplashInteraction();
+  animateSplash();
 });
 
-function applyFadeEffectsToLoginSections() {
-  const header = document.querySelector(".log-in-header");
-  const main = document.querySelector(".log-in-main");
-  const footer = document.querySelector(".log-in-footer");
+function animateSplash() {
+  let logo = document.getElementById("mainLogo");
+  let mobileLogo = document.getElementById("mobileLogo");
+  let splash = document.querySelector(".splash-logo-container");
 
-  if (header && main && footer) {
-    header.classList.add("fade-header");
-    main.classList.add("fade-main");
-    footer.classList.add("fade-footer");
-  }
-}
+  if (!splash || !logo || !mobileLogo) return;
 
-function disableSplashInteraction() {
-  const splash = document.querySelector(".splash-logo-container");
+  let isMobile = window.innerWidth <= 1000;
 
-  if (splash) {
-    splash.style.pointerEvents = "none";
-    splash.style.zIndex = "0";
+  if (isMobile) {
+    mobileLogo.style.display = "flex";
+    logo.style.display = "flex";
+    logo.classList.add("mobile-animate");
+
+    mobileLogo.classList.add("animate-logo");
+
+    setTimeout(() => {
+      mobileLogo.classList.add("fade-out");
+      logo.classList.add("fade-in");
+    }, 600);
+
+    setTimeout(() => {
+      splash.style.backgroundColor = "transparent";
+      splash.style.pointerEvents = "none";
+      mobileLogo.classList.add("mobile-logo-hidden");
+    }, 1300);
+  } else {
+    logo.classList.add("animate-logo");
+    setTimeout(() => {
+      splash.style.backgroundColor = "transparent";
+      splash.style.pointerEvents = "none";
+    }, 1300);
   }
 }
 
@@ -48,7 +61,8 @@ async function logIn(ev) {
   }
   const contact = await searchingForAccount({ inputEmail, inputPassword });
   if (!contact) {
-    return
+    document.getElementById('loginPassword').value = '';
+    return;
   }
   showLoginTransition();
   localStorage.setItem("user", JSON.stringify({ name: contact.name, email: contact.email, id: contact.id }));
@@ -56,6 +70,10 @@ async function logIn(ev) {
 
 async function searchingForAccount({ inputEmail, inputPassword }) {
   const contacts = await getData("ourUsers/");
+  if (!contacts) {
+    showWarningOverlay(wrongEmailOrPasswordTemplate())
+    return;
+  }
   for (const contact of Object.values(contacts)) {
     if (contact.email === inputEmail && contact.password === inputPassword) {
       return contact;

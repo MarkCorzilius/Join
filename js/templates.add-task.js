@@ -67,3 +67,11 @@ function noContactsFoundTemplate() {
     <p id="noContactsFoundMessage" class="no-contacts-exist-message">No contacts found.</p>
   `;
 }
+
+function moreContactsBtnTemplate() {
+  return `
+    <div class="more-contacts-container" id="moreContactsContainer">
+      <button onclick="renderNextChunk(document.getElementById('contactOptions'))" class="more-contacts-button" id="moreContactsButton">More Contacts</button>
+    </div>
+  `;
+}

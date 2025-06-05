@@ -7,13 +7,31 @@ const CHUNK_SIZE = 10;
 // if no contacts –> show message: No contacts existing
 // if more contacts –> show  button & amount in ( )
 
-function renderNextChunk(contactsContainer) {
+async function renderNextChunk(contactsContainer) {
+    const container = document.getElementById('contactOptions');
   const nextChunk = defaultContacts.slice(currentIndex, currentIndex + CHUNK_SIZE);
+  const btn = document.getElementById("moreContactsContainer");
+  if (btn) btn.remove(); 
+  if (nextChunk.length === 0) return;
   for (const user of nextChunk) {
-    renderDefaultUsers(user, contactsContainer);
-  }
-  currentIndex += CHUNK_SIZE;
+      await renderDefaultUsers(user, contactsContainer);
+      container.scrollTo({
+        top: container.scrollHeight,
+        behavior: "smooth"
+      });
+    }
+    currentIndex += CHUNK_SIZE;
+
+    if (currentIndex < defaultContacts.length) {
+      contactsContainer.insertAdjacentHTML("beforeend", moreContactsBtnTemplate());
+    } else {
+      if (btn) {
+        btn.remove();
+      }
+    }
 }
+
+function hasMoreContacts() {}
 
 async function fetchContacts(currentContainer) {
   let contactsContainer = document.getElementById(currentContainer);

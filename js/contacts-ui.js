@@ -42,10 +42,19 @@ async function renderContacts() {
   }
 }
 
+function showNoContactsMessage() {
+  const container = document.querySelector('.contacts-list');
+  container.innerHTML = noContactsMessageTemplate();
+}
+
 async function displayContactsByAlphabet() {
   contactsArray = [];
   // saveBasicContacts();
   await saveContactsToArray();
+  if (contactsArray.length === 0) {
+    showNoContactsMessage();
+    return;
+  }
   contactsArray.sort((a, b) => a.displayName.localeCompare(b.displayName));
   const container = document.querySelector(".contacts-list");
   if (!container) return;

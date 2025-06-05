@@ -120,3 +120,24 @@
   font-size: 20px;
   margin-top: 32px;
 }
+
+.created-task-banner {
+  height: 74px;
+  width: 326px;
+  z-index: 999;
+  position: fixed;
+  bottom: 15vh;
+  left: 50%;
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.9s ease, transform 0.9s ease;
+  transform: translateX(100%);
+}
+
+.created-task-banner.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%);
+}

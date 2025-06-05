@@ -35,6 +35,7 @@ function initializeSummaryUI() {
   updateGreeting("logedInGreeting", "logedInUser");
   updateGreeting("greetingUser", "theUser");
   markCurrentPage();
+  adjustSideBar();
   ifGuestShowDropdownHelp();
   adjustInitialAfterLogin();
 
@@ -220,7 +221,10 @@ async function findOverallTasksAmount() {
   const container = document.getElementById("tasksInBoard");
   let tasksCounter = 0;
   const board = await getData("board/");
-  if (!board) return 0;
+  if (!board) {
+    container.innerText = tasksCounter;
+    return;
+  }
   for (const [columnKey, tasks] of Object.entries(board)) {
     for (const taskKey of Object.entries(tasks)) {
       tasksCounter += 1;

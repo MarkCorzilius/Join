@@ -10,10 +10,10 @@
 
     <link rel="icon" type="image/x-icon" href="./img/join-logo.svg" />
 
+    <link rel="stylesheet" href="./css/login.css" />
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./css/register.css" />
     <link rel="stylesheet" href="./css/login_responsive.css" />
-    <link rel="stylesheet" href="./css/login.css" />
 
     <script src="./js/templates.warnings.js"></script>
     <script src="./script.js"></script>
@@ -36,13 +36,12 @@
     <header class="log-in-header">
       <div class="splash-logo-container">
         <img class="logo-image" id="mainLogo" src="./img/join-logo.svg" alt="Join Logo" />
+        <img class="mobile-logo-image" id="mobileLogo" src="./img/join-logo-white.svg" alt="Join Mobile Logo" />
       </div>
 
-      <div class="header-content">
-        <div class="signup-container">
-          <span>Not a Join user?</span>
-          <a href="./templates/register.html">Sign up</a>
-        </div>
+      <div class="signup-container">
+        <span>Not a Join user?</span>
+        <a href="./templates/register.html">Sign up</a>
       </div>
     </header>
 
@@ -50,31 +49,31 @@
       <div class="log-in-box">
         <h2>Log in</h2>
         <form onsubmit="addUser(); return false;">
-          <div class="input-field">
-            <label for="loginEmail">Email</label>
-            <div class="login-input-wrapper">
-              <input type="email" id="loginEmail" placeholder="Email" autocomplete="username" required />
-              <img class="login-icons" src="./img/mail.png" alt="mail png" />
+          <div class="inputs">
+            <div class="input-field">
+              <div class="login-input-wrapper">
+                <input type="email" id="loginEmail" placeholder="Email" autocomplete="username" required />
+                <img class="login-icons" src="./img/mail.png" alt="mail png" />
+              </div>
             </div>
-          </div>
-          <div class="input-field">
-            <label for="loginPassword">Password</label>
-            <div class="login-input-wrapper">
-              <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password" required />
-              <img
-                onclick="togglePasswordVisibility('loginPassword', this, './')"
-                class="login-icons"
-                src="./img/password_not_visible.png"
-                alt="toggle visibility"
-              />
+            <div class="input-field">
+              <div class="login-input-wrapper">
+                <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password" required />
+                <img
+                  onclick="togglePasswordVisibility('loginPassword', this, './')"
+                  class="login-icons"
+                  src="./img/password_not_visible.png"
+                  alt="toggle visibility"
+                />
+              </div>
             </div>
           </div>
           <p class="wrong-data-alert" id="wrongDataAlert">Check your email and password</p>
-          <div class="buttons">
-            <button onclick="logIn(event)" type="submit" class="log-in-btn">Log In</button>
-            <button type="button" class="guest-btn" onclick="guestLogin()">Guest Log In</button>
-          </div>
         </form>
+        <div class="buttons">
+          <button onclick="logIn(event)" type="submit" class="log-in-btn">Log in</button>
+          <button type="button" class="guest-btn" onclick="guestLogin()">Guest Log in</button>
+        </div>
       </div>
     </main>
 

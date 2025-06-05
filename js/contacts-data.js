@@ -129,6 +129,7 @@ function inputsFilledOut({ nameValue, emailValue, phoneValue }) {
 async function saveContactsToArray() {
   const response = await fetch(BASE_URL + "contacts/" + ".json");
   const data = await response.json();
+  if (!data) return;
   for (const contact of Object.values(data)) {
     if (user.email !== contact.email) {
       const contactCopy = { ...contact };

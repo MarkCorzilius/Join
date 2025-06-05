@@ -34,7 +34,7 @@ async function validateAndPostTask() {
   const dataSafe = taskDataStorage();
   if (!restrictAddingTask()) return;
   await handlePostingTask(dataSafe);
-  window.location.href = "../templates/board.html";
+  showTaskSuccessBanner();
 }
 
 async function handlePostingTask(dataSafe) {
@@ -306,4 +306,15 @@ function postSubtaskOnEnter(event, subtaskId) {
   } else {
     deleteSubtaskEditState();
   }
+}
+
+function showTaskSuccessBanner() {
+    const banner = document.getElementById('createdTaskBanner');
+    banner.classList.add('visible');
+    new Promise((resolve) => {
+        setTimeout(() => {
+            banner.classList.remove('visible');
+            resolve();
+        }, 1500);
+    })
 }

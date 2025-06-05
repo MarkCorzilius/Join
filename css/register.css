@@ -46,22 +46,6 @@
   text-align: left;
 }
 
-.input-field label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: 500;
-  font-size: 14px;
-}
-
-.input-field input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 14px;
-  box-sizing: border-box;
-}
-
 /* Sign-up-Button */
 .signup-btn {
   background-color: #2a3647;
@@ -161,7 +145,7 @@
   pointer-events: none;
   opacity: 0;
   transform: translateX(100%);
-  transition: opacity 0.75s ease, transform 0.75s ease;
+  transition: opacity 0.9s ease, transform 0.9s ease;
 }
 
 .register-banner.visible {

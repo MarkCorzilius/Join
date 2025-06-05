@@ -42,7 +42,7 @@ window.onresize = function handlePageRedirect() {
 async function createTaskInBoardFireBase() {
   const column = checkTargetColumn();
   if (!extractTaskValues()) {
-    alert("chosen date is not in the future!");
+    showWarningOverlay(taskMissingFieldsTemplate());
     return;
   }
   const dataSafe = taskDataStorage();
@@ -50,6 +50,7 @@ async function createTaskInBoardFireBase() {
     return;
   } else {
     await handleCreatingTask(column, dataSafe);
+    showTaskSuccessBanner();
     chosenContacts = [];
   }
 }

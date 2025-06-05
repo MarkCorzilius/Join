@@ -38,10 +38,10 @@ function generateContactDetails(bg, initial, name, email, phone, id) {
       </div>
     </div>
     <div class="email-phone">
-      <p>Contact Information</p>
-      <b>Email</b>
+      <p class="fontTwenty">Contact Information</p>
+      <b class="fontTwenty">Email</b>
       <p class="email" id="detailEmail">${email}</p>
-      <b>Phone</b>
+      <b class="fontTwenty">Phone</b>
       <p class="phone" id="detailPhone">${phone}</p>
     </div>
 
@@ -63,5 +63,14 @@ function generateToggleMobileHTML(bg, initial, name, email, phone, id) {
     <button onclick="deleteContact(${id})">
       <img class="delete" src="../img/delete_task.png" alt="Delete">
     </button>
+  `;
+}
+
+function noContactsMessageTemplate() {
+  return `
+    <div class="no-contacts-found" id="noContactsFound">
+      <p>No contacts existing.</p> 
+      <p>You can create some.</p>
+    </div>
   `;
 }
