@@ -2,6 +2,7 @@
     background-color: rgb(246, 247, 248);
 }
 
+
 .log-in-header {
     display: flex;
     justify-content: flex-end;
@@ -13,7 +14,7 @@
     height: 150px;
 }
 
-/* === Splash Container === */
+
 .splash-logo-container {
     position: fixed;
     inset: 0;
@@ -25,7 +26,7 @@
     transition: background-color 0.8s ease-in-out, opacity 0.6s ease-in-out;
 }
 
-/* === Mobile Logo (weiß) === */
+
 .mobile-logo-image {
     display: none;
     position: absolute;
@@ -39,7 +40,7 @@
     transition: opacity 0.5s ease-in-out;
 }
 
-/* === Desktop Logo (dunkel) === */
+
 .logo-image {
     position: absolute;
     top: 50%;
@@ -52,7 +53,7 @@
     transition: opacity 0.5s ease-in-out;
 }
 
-/* === Animation nach oben fahren === */
+
 @keyframes logoFlyUp {
     0% {
         top: 50%;
@@ -67,13 +68,14 @@
     }
 }
 
+
 .animate-logo {
     animation: logoFlyUp 0.8s ease-in-out forwards;
     position: fixed;
     z-index: 100;
 }
 
-/* === Mobile dunkles Logo nach oben fahren + start unsichtbar === */
+
 .logo-image.mobile-animate {
     animation: logoFlyUp 0.8s ease-in-out forwards;
     position: fixed;
@@ -81,7 +83,7 @@
     opacity: 0;
 }
 
-/* === Cross-Fade Animation === */
+
 @keyframes logoFadeSwap {
     from {
         opacity: 1;
@@ -92,21 +94,24 @@
     }
 }
 
+
 .mobile-logo-image.fade-out {
     animation: logoFadeSwap 0.5s ease-in-out forwards;
 }
+
 
 .logo-image.fade-in {
     opacity: 1;
     transition: opacity 0.4s ease-in-out;
 }
 
-/* === Finales Verstecken des weißen Logos === */
+
 .mobile-logo-hidden {
     display: none !important;
     opacity: 0 !important;
     pointer-events: none !important;
 }
+
 
 .signup-container {
     display: flex;
@@ -115,6 +120,7 @@
     gap: 35px;
     align-items: center;
 }
+
 
 .signup-container span {
     width: 153px;
@@ -142,11 +148,13 @@
     align-items: center;
 }
 
+
 .signup-container a:hover {
     background-color: rgb(41, 171, 226);
     color: white;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
 }
+
 
 .fade-header {
     opacity: 0;
@@ -154,17 +162,20 @@
     animation-delay: 0.4s;
 }
 
+
 .fade-main {
     opacity: 0;
     animation: pageFadeIn 1s ease-in-out forwards;
     animation-delay: 0.5s;
 }
 
+
 .fade-footer {
     opacity: 0;
     animation: pageFadeIn 1s ease-in-out forwards;
     animation-delay: 0.6s;
 }
+
 
 @keyframes pageFadeIn {
     0% {
@@ -180,12 +191,14 @@
     }
 }
 
+
 .log-in-main {
     display: flex;
     justify-content: center;
     align-items: center;
     height: calc(100vh - 270px);
 }
+
 
 .log-in-box {
     display: flex;
@@ -202,6 +215,7 @@
     height: 353px;
 }
 
+
 .log-in-box h2 {
     font-weight: 700;
     font-size: 61px;
@@ -211,6 +225,7 @@
     color: #2a3647;
     position: relative;
 }
+
 
 .log-in-box h2::after {
     content: "";
@@ -224,11 +239,13 @@
     border-radius: 2px;
 }
 
+
 .log-in-box form {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
+
 
 .inputs {
     display: flex;
@@ -236,10 +253,6 @@
     gap: 20px;
 }
 
-.input-field {
-    /* margin-bottom: 15px; */
-    /* text-align: left; */
-}
 
 .input-field input {
     width: 100%;
@@ -252,6 +265,7 @@
     box-sizing: border-box;
 }
 
+
 .buttons {
     margin-top: 32px;
     width: 322px;
@@ -260,6 +274,7 @@
     gap: 35px;
     justify-content: center;
 }
+
 
 .log-in-btn {
     background-color: rgb(42, 54, 71);
@@ -273,11 +288,13 @@
     transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
+
 .log-in-btn:hover {
     background-color: rgb(41, 171, 226);
     color: white;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
 }
+
 
 .guest-btn {
     position: relative;
@@ -292,6 +309,7 @@
     font-weight: bold;
 }
 
+
 .guest-btn:after {
     content: "";
     position: absolute;
@@ -304,6 +322,7 @@
     transition: border-color 0.3s ease-in-out;
     pointer-events: none;
 }
+
 
 .guest-btn:hover {
     border-color: rgb(41, 171, 226);
@@ -341,11 +360,13 @@
     font-weight: bold;
 }
 
+
 .wrong-data-alert {
     display: none;
     font-size: 12px;
     color: rgb(255 129 144);
 }
+
 
 #loginPassword {
     text-indent: 0 !important;
