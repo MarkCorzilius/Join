@@ -145,7 +145,7 @@
   pointer-events: none;
   opacity: 0;
   transform: translateX(100%);
-  transition: opacity 0.75s ease, transform 0.75s ease;
+  transition: opacity 0.9s ease, transform 0.9s ease;
 }
 
 .register-banner.visible {

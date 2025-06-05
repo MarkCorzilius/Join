@@ -215,3 +215,5 @@ function showNoTasksMessage(foundCount) {
     message.style.display = "none";
   }
 }
+
+

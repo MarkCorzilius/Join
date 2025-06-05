@@ -50,6 +50,7 @@ async function createTaskInBoardFireBase() {
     return;
   } else {
     await handleCreatingTask(column, dataSafe);
+    showTaskSuccessBanner();
     chosenContacts = [];
   }
 }

@@ -205,11 +205,21 @@
     display: flex;
     justify-content: flex-end;
   }
+
+  .created-task-banner {
+    height: 64px;
+    width: 280px;
+  }
 }
 
 @media (max-width: 450px) {
   .footer-buttons-wrapper {
     bottom: 80px;
+  }
+
+  .created-task-banner {
+    height: 64px;
+    width: 280px;
   }
 }
 
@@ -265,6 +275,11 @@
   .main {
     display: block;
   }
+
+  .created-task-banner {
+    height: 56px;
+    width: 240px;
+  }
 }
 
 @media (max-width: 400px) {
@@ -282,5 +297,10 @@
 
   .no-contacts-exist-message {
     font-size: 14px;
+  }
+
+  .created-task-banner {
+    height: 48px;
+    width: 200px;
   }
 }
