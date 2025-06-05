@@ -47,11 +47,11 @@ function taskDetailTemplate(task, user) {
         <span class="task-overlay-description">${task.description}</span>
         <div class="prio-and-date-section">
         <div class="date-section">
-          <span>Due date:</span>
+          <span class="greyColor">Due date:</span>
           <p>${formatDate(task.date)}</p>
         </div>
         <div class="prio-section">
-          <span>Priority:</span>
+          <span class="greyColor">Priority:</span>
           <div class="task-prio">
             <p>${capitalize(task.priority)}</p>
             <img src="${renderPriorityIcon(task)}" alt="">

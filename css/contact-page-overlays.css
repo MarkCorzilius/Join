@@ -69,18 +69,20 @@
 }
 
 .add-contact-join-logo {
-  width: 48px;
-  height: 48px;
+  width: 55px;
+  height: 66px;
 }
 
 .overlay-left h2 {
   margin: 4px 0;
-  font-size: 36px;
+  font-size: 60px;
+  font-weight: 700;
 }
 
 .overlay-left p {
   margin: 0;
-  font-size: 16px;
+  font-size: 26px;
+  font-weight: 400;
   padding: 0 0 8px 0;
   position: relative;
 }
@@ -169,6 +171,7 @@
 .add-contact-inputs,
 .edit-contact-inputs {
   width: 100%;
+  color: #D1D1D1;
 }
 
 .overlay-add-avatar,
@@ -212,8 +215,9 @@
   width: 100%;
   padding: 10px 40px 10px 10px;
   box-sizing: border-box;
-  border: 1px solid rgb(232, 232, 232);
+  border: 1px solid  #D1D1D1;
   border-radius: 6px;
+  color: #D1D1D1;
 }
 
 .input-wrapper img {
@@ -259,7 +263,7 @@
   padding: 8px 16px;
   cursor: pointer;
   height: 40px;
-  font-size: 16px;
+  font-size: 20px;
   transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out;
   font-family: "Inter", sans-serif;
 }
@@ -300,7 +304,8 @@
   padding: 8px 16px;
   cursor: pointer;
   height: 40px;
-  font-size: 16px;
+  font-size: 21px;
+  font-weight: 700;
   transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   display: flex;
   align-items: center;
