@@ -8,9 +8,9 @@
     align-items: center;
     position: relative;
     z-index: 2;
-    padding: 20px 80px;
+    margin-right: 50px;
     overflow: hidden;
-    height: 80px;
+    height: 150px;
 }
 
 /* === Splash Container === */
@@ -184,7 +184,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 240px);
+    height: calc(100vh - 270px);
 }
 
 .log-in-box {
@@ -198,8 +198,8 @@
     gap: 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 652px;
-    height: 449px;
+    width: 422px;
+    height: 353px;
 }
 
 .log-in-box h2 {
@@ -227,8 +227,7 @@
 .log-in-box form {
     display: flex;
     flex-direction: column;
-    width: 422px;
-    height: 152px;
+    width: 100%;
 }
 
 .inputs {
@@ -238,8 +237,8 @@
 }
 
 .input-field {
-    margin-bottom: 15px;
-    text-align: left;
+    /* margin-bottom: 15px; */
+    /* text-align: left; */
 }
 
 .input-field input {
@@ -323,7 +322,6 @@
     justify-content: center;
     align-items: center;
     height: 120px;
-    background-color: aqua;
 }
 
 

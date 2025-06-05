@@ -17,14 +17,45 @@
     }
 
     .log-in-box {
-        margin: 0px 40px;
+        /* margin: 0px 40px; */
     }
 }
 
 
 @media (max-width: 800px) {
+    .log-in-header {
+        height: 100px;
+        margin: 0;
+    }
+
     .log-in-main {
-        height: calc(100vh - 210px);
+        height: calc(100vh - 160px);
+    }
+
+    .log-in-box {
+        padding: 48px 80px;
+        margin: 0px 16px;
+        height: 400px;
+    }
+
+    .mobile-logo-image,
+    .logo-image {
+        width: 64px;
+        height: 78px;
+    }
+
+    @keyframes logoFlyUp {
+        0% {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(2);
+        }
+
+        100% {
+            top: 20px;
+            left: 20px;
+            transform: translate(0, 0) scale(1);
+        }
     }
 
     .signup-container {
@@ -55,37 +86,118 @@
         margin: 30px 20px 0;
     } */
 
-    .log-in-box h2 {
+    /* .log-in-box h2 {
         font-size: 32px;
-    }
+    } */
 
     .buttons {
         display: flex;
         flex-direction: column;
         align-items: center;
         margin-top: 20px;
+
+
+        width: 180px;
+        height: 132px;
+        gap: 21px;
+        margin: 0;
+
     }
 
     .log-in-btn {
-        margin: 0 0 20px;
-        padding: 8px 0;
-        font-size: 14px;
-        width: 150px;
+        /* margin: 0 0 20px; */
+        /* padding: 8px 0; */
+        /* font-size: 14px; */
+        /* width: 150px; */
     }
 
     .guest-btn {
-        margin-left: 0;
-        padding: 8px 0;
-        font-size: 14px;
-        width: 150px;
+        /* margin-left: 0; */
+        /* padding: 8px 0; */
+        /* font-size: 14px; */
+        /* width: 150px; */
+    }
+
+    .log-in-btn,
+    .guest-btn {
+        width: 100%;
+        height: 51px;
+        margin: 0;
     }
 
     .log-in-footer {
         height: 60px;
-        margin-top: 30px
+        /* margin-top: 30px */
     }
 
     /* .signup-container {
         margin-top: 40px;
     } */
+
+
+}
+
+
+@media (max-width: 600px) {
+        .log-in-box {
+        padding: 48px 60px;
+    }
+}
+
+
+@media (max-width: 450px) {
+    .log-in-header {
+        height: 80px;
+        /* margin: 0; */
+    }
+
+    .log-in-main {
+        height: calc(100vh - 140px);
+    }
+
+    .log-in-box {
+        width: 90%;
+        height: 400px;
+        padding: 32px 0;
+        gap: 32px;
+        /* margin: 0px 12px; */
+    }
+
+    .log-in-box h2 {
+        font-size: 47px;
+        margin: 0;
+    }
+
+    .log-in-box form {
+        width: 100%;
+        /* padding: 0 16px; */
+    }
+
+    .inputs {
+        padding: 0 16px;
+        gap: 16px;
+    }
+
+    /* .buttons {
+        width: 180px;
+        height: 132px;
+        gap: 21px;
+        margin: 0;
+    }
+
+    .log-in-btn,
+    .guest-btn {
+        width: 100%;
+        height: 51px;
+        margin: 0;
+    } */
+
+    .signup-container {
+        height: 49px;
+        bottom: 90px;
+    }
+
+    .log-in-footer {
+        margin-top: 0;
+    }
 }
