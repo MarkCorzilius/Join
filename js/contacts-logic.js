@@ -31,7 +31,6 @@ async function deleteContact(id) {
 
 async function deleteContactForEdit() {
   if (!currentContact) return;
-  if (!confirm("MÃ¶chten Sie diesen Kontakt wirklich lÃ¶schen?")) return;
   const contacts = await getData("contacts/");
   for (const [contactKey, contact] of Object.entries(contacts)) {
     if (contact.id === currentContact.id) {

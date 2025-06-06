@@ -244,3 +244,11 @@ function handleEditBtnClick(overlay, boardAddTask) {
   boardAddTask.innerHTML = "";
   overlay.innerHTML = editTaskTemplate();
 }
+
+function closeSubtaskInsert(event) {
+  const input = document.getElementById('subtaskInput'); 
+  if (event.target.id !== 'subtaskInput') {
+    input.value = "";
+    showMainBtn();
+  }
+}

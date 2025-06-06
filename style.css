@@ -33,7 +33,7 @@ li {
 }
 
 .content {
-  height: calc(100vh - 80px);
+  height: calc(100vh - 100px);
   margin-top: 80px;
   box-sizing: border-box;
   overflow: auto !important;
@@ -289,4 +289,8 @@ input[type="date"]:valid {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+.grey-txt {
+  color: #d1d1d1;
 }
