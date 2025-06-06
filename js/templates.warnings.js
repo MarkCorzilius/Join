@@ -1,4 +1,4 @@
-function passwordWarningTemplate() {
+﻿function passwordWarningTemplate() {
   return `
   <div class="email-warning">
     <p class="email-warning-title">Password requirements:</p>

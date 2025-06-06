@@ -1,4 +1,4 @@
-function hideContactDetailView() {
+﻿function hideContactDetailView() {
   let detailView = document.getElementById("contactDetailView");
   if (detailView) {
     detailView.classList.add("d-none");
@@ -198,7 +198,6 @@ function closeEditContactOverlay() {
 async function overlayForContactSuccesfullyCreated() {
   const toast = document.getElementById("contactSuccesfullyCreated");
   toast.classList.add('visible');
-
   await new Promise((resolve) => {
     setTimeout(() => {
       toast.classList.remove('visible');

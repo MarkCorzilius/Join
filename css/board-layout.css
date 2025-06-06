@@ -1,7 +1,8 @@
-body {
+﻿body {
   position: relative;
   box-sizing: border-box;
 }
+
 
 .search-container {
   display: flex;
@@ -15,6 +16,7 @@ body {
   position: relative;
 }
 
+
 .search-loop {
   align-items: center;
   justify-content: center;
@@ -23,11 +25,13 @@ body {
   margin-right: 20px;
 }
 
+
 .vertical-bar {
   height: 31px;
   width: 1px;
   background-color: black;
 }
+
 
 .search-tasks-input {
   outline: none;
@@ -38,15 +42,18 @@ body {
   border: none !important;
 }
 
+
 .new-board-task {
   cursor: pointer;
 }
+
 
 .search-loop-img {
   height: 18px;
   width: auto;
   cursor: pointer;
 }
+
 
 .add-task-button {
   display: flex;
@@ -60,9 +67,11 @@ body {
   width: 160px;
 }
 
+
 .add-task-button:hover {
   background-color: rgb(41, 171, 226);
 }
+
 
 .add-task-buttons-wrapper {
   display: flex;
@@ -70,6 +79,7 @@ body {
   justify-content: center;
   gap: 32px;
 }
+
 
 .board-upper-line {
   display: flex;
@@ -79,6 +89,7 @@ body {
   width: 100%;
   margin-bottom: 48px;
 }
+
 
 .board {
   display: flex;
@@ -92,20 +103,24 @@ body {
   padding: 40px 64px;
 }
 
+
 .add-task-button-text {
   font-size: 21px;
   font-weight: 700;
 }
+
 
 .board-title {
   font-weight: 700;
   font-size: 61px;
 }
 
+
 .board-section-title {
   font-size: 20px;
   font-weight: 700;
 }
+
 
 .board-all-tasks-section {
   display: grid;
@@ -116,6 +131,7 @@ body {
   height: 100%;
 }
 
+
 .board-column-control {
   display: flex;
   align-items: center;
@@ -123,6 +139,7 @@ body {
   width: 244px;
   margin-bottom: 8px;
 }
+
 
 .empty-column {
   height: 48px;
@@ -136,6 +153,7 @@ body {
   border-radius: 10px;
 }
 
+
 .empty-board {
   align-items: center;
   justify-content: center;
@@ -143,6 +161,7 @@ body {
   color: rgba(168, 168, 168, 1);
   font-size: clamp(18px, 6vw, 32px);
 }
+
 
 #createTaskInBoardOverlay {
   display: none;
@@ -154,6 +173,7 @@ body {
   z-index: 999;
   background-color: rgba(42, 54, 71, 0.744);
 }
+
 
 #overlayDialogBoard {
   display: flex;
@@ -168,6 +188,7 @@ body {
   max-height: 800px;
 }
 
+
 #tasksContainer-0,
 #tasksContainer-1,
 #tasksContainer-2,
@@ -176,15 +197,18 @@ body {
   height: 100%;
 }
 
+
 .mobile-add-task-btn {
   display: none;
   cursor: pointer;
 }
 
+
 .tasks-container {
   overflow-y: auto;
   box-sizing: border-box;
 }
+
 
 .tasks-container::-webkit-scrollbar {
   display: none;

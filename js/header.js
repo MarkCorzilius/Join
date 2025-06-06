@@ -1,4 +1,4 @@
-function toggleInitialDropdown() {
+﻿function toggleInitialDropdown() {
   const dropdown = document.getElementById("userDropdown");
   const isMobile = window.innerWidth <= 1000;
   if (isMobile) {
@@ -70,7 +70,6 @@ async function adjustInitialAfterLogin() {
 async function searchForContactInitial(id) {
   const rawContacts = await getData("ourUsers/");
   const contacts = Object.values(rawContacts);
-
   const match = contacts.find((contact) => contact.id === id);
   return match?.icon?.initial;
 }

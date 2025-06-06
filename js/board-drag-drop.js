@@ -1,4 +1,4 @@
-let isMobileLayout = false;
+﻿let isMobileLayout = false;
 let draggedTaskNum = 0;
 let dragStartX = 0;
 let dragStartY = 0;

@@ -1,4 +1,4 @@
-function generateContactHTML(c, vars) {
+﻿function generateContactHTML(c, vars) {
   return `<div class="contact-item" onclick="openContactItem('${c.name}', '${c.email}', '${c.phone}', ${c.id}); contactItemClicked(this)">
   <div class="contact-initials" style="background-image:url('${vars.bg}'); background-size:cover; background-position:center;">
           ${vars.initial}

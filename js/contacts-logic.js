@@ -1,4 +1,4 @@
-async function saveNewContactToDataBase(event) {
+﻿async function saveNewContactToDataBase(event) {
   event.stopPropagation()
   const { nameValue, emailValue, phoneValue } = await getNewContactData();
 

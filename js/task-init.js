@@ -1,4 +1,4 @@
-let subtaskId = null;
+﻿let subtaskId = null;
 
 async function taskPageOnLoad() {
   w3.includeHTML();

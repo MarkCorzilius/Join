@@ -1,4 +1,4 @@
-let currOverlay = 1;
+﻿let currOverlay = 1;
 const paths = ["summary.", "add_task", "board", "contacts", "help.html", "privacy_policy", "legal_notice"];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -146,7 +146,6 @@ function showWarningOverlay(message) {
   const dialog = overlay.querySelector(".warning-dialog");
   dialog.innerHTML = "";
   dialog.innerHTML = message;
-
   overlay.classList.replace("hidden", "show");
   setTimeout(() => dialog.classList.add("show"), 10);
 }
@@ -155,7 +154,6 @@ function showWarningOverlay(message) {
 function hideWarningOverlay() {
   const overlay = document.querySelector(".warning-overlay");
   const dialog = overlay.querySelector(".warning-dialog");
-
   dialog.classList.remove("show");
   setTimeout(() => overlay.classList.replace("show", "hidden"), 750);
 }
@@ -165,14 +163,11 @@ function isPasswordValid(password) {
   const specialCharPattern = /[^a-zA-Z0-9]/g;
   const letterPattern = /[a-zA-Z]/g;
   const numberPattern = /\d/g;
-
   const specialChars = (password.match(specialCharPattern) || []).length;
   const letters = (password.match(letterPattern) || []).length;
   const numbers = (password.match(numberPattern) || []).length;
-
   if (specialChars < 1) return false;
   if (letters < 5) return false;
   if (numbers < 3) return false;
-
   return true;
 }

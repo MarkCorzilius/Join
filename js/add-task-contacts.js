@@ -1,11 +1,11 @@
-let chosenContacts = [];
+﻿let chosenContacts = [];
 let defaultContacts = [];
 let currentIndex = 0;
 const CHUNK_SIZE = 10;
 
 //
-// if no contacts â€“> show message: No contacts existing
-// if more contacts â€“> show  button & amount in ( )
+// if no contacts ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“> show message: No contacts existing
+// if more contacts ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“> show  button & amount in ( )
 
 async function renderNextChunk(contactsContainer) {
   const container = document.getElementById('contactOptions');
@@ -115,7 +115,6 @@ function resetContactCheckedBtn() {
   const selections = document.querySelectorAll(".select-box");
   const checked = document.querySelectorAll(".checked");
   const unchecked = document.querySelectorAll(".unchecked");
-
   for (let i = 0; i < checked.length; i++) {
     const check = checked[i];
     check.style.display = "none";
@@ -131,7 +130,6 @@ function resetContacts() {
   const options = document.querySelectorAll(".option");
   const checked = document.querySelector(".checked");
   const unchecked = document.querySelector(".unchecked");
-
   for (let i = 0; i < options.length; i++) {
     const option = options[i];
     helpResetContacts(option, checked, unchecked);
@@ -156,7 +154,6 @@ function styleChosenContact(element, initial, bg, name, contactId) {
   element.classList.toggle("selected-contact");
   const checked = element.querySelector(".checked");
   const unchecked = element.querySelector(".unchecked");
-
   if (element.classList.contains("selected-contact")) {
     runIfSelected(checked, unchecked, initial, bg, name, contactId);
   } else {
@@ -247,7 +244,6 @@ function openContactAssignmentInput() {
   const optionsRef = document.getElementById("contactOptions");
   const wrapperRef = document.querySelector(".dropdown-wrapper");
   const container = document.getElementById("chosenContactsBox");
-
   handleContactAssignment(closedRef, searchState, optionsRef, wrapperRef, container);
 }
 
@@ -275,7 +271,6 @@ function closeContactAssignment() {
   const optionsRef = document.getElementById("contactOptions");
   const wrapperRef = document.querySelector(".dropdown-wrapper");
   const container = document.getElementById("chosenContactsBox");
-
   closedRef.style.display = "flex";
   searchRef.style.display = "none";
   optionsRef.style.display = "none";

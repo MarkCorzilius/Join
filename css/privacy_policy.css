@@ -1,4 +1,4 @@
-.privacyPolicyMain {
+﻿.privacyPolicyMain {
     height: calc(100vh - 80px);
     overflow-y: auto;
     display: flex;
@@ -8,14 +8,17 @@
     font-weight: 400;
 }
 
+
 .paddingBottom {
     padding-bottom: 50px;
 }
+
 
 .pageTitle {
     font-size: 61px;
     font-weight: 700;
 }
+
 
 .pageSubTitle {
     font-size: 27px;
@@ -24,25 +27,35 @@
     margin-bottom: 10px;
 }
 
+
 @media (min-width: 1920px) {
     .privacyPolicyMain {
         max-width: 1920px;
     }
+
+
 }
+
 
 @media (max-width: 1000px) {
     .privacyPolicyMain {
        padding-left: 20px;
        padding-right: 30px;
     }
-  }
+
+
+}
+
 
 @media (max-width: 666px) {
     .pageTitle {
         font-size: 55px;
     }
 
-    .privacyPolicyMain {
+
+.privacyPolicyMain {
         padding-right: 30px;
     }
+
+
 }

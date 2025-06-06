@@ -1,4 +1,4 @@
-const user = JSON.parse(localStorage.getItem("user"));
+﻿const user = JSON.parse(localStorage.getItem("user"));
 
 let currContactData = [];
 
@@ -229,7 +229,6 @@ async function getNewContactData() {
   const emailValue = emailInput.value;
   const phoneInput = document.getElementById("contactPhone");
   const phoneValue = phoneInput.value;
-
   return { nameValue, emailValue, phoneValue };
 }
 

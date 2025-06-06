@@ -1,4 +1,4 @@
-async function contactsOnLoad() {
+﻿async function contactsOnLoad() {
   w3.includeHTML();
   await waitForHTMLIncludes();
   initializeContactsPage();

@@ -1,7 +1,8 @@
-.edit-form-size {
+﻿.edit-form-size {
   height: 48px;
   width: 100%;
 }
+
 
 .detailed-overlay {
   box-sizing: border-box;
@@ -18,9 +19,11 @@
   overflow: auto;
 }
 
+
 .detailed-overlay::-webkit-scrollbar {
   display: none;
 }
+
 
 .edit-form-description {
   height: 60px;
@@ -31,25 +34,28 @@
   padding: 18px 20px 0px;
   box-sizing: border-box;
   text-indent: 0 !important;
-
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
 }
 
+
 .accept-changes-btn {
   cursor: pointer;
   font-family: "Inter", sans-serif;
 }
 
+
 .accept-changes-btn:hover {
   color: 1px solid rgb(41, 171, 226);
 }
 
+
 .title-field {
   box-sizing: border-box;
 }
+
 
 .accept-btn-wrapper {
   position: sticky;
@@ -60,9 +66,11 @@
   justify-content: flex-end;
 }
 
+
 .input-wrapper-subtask {
   width: 100%;
 }
+
 
 .edit-subtask-section {
   display: flex;
@@ -71,23 +79,28 @@
   margin-bottom: 28px;
 }
 
+
 .edit-state-subtitle {
   margin-bottom: 8px;
 }
 
+
 .space-between {
   margin-bottom: 20px;
 }
+
 
 .prio-buttons {
   display: flex;
   gap: 16px;
 }
 
+
 .prio-small {
   width: 90px !important;
   height: 48px !important;
 }
+
 
 .leave-edit-icon {
   position: sticky;
@@ -97,6 +110,7 @@
   cursor: pointer;
   border-radius: 50%;
 }
+
 
 .leave-edit-icon-wrapper {
   top: 0;
@@ -110,17 +124,21 @@
   box-sizing: border-box;
 }
 
+
 .leave-edit-icon:hover {
   background-color: rgb(233, 233, 233);
 }
+
 
 .edit-subtask-container {
   max-height: 150px !important;
 }
 
+
 .prio-txt {
   font-size: 16px;
 }
+
 
 .edit-data-container {
   height: 100%;
@@ -131,9 +149,11 @@
   padding-right: 5px;
 }
 
+
 .edit-data-container::-webkit-scrollbar {
   display: none; /* Width of vertical scrollbar */
 }
+
 
 @media (max-width: 650px) {
   .prio-small {
@@ -141,20 +161,26 @@
     height: 44px !important;
   }
 
-  .prio-small svg {
+
+.prio-small svg {
     height: 12px;
     width: auto;
   }
 
-  .prio-buttons {
+
+.prio-buttons {
     gap: 4px;
   }
 
-  .prio-txt {
+
+.prio-txt {
     font-size: 14px;
   }
 
-  .detailed-overlay {
+
+.detailed-overlay {
     padding: 0 20px 10px;
   }
+
+
 }

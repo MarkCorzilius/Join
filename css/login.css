@@ -1,4 +1,4 @@
-.log-in {
+﻿.log-in {
     background-color: rgb(246, 247, 248);
 }
 
@@ -61,11 +61,14 @@
         transform: translate(-50%, -50%) scale(2);
     }
 
-    100% {
+
+100% {
         top: 40px;
         left: 40px;
         transform: translate(0, 0) scale(1);
     }
+
+
 }
 
 
@@ -89,9 +92,12 @@
         opacity: 1;
     }
 
-    to {
+
+to {
         opacity: 0;
     }
+
+
 }
 
 
@@ -182,13 +188,17 @@
         opacity: 0;
     }
 
-    70% {
+
+70% {
         opacity: 0.5;
     }
 
-    100% {
+
+100% {
         opacity: 1;
     }
+
+
 }
 
 

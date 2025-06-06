@@ -1,4 +1,4 @@
-function contactsTemplate(name, bg, initial, contactId) {
+﻿function contactsTemplate(name, bg, initial, contactId) {
   return `<div onclick="styleChosenContact(this, '${initial}', '${bg}', '${name}', ${contactId})" class="option contact-line">
                     <div>
                     <div class="initial" style="background-image:url('${bg}')" alt="profile icon">${initial}</div>
@@ -29,7 +29,7 @@ function subtaskTemplate(subtaskId, valueRef, subtaskClass) {
                                             <div class="template-subtask" id="subtaskTemplate${subtaskId}">
                           <div class="form-subtask-template task-active-state" id="taskNormalState${subtaskId}">
                            <div class="subtask-title">
-                             <p>â€¢</p>
+                             <p>ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢</p>
                              <span id="subtaskTitle${subtaskId}" class="subtask-titles">${valueRef}</span>
                            </div>
                            <div class="control-subtask">

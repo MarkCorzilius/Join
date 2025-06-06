@@ -1,10 +1,9 @@
-let nearestDate = null;
+﻿let nearestDate = null;
 const today = new Date();
 
 async function summaryOnLoad() {
   showSpinner(true);
   w3.includeHTML();
-
   try {
     await waitForInclude();
     initializeSummaryUI();
@@ -41,7 +40,6 @@ function initializeSummaryUI() {
   adjustSideBar();
   ifGuestShowDropdownHelp();
   adjustInitialAfterLogin();
-
   findToDoAmount();
   findDoneAmount();
   findUrgentTasksAmount();
@@ -49,7 +47,6 @@ function initializeSummaryUI() {
   findAwaitingTasksAmount();
   findNextUrgentDeadline();
   findOverallTasksAmount();
-
   adjustHelpForMobile();
   window.addEventListener("resize", adjustHelpForMobile);
 }
@@ -70,7 +67,6 @@ async function updateGreeting(userGreeting, userName) {
 
 function showCurrentGreeting(hour, userGreeting, userName) {
   const container = document.getElementById(userGreeting);
-
   let greeting;
   if (hour >= 5 && hour <= 11) {
     greeting = "Good morning,";
@@ -141,7 +137,6 @@ async function findDoneAmount() {
 async function findUrgentTasksAmount() {
   const container = document.getElementById("urgentAmount");
   const board = await getData("board/");
-
   if (board === null) {
     container.innerText = 0;
     return;

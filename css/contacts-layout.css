@@ -1,7 +1,8 @@
-.contacts-container {
+﻿.contacts-container {
   display: flex;
   max-width: 1920px;
 }
+
 
 .contacts {
   width: 40%;
@@ -14,20 +15,24 @@
   background-color: white;
 }
 
+
 .contacts-list {
   height: 100%;
   overflow-y: auto;
   padding-right: 20px;
 }
 
+
 .contacts-list::-webkit-scrollbar {
   width: 6px;
 }
+
 
 .contacts-list::-webkit-scrollbar-track {
   background: #f0f2f5; /* Light gray to match your background */
   border-radius: 10px;
 }
+
 
 .contacts-list::-webkit-scrollbar-thumb {
   background-color: #c0c6cf; /* soft gray-blue */
@@ -35,9 +40,11 @@
   border: 1px solid #f0f2f5; /* blends with track */
 }
 
+
 .contacts-list::-webkit-scrollbar-thumb:hover {
   background-color: #a8b0bb; /* slightly darker on hover */
 }
+
 
 .contacts-list h2 {
   padding-left: 16px;
@@ -45,6 +52,7 @@
   font-size: 20px;
   font-weight: 400;
 }
+
 
 .contact-item {
   display: flex;
@@ -57,13 +65,16 @@
   transition: background-color 0.3s ease-in-out;
 }
 
+
 .contact-item:hover {
   background-color: rgb(246, 247, 248);
 }
 
+
 .contact-item.clicked-color:hover {
   background-color: rgb(9, 25, 49);
 }
+
 
 .contact-initials {
   width: 42px;
@@ -80,11 +91,13 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
+
 .contact-header {
   margin: 36px 0 20px;
   display: flex;
   align-items: center;
 }
+
 
 .contact-header h1 {
   padding-right: 20px;
@@ -95,6 +108,7 @@
   font-size: clamp(32px, 5vw, 61px);
   font-weight: 700;
 }
+
 
 .contact-header p {
   margin: 0;
@@ -107,6 +121,7 @@
   position: relative;
 }
 
+
 .contact-header p::before {
   content: "";
   position: absolute;
@@ -118,6 +133,7 @@
   border-radius: 2px;
 }
 
+
 .contact-details {
   display: flex;
   flex-direction: column;
@@ -126,6 +142,7 @@
   font-size: 14px;
   font-weight: 600;
 }
+
 
 .contact-name {
   font-size: 20px;
@@ -136,6 +153,7 @@
   white-space: nowrap;
   max-width: 100%;
 }
+
 
 .contact-email {
   margin: 0;
@@ -149,6 +167,7 @@
   max-width: 100%;
 }
 
+
 .contact-info {
   height: calc(100vh - 80px);
   background-color: rgb(246, 247, 248);
@@ -156,6 +175,7 @@
   box-sizing: border-box;
   flex-direction: column;
 }
+
 
 .add-contact-btn {
   display: inline-block;
@@ -176,10 +196,12 @@
   font-family: "Inter", sans-serif;
 }
 
+
 .add-contact-btn:hover {
   background-color: rgb(41, 171, 226);
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
 }
+
 
 .add-contact-btn img {
   margin-left: 12px;
@@ -187,16 +209,20 @@
   height: 24px;
 }
 
+
 .btn-delete:hover {
   color: rgb(41, 171, 226);
   border: 2px solid rgb(41, 171, 226);
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
 }
 
+
 #editName,
 #contactName {
   text-indent: 0 !important;
 }
+
+
 .overlay-add-avatar img {
   height: 110px;
   width: 110px;
@@ -208,6 +234,7 @@
   margin-left: 8px;
 }
 
+
 .btn-cancel {
   display: inline-flex;
   align-items: center;
@@ -216,6 +243,7 @@
   padding-right: 24px;
   font-family: "Inter", sans-serif;
 }
+
 
 .cancel-icon-wrapper {
   position: absolute;
@@ -226,6 +254,7 @@
   height: 14px;
 }
 
+
 .cancel-icon-wrapper .cancel-icon {
   position: absolute;
   width: 14px;
@@ -233,18 +262,22 @@
   transition: opacity 0.2s ease-in-out;
 }
 
+
 .cancel-icon-wrapper .cancel-icon.hover {
   opacity: 0;
   pointer-events: none;
 }
 
+
 .btn-cancel:hover .cancel-icon-wrapper .cancel-icon.default {
   opacity: 0;
 }
 
+
 .btn-cancel:hover .cancel-icon-wrapper .cancel-icon.hover {
   opacity: 1;
 }
+
 
 #contactSuccesfullyCreated {
   z-index: 999;
@@ -258,12 +291,14 @@
   transition: opacity 0.75s ease, transform 0.75s ease;
 }
 
+
 #contactSuccesfullyCreated.visible {
   visibility: visible;
   pointer-events: auto;
   transform: translateX(-50%);
   opacity: 1;
 }
+
 
 .no-contacts-found {
   font-size: clamp(16px, 4vw, 24px);

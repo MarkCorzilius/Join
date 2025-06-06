@@ -1,7 +1,6 @@
-function adjustSideBar() {
+﻿function adjustSideBar() {
   const buttons = document.querySelectorAll(".nav-button");
   const user = JSON.parse(localStorage.getItem("user"));
-
   if (user && user.name === "Viewer") {
     buttons.forEach((button) => {
       const allowedIds = ["loginSidebarBtn", "privacyPolicySideBar", "legalNoticeSideBar"];

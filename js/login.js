@@ -1,4 +1,4 @@
-window.addEventListener("DOMContentLoaded", () => {
+﻿window.addEventListener("DOMContentLoaded", () => {
   animateSplash();
 });
 
@@ -7,18 +7,13 @@ function animateSplash() {
   let logo = document.getElementById("mainLogo");
   let mobileLogo = document.getElementById("mobileLogo");
   let splash = document.querySelector(".splash-logo-container");
-
   if (!splash || !logo || !mobileLogo) return;
-
   let isMobile = window.innerWidth <= 1000;
-
   if (isMobile) {
     mobileLogo.style.display = "flex";
     logo.style.display = "flex";
     logo.classList.add("mobile-animate");
-
     mobileLogo.classList.add("animate-logo");
-
     setTimeout(() => {
       mobileLogo.classList.add("fade-out");
       logo.classList.add("fade-in");

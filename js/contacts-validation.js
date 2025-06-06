@@ -1,4 +1,4 @@
-async function doesContactExists(emailValue) {
+﻿async function doesContactExists(emailValue) {
   const response = await fetch(BASE_URL + "contacts" + ".json");
   const data = await response.json();
   if (!data) return false;
@@ -47,11 +47,8 @@ async function validateContactInputs(email, phone, name) {
 
 function isRealNumber(number) {
   const trimmed = number.trim();
-
   if (!/^\+?[0-9\s\-().]+$/.test(trimmed)) return false;
-
   const digitCount = trimmed.replace(/\D/g, "").length;
-
   return digitCount >= 7;
 }
 

@@ -1,8 +1,9 @@
-.form-border {
+﻿.form-border {
   border: 1px solid rgb(209 209 209);
   border-radius: 10px;
   padding: 0;
 }
+
 
 .form-description {
   resize: both;
@@ -13,6 +14,7 @@
   font-family: "Inter", sans-serif;
 }
 
+
 .form-priority {
   display: flex;
   align-items: center;
@@ -22,6 +24,7 @@
   cursor: pointer !important;
   transition: box-shadow 0.2s ease-in-out;
 }
+
 
 .form-contact-options {
   flex-direction: column;
@@ -40,6 +43,7 @@
   gap: 8px;
 }
 
+
 .form-contact-search {
   display: flex;
   justify-content: space-between;
@@ -53,12 +57,14 @@
   border: 1px solid rgb(41, 171, 226);
 }
 
+
 .form-contact-search input {
   background: transparent;
   outline: none;
   border: none;
   width: 100%;
 }
+
 
 .form-contact-search input:focus {
   background: transparent;
@@ -67,12 +73,14 @@
   width: 100%;
 }
 
+
 .task-active-state {
   display: flex;
   align-items: center;
   width: 100%;
   justify-content: space-between;
 }
+
 
 .form-subtask-edit-input-wrapper {
   display: flex;
@@ -81,6 +89,7 @@
   position: relative;
   box-sizing: border-box;
 }
+
 
 .form-subtask-edit-input {
   box-sizing: border-box;
@@ -93,12 +102,14 @@
   white-space: nowrap;
 }
 
+
 .form-subtask-edit-input:focus {
   border-bottom: 1px solid rgb(41, 171, 226);
   border-top: none !important;
   border-left: none !important;
   border-right: none !important;
 }
+
 
 .form-category-options {
   flex-direction: column;
@@ -115,6 +126,7 @@
   z-index: 5;
 }
 
+
 .form-category-options span {
   box-sizing: border-box;
   padding-left: 10px;
@@ -126,9 +138,11 @@
   height: 50px;
 }
 
+
 .form-category-options span:hover {
   background-color: rgb(240, 240, 240);
 }
+
 
 .form-select {
   width: 100%;
@@ -144,14 +158,17 @@
   padding-right: 10px;
 }
 
+
 .form-select:focus {
   border: 1px solid rgb(41, 171, 226);
   outline: none;
 }
 
+
 .form-select:hover {
   box-shadow: 0.2px 1px 1px rgba(0, 0, 0, 0.1);
 }
+
 
 .form-subtask {
   outline: none;
@@ -160,6 +177,7 @@
   cursor: pointer;
   font-size: 20px;
 }
+
 
 .form-subtask-template {
   display: flex;
@@ -173,20 +191,24 @@
   padding: 0 10px;
 }
 
+
 .form-subtask-template:hover {
   background-color: rgb(237, 237, 237);
   border-radius: 10px;
 }
 
+
 .form-subtask-template:hover .subtask-edit-icons {
   display: flex;
 }
+
 
 /*Many uses*/
 .form-size {
   height: 48px;
   width: clamp(200px, 32vw, 400px);
 }
+
 
 .form-wrap-icon {
   position: absolute;
@@ -199,20 +221,24 @@
   justify-content: center;
 }
 
+
 .field-label {
   display: flex;
   width: 100%;
   margin-bottom: 8px;
 }
 
+
 .field-label-required {
   margin-bottom: 8px;
 }
+
 
 .field-label-required::after {
   content: " *";
   color: red;
 }
+
 
 .question-blocks {
   display: flex;
@@ -222,10 +248,12 @@
   width: 100%;
 }
 
+
 .task-left-block div {
   display: flex;
   flex-direction: column;
 }
+
 
 .task-left-block {
   display: flex;
@@ -233,11 +261,13 @@
   gap: 24px;
 }
 
+
 .task-right-block {
   display: flex;
   flex-direction: column;
   width: 440px;
 }
+
 
 .description-area {
   width: 100%;
@@ -245,9 +275,11 @@
   resize: none;
 }
 
+
 .due-date-field {
   position: relative;
 }
+
 
 .due-date-field::-webkit-calendar-picker-indicator {
   width: 24px;
@@ -257,14 +289,17 @@
   cursor: pointer;
 }
 
+
 .due-date-field::placeholder {
   color: rgba(0, 0, 0, 0.3);
 }
+
 
 .priority-buttons {
   display: flex;
   gap: 16px;
 }
+
 
 .priority-button {
   border-radius: 10px;
@@ -272,18 +307,22 @@
   height: 56px;
 }
 
+
 .priority-button:not(.active):hover {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
+
 
 .priority-button svg {
   fill: black;
   transition: fill 0.3s ease;
 }
 
+
 .priority-button.active svg {
   fill: white;
 }
+
 
 .priority-section {
   display: flex;
@@ -292,27 +331,31 @@
   justify-content: center;
 }
 
+
 .clicked-priority-color path {
   fill: white;
 }
+
 
 .title-field-space {
   display: flex;
   flex-direction: column;
 }
 
+
 .task-subtitle {
   font-size: 20px;
 }
+
 
 .task-txt {
   font-size: 20px;
   font-family: "Inter", sans-serif;
 }
 
+
 .no-contacts-exist-message {
   text-align: center;
   padding: 10px 0px 10px;
   width: 100%;
 }
-

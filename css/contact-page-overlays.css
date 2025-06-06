@@ -1,4 +1,4 @@
-.add-contact-overlay,
+﻿.add-contact-overlay,
 .edit-contact-overlay {
   position: fixed;
   top: 0;
@@ -14,10 +14,12 @@
   transition: opacity 0.3s ease-in-out;
 }
 
+
 .add-contact-overlay.show,
 .edit-contact-overlay.show {
   opacity: 1;
 }
+
 
 .add-content,
 .edit-content {
@@ -33,10 +35,12 @@
   transition: transform 0.3s ease-in-out;
 }
 
+
 .add-content.slide-in,
 .edit-content.slide-in {
   transform: translateX(0);
 }
+
 
 .overlay {
   position: fixed;
@@ -53,9 +57,11 @@
   transition: opacity 0.3s ease-in-out;
 }
 
+
 .overlay.show {
   opacity: 1;
 }
+
 
 .overlay-left {
   background-color: rgb(42, 54, 71);
@@ -68,16 +74,19 @@
   justify-content: center;
 }
 
+
 .add-contact-join-logo {
   width: 55px;
   height: 66px;
 }
+
 
 .overlay-left h2 {
   margin: 4px 0;
   font-size: 60px;
   font-weight: 700;
 }
+
 
 .overlay-left p {
   margin: 0;
@@ -86,6 +95,7 @@
   padding: 0 0 8px 0;
   position: relative;
 }
+
 
 .overlay-left p::after {
   content: "";
@@ -98,12 +108,14 @@
   border-radius: 2px;
 }
 
+
 .edit-pseudo-element {
   margin: 0;
   font-size: 16px;
   padding: 0 0 8px 0;
   position: relative;
 }
+
 
 .edit-pseudo-element::after {
   content: "";
@@ -116,6 +128,7 @@
   border-radius: 2px;
 }
 
+
 .overlay-right {
   width: 60%;
   padding: 40px;
@@ -125,6 +138,7 @@
   display: flex;
   justify-content: center;
 }
+
 
 .overlay-add-contact-close,
 .overlay-edit-contact-close {
@@ -142,24 +156,29 @@
   transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
+
 .overlay-add-contact-close-mobile,
 .overlay-edit-contact-close-mobile {
   display: none;
 }
 
+
 .close-white {
   display: none;
 }
+
 
 .overlay-add-contact-close:hover,
 .overlay-edit-contact-close:hover {
   background-color: rgb(220 220 220);
 }
 
+
 .close-black {
   width: 12px;
   height: 12px;
 }
+
 
 .add-contact-details,
 .edit-contact-details {
@@ -169,11 +188,13 @@
   margin-top: 18px;
 }
 
+
 .add-contact-inputs,
 .edit-contact-inputs {
   width: 100%;
   color: #d1d1d1;
 }
+
 
 .overlay-add-avatar,
 .overlay-edit-avatar {
@@ -198,9 +219,11 @@
   background-position: center;
 }
 
+
 .overlay-input-group {
   margin-bottom: 24px;
 }
+
 
 .overlay-input-group label {
   display: block;
@@ -208,9 +231,11 @@
   font-weight: bold;
 }
 
+
 .input-wrapper {
   position: relative;
 }
+
 
 .input-wrapper input {
   width: 100%;
@@ -219,6 +244,7 @@
   border: 1px solid #d1d1d1;
   border-radius: 6px;
 }
+
 
 .input-wrapper img {
   position: absolute;
@@ -231,14 +257,17 @@
   pointer-events: none;
 }
 
+
 .input-wrapper input::-webkit-input-placeholder {
   color: rgb(232, 232, 232);
 }
+
 
 .input-wrapper input:focus {
   border: 1px solid rgb(41, 171, 226);
   outline: none;
 }
+
 
 .overlay-buttons {
   gap: 10px;
@@ -247,11 +276,13 @@
   align-items: center;
 }
 
+
 .overlay-buttons img {
   width: 12px;
   height: 12px;
   margin-left: 4px;
 }
+
 
 .btn-cancel,
 .btn-delete {
@@ -267,9 +298,11 @@
   font-family: "Inter", sans-serif;
 }
 
+
 .btn-delete {
   padding: 8px 16px;  
 }
+
 
 .btn-cancel:after,
 .btn-delete:after {
@@ -286,6 +319,7 @@
   font-family: "Inter", sans-serif;
 }
 
+
 .btn-cancel:hover,
 .btn-delete:hover {
   border-color: rgb(41, 171, 226);
@@ -293,10 +327,12 @@
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
 }
 
+
 .btn-cancel:hover:after,
 .btn-delete:hover:after {
   border-color: rgb(41, 171, 226);
 }
+
 
 .btn-create-contact,
 .btn-save {
@@ -316,11 +352,13 @@
   font-family: "Inter", sans-serif;
 }
 
+
 .btn-create-contact:hover,
 .btn-save:hover {
   background-color: rgb(41, 171, 226);
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
 }
+
 
 .overlay-buttons {
   gap: 10px;
@@ -329,11 +367,13 @@
   align-items: center;
 }
 
+
 .overlay-buttons img {
   width: 12px;
   height: 12px;
   margin-left: 8px;
 }
+
 
 .btn-create-contact,
 .btn-save {
@@ -351,6 +391,7 @@
   justify-content: center;
   font-family: "Inter", sans-serif;
 }
+
 
 .btn-create-contact:hover,
 .btn-save:hover {

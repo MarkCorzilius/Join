@@ -1,4 +1,4 @@
-async function handleTaskTransfer(task, column) {
+﻿async function handleTaskTransfer(task, column) {
   document.querySelector(".spinner-overlay").style.display = "flex";
   try {
     await iterateForTaskTransfer(task, column);

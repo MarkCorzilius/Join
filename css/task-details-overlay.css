@@ -1,15 +1,16 @@
-.task-detail-header {
+﻿.task-detail-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-
 }
+
 
 .detail-task-title {
     font-size: clamp(32px, 4vw, 61px);
     margin: 24px 0 32px;
 }
+
 
 #taskInfoOverlay {
     display: flex;
@@ -25,18 +26,21 @@
     opacity: 0;
   }
 
-  #taskInfoOverlay.active {
+
+#taskInfoOverlay.active {
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
     transition: opacity 0.3 ease;
   }
 
-  #taskInfoOverlay.active #taskInfoDialog {
+
+#taskInfoOverlay.active #taskInfoDialog {
     transform: translateX(0);
   }
-  
-  #taskInfoDialog {
+
+
+#taskInfoDialog {
     position: relative;
     box-sizing: border-box;
     display: flex;
@@ -52,16 +56,19 @@
     transition: transform 0.3s ease;
   }
 
-  #taskInfoDialog::-webkit-scrollbar {
+
+#taskInfoDialog::-webkit-scrollbar {
     display: none;
   }
 
-  .task-prio {
+
+.task-prio {
     display: flex;
     align-items: center;
   }
 
-  .prio-and-date-section {
+
+.prio-and-date-section {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -71,7 +78,8 @@
     width: 80%;
   }
 
-  .date-section {
+
+.date-section {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -79,35 +87,41 @@
     font-size: clamp(16px, 1.8vw, 20px);
   }
 
-  .prio-section {
+
+.prio-section {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     font-size: clamp(16px, 1.8vw, 20px);  }
 
-  .task-overlay-description {
+
+.task-overlay-description {
     font-size: clamp(16px, 2vw, 20px);
   }
 
-  .greyColor {
+
+.greyColor {
     color: #2A3647;
   }
 
-  .assigned-to {
+
+.assigned-to {
     margin-bottom: 10px;
     font-size: clamp(20px, 3vw, 20px);
     color: #2A3647;
   }
 
-  .contacts-assignment {
+
+.contacts-assignment {
     margin-bottom: 24px;
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
 
-  .close-btn-wrapper {
+
+.close-btn-wrapper {
     display: flex; 
     align-items: center;
     justify-content: center;
@@ -118,23 +132,27 @@
     cursor: pointer;
   }
 
-  .close-btn-wrapper:hover {
+
+.close-btn-wrapper:hover {
     background-color: rgb(232, 232, 232);
     border-radius: 50%;
   }
 
-  .title-subtask {
+
+.title-subtask {
     font-size: clamp(20px, 3vw, 20px);
     color: #2A3647;
   }
 
-  .task-overlay-subtasks {
+
+.task-overlay-subtasks {
     gap: 10px;
     display: flex;
     flex-direction: column;
   }
 
-  .task-overlay-control {
+
+.task-overlay-control {
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -144,50 +162,59 @@
     margin-top: 20px;
   }
 
-  .task-overlay-control img {
+
+.task-overlay-control img {
     cursor: pointer;
   }
 
 
-  .task-overlay-info {
+.task-overlay-info {
     height: 100%;
     width: 100%;
   }
 
-  #deleteTask {
+
+#deleteTask {
     height: 24px;
     width: auto;
   }
 
-  #editTask {
+
+#editTask {
     height: 24px;
     width: auto;
   }
 
-  .task-overlay-contact {
+
+.task-overlay-contact {
     display: flex;
     align-items: center;
     gap: 16px;
     margin-bottom: 16px;
   }
 
-  #contactsContainer {
+
+#contactsContainer {
     overflow-y: auto;
     max-height: 180px;
   }
 
-  #contactsContainer::-webkit-scrollbar {
+
+#contactsContainer::-webkit-scrollbar {
     width: 5px;
   }
+
 
 #contactsContainer::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
 
+
 #contactsContainer::-webkit-scrollbar-thumb {
   background: #888;
   border-radius: 5px;
 }
+
 
 .overlay-subtask-template {
     display: flex;
@@ -200,10 +227,12 @@
     font-size: clamp(12px, 2vw, 16px);
 }
 
+
 .overlay-subtask-template:hover {
     background-color: rgb(228, 228, 228);
     border-radius: 10px;
 }
+
 
 #subtasksList {
     display: flex;
@@ -214,23 +243,28 @@
     height: 120px;
 }
 
+
 #subtasksList::-webkit-scrollbar {
   width: 5px;
 }
 
+
 #subtasksList::-webkit-scrollbar-track {
 background: #f1f1f1;
 }
+
 
 #subtasksList::-webkit-scrollbar-thumb {
 background: #888;
 border-radius: 5px;
 }
 
+
 .details-main {
   overflow-y: auto;
   max-height: 68vh;
 }
+
 
 .details-main::-webkit-scrollbar {
   display: none;

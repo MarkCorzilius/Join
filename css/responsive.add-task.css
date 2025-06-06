@@ -1,96 +1,122 @@
-@media (max-width: 1350px) {
+﻿@media (max-width: 1350px) {
   .content {
     overflow: auto;
   }
 
-  .task-right-block {
+
+.task-right-block {
     width: 360px;
   }
 
-  .basic-size {
+
+.basic-size {
     width: 360px;
   }
 
-  .priority-button {
+
+.priority-button {
     width: 106px;
     height: 50px;
   }
 
-  .add-task-footer {
+
+.add-task-footer {
     width: 925px;
   }
 
-  .description-area {
+
+.description-area {
     width: 360px;
   }
 
-  .add-task-footer {
+
+.add-task-footer {
     width: 850px;
   }
 
-  .contacts-options {
+
+.contacts-options {
     width: 360px;
   }
 
-  .category-options {
+
+.category-options {
     width: 360px;
   }
 
-  .description-block {
+
+.description-block {
     width: 360px;
   }
+
+
 }
+
 
 @media (max-width: 1219px) {
   .basic-size {
     width: 320px;
   }
 
-  .task-right-block {
+
+.task-right-block {
     width: 320px;
   }
 
-  .description-block {
+
+.description-block {
     width: 320px;
   }
 
-  .priority-button {
+
+.priority-button {
     width: 106px;
     height: 50px;
   }
 
-  .add-task-footer {
+
+.add-task-footer {
     width: 850px;
   }
 
-  .description-area {
+
+.description-area {
     width: 325px;
   }
 
-  .contacts-options {
+
+.contacts-options {
     width: 320px;
   }
 
-  .category-options {
+
+.category-options {
     width: 320px;
   }
 
-  .priority-button {
+
+.priority-button {
     width: 92px;
   }
 
-  .add-task-main {
+
+.add-task-main {
     margin-left: 40px;
   }
 
-  .vertical-line {
+
+.vertical-line {
     margin: 0 40px;
   }
 
-  .add-task-footer {
+
+.add-task-footer {
     width: 725px;
   }
+
+
 }
+
 
 @media (max-width: 1000px) {
   .main {
@@ -99,66 +125,81 @@
     justify-content: center;
   }
 
-  .task-right-block {
+
+.task-right-block {
     width: 85vw;
   }
 
-  .content {
+
+.content {
     overflow: auto !important;
   }
 
-  .content-in-main {
+
+.content-in-main {
     position: relative;
     display: flex;
     align-items: center;
     flex-direction: column;
   }
-  .basic-size {
+
+
+.basic-size {
     width: 85vw;
   }
 
-  .description-area {
+
+.description-area {
     width: 85.2vw;
     resize: none;
   }
 
-  .description-block {
+
+.description-block {
     width: 85vw;
   }
 
-  .contacts-options {
+
+.contacts-options {
     width: 85vw;
   }
 
-  .category-options {
+
+.category-options {
     width: 85vw;
   }
 
-  .form-subtask-template {
+
+.form-subtask-template {
     width: 85vw;
   }
 
-  .subtask-section {
+
+.subtask-section {
     margin-bottom: 160px;
   }
 
-  .question-blocks {
+
+.question-blocks {
     flex-direction: column;
     align-items: center;
     margin-top: 150px;
   }
 
-  .vertical-line {
+
+.vertical-line {
     display: none;
   }
 
-  .add-task-main {
+
+.add-task-main {
     margin-left: 0;
     justify-content: center;
     height: calc(100vh - 180px);
   }
 
-  .add-task-page-title {
+
+.add-task-page-title {
     width: 87vw;
     position: fixed;
     top: 80px;
@@ -167,36 +208,43 @@
     z-index: 500;
   }
 
-  .priority-section {
+
+.priority-section {
     margin-top: 24px;
   }
 
-  .subtask-template-edit-state {
+
+.subtask-template-edit-state {
     width: 100%;
   }
 
-  .subtask-edit-icons {
+
+.subtask-edit-icons {
     display: flex;
   }
 
-  .add-task-footer {
+
+.add-task-footer {
     z-index: 777;
     position: static;
     width: 85vw;
     bottom: 100px;
   }
 
-  .requirement-warning {
+
+.requirement-warning {
     display: none;
   }
 
-  .mobile-warning {
+
+.mobile-warning {
     display: flex;
     margin-top: 60px;
     margin-bottom: 20px;
   }
 
-  .footer-buttons-wrapper {
+
+.footer-buttons-wrapper {
     width: 85vw;
     position: fixed;
     bottom: 100px;
@@ -209,101 +257,130 @@
     justify-content: flex-end;
   }
 
-  .created-task-banner {
+
+.created-task-banner {
     height: 64px;
     width: 280px;
   }
+
+
 }
+
 
 @media (max-width: 450px) {
   .footer-buttons-wrapper {
     bottom: 80px;
   }
 
-  .created-task-banner {
+
+.created-task-banner {
     height: 64px;
     width: 280px;
   }
+
+
 }
+
 
 @media (max-width: 550px) {
   .contacts-options {
     width: 100%;
   }
 
-  .category-options {
+
+.category-options {
     width: 100%;
   }
-  
-  .task-right-block {
+
+
+.task-right-block {
     width: 90vw;
   }
 
-  .basic-size {
+
+.basic-size {
     width: 90vw;
   }
 
-  .description-area {
+
+.description-area {
     width: 90.2vw;
   }
 
-  .add-task-page-title {
+
+.add-task-page-title {
     font-size: 48px;
     padding: 20px;
   }
 
-  .footer-buttons-wrapper {
+
+.footer-buttons-wrapper {
     width: 97vw;
     left: 0;
   }
 
-  .priority-button {
+
+.priority-button {
     gap: 4px;
     font-size: 16px;
     width: 96px;
     height: 48px;
   }
 
-  .create-task-button {
+
+.create-task-button {
     font-size: 16px;
     width: 140px;
     height: 50px;
   }
 
-  .clear-all-button {
+
+.clear-all-button {
     font-size: 16px;
     width: 90px;
     height: 50px;
   }
-  .main {
+
+
+.main {
     display: block;
   }
 
-  .created-task-banner {
+
+.created-task-banner {
     height: 56px;
     width: 240px;
   }
+
+
 }
+
 
 @media (max-width: 400px) {
   .priority-button {
     width: 84px;
   }
 
-  .task-txt {
+
+.task-txt {
     font-size: 12px;
   }
 
-  .priority-buttons {
+
+.priority-buttons {
     gap: 4px;
   }
 
-  .no-contacts-exist-message {
+
+.no-contacts-exist-message {
     font-size: 14px;
   }
 
-  .created-task-banner {
+
+.created-task-banner {
     height: 48px;
     width: 200px;
   }
+
+
 }

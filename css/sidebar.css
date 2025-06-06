@@ -1,4 +1,4 @@
-.sidebar {
+﻿.sidebar {
   width: 200px;
   height: 100vh;
   background-color: rgb(42, 54, 71);
@@ -11,15 +11,18 @@
   padding: 40px 0;
 }
 
+
 .sidebar-logo {
   display: flex;
   justify-content: center;
 }
 
+
 .sidebar-logo img {
   width: 80px;
   height: 80px;
 }
+
 
 .sidebar-button {
   width: 100%;
@@ -33,11 +36,13 @@
   padding-top: 48px;
 }
 
+
 .main-button {
   display: flex;
   justify-content: flex-start;
   /* padding-left: 36px; */
 }
+
 
 .nav-button {
   background-color: rgb(42, 54, 71);
@@ -57,32 +62,39 @@
   padding-left: 40px;
 }
 
+
 .nav-button.activeBtn {
   background-color: rgb(9 24 50);
 }
+
 
 .nav-button.nav-button.activeBtn:hover {
   background-color: rgb(9 24 50);
   color: rgb(168, 168, 168);
 }
 
+
 .nav-button img {
   width: 24px;
   height: 24px;
 }
+
 
 .nav-button p {
   color: rgb(168, 168, 168);
   margin: 0;
 }
 
+
 .nav-button svg {
   margin-right: 16px;
 }
 
+
 .clicked-color {
   background-color: rgb(9, 25, 49);
 }
+
 
 .nav-button:hover {
   background-color: rgb(47 65 90);
@@ -90,9 +102,11 @@
   color: rgb(168, 168, 168);
 }
 
+
 .clicked-color:hover {
   background-color: rgb(9, 25, 49);
 }
+
 
 .sidebar-footer {
   display: flex;
@@ -101,11 +115,13 @@
   width: 100%;
 }
 
+
 .sidebar-footer a {
   color: rgb(168, 168, 168);
   text-decoration: none;
   transition: color 0.2s ease-in-out, font-weight 0.2s ease-in-out;
 }
+
 
 .sidebar-footer .nav-button:hover {
   background-color: transparent;
@@ -114,9 +130,11 @@
   font-weight: bold;
 }
 
+
 .sidebar-footer .clicked-color {
   transition: color 0.1s ease-in-out;
 }
+
 
 .sidebar-footer .clicked-color:hover {
   background-color: rgb(9, 25, 49);
@@ -128,7 +146,6 @@
 
 
 @media (max-width: 1000px) {
-
   #sidebarContainer {
     position: fixed;
     bottom: 0;
@@ -136,7 +153,8 @@
     left: 0;
   }
 
-  .sidebar {
+
+.sidebar {
     width: 100%;
     height: 100px;
     padding: 0;
@@ -145,18 +163,21 @@
     justify-content: center;
   }
 
-  .sidebar-logo {
+
+.sidebar-logo {
     display: none;
   }
 
-  .sidebar-button {
+
+.sidebar-button {
     margin-bottom: 0;
     padding-top: 0;
     flex-direction: row;
     justify-content: space-evenly;
   }
 
-  .nav-button {
+
+.nav-button {
     width: 15%;
     display: flex;
     flex-direction: column;
@@ -167,9 +188,12 @@
     border-radius: 12px;
   }
 
-  .sidebar-footer a {
+
+.sidebar-footer a {
     display: none;
   }
+
+
 }
 
 
@@ -178,22 +202,27 @@
     width: 20%;
   }
 
-  .nav-button img {
+
+.nav-button img {
     width: 20px;
     height: 20px;
   }
+
+
 }
 
 
 @media (max-width: 450px) {
-
   .sidebar {
     height: 80px;
   }
 
-  .nav-button {
+
+.nav-button {
     width: 25%;
     margin: 4px;
     padding: 8px;
   }
+
+
 }

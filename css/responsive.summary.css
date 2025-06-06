@@ -1,97 +1,119 @@
-@media (min-width: 1920px) {
+﻿@media (min-width: 1920px) {
     .summary-content-wrapper {
       max-width: 1920px;
     }
-  }
-  
-@media (max-width: 1400px) and (min-width: 1150px) {
 
+
+}
+
+
+@media (max-width: 1400px) and (min-width: 1150px) {
   .to-do-box,
   .done-box {
     width: 197.16px;
     height: 116.60px;
   }
-  
-  .info-box-second-line {
+
+
+.info-box-second-line {
     width: 419.76px;
     height: 116.60px;
     gap: 36.04px;
   }
-  
-  .all-tasks-box {
+
+
+.all-tasks-box {
     width: 122.96px;
     height: 122.96px;
     gap: 0px;
   }
-  
-  .card-number,
+
+
+.card-number,
   .all-tasks-amount {
     font-size: 49.82px;
   }
-  
-  .card-text {
+
+
+.card-text {
     font-size: 14.84px;
   }
-  
-  .card-icon,
+
+
+.card-icon,
   .card-icon-small,
   .card-icon-light,
   .pencil-light {
     width: 42.40px;
     height: 42.40px;
   }
-  
-  .todays-data {
+
+
+.todays-data {
     font-size: 16.96px;
   }
-  
-  .all-tasks-types {
+
+
+.all-tasks-types {
     font-size: 14.84px;
   }
-  
-  .sep-line-third-box {
+
+
+.sep-line-third-box {
     height: 72.08px;
   }
-  
-  .info-box-first-line,
+
+
+.info-box-first-line,
   .info-box-third-line {
     width: 419.76px;
   }
-  
-  #theUser {
+
+
+#theUser {
     font-size: 57.24px;
   }
-  
-  .greeting-user {
+
+
+.greeting-user {
     font-size: 42.40px;
   }
 
-  .summary-content-wrapper {
+
+.summary-content-wrapper {
     padding-left: 80px;
   }
+
+
 }
+
 
 @media (max-width: 1150px) and (min-width: 1000px){
   .greeting-block {
     display: none;
   }
 
-  .summary-content-wrapper {
+
+.summary-content-wrapper {
     align-items: center;
   }
+
+
 }
 
-@media (max-width: 1000px) {
 
+@media (max-width: 1000px) {
   .greeting-block {
     display: none;
   }
 
-  .to-do-box,
+
+.to-do-box,
 .done-box {
   width: 223.2px;
   height: 132px;
 }
+
 
 .info-box-second-line {
   width: 475.2px;
@@ -99,20 +121,24 @@
   gap: 40.8px;
 }
 
+
 .all-tasks-box {
   width: 139.2px;
   height: 139.2px;
   gap: 0px;
 }
 
+
 .card-number,
 .all-tasks-amount {
   font-size: 56.4px;
 }
 
+
 .card-text {
   font-size: 16.8px;
 }
+
 
 .card-icon,
 .card-icon-small,
@@ -122,36 +148,44 @@
   height: 48px;
 }
 
+
 .todays-data {
   font-size: 19.2px;
 }
+
 
 .all-tasks-types {
   font-size: 16.8px;
 }
 
+
 .sep-line-third-box {
   height: 81.6px;
 }
+
 
 .info-box-first-line,
 .info-box-third-line {
   width: 475.2px;
 }
 
+
 .main {
   display: flex !important;
   align-items: center;
 }
+
 
 .summary-page-title {
   font-size: clamp(3rem, 8vw, 61px);
   margin-bottom: 16px;
 }
 
+
 .summary-subtitle {
   font-size: clamp(1.5rem, 3vw, 27px);
 }
+
 
 .summary-header-wrapper {
   flex-direction: column;
@@ -160,13 +194,16 @@
   margin-bottom: 40px;
 }
 
+
 .separation-line-summary {
   display: none;
 }
 
+
 .separation-line-summary-mobile {
   display: block;
 }
+
 
 .summary-content-wrapper {
   display: flex;
@@ -174,24 +211,29 @@
   padding-left: 0;
 }
 
+
 .summary-main-wrapper {
   gap: 0;
 }
+
 
 .summary-blocks-wrapper {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
+
+
 }
 
-@media (max-width: 700px) {
 
+@media (max-width: 700px) {
 .to-do-box,
 .done-box {
   width: 180.42px;
   height: 106.7px;
 }
+
 
 .info-box-second-line {
   width: 384.12px;
@@ -199,20 +241,24 @@
   gap: 33px;
 }
 
+
 .all-tasks-box {
   width: 112.52px;
   height: 112.52px;
   gap: 0px;
 }
 
+
 .card-number,
 .all-tasks-amount {
   font-size: 45.59px;
 }
 
+
 .card-text {
   font-size: 13.58px;
 }
+
 
 .card-icon,
 .card-icon-small,
@@ -222,23 +268,30 @@
   height: 38.8px;
 }
 
+
 .todays-data {
   font-size: 15.52px;
 }
+
 
 .all-tasks-types {
   font-size: 13.58px;
 }
 
+
 .sep-line-third-box {
   height: 65.96px;
 }
+
 
 .info-box-first-line,
 .info-box-third-line {
   width: 384.12px;
 }
+
+
 }
+
 
 @media (max-width: 440px) {
   .to-do-box,
@@ -246,50 +299,61 @@
     width: 138.57px;
     height: 81.95px;
   }
-  
-  .info-box-second-line {
+
+
+.info-box-second-line {
     width: 294.01px;
     height: 81.95px;
     gap: 25.33px;
   }
-  
-  .all-tasks-box {
+
+
+.all-tasks-box {
     width: 86.42px;
     height: 86.42px;
     gap: 0px;
   }
-  
-  .card-number,
+
+
+.card-number,
   .all-tasks-amount {
     font-size: 35.01px;
   }
-  
-  .card-text {
+
+
+.card-text {
     font-size: 10.43px;
   }
-  
-  .card-icon,
+
+
+.card-icon,
   .card-icon-small,
   .card-icon-light,
   .pencil-light {
     width: 29.80px;
     height: 29.80px;
   }
-  
-  .todays-data {
+
+
+.todays-data {
     font-size: 11.92px;
   }
-  
-  .all-tasks-types {
+
+
+.all-tasks-types {
     font-size: 10.43px;
   }
-  
-  .sep-line-third-box {
+
+
+.sep-line-third-box {
     height: 50.66px;
   }
-  
-  .info-box-first-line,
+
+
+.info-box-first-line,
   .info-box-third-line {
     width: 294.01px;
   }
+
+
 }

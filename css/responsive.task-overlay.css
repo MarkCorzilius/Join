@@ -1,18 +1,24 @@
-@media (min-width: 1001px) {
+﻿@media (min-width: 1001px) {
   .content-in-main {
     overflow: hidden;
   }
+
+
 }
+
+
 @media (max-width: 9999px) {
   #overlayDialogBoard {
     max-width: 1000px;
   }
 
-  .vertical-line {
+
+.vertical-line {
     margin: 0 36px;
   }
 
-  .task-form-close-wrapper {
+
+.task-form-close-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,12 +33,14 @@
     position: absolute;
   }
 
-  .task-form-close-wrapper:hover {
+
+.task-form-close-wrapper:hover {
     border-radius: 50%;
     background-color: rgb(212, 212, 212);
   }
 
-  .priority-button {
+
+.priority-button {
     gap: 4px;
     font-size: 16px;
     width: 96px;
@@ -40,31 +48,37 @@
     box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3) !important;
   }
 
-  .category-section {
+
+.category-section {
     width: 100%;
   }
 
-  .priority-btn svg {
+
+.priority-btn svg {
     height: 14px;
     width: auto;
   }
 
-  .category-options {
+
+.category-options {
     width: clamp(200px, 32vw, 400px);
   }
 
-  .add-task-footer {
+
+.add-task-footer {
     width: clamp(300px, 70vw, 850px);
     position: absolute;
     z-index: 999;
     bottom: 0;
   }
 
-  #subtaskContainer {
+
+#subtaskContainer {
     max-height: 90px;
   }
 
-  .question-blocks {
+
+.question-blocks {
     width: 70vw;
     justify-content: flex-start;
     width: 100%;
@@ -74,28 +88,33 @@
     padding-right: 5px;
   }
 
-  .question-blocks::-webkit-scrollbar {
+
+.question-blocks::-webkit-scrollbar {
     display: none;
   }
 
-  .task-right-block {
+
+.task-right-block {
     width: clamp(300px, 32vw, 400px);
   }
 
-  .task-overlay-header {
+
+.task-overlay-header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     width: 100%;
   }
 
-  .add-task-page-title {
+
+.add-task-page-title {
     padding-top: 20px;
     padding-bottom: 30px;
     width: 100%;
   }
 
-  .content-in-main {
+
+.content-in-main {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -103,51 +122,64 @@
     align-items: center;
   }
 
-  .description-area {
+
+.description-area {
     width: clamp(300px, 32vw, 400px);
     resize: none;
   }
+
+
 }
+
 
 @media (max-width: 1000px) {
   .question-blocks {
     flex-direction: column;
   }
 
-  .form-size {
+
+.form-size {
     width: 100%;
   }
 
-  .content-in-main {
+
+.content-in-main {
     width: 100%;
   }
 
-  .task-left-block {
+
+.task-left-block {
     width: 100%;
     margin-bottom: 24px;
   }
 
-  .task-right-block {
+
+.task-right-block {
     width: 100%;
   }
 
-  .description-area {
+
+.description-area {
     width: 100%;
   }
 
-  .vertical-line {
+
+.vertical-line {
     display: none;
   }
 
-  .category-options {
+
+.category-options {
     width: 100%;
   }
 
-  .subtask-section {
+
+.subtask-section {
     margin-top: 40px;
   }
 
-  .add-task-footer {
+
+.add-task-footer {
     background-color: white;
     position: sticky;
     bottom: 0;
@@ -155,12 +187,14 @@
     padding: 20px 0px 30px;
   }
 
-  #overlayDialogBoard {
+
+#overlayDialogBoard {
     padding-bottom: 0;
     padding-top: 0px;
   }
 
-  .add-task-page-header {
+
+.add-task-page-header {
     width: 100%;
     margin-top: 0;
     padding: 20px 10px 20px;
@@ -170,28 +204,40 @@
     background-color: white;
   }
 
-  .task-form-close-wrapper {
+
+.task-form-close-wrapper {
     margin-top: 40px;
   }
+
+
 }
+
 
 @media (max-width: 1370px) {
   .overlay-priority-button {
     height: 50px;
     width: 112px;
   }
+
+
 }
+
 
 @media (max-width: 1160px) {
   .overlay-priority-button {
     height: 50px;
     width: 96px;
   }
+
+
 }
+
 
 @media (max-width: 1000px) {
   .overlay-priority-button {
     height: 56px;
     width: 126px;
   }
+
+
 }

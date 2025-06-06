@@ -1,4 +1,4 @@
-.header {
+﻿.header {
     position: fixed;
     top: 0;
     left: 200px;
@@ -134,28 +134,35 @@
         right: 0;
     }
 
-    .header-title {
+
+.header-title {
         display: none;
     }
 
-    .help-icon {
+
+.help-icon {
         display: none;
     }
 
-    .user-dropdown {
+
+.user-dropdown {
         right: -200px;
         opacity: 0;
         pointer-events: none;
         transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out;
     }
 
-    .user-dropdown.slide-in {
+
+.user-dropdown.slide-in {
         right: 12px;
         opacity: 1;
         pointer-events: auto;
     }
 
-    .header-logo {
+
+.header-logo {
         display: flex;
     }
+
+
 }

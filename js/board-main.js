@@ -1,4 +1,4 @@
-let disabled = false;
+﻿let disabled = false;
 let currentColumn = 0;
 
 async function boardOnLoad() {
@@ -227,7 +227,6 @@ function searchTasks() {
 function showNoTasksMessage(foundCount) {
   const container = document.querySelector(".board-all-tasks-section");
   const message = document.getElementById("emptyBoardMessage");
-
   if (foundCount === 0) {
     container.style.display = "none";
     message.style.display = "flex";

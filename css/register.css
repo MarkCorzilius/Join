@@ -1,9 +1,10 @@
-.signup-header {
+﻿.signup-header {
   display: flex;
   align-items: center;
   padding: 20px;
   background-color: #f0f4f7;
 }
+
 
 .signup-title h1 {
   margin: 0;
@@ -11,12 +12,14 @@
   color: #2a3647;
 }
 
+
 .signup-main {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 70px);
 }
+
 
 .signup-box {
   background-color: #fff;
@@ -28,6 +31,7 @@
   position: relative;
 }
 
+
 .signup-box h2 {
   margin-top: 0;
   margin-bottom: 20px;
@@ -35,16 +39,19 @@
   font-size: clamp(2rem, 6vw, 3rem);
 }
 
+
 .signup-box form {
   display: flex;
   flex-direction: column;
   align-items: stretch;
 }
 
+
 .input-field {
   margin-bottom: 15px;
   text-align: left;
 }
+
 
 /* Sign-up-Button */
 .signup-btn {
@@ -59,9 +66,11 @@
   width: clamp(5rem, 20vw, 10rem);
 }
 
+
 .signup-btn:hover {
   background-color: #091931;
 }
+
 
 .privacy-accept {
   display: flex;
@@ -72,10 +81,12 @@
   font-size: 14px;
 }
 
+
 .privacy-policy {
   color: rgb(41, 171, 226);
   font-size: 14px;
 }
+
 
 .privacy-policy:hover {
   color: rgb(41, 171, 226);
@@ -85,11 +96,13 @@
   text-decoration-color: rgb(41, 171, 226);
 }
 
+
 .privacy-line {
   display: flex;
   align-items: center;
   gap: 4px;
 }
+
 
 #privacyDiscard {
   color: rgba(255, 0, 0, 0.732);
@@ -97,11 +110,13 @@
   display: none;
 }
 
+
 .blue-horizontal-line {
   width: 40%;
   height: 2px;
   background-color: rgb(41, 171, 226);
 }
+
 
 .signup-arrow {
   position: absolute;
@@ -112,6 +127,7 @@
   width: auto;
 }
 
+
 .signup-title-block {
   display: flex;
   flex-direction: column;
@@ -120,21 +136,27 @@
   margin-bottom: 16px;
 }
 
+
 .signup-btn-wrapper {
   width: 100%;
 }
+
 
 @media (max-width: 535px) {
   .signup-box {
     width: 240px;
     padding: 20px 30px;
   }
+
+
 }
+
 
 #registerPassword1,
 #registerPassword2 {
   text-indent: 0 !important;
 }
+
 
 .register-banner {
   z-index: 999;
@@ -148,6 +170,7 @@
   transition: opacity 0.9s ease, transform 0.9s ease;
 }
 
+
 .register-banner.visible {
   visibility: visible;
   pointer-events: auto;
@@ -155,10 +178,13 @@
   opacity: 1;
 }
 
+
 @media (max-width: 800px) {
   .register-banner {
     bottom: 20vh;
     height: 50px;
     width: 200px;
   }
+
+
 }

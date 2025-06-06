@@ -1,7 +1,6 @@
-function signIn() {
+﻿function signIn() {
   let loginTemplates = document.getElementById("loginTemplates");
   loginTemplates.classList.add("d-none");
-
   let registerTemplates = document.getElementById("registerTemplates");
   registerTemplates.classList.remove("d-none");
 }
@@ -12,7 +11,6 @@ function getRegisterData() {
   const email = document.getElementById("registerEmail").value;
   const password = document.getElementById("registerPassword1").value;
   const confirmPassword = document.getElementById("registerPassword2").value;
-
   return { name, email, password, confirmPassword };
 }
 
@@ -92,7 +90,6 @@ async function handleSignUp({ name, email, password, confirmPassword }) {
 function updateCheckboxIcon(isHovered = false) {
   const icon = document.getElementById("acceptPrivacy");
   const accepted = icon.classList.contains("accepted");
-
   if (accepted) {
     icon.src = isHovered ? "../img/checkbox_checked_hovered.png" : "../img/checkbox_checked_unhovered.png";
   } else {
@@ -103,7 +100,6 @@ function updateCheckboxIcon(isHovered = false) {
 
 function togglePrivacyBtn(ev) {
   const icon = document.getElementById("acceptPrivacy");
-
   switch (ev.type) {
     case "mouseover":
       updateCheckboxIcon(true);
@@ -132,7 +128,6 @@ function emptyRegisterData() {
 
 function toggleSignupArrow(ev) {
   const arrow = document.getElementById("signupArrow");
-
   switch (ev.type || ev) {
     case "mouseover":
       arrow.src = "../img/signup_arrow_hover.png";
@@ -153,7 +148,6 @@ function toggleSignupArrow(ev) {
 async function showSignUpToast() {
   const toast = document.getElementById("registerBanner");
   toast.classList.add("visible");
-
   await new Promise((resolve) => {
     setTimeout(() => {
       toast.classList.remove("visible");

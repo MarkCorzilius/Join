@@ -1,4 +1,4 @@
-async function deleteTaskInOverlay(currentTask) {
+﻿async function deleteTaskInOverlay(currentTask) {
   const board = await getData("board/");
   for (const [columnKey, tasks] of Object.entries(board)) {
     for (const [taskKey, task] of Object.entries(tasks)) {
@@ -244,6 +244,7 @@ function handleEditBtnClick(overlay, boardAddTask) {
   boardAddTask.innerHTML = "";
   overlay.innerHTML = editTaskTemplate();
 }
+
 
 function closeSubtaskInsert(event) {
   const input = document.getElementById('subtaskInput'); 

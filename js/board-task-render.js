@@ -1,4 +1,4 @@
-function renderTaskDialog() {
+﻿function renderTaskDialog() {
   const infoOverlay = document.getElementById("taskInfoOverlay");
   const overlay = document.getElementById("createTaskInBoardOverlay");
   infoOverlay.innerHTML = "";

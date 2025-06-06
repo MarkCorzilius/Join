@@ -1,22 +1,23 @@
-@media (min-width: 320px) and (max-width: 1350px) {
-
+﻿@media (min-width: 320px) and (max-width: 1350px) {
     .mobile-switch {
         display: flex;
     }
 
-    .board-upper-line {
+
+.board-upper-line {
         flex-direction: column;
         align-items: flex-start;
         gap: 24px;
     }
 
 
-    .board-all-tasks-section {
+.board-all-tasks-section {
         display: flex;
         flex-direction: column;
     }
 
-    #tasksContainer-0,#tasksContainer-1, #tasksContainer-2, #tasksContainer-3 {
+
+#tasksContainer-0,#tasksContainer-1, #tasksContainer-2, #tasksContainer-3 {
         width: 90%;
         overflow-x: auto;
         max-height: none;
@@ -26,66 +27,82 @@
         gap: 32px;
     }
 
-    .task-body {
+
+.task-body {
         width: 244px;
     }
 
-    .empty-column {
+
+.empty-column {
         width: 242px;
     }
 
-    .board-column-control {
+
+.board-column-control {
         margin-bottom: 16px;
     }
 
+
 }
 
-@media (max-width: 1000px) {
 
+@media (max-width: 1000px) {
     .tasks-container {
         overflow-y: hidden;
         overflow-x: auto;
     }
 
-    .mobile-add-task-btn {
+
+.mobile-add-task-btn {
         display: flex;
     }
 
-    .board-section-column {
+
+.board-section-column {
         width: 100%;
     }
 
-    .mobile-title-and-btn {
+
+.mobile-title-and-btn {
         display: flex;
         align-items: center;
         justify-content: space-between;
         width: 100%;
     }
 
-    .add-task-button {
+
+.add-task-button {
         display: none;
     }
 
-    .board {
+
+.board {
         padding: 32px 32px;
     }
 
-    .content {
+
+.content {
         height: calc(100vh - 200px) !important;
     }
 
+
 }
+
 
 @media (max-width: 450px) {
     .search-container {
         width: 260px;
     }
 
-    .board {
+
+.board {
         padding: 16px 16px;
     }
 
-    #tasksContainer-0,#tasksContainer-1, #tasksContainer-2, #tasksContainer-3 {
+
+#tasksContainer-0,#tasksContainer-1, #tasksContainer-2, #tasksContainer-3 {
         width: 100%;
     }
+
+
 }

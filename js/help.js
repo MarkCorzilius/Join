@@ -1,4 +1,4 @@
-async function helpOnLoad() {
+﻿async function helpOnLoad() {
   w3.includeHTML();
   try {
     await waitForInclude();

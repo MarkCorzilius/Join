@@ -1,4 +1,4 @@
-function emptyColumnTemplate(text) {
+﻿function emptyColumnTemplate(text) {
   return `                <div class="empty-column">
                   <span>No tasks ${text}</span>
                 </div>`;
@@ -25,10 +25,10 @@ function taskTemplate(task, initialsHTML) {
                     <div class="mobile-switch">
                       <button onclick="moveMobileTasks('back', ${encodeTask(
       task
-    )}, event, this)" class="mobile-switch-btn move-task-up" id="moveTaskUp">â¬†ï¸Ž back</button>
+    )}, event, this)" class="mobile-switch-btn move-task-up" id="moveTaskUp">ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â½ back</button>
                       <button onclick="moveMobileTasks('forward', ${encodeTask(
       task
-    )}, event, this)" class="mobile-switch-btn move-task-down" id="moveTaskDown">â¬‡ï¸Ž forward</button>
+    )}, event, this)" class="mobile-switch-btn move-task-down" id="moveTaskDown">ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â½ forward</button>
                     </div>
                 </div>`;
 }
@@ -79,6 +79,7 @@ function taskDetailTemplate(task, user) {
         </div>
       </div>`;
 }
+
 
 function tasksDialogTemplate() {
   return `      <div onclick="closeDropdownsIfClickedOutside(event); closeSubtaskInsert(event); event.stopPropagation()" id="overlayDialogBoard">
@@ -203,7 +204,6 @@ function tasksDialogTemplate() {
                     </div>
                     </div>
                 </div>
-
                 <div class="subtask-section">
                 <span class="field-label task-subtitle" for="description">Subtask</span>
                 <div class="subtask-input-wrapper edit-form-size">
@@ -222,10 +222,8 @@ function tasksDialogTemplate() {
                 </div>
                 </div>
                 <div class="subtask-container" id="subtaskContainer">
-
                 </div>
               </div>
-
               </div>
             </div>
             <div class="add-task-footer">
@@ -346,7 +344,6 @@ function editTaskTemplate() {
               </div>
               <div id="chosenContactsBox"></div>
             </div>
-
             <div class="edit-subtask-section">
             <span class="edit-state-subtitle" for="description">Subtasks</span>
             <div class="subtask-input-wrapper input-wrapper-subtask">

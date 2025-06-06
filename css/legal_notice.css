@@ -1,6 +1,6 @@
-.legalNoticeMain {
+﻿.legalNoticeMain {
     height: calc(100vh - 80px);
-    /* 80px z. B. für einen festen Header */
+    /* 80px z. B. fÃƒÆ’Ã‚Â¼r einen festen Header */
     overflow-y: auto;
     display: flex;
     justify-content: center;
@@ -10,10 +10,12 @@
     font-weight: 400;
 }
 
+
 .pageTitle {
     font-size: 61px;
     font-weight: 700;
 }
+
 
 .pageSubTitle {
     font-size: 27px;
@@ -22,25 +24,35 @@
     margin-bottom: 10px;
 }
 
+
 @media (min-width: 1920px) {
     .legalNoticeMain {
         max-width: 1920px;
     }
+
+
 }
+
 
 @media (max-width: 1000px) {
     .legalNoticeMain {
         padding-left: 20px;
         padding-right: 30px;
     }
+
+
 }
+
 
 @media (max-width: 666px) {
     .pageTitle {
         font-size: 55px;
     }
 
-    .legalNoticeMain {
+
+.legalNoticeMain {
         padding-right: 30px;
     }
+
+
 }

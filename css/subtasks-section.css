@@ -1,22 +1,25 @@
-.subtask-section {
+﻿.subtask-section {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
     margin-top: 40px;
   }
-  
-  .subtask-input-wrapper {
+
+
+.subtask-input-wrapper {
     position: relative;
     margin-bottom: 4px;
   }
-  
-  .subtask-btns-separator {
+
+
+.subtask-btns-separator {
     width: 1px;
     height: 20px;
     background-color: rgba(209, 209, 209, 1);
   }
-  
-  .subtask-focus-btns {
+
+
+.subtask-focus-btns {
     display: none;
     align-items: center;
     gap: 4px;
@@ -26,23 +29,27 @@
     transform: translateY(-40%);
     padding: 5px;
   }
-  
-  .subtask-btn-wrapper:hover {
+
+
+.subtask-btn-wrapper:hover {
     border-radius: 50%;
     background-color: rgb(235, 235, 235);
   }
-  
-  .subtask-edit-btns {
+
+
+.subtask-edit-btns {
     position: relative;
   }
-  
-  .subtask-edit-btns img {
+
+
+.subtask-edit-btns img {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  
-  .subtask-main-btn {
+
+
+.subtask-main-btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,8 +62,9 @@
     width: 20px;
     cursor: pointer;
   }
-  
-  .subtask-container {
+
+
+.subtask-container {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -67,64 +75,74 @@
     overflow-y: auto;
     overflow-x: hidden;
   }
-  
-  .subtask-container::-webkit-scrollbar {
+
+
+.subtask-container::-webkit-scrollbar {
     width: 5px;
     /* Width of vertical scrollbar */
   }
-  
-  .subtask-container::-webkit-scrollbar-track {
+
+
+.subtask-container::-webkit-scrollbar-track {
     background: #f1f1f1;
     /* Light gray track */
   }
-  
-  .subtask-container::-webkit-scrollbar-thumb {
+
+
+.subtask-container::-webkit-scrollbar-thumb {
     background: #888;
     /* Darker thumb */
     border-radius: 5px;
   }
-  
-  .subtask-edit-icons {
+
+
+.subtask-edit-icons {
     display: none;
     align-items: center;
     justify-content: center;
     gap: 4px;
   }
-  
-  .subtask-separator {
+
+
+.subtask-separator {
     height: 24px;
     width: 1px;
     background-color: rgb(194, 193, 193);
   }
-  
-  .subtask-title {
+
+
+.subtask-title {
     display: flex;
     align-items: center;
     gap: 8px;
     min-height: 40px;
   }
-  
-  .subtask-titles {
+
+
+.subtask-titles {
     font-size: clamp(12px, 2vw, 16px);
     max-width: 90%;
     word-wrap: break-word;
     overflow-wrap: break-word;
   }
-  
-  .subtask-icon-wrapper {
+
+
+.subtask-icon-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 30px;
     width: 30px;
   }
-  
-  .subtask-icon-wrapper:hover {
+
+
+.subtask-icon-wrapper:hover {
     border-radius: 50%;
     background-color: rgb(228, 228, 228);
   }
-  
-  .subtask-icons-on-edit {
+
+
+.subtask-icons-on-edit {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -134,8 +152,9 @@
     top: 50%;
     transform: translateY(-50%);
   }
-  
-  .subtask-template-edit-state {
+
+
+.subtask-template-edit-state {
     display: flex;
     align-items: center;
     justify-content: space-between;

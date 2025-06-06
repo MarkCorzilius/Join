@@ -1,4 +1,4 @@
-async function handlePostingChangedTask(newTaskData) {
+﻿async function handlePostingChangedTask(newTaskData) {
   const rawBoard = await getData("board/");
   for (const [columnKey, tasks] of Object.entries(rawBoard)) {
     for (const [tasksKey, task] of Object.entries(tasks)) {
@@ -61,7 +61,6 @@ async function createTaskInBoardFireBase() {
 async function checkContactsInitials(taskContacts, firebaseContactsArray) {
   const userContacts = [];
   const otherContacts = [];
-
   const theUser = JSON.parse(localStorage.getItem("user"));
   for (const contact of taskContacts) {
     if (!contact || !contact.id) continue;

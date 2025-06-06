@@ -1,4 +1,4 @@
-.contact-detail-view {
+﻿.contact-detail-view {
   position: relative;
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
@@ -6,10 +6,12 @@
   opacity: 0;
 }
 
+
 .contact-detail-view.slide-in {
   transform: translateX(0);
   opacity: 1;
 }
+
 
 .back-arrow {
   position: absolute;
@@ -25,14 +27,17 @@
   cursor: pointer;
 }
 
+
 .back-arrow:hover {
   background-color: rgb(221 221 221);
 }
+
 
 .edit-delete {
   margin: 0 0 0 36px;
   min-width: 0;
 }
+
 
 .detail-avatar-name {
   display: flex;
@@ -41,21 +46,26 @@
   padding-bottom: 20px;
 }
 
+
 .email-phone {
   margin-top: 20px;
 }
+
 
 .email-phone b {
   margin-top: 12px;
 }
 
+
 .email-phone p {
   margin: 12px 0;
 }
 
+
 .email {
   color: #007CEE;
 }
+
 
 .contact-detail-avatar {
   min-width: 120px;
@@ -73,6 +83,7 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
+
 #detailName {
   margin: 16px 0 8px;
   font-size: 47px;
@@ -83,15 +94,18 @@
   max-width: 100%;
 }
 
+
 .contact-edit {
   margin: 0 0 0 36px;
   min-width: 0;
 }
 
+
 .edit-or-delete {
   display: flex;
   gap: 8px;
 }
+
 
 .edit-btn,
 .delete-btn {
@@ -110,12 +124,14 @@
   font-family: "Inter", sans-serif;
 }
 
+
 .edit-btn p,
 .delete-btn p {
   display: flex;
   justify-content: flex-start;
   width: 48px;
 }
+
 
 .edit-btn:hover,
 .delete-btn:hover {
@@ -124,12 +140,14 @@
   font-weight: bold;
 }
 
+
 .icon-left {
   position: relative;
   display: inline-block;
   width: 20px;
   height: 20px;
 }
+
 
 .edit-icon,
 .delete-icon {
@@ -141,9 +159,11 @@
   transition: opacity 0.3s ease-in-out;
 }
 
+
 .fontTwenty {
   font-size: 20px;
 }
+
 
 .edit-icon.hover,
 .delete-icon.hover {
@@ -151,10 +171,12 @@
   pointer-events: none;
 }
 
+
 .edit-btn:hover .edit-icon-wrapper .default,
 .delete-btn:hover .delete-icon-wrapper .default {
   opacity: 0;
 }
+
 
 .edit-btn:hover .edit-icon-wrapper .hover,
 .delete-btn:hover .delete-icon-wrapper .hover {

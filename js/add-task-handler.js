@@ -1,4 +1,4 @@
-
+﻿
 
 function taskDataStorage() {
   const { titleValue, descriptionValue, dateValue } = extractTaskValues();
@@ -176,7 +176,6 @@ function showActionBtns() {
 function showMainBtn() {
   const focusBtns = document.getElementById("focusBtns");
   const mainBtn = document.getElementById("subtaskMainBtn");
-
   mainBtn.style.display = "flex";
   focusBtns.style.display = "none";
 }
