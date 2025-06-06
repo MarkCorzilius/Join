@@ -15,6 +15,7 @@ function taskDataStorage() {
   return dataSafe;
 }
 
+
 async function getTaskData() {
   document.querySelector(".create-task-button").disabled = true;
   try {
@@ -26,6 +27,7 @@ async function getTaskData() {
   }
 }
 
+
 async function validateAndPostTask() {
   if (!extractTaskValues()) {
     showWarningOverlay(taskDateInPastTemplate())
@@ -36,6 +38,7 @@ async function validateAndPostTask() {
   await handlePostingTask(dataSafe);
   showTaskSuccessBanner();
 }
+
 
 async function handlePostingTask(dataSafe) {
   const columnNum = localStorage.getItem("taskColumn");
@@ -49,12 +52,14 @@ async function handlePostingTask(dataSafe) {
   closeTaskOverlay();
 }
 
+
 function saveActivePriority() {
   const priorities = document.querySelectorAll(".priority-button");
   const active = Array.from(priorities).find((btn) => btn.classList.contains("active"));
   const priority = active ? ["medium", "urgent", "low"].find((p) => active.classList.contains(p)) : null;
   return priority;
 }
+
 
 function saveCategory() {
   const containerRef = document.getElementById("categoryChoiceInsert");
@@ -66,6 +71,7 @@ function saveCategory() {
     return category;
   }
 }
+
 
 function saveSubtasks() {
   const subtaskContainer = document.getElementById("subtaskContainer");
@@ -95,6 +101,7 @@ function setActivePriority(button, color, id) {
   changePriorityBtnColor(id);
 }
 
+
 function changePriorityBtnColor(id) {
   const svgRef = document.querySelectorAll(".priority-icon");
   for (let i = 0; i < svgRef.length; i++) {
@@ -105,6 +112,7 @@ function changePriorityBtnColor(id) {
     }
   }
 }
+
 
 function resetPriorityBtn() {
   const inactiveBtns = [document.getElementsByClassName("priority-button")[0], document.getElementsByClassName("priority-button")[2]];
@@ -119,6 +127,7 @@ function resetPriorityBtn() {
   changePriorityBtnColor(1);
 }
 
+
 function toggleCategoryOptions() {
   const arrow = document.getElementById("categoryArrow");
   const section = document.querySelector(".category-btn-and-options");
@@ -126,6 +135,7 @@ function toggleCategoryOptions() {
   optionsRef.style.display = optionsRef.style.display === "flex" ? "none" : "flex";
   isCategoryOptionsOpen(arrow, section, optionsRef);
 }
+
 
 function isCategoryOptionsOpen(arrow, section, optionsRef) {
   if (optionsRef.style.display === "flex") {
@@ -142,6 +152,7 @@ function isCategoryOptionsOpen(arrow, section, optionsRef) {
   }
 }
 
+
 function chooseCategory(option) {
   const containerRef = document.getElementById("categoryChoiceInsert");
   const choice = option.innerText;
@@ -149,6 +160,7 @@ function chooseCategory(option) {
   containerRef.innerText = choice;
   toggleCategoryOptions();
 }
+
 
 function showActionBtns() {
   const input = document.getElementById("subtaskInput");
@@ -160,6 +172,7 @@ function showActionBtns() {
   input.focus();
 }
 
+
 function showMainBtn() {
   const focusBtns = document.getElementById("focusBtns");
   const mainBtn = document.getElementById("subtaskMainBtn");
@@ -167,6 +180,7 @@ function showMainBtn() {
   mainBtn.style.display = "flex";
   focusBtns.style.display = "none";
 }
+
 
 function addSubtask() {
   const input = document.getElementById("subtaskInput");
@@ -195,10 +209,12 @@ document.addEventListener("click", (e) => {
   }
 });
 
+
 function scrollToCreatedSubtask() {
   const container = document.getElementById("subtaskContainer");
   container.scrollTop = container.scrollHeight;
 }
+
 
 function emptyTaskDocument() {
   const title = document.getElementById("taskTitle");
@@ -215,14 +231,17 @@ function emptyTaskDocument() {
   resetContacts();
 }
 
+
 function resetCategory() {
   document.getElementById("categoryChoiceInsert").innerText = "Select task category";
 }
+
 
 function resetSubtasks() {
   const subtasks = document.getElementById("subtaskContainer");
   subtasks.innerHTML = "";
 }
+
 
 function checkShiftSubtask(event) {
   const input = document.getElementById("subtaskInput");
@@ -238,11 +257,13 @@ function checkShiftSubtask(event) {
   }
 }
 
+
 function blurOnEnter(event) {
   if (event.key === "Enter") {
     event.target.blur();
   }
 }
+
 
 function deleteTask(subtaskId) {
   const task = document.getElementById("subtaskTemplate" + subtaskId);
@@ -251,10 +272,12 @@ function deleteTask(subtaskId) {
   }
 }
 
+
 function emptySubtaskInput() {
   document.getElementById("subtaskInput").value = "";
   showMainBtn();
 }
+
 
 function editTask(subtaskId) {
   const subtask = document.getElementById("subtaskTemplate" + subtaskId);
@@ -271,6 +294,7 @@ function editTask(subtaskId) {
   }
 }
 
+
 function deleteSubtaskEditState(subtaskId) {
   const delBtn = document.getElementById("deleteSubtaskEditState" + subtaskId);
   const task = document.getElementById("subtaskTemplate" + subtaskId);
@@ -278,6 +302,7 @@ function deleteSubtaskEditState(subtaskId) {
     task.remove();
   }
 }
+
 
 function updateTask(subtaskId) {
   const activeTitle = document.getElementById("subtaskTitle" + subtaskId);
@@ -289,6 +314,7 @@ function updateTask(subtaskId) {
   }
 }
 
+
 function exitSubtaskEditState(subtaskId) {
   const subtask = document.getElementById("subtaskTemplate" + subtaskId);
   const taskNormalState = document.getElementById("taskNormalState" + subtaskId);
@@ -299,6 +325,7 @@ function exitSubtaskEditState(subtaskId) {
   }
 }
 
+
 function postSubtaskOnEnter(event, subtaskId) {
   const taskInput = document.getElementById("subtaskEditInput" + subtaskId);
   if (event.key === "Enter" && taskInput.value.length !== 0) {
@@ -307,6 +334,7 @@ function postSubtaskOnEnter(event, subtaskId) {
     deleteSubtaskEditState();
   }
 }
+
 
 function showTaskSuccessBanner() {
     const banner = document.getElementById('createdTaskBanner');

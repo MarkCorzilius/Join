@@ -1,5 +1,5 @@
 function passwordWarningTemplate() {
-    return `
+  return `
   <div class="email-warning">
     <p class="email-warning-title">Password requirements:</p>
     <ul class="email-warning-list">
@@ -9,10 +9,11 @@ function passwordWarningTemplate() {
     </ul>
   </div>
   `.trim();
-  }
-  
-  function passwordsNotMatchTemplate() {
-    return `
+}
+
+
+function passwordsNotMatchTemplate() {
+  return `
   <div class="email-warning">
     <p class="email-warning-title">Password requirements:</p>
     <ul class="email-warning-list">
@@ -21,10 +22,11 @@ function passwordWarningTemplate() {
     </ul>
   </div>
   `.trim();
-  }
-  
-  function emailExistsTemplate() {
-    return `
+}
+
+
+function emailExistsTemplate() {
+  return `
   <div class="email-warning">
     <p class="email-warning-title">Email already exists:</p>
     <ul class="email-warning-list">
@@ -32,10 +34,11 @@ function passwordWarningTemplate() {
     </ul>
   </div>
   `.trim();
-  }
-  
-  function invalidPhoneNumberTemplate() {
-    return `
+}
+
+
+function invalidPhoneNumberTemplate() {
+  return `
   <div class="email-warning">
     <p class="email-warning-title">Invalid phone number:</p>
     <ul class="email-warning-list">
@@ -44,10 +47,11 @@ function passwordWarningTemplate() {
     </ul>
   </div>
   `.trim();
-  }
-    
-  function getEmailValidationTemplate() {
-    return `
+}
+
+
+function getEmailValidationTemplate() {
+  return `
   <div class="email-warning">
     <p class="email-warning-title">Email must meet the following requirements:</p>
     <ul class="email-warning-list">
@@ -59,10 +63,11 @@ function passwordWarningTemplate() {
     </ul>
   </div>
   `.trim();
-  }
-  
-  function wrongEmailOrPasswordTemplate() {
-    return `
+}
+
+
+function wrongEmailOrPasswordTemplate() {
+  return `
   <div class="email-warning">
     <p class="email-warning-title">Login error:</p>
     <ul class="email-warning-list">
@@ -71,10 +76,11 @@ function passwordWarningTemplate() {
     </ul>
   </div>
   `.trim();
-  }
-  
-  function taskMissingFieldsTemplate() {
-    return `
+}
+
+
+function taskMissingFieldsTemplate() {
+  return `
   <div class="email-warning">
     <p class="email-warning-title">Missing required fields:</p>
     <ul class="email-warning-list">
@@ -84,10 +90,11 @@ function passwordWarningTemplate() {
     </ul>
   </div>
   `.trim();
-  }
-  
-  function taskDateInPastTemplate() {
-    return `
+}
+
+
+function taskDateInPastTemplate() {
+  return `
   <div class="email-warning">
     <p class="email-warning-title">Invalid date selected:</p>
     <ul class="email-warning-list">
@@ -96,10 +103,11 @@ function passwordWarningTemplate() {
     </ul>
   </div>
   `.trim();
-  }
+}
 
-  function invalidNameTemplate() {
-    return `
+
+function invalidNameTemplate() {
+  return `
     <div class="email-warning">
       <p class="email-warning-title">Invalid name provided:</p>
       <ul class="email-warning-list">
@@ -108,4 +116,4 @@ function passwordWarningTemplate() {
       </ul>
     </div>
     `.trim();
-  }
+}

@@ -11,6 +11,7 @@ async function taskPageOnLoad() {
   }
 }
 
+
 function waitForSidebarAndHeader() {
   return new Promise((resolve) => {
     const checkExist = setInterval(() => {
@@ -24,12 +25,14 @@ function waitForSidebarAndHeader() {
   });
 }
 
+
 function setupTaskPageEnvironment() {
   markCurrentPage();
   ifGuestShowDropdownHelp();
   adjustInitialAfterLogin();
   taskId = Number(localStorage.getItem("taskId")) || 0;
 }
+
 
 function loadTaskPageData() {
   resetPriorityBtn();
@@ -39,6 +42,7 @@ function loadTaskPageData() {
   adjustHelpForMobile();
   window.addEventListener("resize", adjustHelpForMobile);
 }
+
 
 async function checkContactsExistance() {
   const contacts = await getData("contacts/");

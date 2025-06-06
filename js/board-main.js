@@ -14,6 +14,7 @@ async function boardOnLoad() {
   }
 }
 
+
 async function initializePageStructure() {
   w3.includeHTML();
   const waitForInclude = () =>
@@ -30,12 +31,14 @@ async function initializePageStructure() {
   await waitForInclude();
 }
 
+
 function prepareBoardEnvironment() {
   markCurrentPage();
   ifGuestShowDropdownHelp();
   adjustInitialAfterLogin();
   taskId = Number(localStorage.getItem("taskId")) || 0;
 }
+
 
 async function loadBoardTasks() {
   await renderAllTasks();
@@ -44,6 +47,7 @@ async function loadBoardTasks() {
   window.addEventListener("resize", adjustHelpForMobile);
   checkIfMobileLayout();
 }
+
 
 async function renderAllTasks() {
   document.querySelector(".spinner-overlay").style.display = "flex";
@@ -61,6 +65,7 @@ async function renderAllTasks() {
   }
 }
 
+
 async function renderTasks(id, path, emptyMessage) {
   const container = document.getElementById(id);
   container.innerHTML = "";
@@ -74,6 +79,7 @@ async function renderTasks(id, path, emptyMessage) {
   const firebaseContactsArray = Object.values(firebaseContacts || {});
   await visualizeTasks(tasks, firebaseContactsArray, container);
 }
+
 
 function cleanTaskContacts(tasks, firebaseContactsArray) {
   for (let i = 0; i < tasks.length; i++) {
@@ -91,6 +97,7 @@ function cleanTaskContacts(tasks, firebaseContactsArray) {
   }
 }
 
+
 async function renderTasksToContainer(tasks, container) {
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
@@ -100,30 +107,36 @@ async function renderTasksToContainer(tasks, container) {
   }
 }
 
+
 async function visualizeTasks(tasks, firebaseContactsArray, container) {
   cleanTaskContacts(tasks, firebaseContactsArray);
   await renderTasksToContainer(tasks, container);
 }
+
 
 function focusedSearchContainer() {
   const container = document.querySelector(".search-container");
   container.style.border = "1px solid rgb(42 170 226)";
 }
 
+
 function bluredSearchContainer() {
   const container = document.querySelector(".search-container");
   container.style.border = "1px solid black";
 }
+
 
 function hoveredAddTaskIcon(element) {
   const icon = document.getElementsByClassName("new-board-task")[element];
   icon.src = "../img/hovered_add_task.png";
 }
 
+
 function normalAddTaskIcon(element) {
   const icon = document.getElementsByClassName("new-board-task")[element];
   icon.src = "../img/add_task_in_board.png";
 }
+
 
 function checkTargetColumn() {
   switch (currentColumn) {
@@ -139,19 +152,23 @@ function checkTargetColumn() {
   }
 }
 
+
 function encodeTask(task) {
   return JSON.stringify(task).replace(/"/g, "&quot;");
 }
+
 
 function formatDate(dateString) {
   const [year, month, day] = dateString.split("-");
   return `${day}/${month}/${year}`;
 }
 
+
 function capitalize(word) {
   if (typeof word !== "string") return "";
   return word.charAt(0).toUpperCase() + word.slice(1);
 }
+
 
 function ifUserAddYou(contacts, user) {
   if (contacts.length === 0) return "";
@@ -162,6 +179,7 @@ function ifUserAddYou(contacts, user) {
   }
   return "";
 }
+
 
 function separateUserFromContacts(task, user) {
   let defaultHTML = [];
@@ -179,12 +197,14 @@ function separateUserFromContacts(task, user) {
   return { defaultHTML, userHTML };
 }
 
+
 function toggleMobileTaskAddBtn(event) {
   const img = event.target;
   const hoverSrc = `../img/mobile_add_task_hovered.png`;
   const basicSrc = `../img/mobile_add_task_btn.png`;
   img.src = event.type === "mouseover" ? hoverSrc : basicSrc;
 }
+
 
 function searchTasks() {
   let foundCount = 0;
@@ -203,6 +223,7 @@ function searchTasks() {
   showNoTasksMessage(foundCount);
 }
 
+
 function showNoTasksMessage(foundCount) {
   const container = document.querySelector(".board-all-tasks-section");
   const message = document.getElementById("emptyBoardMessage");
@@ -215,5 +236,3 @@ function showNoTasksMessage(foundCount) {
     message.style.display = "none";
   }
 }
-
-

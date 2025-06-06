@@ -6,6 +6,7 @@ function hideContactDetailView() {
   }
 }
 
+
 function openContactItem(name, email, phone, id) {
   const initial = getInitials(name);
   const bg = getBackgroundForName(name);
@@ -16,6 +17,7 @@ function openContactItem(name, email, phone, id) {
   goToContactInfoForMobile();
   detailViewOpen = true;
 }
+
 
 function goToContactInfoForMobile() {
   if (document.documentElement.clientWidth < 800) {
@@ -30,6 +32,7 @@ function goToContactInfoForMobile() {
     }
   }
 }
+
 
 function backToContacts() {
   if (document.documentElement.clientWidth < 800) {
@@ -60,12 +63,14 @@ function handleResizeView() {
   }
 }
 
+
 function setDesktopLayout(contacts, contactDetailContainer, backArrow) {
   contacts.classList.remove("d-none");
   contactDetailContainer.classList.remove("d-none");
   contactDetailContainer.classList.add("d-flex");
   backArrow.classList.add("d-none");
 }
+
 
 function setMobileLayout(contacts, contactDetailContainer, backArrow) {
   if (detailViewOpen) {
@@ -81,6 +86,7 @@ function setMobileLayout(contacts, contactDetailContainer, backArrow) {
   }
 }
 
+
 function slideEfekt() {
   let contactDetailView = document.getElementById("contactDetailView");
   contactDetailView.classList.remove("slide-in");
@@ -89,6 +95,7 @@ function slideEfekt() {
     contactDetailView.classList.add("slide-in");
   }, 10);
 }
+
 
 function toggleMobileActions(bg, initials, name, email, phone) {
   const menu = document.querySelector(".mobile-actions");
@@ -105,6 +112,7 @@ function toggleMobileActions(bg, initials, name, email, phone) {
   }
 }
 
+
 function closeMobileActionsMenu(menu) {
   menu.classList.remove("slide-in");
   menu.classList.add("slide-out");
@@ -114,6 +122,7 @@ function closeMobileActionsMenu(menu) {
     menu.innerHTML = "";
   }, 300);
 }
+
 
 function setupMobileActionButtons(menu) {
   const buttons = menu.querySelectorAll("button");
@@ -134,6 +143,7 @@ document.addEventListener("click", function (e) {
   if (outsideClick) closeMobileActionsMenu(menu);
 });
 
+
 function openAddContactOverlay() {
   const addContactOverlay = document.getElementById("addContactOverlay");
   addContactOverlay.classList.remove("d-none");
@@ -141,6 +151,7 @@ function openAddContactOverlay() {
   const overlayAddContent = addContactOverlay.querySelector(".add-content");
   setTimeout(() => overlayAddContent.classList.add("slide-in"), 10);
 }
+
 
 function closeAddContactOverlay() {
   emptyContactForm();
@@ -164,6 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+
 async function updateDetailView(newName, newEmail, newPhone) {
   let detailView = document.getElementById("contactDetailView");
   if (!detailView.classList.contains("d-none")) {
@@ -173,6 +185,7 @@ async function updateDetailView(newName, newEmail, newPhone) {
   }
 }
 
+
 function closeEditContactOverlay() {
   const editContactOverlay = document.getElementById("editContactOverlay");
   const overlayEditContent = editContactOverlay.querySelector(".edit-content");
@@ -180,6 +193,7 @@ function closeEditContactOverlay() {
   editContactOverlay.classList.remove("show");
   setTimeout(() => editContactOverlay.classList.add("d-none"), 300);
 }
+
 
 async function overlayForContactSuccesfullyCreated() {
   const toast = document.getElementById("contactSuccesfullyCreated");

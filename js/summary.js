@@ -15,9 +15,11 @@ async function summaryOnLoad() {
   }
 }
 
+
 function showSpinner(visible) {
   document.querySelector(".spinner-overlay").style.display = visible ? "flex" : "none";
 }
+
 
 function waitForInclude() {
   return new Promise((resolve) => {
@@ -29,6 +31,7 @@ function waitForInclude() {
     }, 50);
   });
 }
+
 
 function initializeSummaryUI() {
   showGreetingOverlayAfterLogIn();
@@ -51,16 +54,19 @@ function initializeSummaryUI() {
   window.addEventListener("resize", adjustHelpForMobile);
 }
 
+
 async function getCurrentTime() {
   const now = new Date();
   const hours = String(now.getHours());
   return hours;
 }
 
+
 async function updateGreeting(userGreeting, userName) {
   const hour = await getCurrentTime();
   showCurrentGreeting(hour, userGreeting, userName);
 }
+
 
 function showCurrentGreeting(hour, userGreeting, userName) {
   const container = document.getElementById(userGreeting);
@@ -81,6 +87,7 @@ function showCurrentGreeting(hour, userGreeting, userName) {
   checkIfGuest(userGreeting, userName);
 }
 
+
 function checkIfGuest(userGreeting, userName) {
   if (!userGreeting || !userName) return;
   const user = JSON.parse(localStorage.getItem("user"));
@@ -94,6 +101,7 @@ function checkIfGuest(userGreeting, userName) {
     ifLoggedInUser(user, userName);
   }
 }
+
 
 function ifLoggedInUser(user, userName) {
   const greeting = document.getElementById(userName);
@@ -116,6 +124,7 @@ async function findToDoAmount() {
   }
 }
 
+
 async function findDoneAmount() {
   const container = document.getElementById("doneAmount");
   const tasks = await getData("board/done");
@@ -127,6 +136,7 @@ async function findDoneAmount() {
     container.innerText = amount;
   }
 }
+
 
 async function findUrgentTasksAmount() {
   const container = document.getElementById("urgentAmount");
@@ -140,6 +150,7 @@ async function findUrgentTasksAmount() {
   container.innerText = priorityCounter;
 }
 
+
 function countUrgentTasks(board) {
   let count = 0;
   for (const tasks of Object.values(board)) {
@@ -151,6 +162,7 @@ function countUrgentTasks(board) {
   }
   return count;
 }
+
 
 async function findTasksInProgressAmount() {
   const container = document.getElementById("inProgressAmount");
@@ -164,6 +176,7 @@ async function findTasksInProgressAmount() {
   }
 }
 
+
 async function findAwaitingTasksAmount() {
   const container = document.getElementById("awaitAmount");
   const tasks = await getData("board/awaitFeedback/");
@@ -176,6 +189,7 @@ async function findAwaitingTasksAmount() {
   }
 }
 
+
 async function findNextUrgentDeadline() {
   const container = document.getElementById("taskDeadline");
   const board = await getData("board/");
@@ -187,6 +201,7 @@ async function findNextUrgentDeadline() {
   iterateForNextUrgentTaskDate(board);
   container.innerText = formatDate(nearestDate);
 }
+
 
 function iterateForNextUrgentTaskDate(board) {
   for (const [columnKey, tasks] of Object.entries(board)) {
@@ -201,6 +216,7 @@ function iterateForNextUrgentTaskDate(board) {
     }
   }
 }
+
 
 function formatDate(date) {
   if (date === null) {
@@ -217,6 +233,7 @@ function formatDate(date) {
   }
 }
 
+
 async function findOverallTasksAmount() {
   const container = document.getElementById("tasksInBoard");
   let tasksCounter = 0;
@@ -232,6 +249,7 @@ async function findOverallTasksAmount() {
   }
   container.innerText = tasksCounter;
 }
+
 
 async function showGreetingOverlayAfterLogIn() {
   if (document.referrer.includes("index")) {

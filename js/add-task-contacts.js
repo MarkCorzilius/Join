@@ -4,34 +4,36 @@ let currentIndex = 0;
 const CHUNK_SIZE = 10;
 
 //
-// if no contacts –> show message: No contacts existing
-// if more contacts –> show  button & amount in ( )
+// if no contacts â€“> show message: No contacts existing
+// if more contacts â€“> show  button & amount in ( )
 
 async function renderNextChunk(contactsContainer) {
-    const container = document.getElementById('contactOptions');
+  const container = document.getElementById('contactOptions');
   const nextChunk = defaultContacts.slice(currentIndex, currentIndex + CHUNK_SIZE);
   const btn = document.getElementById("moreContactsContainer");
-  if (btn) btn.remove(); 
+  if (btn) btn.remove();
   if (nextChunk.length === 0) return;
   for (const user of nextChunk) {
-      await renderDefaultUsers(user, contactsContainer);
-      container.scrollTo({
-        top: container.scrollHeight,
-        behavior: "smooth"
-      });
-    }
-    currentIndex += CHUNK_SIZE;
+    await renderDefaultUsers(user, contactsContainer);
+    container.scrollTo({
+      top: container.scrollHeight,
+      behavior: "smooth"
+    });
+  }
+  currentIndex += CHUNK_SIZE;
 
-    if (currentIndex < defaultContacts.length) {
-      contactsContainer.insertAdjacentHTML("beforeend", moreContactsBtnTemplate());
-    } else {
-      if (btn) {
-        btn.remove();
-      }
+  if (currentIndex < defaultContacts.length) {
+    contactsContainer.insertAdjacentHTML("beforeend", moreContactsBtnTemplate());
+  } else {
+    if (btn) {
+      btn.remove();
     }
+  }
 }
 
-function hasMoreContacts() {}
+
+function hasMoreContacts() { }
+
 
 async function fetchContacts(currentContainer) {
   let contactsContainer = document.getElementById(currentContainer);
@@ -49,6 +51,7 @@ async function fetchContacts(currentContainer) {
   renderNextChunk(contactsContainer);
 }
 
+
 function sortContacts(contacts) {
   let loggedIn = [];
   let defaults = [];
@@ -63,6 +66,7 @@ function sortContacts(contacts) {
   return { loggedIn, defaults };
 }
 
+
 async function renderLoggedInUser(user, contactsContainer) {
   const currentUser = user[0];
   if (currentUser === undefined || currentUser === null) return;
@@ -71,9 +75,11 @@ async function renderLoggedInUser(user, contactsContainer) {
   contactsContainer.innerHTML += contactsTemplate(addYouToCurrentUser(currentUser.name), currentIcon.bg, currentIcon.initial, currentUser.id);
 }
 
+
 function addYouToCurrentUser(name) {
   return `${name + " (You)"}`;
 }
+
 
 async function renderDefaultUsers(user, contactsContainer) {
   if (!user) return;
@@ -81,6 +87,7 @@ async function renderDefaultUsers(user, contactsContainer) {
   const currentIcon = await getData("contacts/" + sanitizedEmail + "/icon");
   contactsContainer.innerHTML += contactsTemplate(user.name, currentIcon.bg, currentIcon.initial, user.id);
 }
+
 
 function showUser(name) {
   const email = findUserEmail();
@@ -92,14 +99,17 @@ function showUser(name) {
   }
 }
 
+
 function showNameWithoutYou(name) {
   const newName = name.replace(" (You)", "");
   return newName;
 }
 
+
 function sanitizeEmail(email) {
   return email.replace(/[@.]/g, "_");
 }
+
 
 function resetContactCheckedBtn() {
   const selections = document.querySelectorAll(".select-box");
@@ -116,6 +126,7 @@ function resetContactCheckedBtn() {
   }
 }
 
+
 function resetContacts() {
   const options = document.querySelectorAll(".option");
   const checked = document.querySelector(".checked");
@@ -130,6 +141,7 @@ function resetContacts() {
   closeContactAssignment();
 }
 
+
 function helpResetContacts(option, checked, unchecked) {
   if (option.classList.contains("selected-contact")) {
     option.classList.remove("selected-contact");
@@ -138,6 +150,7 @@ function helpResetContacts(option, checked, unchecked) {
     unchecked.style.display = "inline";
   }
 }
+
 
 function styleChosenContact(element, initial, bg, name, contactId) {
   element.classList.toggle("selected-contact");
@@ -151,6 +164,7 @@ function styleChosenContact(element, initial, bg, name, contactId) {
   }
 }
 
+
 function runIfSelected(checked, unchecked, initial, bg, name, contactId) {
   checked.style.display = "inline";
   unchecked.style.display = "none";
@@ -158,12 +172,14 @@ function runIfSelected(checked, unchecked, initial, bg, name, contactId) {
   visualizeChosenContacts();
 }
 
+
 function runIfNotSelected(checked, unchecked, initial, bg, name, contactId) {
   checked.style.display = "none";
   unchecked.style.display = "inline";
   deleteContactFromArray(initial, bg, name);
   visualizeChosenContacts();
 }
+
 
 function visualizeChosenContacts() {
   const container = document.getElementById("chosenContactsBox");
@@ -174,6 +190,7 @@ function visualizeChosenContacts() {
   }
 }
 
+
 function addContactToArray(initial, bg, name, contactId) {
   chosenContacts.push({
     name: showNameWithoutYou(name),
@@ -183,12 +200,14 @@ function addContactToArray(initial, bg, name, contactId) {
   });
 }
 
+
 function deleteContactFromArray(initial, bg, name) {
   const index = chosenContacts.findIndex((contact) => contact.initial === initial && contact.bg === bg && contact.name === name.replace("(You)", "").trim());
   if (index != -1) {
     chosenContacts.splice(index, 1);
   }
 }
+
 
 function searchForContacts() {
   let foundCounter = 0;
@@ -206,6 +225,7 @@ function searchForContacts() {
   displayNoResultMessage(foundCounter);
 }
 
+
 function displayNoResultMessage(foundCounter) {
   const container = document.getElementById("contactOptions");
   const message = document.getElementById("noContactsFoundMessage");
@@ -220,6 +240,7 @@ function displayNoResultMessage(foundCounter) {
   }
 }
 
+
 function openContactAssignmentInput() {
   const closedRef = document.getElementById("closedState");
   const searchState = document.getElementById("searchState");
@@ -229,6 +250,7 @@ function openContactAssignmentInput() {
 
   handleContactAssignment(closedRef, searchState, optionsRef, wrapperRef, container);
 }
+
 
 function handleContactAssignment(closedRef, searchState, optionsRef, wrapperRef, container) {
   closedRef.style.display = "none";
@@ -245,6 +267,7 @@ function handleContactAssignment(closedRef, searchState, optionsRef, wrapperRef,
     document.querySelector(".content").style.overflow = "hidden";
   }
 }
+
 
 function closeContactAssignment() {
   const closedRef = document.getElementById("closedState");

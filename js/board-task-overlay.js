@@ -11,6 +11,7 @@ async function deleteTaskInOverlay(currentTask) {
   }
 }
 
+
 async function openTaskEditStateInOverlay(task) {
   document.querySelector(".spinner-overlay").style.display = "flex";
   try {
@@ -22,6 +23,7 @@ async function openTaskEditStateInOverlay(task) {
   }
 }
 
+
 async function handleOpeningEditOverlay(task) {
   const addTaskOverlay = document.getElementById("createTaskInBoardOverlay");
   const overlay = document.getElementById("taskInfoOverlay");
@@ -31,6 +33,7 @@ async function handleOpeningEditOverlay(task) {
   await fetchContacts("contactOptions");
   renderTaskDetails(task);
 }
+
 
 function renderTaskDetails(task) {
   const title = document.getElementById("taskTitle");
@@ -43,6 +46,7 @@ function renderTaskDetails(task) {
   showChosenContacts(task);
   showChosenSubtasks(task.subtasks);
 }
+
 
 function showChosenPriority(task) {
   const prio = document.querySelector(`.${task.priority}`);
@@ -57,6 +61,7 @@ function showChosenPriority(task) {
   setActivePriority(data.button, data.color, data.id);
 }
 
+
 async function showChosenContacts(task) {
   const contacts = task.contacts;
   if (!contacts) return "";
@@ -70,6 +75,7 @@ async function showChosenContacts(task) {
   }
 }
 
+
 function checkChosenNames(contact) {
   const names = document.querySelectorAll(".contact-name");
   const contactLine = document.querySelectorAll(".contact-line");
@@ -81,6 +87,7 @@ function checkChosenNames(contact) {
   }
   return null;
 }
+
 
 function showChosenSubtasks(mySubtasks) {
   if (!mySubtasks || typeof mySubtasks !== "object") return;
@@ -98,6 +105,7 @@ function showChosenSubtasks(mySubtasks) {
   }
 }
 
+
 function handleOkBtnEvents(event) {
   const rect = document.querySelector(".ok-btn-color");
   switch (event.type) {
@@ -113,6 +121,7 @@ function handleOkBtnEvents(event) {
   }
 }
 
+
 async function changeCurrTask() {
   if (!extractTaskValues()) {
     showWarningOverlay(taskDateInPastTemplate())
@@ -125,6 +134,7 @@ async function changeCurrTask() {
     closeTaskInfoOverlay();
   }
 }
+
 
 function updatedTaskDataStorage() {
   const { titleValue, descriptionValue, dateValue } = extractTaskValues();
@@ -141,6 +151,7 @@ function updatedTaskDataStorage() {
   return dataSafe;
 }
 
+
 function getUpdatedCategory() {
   const newCategory = currTask.category;
   if (newCategory === undefined) {
@@ -150,11 +161,13 @@ function getUpdatedCategory() {
   }
 }
 
+
 function closeTaskOverlay() {
   const overlay = document.getElementById("createTaskInBoardOverlay");
   overlay.style.display = "none";
   localStorage.removeItem("taskColumn");
 }
+
 
 function openTaskOverlay(column) {
   currOverlay = "boardAddTaskOverlay";
@@ -171,6 +184,7 @@ function openTaskOverlay(column) {
   fetchContacts("contactOptions");
 }
 
+
 async function closeTaskInfoOverlay() {
   document.querySelector(".spinner-overlay").style.display = "flex";
   try {
@@ -186,6 +200,7 @@ async function closeTaskInfoOverlay() {
   }
 }
 
+
 async function openTaskInfoOverlay(task) {
   currOverlay = "editOverlay";
   const overlay = document.getElementById("taskInfoOverlay");
@@ -198,6 +213,7 @@ async function openTaskInfoOverlay(task) {
   }
 }
 
+
 function toggleDeleteBtn(event) {
   const img = event.target;
   if (event.type === "mouseover") {
@@ -206,6 +222,7 @@ function toggleDeleteBtn(event) {
     img.src = "../img/delete_task.png";
   }
 }
+
 
 function toggleEditBtn(event) {
   const overlay = document.getElementById("taskInfoOverlay");
@@ -219,6 +236,7 @@ function toggleEditBtn(event) {
     handleEditBtnClick(overlay, boardAddTask);
   }
 }
+
 
 function handleEditBtnClick(overlay, boardAddTask) {
   currOverlay = "editOverlay";

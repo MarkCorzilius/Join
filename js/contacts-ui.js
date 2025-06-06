@@ -4,6 +4,7 @@ async function contactsOnLoad() {
   initializeContactsPage();
 }
 
+
 async function waitForHTMLIncludes() {
   return new Promise((resolve) => {
     const checkExist = setInterval(() => {
@@ -16,6 +17,7 @@ async function waitForHTMLIncludes() {
     }, 50);
   });
 }
+
 
 async function initializeContactsPage() {
   try {
@@ -31,6 +33,7 @@ async function initializeContactsPage() {
   }
 }
 
+
 async function renderContacts() {
   //document.querySelector(".spinner-overlay").style.display = "block";
   try {
@@ -42,10 +45,12 @@ async function renderContacts() {
   }
 }
 
+
 function showNoContactsMessage() {
   const container = document.querySelector('.contacts-list');
   container.innerHTML = noContactsMessageTemplate();
 }
+
 
 async function displayContactsByAlphabet() {
   contactsArray = [];
@@ -66,6 +71,7 @@ async function displayContactsByAlphabet() {
   renderGroupedContacts(container, groups);
 }
 
+
 function renderGroupedContacts(container, groups) {
   container.innerHTML = Object.keys(groups)
     .sort()
@@ -80,6 +86,7 @@ function renderGroupedContacts(container, groups) {
     .join("");
 }
 
+
 function contactItemClicked(itemElement) {
   document.querySelectorAll(".contact-item").forEach((item) => item.classList.remove("clicked-color"));
   itemElement.classList.add("clicked-color");
@@ -89,6 +96,7 @@ function contactItemClicked(itemElement) {
     nameElement.classList.add("color-white");
   }
 }
+
 
 function editContact(name, email, phone, initials, bg) {
   currentContact = { name, email, phone, id: currContactData.id };
@@ -105,6 +113,7 @@ function editContact(name, email, phone, initials, bg) {
   editAvatar.innerHTML = `${initials}`;
 }
 
+
 function emptyContactForm() {
   const nameInput = document.getElementById("contactName");
   nameInput.value = "";
@@ -115,19 +124,20 @@ function emptyContactForm() {
 }
 
 
-
 function makeCancelBtnLight() {
     setTimeout(() => {
       document.getElementById("overlayCancelIcon").src = "../img/full-cancel-btn-hovered.png";
     }, 100);
   }
-  
+
+
   function makeCancelBtnDark() {
     setTimeout(() => {
       document.getElementById("overlayCancelIcon").src = "../img/full-cancel-btn.png";
     }, 100);
   }
-  
+
+
   function showMobileContactDetails() {
     const overlay = document.getElementById("mobileDetailsOverlay");
     const dialog = document.querySelector(".mobile-detail-dialog");
@@ -135,7 +145,8 @@ function makeCancelBtnLight() {
     overlay.style.display = "flex";
     requestAnimationFrame(() => dialog.classList.add("open"));
   }
-  
+
+
   function hideMobileDetails() {
     const overlay = document.getElementById("mobileDetailsOverlay");
     const dialog = document.querySelector(".mobile-detail-dialog");
@@ -144,21 +155,24 @@ function makeCancelBtnLight() {
       overlay.style.display = "none";
     }, 500);
   }
-  
+
+
   function renderMobileControl() {
     const container = document.getElementById("mobileDetailsDialog");
     const { name, email, phone, initial, bg, id } = currContactData;
     container.innerHTML = `<img onclick="editContact('${name}', '${email}', '${phone}', '${initial}', '${bg}', ${id})" src="../img/edit_contacts.png" alt="">
             <img onclick="deleteContact(${id})" src="../img/delete-contact.png" alt="">`;
   }
-  
+
+
   function ifMobileContactOverlayOpen(panel, desktopPanel) {
     panel.style.display = "flex";
     if (desktopPanel) {
       desktopPanel.style.display = "none";
     }
   }
-  
+
+
   function ifDesktopContactOverlayOpen(container, panel, desktopPanel) {
     container.style.display = "none";
     panel.style.display = "none";

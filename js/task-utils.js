@@ -9,6 +9,7 @@ function restrictAddingTask() {
   }
 }
 
+
 function isNotInTheFuture(inputDate) {
   const currentDate = new Date();
   const inputDateObject = new Date(inputDate);
@@ -18,6 +19,7 @@ function isNotInTheFuture(inputDate) {
     return false;
   }
 }
+
 
 function extractTaskValues() {
   const title = document.getElementById("taskTitle");
@@ -32,6 +34,7 @@ function extractTaskValues() {
     return { titleValue, descriptionValue, dateValue };
   }
 }
+
 
 function checkChosenColummn(columnNum) {
   switch (columnNum) {
@@ -48,10 +51,12 @@ function checkChosenColummn(columnNum) {
   }
 }
 
+
 function clearBtnToBlue() {
     document.getElementById("clearBtn").src = "../img/clear_btn_hovered.png";
   }
-  
+
+
   function clearBtnToBlack() {
     document.getElementById("clearBtn").src = "../img/close.png";
   }

@@ -10,6 +10,7 @@ function generateContactHTML(c, vars) {
   </div>`;
 }
 
+
 function generateContactDetails(bg, initial, name, email, phone, id) {
   return `
     <div class="detail-avatar-name">
@@ -55,6 +56,7 @@ function generateContactDetails(bg, initial, name, email, phone, id) {
   `;
 }
 
+
 function generateToggleMobileHTML(bg, initial, name, email, phone, id) {
   return `
     <button onclick="editContact('${name}', '${email}', '${phone}', '${initial}', '${bg}', ${id})">
@@ -65,6 +67,7 @@ function generateToggleMobileHTML(bg, initial, name, email, phone, id) {
     </button>
   `;
 }
+
 
 function noContactsMessageTemplate() {
   return `

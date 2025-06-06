@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 100);
 });
 
+
 async function showLegalNoticeAndPrivacyPolicy() {
   w3.includeHTML();
   try {
@@ -25,6 +26,7 @@ async function showLegalNoticeAndPrivacyPolicy() {
     console.log("error in showLegalNoticeAndPrivacyPolicy():", error);
   }
 }
+
 
 function waitForInclude() {
   return new Promise((resolve) => {
@@ -39,6 +41,7 @@ function waitForInclude() {
   });
 }
 
+
 function initializeLegalNoticePage() {
   adjustSideBar();
   markCurrentPage();
@@ -48,11 +51,13 @@ function initializeLegalNoticePage() {
   window.addEventListener("resize", adjustHelpForMobile);
 }
 
+
 function setViewSubtask() {
   const user = JSON.stringify({ name: "Guest", email: "guest@example.com" });
   localStorage.setItem(user);
   showLegalNoticeAndPrivacyPolicy();
 }
+
 
 function markCurrentPage() {
   const buttons = document.querySelectorAll(".nav-button");
@@ -68,6 +73,7 @@ function markCurrentPage() {
   });
 }
 
+
 function adjustHelpForMobile() {
   const help = document.querySelector(".dropdown-help");
   if (window.innerWidth <= 1000) {
@@ -76,6 +82,7 @@ function adjustHelpForMobile() {
     help.classList.add("d-none");
   }
 }
+
 
 function decideCurrentTaskOverlay() {
   switch (currOverlay) {
@@ -87,6 +94,7 @@ function decideCurrentTaskOverlay() {
       return "basic-size";
   }
 }
+
 
 function togglePasswordVisibility(inputId, element, path) {
   const passwordInputId = document.getElementById(inputId);
@@ -100,10 +108,12 @@ function togglePasswordVisibility(inputId, element, path) {
   }
 }
 
+
 function closeDropdownsIfClickedOutside(event) {
   ifContactsBoxOpen(event);
   ifCategoryBoxOpen(event);
 }
+
 
 function ifContactsBoxOpen(event) {
   const box = document.querySelector(".dropdown-wrapper");
@@ -118,6 +128,7 @@ function ifContactsBoxOpen(event) {
   }
 }
 
+
 function ifCategoryBoxOpen(event) {
   const arrow = document.getElementById("categoryArrow");
   const section = document.querySelector(".category-btn-and-options");
@@ -129,6 +140,7 @@ function ifCategoryBoxOpen(event) {
   }
 }
 
+
 function showWarningOverlay(message) {
   const overlay = document.querySelector(".warning-overlay");
   const dialog = overlay.querySelector(".warning-dialog");
@@ -139,6 +151,7 @@ function showWarningOverlay(message) {
   setTimeout(() => dialog.classList.add("show"), 10);
 }
 
+
 function hideWarningOverlay() {
   const overlay = document.querySelector(".warning-overlay");
   const dialog = overlay.querySelector(".warning-dialog");
@@ -146,6 +159,7 @@ function hideWarningOverlay() {
   dialog.classList.remove("show");
   setTimeout(() => overlay.classList.replace("show", "hidden"), 750);
 }
+
 
 function isPasswordValid(password) {
   const specialCharPattern = /[^a-zA-Z0-9]/g;

@@ -11,11 +11,13 @@ async function doesContactExists(emailValue) {
   return false;
 }
 
+
 function checkAtConditions(trimmed, atIndex) {
   if (atIndex === -1) return false;
   if (trimmed.indexOf("@", atIndex + 1) !== -1) return false;
   return true;
 }
+
 
 function checkDotConditions(trimmed, atIndex) {
   const dotIndex = trimmed.indexOf(".");
@@ -24,6 +26,7 @@ function checkDotConditions(trimmed, atIndex) {
   if (dotIndex === trimmed.length - 1) return false;
   return true;
 }
+
 
 async function validateContactInputs(email, phone, name) {
   if (name.length < 4) {
@@ -41,6 +44,7 @@ async function validateContactInputs(email, phone, name) {
   return true;
 }
 
+
 function isRealNumber(number) {
   const trimmed = number.trim();
 
@@ -50,6 +54,7 @@ function isRealNumber(number) {
 
   return digitCount >= 7;
 }
+
 
 function isRealEmail(email) {
   const trimmed = email.trim();

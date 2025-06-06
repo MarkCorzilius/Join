@@ -9,6 +9,7 @@ async function handleTaskTransfer(task, column) {
   }
 }
 
+
 async function iterateForTaskTransfer(task, column) {
   const board = await getData("board/");
   for (const [columnKey, tasks] of Object.entries(board)) {
@@ -20,6 +21,7 @@ async function iterateForTaskTransfer(task, column) {
     }
   }
 }
+
 
 async function moveMobileTasks(direction, task, event, element) {
   event.stopPropagation();
@@ -36,6 +38,7 @@ async function moveMobileTasks(direction, task, event, element) {
   }
 }
 
+
 async function handleForwardCase(nextColumn, element, task) {
   if (nextColumn === "done") {
     element.classList.add("disabled");
@@ -45,6 +48,7 @@ async function handleForwardCase(nextColumn, element, task) {
   }
   await renderAllTasks();
 }
+
 
 async function handleBackCase(prevColumn, element, task) {
   if (prevColumn === "toDo") {
@@ -56,6 +60,7 @@ async function handleBackCase(prevColumn, element, task) {
   await renderAllTasks();
 }
 
+
 async function checkCurrColumnName(id) {
   const board = await getData("board/");
   for (const [columnKey, tasks] of Object.entries(board)) {
@@ -66,6 +71,7 @@ async function checkCurrColumnName(id) {
     }
   }
 }
+
 
 async function disableMoveBtns(course, path) {
   const toDos = await getData(path);
@@ -81,12 +87,14 @@ async function disableMoveBtns(course, path) {
   }
 }
 
+
 async function checkNextColumnName(id, currColumnName) {
   const order = ["toDo", "InProgress", "awaitFeedback", "done"];
   const currColumnIndex = order.indexOf(currColumnName);
   const nextColumnName = order[currColumnIndex + 1];
   return nextColumnName;
 }
+
 
 async function checkPrevColumnName(id, currColumnName) {
   const order = ["toDo", "InProgress", "awaitFeedback", "done"];

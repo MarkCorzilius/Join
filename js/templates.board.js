@@ -4,10 +4,10 @@ function emptyColumnTemplate(text) {
                 </div>`;
 }
 
+
 function taskTemplate(task, initialsHTML) {
-  return `                <div id="taskBody${task.id}" class="task-body" draggable="true" ondragstart="startDragging(${task.id}, event)" ondrag="dragMove(${
-    task.id
-  }, event)" ondragend="endDragging(${task.id}, event)" onclick="openTaskInfoOverlay(${encodeTask(task)})">
+  return `                <div id="taskBody${task.id}" class="task-body" draggable="true" ondragstart="startDragging(${task.id}, event)" ondrag="dragMove(${task.id
+    }, event)" ondragend="endDragging(${task.id}, event)" onclick="openTaskInfoOverlay(${encodeTask(task)})">
                   <div class="task-category">${renderCategory(task)}</div>
                   <h3 class="task-title">${task.title}</h2>
                     <p class="task-description">${task.description}</p>
@@ -24,14 +24,15 @@ function taskTemplate(task, initialsHTML) {
 
                     <div class="mobile-switch">
                       <button onclick="moveMobileTasks('back', ${encodeTask(
-                        task
-                      )}, event, this)" class="mobile-switch-btn move-task-up" id="moveTaskUp">⬆︎ back</button>
+      task
+    )}, event, this)" class="mobile-switch-btn move-task-up" id="moveTaskUp">â¬†ï¸Ž back</button>
                       <button onclick="moveMobileTasks('forward', ${encodeTask(
-                        task
-                      )}, event, this)" class="mobile-switch-btn move-task-down" id="moveTaskDown">⬇︎ forward</button>
+      task
+    )}, event, this)" class="mobile-switch-btn move-task-down" id="moveTaskDown">â¬‡ï¸Ž forward</button>
                     </div>
                 </div>`;
 }
+
 
 function taskDetailTemplate(task, user) {
   return `     <div id="taskInfoDialog" onclick="event.stopPropagation()">
@@ -70,14 +71,15 @@ function taskDetailTemplate(task, user) {
         </div>
         <div class="task-overlay-control">
           <img onclick="deleteTaskInOverlay(${encodeTask(
-            task
-          )})" onmouseover="toggleDeleteBtn(event)" onmouseout="toggleDeleteBtn(event)" id="deleteTask" src="../img/delete_task.png" alt="del">
+    task
+  )})" onmouseover="toggleDeleteBtn(event)" onmouseout="toggleDeleteBtn(event)" id="deleteTask" src="../img/delete_task.png" alt="del">
           <img onclick="openTaskEditStateInOverlay(${encodeTask(
-            task
-          )})" onmouseover="toggleEditBtn(event)" onmouseout="toggleEditBtn(event)" id="editTask" src="../img/edit_task.png" alt="edit">
+    task
+  )})" onmouseover="toggleEditBtn(event)" onmouseout="toggleEditBtn(event)" id="editTask" src="../img/edit_task.png" alt="edit">
         </div>
       </div>`;
 }
+
 
 function editStateOverlayTemplate(task, user) {
   return `<div onclick="closeDropdownsIfClickedOutside(event); event.stopPropagation()" id="taskDetailedOverlay">
@@ -232,6 +234,7 @@ function editStateOverlayTemplate(task, user) {
       </svg>
   </div>`;
 }
+
 
 function tasksDialogTemplate() {
   return `      <div onclick="closeDropdownsIfClickedOutside(event); event.stopPropagation()" id="overlayDialogBoard">
@@ -398,6 +401,7 @@ function tasksDialogTemplate() {
     </div>`;
 }
 
+
 function editTaskTemplate() {
   return `<div onclick="closeDropdownsIfClickedOutside(event); event.stopPropagation()" class="detailed-overlay" id="taskDetailedOverlay">
   <div class="leave-edit-icon-wrapper">
@@ -535,6 +539,7 @@ function editTaskTemplate() {
       </div>
   </div>`;
 }
+
 
 function subtasksTemplate(subtaskKey, className, src, subtask) {
   return `

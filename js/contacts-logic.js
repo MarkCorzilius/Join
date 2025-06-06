@@ -13,6 +13,7 @@ async function saveNewContactToDataBase(event) {
   await saveContact({ nameValue, emailValue, phoneValue });
 }
 
+
 async function deleteContact(id) {
   const contacts = await getData("contacts/");
   for (const [contactKey, contact] of Object.entries(contacts)) {
@@ -27,9 +28,10 @@ async function deleteContact(id) {
   hideContactDetailView();
 }
 
+
 async function deleteContactForEdit() {
   if (!currentContact) return;
-  if (!confirm("Möchten Sie diesen Kontakt wirklich löschen?")) return;
+  if (!confirm("MÃ¶chten Sie diesen Kontakt wirklich lÃ¶schen?")) return;
   const contacts = await getData("contacts/");
   for (const [contactKey, contact] of Object.entries(contacts)) {
     if (contact.id === currentContact.id) {
@@ -43,6 +45,7 @@ async function deleteContactForEdit() {
   hideContactDetailView();
   currentContact = null;
 }
+
 
 async function saveEditedContact(event) {
   event.stopPropagation()
@@ -65,6 +68,7 @@ async function saveEditedContact(event) {
   currentContact = null;
 }
 
+
 function getInitials(name) {
     const cleanName = name.replace(/ \(You\)$/, "");
     const parts = cleanName.split(" ").filter(Boolean);
@@ -72,14 +76,16 @@ function getInitials(name) {
     if (parts.length === 1) return parts[0].charAt(0).toUpperCase();
     return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase();
   }
-  
+
+
   function getContactVars(c) {
     let initial = getInitials(c.name);
     let bg = getBackgroundForName(c.name);
     saveContactIconInFireBase(c, initial, bg);
     return { initial, bg };
   }
-  
+
+
   function getBackgroundForName(name) {
     let sum = 0;
     for (let i = 0; i < name.length; i++) {
@@ -88,7 +94,8 @@ function getInitials(name) {
     const index = sum % bgImages.length;
     return bgImages[index];
   }
-  
+
+
   function deleteValue() {
     document.getElementById("contactName").value = "";
     document.getElementById("contactEmail").value = "";

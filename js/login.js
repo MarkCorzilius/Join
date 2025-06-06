@@ -2,6 +2,7 @@ window.addEventListener("DOMContentLoaded", () => {
   animateSplash();
 });
 
+
 function animateSplash() {
   let logo = document.getElementById("mainLogo");
   let mobileLogo = document.getElementById("mobileLogo");
@@ -37,6 +38,7 @@ function animateSplash() {
   }
 }
 
+
 function guestLogin() {
   const guest = "Guest";
   localStorage.setItem("user", JSON.stringify({ name: guest, email: "guest@example.com" }));
@@ -46,11 +48,13 @@ function guestLogin() {
   }, 300);
 }
 
+
 function storeLogInData() {
   const inputEmail = document.getElementById("loginEmail").value.trim();
   const inputPassword = document.getElementById("loginPassword").value.trim();
   return { inputEmail, inputPassword };
 }
+
 
 async function logIn(ev) {
   ev.preventDefault();
@@ -68,6 +72,7 @@ async function logIn(ev) {
   localStorage.setItem("user", JSON.stringify({ name: contact.name, email: contact.email, id: contact.id }));
 }
 
+
 async function searchingForAccount({ inputEmail, inputPassword }) {
   const contacts = await getData("ourUsers/");
   if (!contacts) {
@@ -83,10 +88,12 @@ async function searchingForAccount({ inputEmail, inputPassword }) {
   return;
 }
 
+
 function showFailureAlert() {
   const container = document.getElementById("wrongDataAlert");
   container.style.display = "block";
 }
+
 
 function showLoginTransition() {
   setTimeout(() => {
@@ -94,11 +101,13 @@ function showLoginTransition() {
   }, 500);
 }
 
+
 async function getCurrentTime() {
   const now = new Date();
   const hours = String(now.getHours());
   return hours;
 }
+
 
 function setViewerStateLocalStorage() {
   const viewer = "Viewer";

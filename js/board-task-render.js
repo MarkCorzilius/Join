@@ -6,6 +6,7 @@ function renderTaskDialog() {
   overlay.innerHTML += tasksDialogTemplate();
 }
 
+
 function renderCategory(task) {
   switch (task.category) {
     case "User Story":
@@ -16,6 +17,7 @@ function renderCategory(task) {
       return "";
   }
 }
+
 
 function renderPriorityIcon(task) {
   switch (task.priority) {
@@ -28,11 +30,13 @@ function renderPriorityIcon(task) {
   }
 }
 
+
 function renderSubtasksAmount(task) {
   const subtasks = task.subtasks;
   const amount = subtasks ? Object.keys(subtasks).length : 0;
   return amount;
 }
+
 
 async function renderInitials(task) {
   const firebaseContacts = await getData("contacts/");
@@ -41,6 +45,7 @@ async function renderInitials(task) {
   const contactsHTML = await checkContactsInitials(taskContacts, firebaseContactsArray);
   return contactsHTML;
 }
+
 
 function renderContacts(contacts) {
   let templateHTML = "";

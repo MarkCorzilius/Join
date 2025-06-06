@@ -14,6 +14,7 @@ function contactsTemplate(name, bg, initial, contactId) {
                   </div>`;
 }
 
+
 function generateBgAndInitialForChosenContactsBox(bg, initial) {
   return `
         <div class="initial" style="background-image:url('${bg}')">
@@ -22,12 +23,13 @@ function generateBgAndInitialForChosenContactsBox(bg, initial) {
     `;
 }
 
+
 function subtaskTemplate(subtaskId, valueRef, subtaskClass) {
   return `                    
                                             <div class="template-subtask" id="subtaskTemplate${subtaskId}">
                           <div class="form-subtask-template task-active-state" id="taskNormalState${subtaskId}">
                            <div class="subtask-title">
-                             <p>•</p>
+                             <p>â€¢</p>
                              <span id="subtaskTitle${subtaskId}" class="subtask-titles">${valueRef}</span>
                            </div>
                            <div class="control-subtask">
@@ -56,17 +58,20 @@ function subtaskTemplate(subtaskId, valueRef, subtaskClass) {
                       </div>`;
 }
 
+
 function getNoContactsTemplate() {
   return `
     <p class="no-contacts-exist-message">No contacts existing. Create some contacts.</p>
   `;
 }
 
+
 function noContactsFoundTemplate() {
   return `
     <p id="noContactsFoundMessage" class="no-contacts-exist-message">No contacts found.</p>
   `;
 }
+
 
 function moreContactsBtnTemplate() {
   return `

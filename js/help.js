@@ -8,6 +8,7 @@ async function helpOnLoad() {
   }
 }
 
+
 function waitForInclude() {
   return new Promise((resolve) => {
     const checkExist = setInterval(() => {
@@ -21,6 +22,7 @@ function waitForInclude() {
   });
 }
 
+
 function initializeHelpPageFeatures() {
   ifGuestShowDropdownHelp();
   adjustInitialAfterLogin();
@@ -29,9 +31,11 @@ function initializeHelpPageFeatures() {
   window.addEventListener("resize", adjustHelpForMobile);
 }
 
+
 function hideHelpIcon() {
   document.getElementById("helpIcon").classList.add("d-none");
 }
+
 
 function showHelpIcon() {
   document.getElementById("helpIcon").classList.remove("d-none");

@@ -9,6 +9,7 @@ function toggleInitialDropdown() {
   document.addEventListener("click", closeDropdownOnClickOutside);
 }
 
+
 function toggleMobileDropdown(dropdown) {
   if (dropdown.classList.contains("d-none")) {
     dropdown.classList.remove("d-none");
@@ -18,6 +19,7 @@ function toggleMobileDropdown(dropdown) {
     setTimeout(() => dropdown.classList.add("d-none"), 300);
   }
 }
+
 
 function closeDropdownOnClickOutside(e) {
   const dropdown = document.getElementById("userDropdown");
@@ -29,15 +31,18 @@ function closeDropdownOnClickOutside(e) {
   }
 }
 
+
 function closeMobileDropdown(dropdown) {
   dropdown.classList.remove("slide-in");
   setTimeout(() => dropdown.classList.add("d-none"), 300);
 }
 
+
 function logout() {
   window.location.href = "../index.html";
   localStorage.removeItem("user");
 }
+
 
 function ifGuestShowDropdownHelp() {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -46,6 +51,7 @@ function ifGuestShowDropdownHelp() {
     btn.classList.remove("d-none");
   }
 }
+
 
 async function adjustInitialAfterLogin() {
   const container = document.getElementById("userInitial");
@@ -60,6 +66,7 @@ async function adjustInitialAfterLogin() {
   container.onclick = toggleInitialDropdown;
 }
 
+
 async function searchForContactInitial(id) {
   const rawContacts = await getData("ourUsers/");
   const contacts = Object.values(rawContacts);
@@ -67,6 +74,7 @@ async function searchForContactInitial(id) {
   const match = contacts.find((contact) => contact.id === id);
   return match?.icon?.initial;
 }
+
 
 function ifHelpPageNoHelpIcon() {
   const icon = document.querySelector(".help-icon");

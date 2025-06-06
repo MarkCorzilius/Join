@@ -11,12 +11,14 @@ async function handlePostingChangedTask(newTaskData) {
   return false;
 }
 
+
 async function renderDetailedTask(task) {
   const user = await findCurrentUser();
   const overlay = document.getElementById("taskInfoOverlay");
   overlay.innerHTML = taskDetailTemplate(task, user);
   currTask = task;
 }
+
 
 async function findCurrentUser() {
   const currUser = JSON.parse(localStorage.getItem("user"));
@@ -55,6 +57,7 @@ async function createTaskInBoardFireBase() {
   }
 }
 
+
 async function checkContactsInitials(taskContacts, firebaseContactsArray) {
   const userContacts = [];
   const otherContacts = [];
@@ -75,6 +78,7 @@ async function checkContactsInitials(taskContacts, firebaseContactsArray) {
   return userTemplate + contactsTemplate;
 }
 
+
 async function handleCreatingTask(column, dataSafe) {
   await postData("board/" + column, dataSafe);
   taskId += 1;
@@ -84,12 +88,14 @@ async function handleCreatingTask(column, dataSafe) {
   await renderAllTasks();
 }
 
+
 function loopTaskContacts(task, user) {
   const { defaultHTML, userHTML } = separateUserFromContacts(task, user);
   const defTempl = returnContactTemplates(userHTML, user);
   const userTempl = returnContactTemplates(defaultHTML, user);
   return userTempl + defTempl;
 }
+
 
 function returnContactTemplates(contacts, user) {
   let templateHTML = "";
@@ -107,11 +113,13 @@ function returnContactTemplates(contacts, user) {
   return templateHTML;
 }
 
+
 function loopTaskSubtasks(task) {
   if (!task.subtasks || typeof task.subtasks !== "object") return "";
   if (Object.entries(task.subtasks).length === 0) return "";
   return handleLoopingSubtasks(task);
 }
+
 
 function handleLoopingSubtasks(task) {
   let templateHTML = "";
@@ -122,6 +130,7 @@ function handleLoopingSubtasks(task) {
   return templateHTML;
 }
 
+
 function renderCurrSubtaskState(subtask) {
   if (subtask.state === true) {
     return { src: `../img/checkbox_checked_unhovered.png`, className: "chosen" };
@@ -129,6 +138,7 @@ function renderCurrSubtaskState(subtask) {
     return { src: `../img/checkbox_unchecked_unhovered.png`, className: "" };
   }
 }
+
 
 function updateSubtaskIcon(isHovered = false, icon, subtaskKey) {
   const chosen = icon.classList.contains("chosen");
@@ -139,6 +149,7 @@ function updateSubtaskIcon(isHovered = false, icon, subtaskKey) {
   }
   findChosenSubtasks(subtaskKey, icon);
 }
+
 
 async function findChosenSubtasks(subtaskKey, icon) {
   if (!icon) return;
@@ -152,6 +163,7 @@ async function findChosenSubtasks(subtaskKey, icon) {
     }
   }
 }
+
 
 function toggleSubtaskIcon(event, icon, subtaskKey) {
   switch (event.type) {
@@ -171,6 +183,7 @@ function toggleSubtaskIcon(event, icon, subtaskKey) {
   }
 }
 
+
 function renderSubtasksDone(task) {
   let trueTasks = 0;
   const subtasks = Object.values(task.subtasks || {});
@@ -181,6 +194,7 @@ function renderSubtasksDone(task) {
   }
   return trueTasks;
 }
+
 
 function updateProgressBar(task) {
   const done = renderSubtasksDone(task);

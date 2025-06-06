@@ -11,6 +11,7 @@ function allowDrop(ev) {
   ev.preventDefault();
 }
 
+
 function startDragging(id, ev) {
   checkIfMobileLayout();
   if (isMobileLayout) {
@@ -23,6 +24,7 @@ function startDragging(id, ev) {
   img.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMXB4IiBoZWlnaHQ9IjFweCI+PC9zdmc+"; // 1x1 transparent SVG
   ev.dataTransfer.setDragImage(img, 0, 0);
 }
+
 
 function prepareDraggedTask(id, ev) {
   const task = document.getElementById(`taskBody${id}`);
@@ -39,6 +41,7 @@ function prepareDraggedTask(id, ev) {
   }, 100);
 }
 
+
 function dragMove(id, ev) {
   checkIfMobileLayout();
   if (isMobileLayout) return;
@@ -51,6 +54,7 @@ function dragMove(id, ev) {
   task.style.transform = `translate(${deltaX}px, ${deltaY}px) rotate(${rotation}deg)`;
 }
 
+
 function decideRotation() {
   if (currentX > dragStartX) {
     rotation = 30;
@@ -58,6 +62,7 @@ function decideRotation() {
     rotation = -30;
   }
 }
+
 
 function stopDragging(id) {
   checkIfMobileLayout();
@@ -76,6 +81,7 @@ function stopDragging(id) {
   currentY = 0;
 }
 
+
 function moveElementTo(ev, containerEl) {
   checkIfMobileLayout();
   if (isMobileLayout) return;
@@ -84,6 +90,7 @@ function moveElementTo(ev, containerEl) {
   stopDragging(draggedTaskNum);
   moveTaskFireBase(containerEl, draggedTaskNum);
 }
+
 
 async function moveTaskFireBase(containerEl, draggedTaskNum) {
   const board = await getData("board/");
@@ -101,6 +108,7 @@ async function moveTaskFireBase(containerEl, draggedTaskNum) {
   }
 }
 
+
 function checkNewColumn(container) {
   switch (container) {
     case "tasksContainer-0":
@@ -116,6 +124,7 @@ function checkNewColumn(container) {
   }
 }
 
+
 function endDragging(id, ev) {
   checkIfMobileLayout();
   if (isMobileLayout) return;
@@ -127,6 +136,7 @@ function endDragging(id, ev) {
     renderAllTasks();
   }
 }
+
 
 function checkIfMobileLayout() {
   isMobileLayout = window.innerWidth <= 1350;

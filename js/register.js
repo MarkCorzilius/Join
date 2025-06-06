@@ -6,6 +6,7 @@ function signIn() {
   registerTemplates.classList.remove("d-none");
 }
 
+
 function getRegisterData() {
   const name = document.getElementById("registerName").value;
   const email = document.getElementById("registerEmail").value;
@@ -15,6 +16,7 @@ function getRegisterData() {
   return { name, email, password, confirmPassword };
 }
 
+
 function areAllFieldsFilled({ name, email, password, confirmPassword }) {
   if (name === "" || email === "" || password === "" || confirmPassword === "") {
     return false;
@@ -23,9 +25,11 @@ function areAllFieldsFilled({ name, email, password, confirmPassword }) {
   }
 }
 
+
 function isPasswordMatchConditions({ name, email, password, confirmPassword }) {
   return password === confirmPassword;
 }
+
 
 function isPrivacyPolicyAccepted() {
   const alert = document.getElementById("privacyDiscard");
@@ -38,10 +42,12 @@ function isPrivacyPolicyAccepted() {
   }
 }
 
+
 async function isExistingContact({ name, email, password, confirmPassword }) {
   const contacts = await getData("contacts/");
   return Object.values(contacts).some((contact) => contact.email === email);
 }
+
 
 async function signUp(ev) {
   ev.preventDefault();
@@ -69,6 +75,7 @@ async function signUp(ev) {
   window.location.href = "../index.html";
 }
 
+
 async function handleSignUp({ name, email, password, confirmPassword }) {
   const initial = getInitials(name);
   const bg = getBackgroundForName(name);
@@ -81,6 +88,7 @@ async function handleSignUp({ name, email, password, confirmPassword }) {
   emptyRegisterData();
 }
 
+
 function updateCheckboxIcon(isHovered = false) {
   const icon = document.getElementById("acceptPrivacy");
   const accepted = icon.classList.contains("accepted");
@@ -91,6 +99,7 @@ function updateCheckboxIcon(isHovered = false) {
     icon.src = isHovered ? "../img/checkbox_unchecked_hovered.png" : "../img/checkbox_unchecked_unhovered.png";
   }
 }
+
 
 function togglePrivacyBtn(ev) {
   const icon = document.getElementById("acceptPrivacy");
@@ -112,12 +121,14 @@ function togglePrivacyBtn(ev) {
   }
 }
 
+
 function emptyRegisterData() {
   document.getElementById("registerName").value = "";
   document.getElementById("registerEmail").value = "";
   document.getElementById("registerPassword1").value = "";
   document.getElementById("registerPassword2").value = "";
 }
+
 
 function toggleSignupArrow(ev) {
   const arrow = document.getElementById("signupArrow");
@@ -137,6 +148,7 @@ function toggleSignupArrow(ev) {
   }
   localStorage.setItem("createContact", false);
 }
+
 
 async function showSignUpToast() {
   const toast = document.getElementById("registerBanner");
