@@ -92,7 +92,7 @@
 
 @media (min-width: 1920px) {
   .helpMain {
-      max-width: 1920px;
+    max-width: 1920px;
   }
 
 
@@ -101,8 +101,8 @@
 
 @media (max-width: 1000px) {
   .helpMain {
-     padding-left: 20px;
-     padding-right: 30px;
+    padding-left: 20px;
+    padding-right: 30px;
   }
 
 
@@ -111,12 +111,12 @@
 
 @media (max-width: 630px) {
   .pageTitle {
-      font-size: 40px;
-      margin-bottom: 20px;
+    font-size: 40px;
+    margin-bottom: 20px;
   }
 
 
-.pageTitleTwo {
+  .pageTitleTwo {
     font-size: 40px;
   }
 
@@ -126,16 +126,16 @@
 
 @media (max-width: 400px) {
   .headerHelp {
-    flex-direction: column;  
+    flex-direction: column;
   }
 
 
-.arrowLeft {
+  .arrowLeft {
     padding-left: 240px;
   }
 
 
-.number {
+  .number {
     padding-right: 15px;
   }
 

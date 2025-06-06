@@ -151,7 +151,8 @@
 
 
 .edit-data-container::-webkit-scrollbar {
-  display: none; /* Width of vertical scrollbar */
+  display: none;
+  /* Width of vertical scrollbar */
 }
 
 
@@ -162,23 +163,23 @@
   }
 
 
-.prio-small svg {
+  .prio-small svg {
     height: 12px;
     width: auto;
   }
 
 
-.prio-buttons {
+  .prio-buttons {
     gap: 4px;
   }
 
 
-.prio-txt {
+  .prio-txt {
     font-size: 14px;
   }
 
 
-.detailed-overlay {
+  .detailed-overlay {
     padding: 0 20px 10px;
   }
 

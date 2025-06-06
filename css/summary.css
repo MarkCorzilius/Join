@@ -123,7 +123,9 @@
 }
 
 
-.done-box:hover, .to-do-box:hover, .all-tasks-box:hover {
+.done-box:hover,
+.to-do-box:hover,
+.all-tasks-box:hover {
   background-color: rgb(42 54 71);
   cursor: pointer;
   color: white;
@@ -274,7 +276,9 @@
 }
 
 
-.card-icon, .card-icon-light, .pencil-light {
+.card-icon,
+.card-icon-light,
+.pencil-light {
   width: 69px;
   height: 69px;
 }

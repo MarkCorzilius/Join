@@ -4,21 +4,61 @@
     }
 
 
-.logo-image {
+    .logo-image,
+    .mobile-logo-image {
         display: none;
+        width: 80px;
     }
 
 
-.mobile-logo-image {
+    .mobile-logo-image {
         display: flex;
     }
 
 
-.mobile-logo-image.animate-logo {
+    .mobile-logo-image.animate-logo {
+        display: flex;
         position: absolute;
-        animation: logoFlyUp 0.7s ease-in-out forwards;
+        animation: logoFlyUp 0.8s ease-in-out forwards;
     }
 
+
+    /* @keyframes logoFlyUp {
+        0% {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(2);}
+
+
+100% {
+            top: 40px;
+            left: 40px;
+            transform: translate(0, 0) scale(1);
+        }
+
+
+}
+
+
+*/
+
+    /* .mobile-logo-image.mobile-animate {
+        animation: logoFlyUp 0.8s ease-in-out forwards;
+        position: fixed;
+        z-index: 101;
+        opacity: 0;
+    }
+
+
+*/
+
+    /* .mobile-logo-image.fade-in {
+        opacity: 1;
+        transition: opacity 0.4s ease-in-out;
+    }
+
+
+*/
 
 }
 
@@ -30,26 +70,25 @@
     }
 
 
-.log-in-main {
+    .log-in-main {
         height: calc(100vh - 160px);
     }
 
 
-.log-in-box {
+    .log-in-box {
         padding: 48px 80px;
         margin: 0px 16px;
         height: 400px;
     }
 
 
-.mobile-logo-image,
-    .logo-image {
-        width: 64px;
-        height: 78px;
+    .logo-image,
+    .mobile-logo-image {
+        width: 70px;
     }
 
 
-@keyframes logoFlyUp {
+    @keyframes logoFlyUp {
         0% {
             top: 50%;
             left: 50%;
@@ -57,17 +96,17 @@
         }
 
 
-100% {
+        100% {
             top: 20px;
             left: 20px;
             transform: translate(0, 0) scale(1);
         }
 
 
-}
+    }
 
 
-.signup-container {
+    .signup-container {
         width: 100%;
         position: fixed;
         bottom: 90px;
@@ -82,7 +121,7 @@
     }
 
 
-.buttons {
+    .buttons {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -94,7 +133,7 @@
     }
 
 
-.log-in-btn,
+    .log-in-btn,
     .guest-btn {
         width: 100%;
         height: 51px;
@@ -102,7 +141,7 @@
     }
 
 
-.log-in-footer {
+    .log-in-footer {
         height: 60px;
     }
 
@@ -111,8 +150,14 @@
 
 
 @media (max-width: 600px) {
-        .log-in-box {
+    .log-in-box {
         padding: 48px 60px;
+    }
+
+
+    .logo-image,
+    .mobile-logo-image {
+        width: 64px;
     }
 
 
@@ -121,47 +166,51 @@
 
 @media (max-width: 450px) {
     .log-in-header {
-        height: 80px;
+        height: 40px;
     }
 
 
-.log-in-main {
-        height: calc(100vh - 140px);
+    .logo-image,
+    .mobile-logo-image {
+        width: 60px;
     }
 
 
-.log-in-box {
+    .log-in-main {
+        height: calc(100vh - 100px);
+    }
+
+
+    .log-in-box {
         width: 90%;
-        height: 400px;
-        padding: 32px 0;
-        gap: 32px;
+        height: 350px;
+        padding: 32px 16px;
     }
 
 
-.log-in-box h2 {
+    .log-in-box h2 {
         font-size: 47px;
         margin: 0;
     }
 
 
-.log-in-box form {
+    .log-in-box form {
         width: 100%;
     }
 
 
-.inputs {
-        padding: 0 16px;
-        gap: 16px;
+    .input-field input {
+        height: 42px;
     }
 
 
-.signup-container {
+    .signup-container {
         height: 49px;
-        bottom: 90px;
+        bottom: 70px;
     }
 
 
-.log-in-footer {
+    .log-in-footer {
         margin-top: 0;
     }
 

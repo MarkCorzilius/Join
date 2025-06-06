@@ -33,7 +33,7 @@
     top: 50%;
     left: 50%;
     width: 100px;
-    height: 120px;
+    height: auto;
     transform: translate(-50%, -50%);
     opacity: 1;
     z-index: 1;
@@ -46,7 +46,7 @@
     top: 50%;
     left: 50%;
     width: 100px;
-    height: 120px;
+    height: auto;
     transform: translate(-50%, -50%);
     opacity: 1;
     z-index: 2;
@@ -62,7 +62,7 @@
     }
 
 
-100% {
+    100% {
         top: 40px;
         left: 40px;
         transform: translate(0, 0) scale(1);
@@ -93,7 +93,7 @@
     }
 
 
-to {
+    to {
         opacity: 0;
     }
 
@@ -189,12 +189,12 @@ to {
     }
 
 
-70% {
+    70% {
         opacity: 0.5;
     }
 
 
-100% {
+    100% {
         opacity: 1;
     }
 
@@ -218,7 +218,7 @@ to {
     background-color: #fff;
     padding: 48px 115px;
     border-radius: 30px;
-    gap: 30px;
+    gap: 32px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     width: 422px;
@@ -229,8 +229,7 @@ to {
 .log-in-box h2 {
     font-weight: 700;
     font-size: 61px;
-    margin-top: 0;
-    margin-bottom: 20px;
+    margin: 0;
     padding-bottom: 16px;
     color: #2a3647;
     position: relative;
@@ -250,17 +249,18 @@ to {
 }
 
 
-.log-in-box form {
+.log-in-box form,
+.signup-box form {
     display: flex;
     flex-direction: column;
     width: 100%;
+    gap: 20px;
 }
 
 
-.inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.login-input-wrapper input:focus {
+    border: 1px solid rgb(41, 171, 226);
+    outline: none;
 }
 
 

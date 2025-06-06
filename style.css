@@ -19,24 +19,20 @@ a:hover {
 
 
 li {
-  list-style: none;
-}
+  list-style: none;}
 
 
 .d-none {
-  display: none !important;
-}
+  display: none !important;}
 
 
 .d-flex {
-  display: flex !important;
-}
+  display: flex !important;}
 
 
 .main {
   display: grid;
-  grid-template-columns: 200px 1fr;
-}
+  grid-template-columns: 200px 1fr;}
 
 
 .content {
@@ -45,18 +41,15 @@ li {
   box-sizing: border-box;
   overflow: auto !important;
   background-color: rgb(246 247 248);
-  max-width: 1200px;
-}
+  max-width: 1200px;}
 
 
 .content::-webkit-scrollbar {
-  display: none;
-}
+  display: none;}
 
 
 .light-grey-bg {
-  background-color: rgb(246 247 248);
-}
+  background-color: rgb(246 247 248);}
 
 
 .included-page-div {
@@ -134,8 +127,7 @@ input[type="date"]:valid {
 
 #headerContainer {
   position: relative;
-  z-index: 888;
-}
+  z-index: 888;}
 
 
 .spinner-overlay {
@@ -149,8 +141,7 @@ input[type="date"]:valid {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 7777;
-}
+  z-index: 7777;}
 
 
 .spinner {
@@ -169,8 +160,7 @@ input[type="date"]:valid {
 
 @keyframes spin {
   0% {
-    transform: rotate(0deg);
-  }
+    transform: rotate(0deg);}
 
 
 100% {
@@ -219,13 +209,11 @@ input[type="date"]:valid {
 
 #logedInGreeting {
   font-size: clamp(24px, 7vw, 64px);
-  margin-bottom: 0;
-}
+  margin-bottom: 0;}
 
 
 .login-input-wrapper {
-  position: relative;
-}
+  position: relative;}
 
 
 .login-icons {
@@ -240,8 +228,7 @@ input[type="date"]:valid {
 @media (max-width: 1000px) {
   .content {
     width: 100vw;
-    overflow-y: auto;
-  }
+    overflow-y: auto;}
 
 
 }
@@ -264,8 +251,7 @@ input[type="date"]:valid {
     align-items: center;
     text-align: center;
     padding: 20px;
-    box-sizing: border-box;
-  }
+    box-sizing: border-box;}
 
 
 main,
@@ -280,13 +266,11 @@ main,
 
 
 .color-white {
-  color: white;
-}
+  color: white;}
 
 
 .hidden {
-  display: none;
-}
+  display: none;}
 
 
 .warning-overlay {
@@ -295,13 +279,11 @@ main,
   background: rgba(0, 0, 0, 0.1);
   align-items: center;
   justify-content: center;
-  z-index: 9999;
-}
+  z-index: 9999;}
 
 
 .warning-overlay.show {
-  display: flex;
-}
+  display: flex;}
 
 
 .warning-dialog {
@@ -320,22 +302,19 @@ main,
   border-left: 6px solid #b30000;
   transform: translateX(100%);
   opacity: 0;
-  transition: transform 0.75s ease, opacity 0.75s ease;
-}
+  transition: transform 0.75s ease, opacity 0.75s ease;}
 
 
 .warning-dialog.show {
   transform: translateX(0);
-  opacity: 1;
-}
+  opacity: 1;}
 
 
 .email-warning {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-}
+  flex-direction: column;}
 
 
 .grey-txt {

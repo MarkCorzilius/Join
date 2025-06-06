@@ -79,12 +79,12 @@
   }
 
 
-.contacts {
+  .contacts {
     height: calc(100vh - 180px);
   }
 
 
-.add-content,
+  .add-content,
   .edit-content {
     flex-direction: column;
     width: 70%;
@@ -95,26 +95,26 @@
   }
 
 
-.add-content.slide-in,
+  .add-content.slide-in,
   .edit-content.slide-in {
     transform: translateY(0);
   }
 
 
-.overlay-left,
+  .overlay-left,
   .overlay-right {
     width: 100%;
     height: 100%;
   }
 
 
-.overlay-add-contact-close,
+  .overlay-add-contact-close,
   .overlay-edit-contact-close {
     display: none;
   }
 
 
-.overlay-add-contact-close-mobile,
+  .overlay-add-contact-close-mobile,
   .overlay-edit-contact-close-mobile {
     position: absolute;
     top: 32px;
@@ -131,17 +131,17 @@
   }
 
 
-.close-black {
+  .close-black {
     display: none;
   }
 
 
-.close-white {
+  .close-white {
     display: flex;
   }
 
 
-.overlay-add-avatar,
+  .overlay-add-avatar,
   .overlay-edit-avatar {
     margin-right: 0;
     position: absolute;
@@ -150,7 +150,7 @@
   }
 
 
-.overlay-buttons {
+  .overlay-buttons {
     padding-top: 40px;
     display: flex;
     align-items: center;
@@ -158,38 +158,38 @@
   }
 
 
-.add-contact-join-logo {
+  .add-contact-join-logo {
     display: flex;
     height: 32px;
     width: 32px;
   }
 
 
-.overlay-add-content {
+  .overlay-add-content {
     flex-direction: column;
   }
 
 
-.overlay-avatar {
+  .overlay-avatar {
     position: absolute;
     top: -50px;
     padding-right: 0;
   }
 
 
-.new-contact-inputs {
+  .new-contact-inputs {
     padding: 40px 16px 20px;
     margin: 0;
     box-sizing: border-box;
   }
 
 
-#overlayCancelIcon {
+  #overlayCancelIcon {
     display: none;
   }
 
 
-.overlay-logo {
+  .overlay-logo {
     display: none !important;
   }
 
@@ -198,6 +198,7 @@
 
 
 @media (max-width: 800px) {
+
   .contacts,
   .contact-info {
     padding: 16px;
@@ -205,37 +206,37 @@
   }
 
 
-.contact-header {
+  .contact-header {
     margin: 20px 0;
   }
 
 
-.edit-or-delete {
+  .edit-or-delete {
     display: none;
   }
 
 
-.add-contact-join-logo {
+  .add-contact-join-logo {
     display: none;
   }
 
 
-.btn-cancel {
+  .btn-cancel {
     display: none;
   }
 
 
-.btn-create-contact {
+  .btn-create-contact {
     width: 50%;
   }
 
 
-.add-contact-btn p {
+  .add-contact-btn p {
     display: none;
   }
 
 
-.add-contact-btn {
+  .add-contact-btn {
     width: 48px;
     height: 48px;
     position: absolute;
@@ -248,18 +249,18 @@
   }
 
 
-.add-contact-btn img {
+  .add-contact-btn img {
     margin: 0;
   }
 
 
-.mobile-more-container {
+  .mobile-more-container {
     display: flex;
     z-index: 1;
   }
 
 
-#contactSuccesfullyCreated {
+  #contactSuccesfullyCreated {
     bottom: 20vh;
     height: 50px;
     width: 200px;
@@ -277,12 +278,12 @@
   }
 
 
-.contact-header h1 {
+  .contact-header h1 {
     margin-bottom: 12px;
   }
 
 
-.contact-header p {
+  .contact-header p {
     border-left: none;
     margin: 0;
     padding: 0 0 12px 0;
@@ -290,7 +291,7 @@
   }
 
 
-.contact-header p::after {
+  .contact-header p::after {
     content: "";
     position: absolute;
     left: 0;
@@ -302,13 +303,13 @@
   }
 
 
-.contact-header p::before {
+  .contact-header p::before {
     content: none;
     display: none;
   }
 
 
-.add-content,
+  .add-content,
   .edit-content {
     width: 80vw;
     margin: 80px 0 100px;
@@ -316,20 +317,20 @@
   }
 
 
-.overlay-add-contact-close-mobile,
+  .overlay-add-contact-close-mobile,
   .overlay-edit-contact-close-mobile {
     top: 24px;
     right: 24px;
   }
 
 
-.overlay-left,
+  .overlay-left,
   .overlay-right {
     padding: 40px 24px;
   }
 
 
-.btn-create-contact {
+  .btn-create-contact {
     width: 60%;
   }
 
@@ -338,6 +339,7 @@
 
 
 @media (max-width: 450px) {
+
   .contacts,
   .contact-info {
     height: calc(100vh - 160px);
@@ -345,7 +347,7 @@
   }
 
 
-.add-content,
+  .add-content,
   .edit-content {
     min-height: 0;
     width: 90vw;
@@ -354,7 +356,7 @@
   }
 
 
-.overlay-add-contact-close-mobile,
+  .overlay-add-contact-close-mobile,
   .overlay-edit-contact-close-mobile {
     position: absolute;
     top: 12px;
@@ -362,43 +364,43 @@
   }
 
 
-.overlay-left,
+  .overlay-left,
   .overlay-right {
     padding: 48px 12px 24px;
   }
 
 
-.overlay-input-group {
+  .overlay-input-group {
     margin-bottom: 12px;
   }
 
 
-.overlay-buttons {
+  .overlay-buttons {
     padding-top: 24px;
   }
 
 
-.add-contact-btn {
+  .add-contact-btn {
     bottom: 100px;
   }
 
 
-.mobile-more-container {
+  .mobile-more-container {
     bottom: 4px;
   }
 
 
-.btn-create-contact {
+  .btn-create-contact {
     width: 75%;
   }
 
 
-.contact-edit {
+  .contact-edit {
     margin: 0 0 0 12px;
   }
 
 
-.contact-detail-view,
+  .contact-detail-view,
   .contact-detail-view.slide-in {
     transform: none !important;
     opacity: 1 !important;

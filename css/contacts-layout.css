@@ -29,20 +29,24 @@
 
 
 .contacts-list::-webkit-scrollbar-track {
-  background: #f0f2f5; /* Light gray to match your background */
+  background: #f0f2f5;
+  /* Light gray to match your background */
   border-radius: 10px;
 }
 
 
 .contacts-list::-webkit-scrollbar-thumb {
-  background-color: #c0c6cf; /* soft gray-blue */
+  background-color: #c0c6cf;
+  /* soft gray-blue */
   border-radius: 10px;
-  border: 1px solid #f0f2f5; /* blends with track */
+  border: 1px solid #f0f2f5;
+  /* blends with track */
 }
 
 
 .contacts-list::-webkit-scrollbar-thumb:hover {
-  background-color: #a8b0bb; /* slightly darker on hover */
+  background-color: #a8b0bb;
+  /* slightly darker on hover */
 }
 
 

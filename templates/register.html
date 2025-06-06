@@ -1,104 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Join - Sign in</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join - Sign in</title>
 
-    <script src="../js/templates.warnings.js"></script>
-    <script src="../script.js"></script>
-    <script src="../js/contacts-validation.js"></script>
-    <script src="../js/database.js"></script>
-    <script src="../js/templates.contact.js"></script>
-    <script src="../js/contacts-data.js"></script>
-    <script src="../js/contacts-logic.js"></script>
-    <script src="../js/contact-overlays.js"></script>
-    <script src="../js/contacts-ui.js"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <script src="../js/register.js"></script>
-    <script src="../js/login.js"></script>
+  <script src="../js/templates.warnings.js"></script>
+  <script src="../script.js"></script>
+  <script src="../js/contacts-validation.js"></script>
+  <script src="../js/database.js"></script>
+  <script src="../js/templates.contact.js"></script>
+  <script src="../js/contacts-data.js"></script>
+  <script src="../js/contacts-logic.js"></script>
+  <script src="../js/contact-overlays.js"></script>
+  <script src="../js/contacts-ui.js"></script>
 
-    <link rel="icon" type="image/x-icon" href="../img/join-logo.svg" />
-    <link rel="stylesheet" href="../style.css" />
-    <link rel="stylesheet" href="../css/login.css" />
+  <script src="../js/register.js"></script>
+  <script src="../js/login.js"></script>
+
+  <link rel="icon" type="image/x-icon" href="../img/join-logo.svg" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../css/login.css" />
   <link rel="stylesheet" href="../css/register.css" />
-  </head>
+  <link rel="stylesheet" href="../css/register_responsive.css" />
+</head>
 
-  <body>
-    <img id="registerBanner" class="register-banner" src="../img/registered_message.png" alt="" />
-    <div id="warningOverlay" class="warning-overlay hidden" onclick="hideWarningOverlay()">
-      <div class="warning-dialog" id="warningDialog"></div>
-    </div>
-    <main class="signup-main">
-      <div class="signup-box">
-        <div class="signup-title-block">
-          <img
-            onclick="toggleSignupArrow(event);"
-            onmouseover="toggleSignupArrow(event)"
-            onmouseout="toggleSignupArrow(event)"
-            class="signup-arrow"
-            id="signupArrow"
-            src="../img/signup_arrow.png"
-            alt=""
-          />
-          <h2>Sign up</h2>
-          <div class="blue-horizontal-line"></div>
+<body>
+  <img id="registerBanner" class="register-banner" src="../img/registered_message.png" alt="" />
+  <div id="warningOverlay" class="warning-overlay hidden" onclick="hideWarningOverlay()">
+    <div class="warning-dialog" id="warningDialog"></div>
+  </div>
+
+  <img class="signup-join-logo" id="mainLogo" src="../img/join-logo.svg" alt="Join Logo" />
+  <main class="signup-main">
+    <div class="signup-box">
+      <img onclick="toggleSignupArrow(event);" onmouseover="toggleSignupArrow(event)"
+        onmouseout="toggleSignupArrow(event)" class="signup-arrow" id="signupArrow" src="../img/signup_arrow.png"
+        alt="" />
+      <h2>Sign up</h2>
+      <form onsubmit="signUp(event)">
+        <div class="input-field">
+          <div class="login-input-wrapper">
+            <input type="name" id="registerName" placeholder="Name" autocomplete="username" required />
+            <img class="login-icons" src="../img/user.png" alt="mail png" />
+          </div>
         </div>
-        <form onsubmit="signUp(event)">
-            <div class="input-field">
-              <div class="login-input-wrapper">
-              <input type="name" id="registerName" placeholder="Name" autocomplete="username" required />
-              <img class="login-icons" src="../img/user.png" alt="mail png" />
-            </div>
+        <div class="input-field">
+          <div class="login-input-wrapper">
+            <input type="email" id="registerEmail" placeholder="Email" autocomplete="username" required />
+            <img class="login-icons" src="../img/mail.png" alt="mail png" />
           </div>
-          <div class="input-field">
-              <div class="login-input-wrapper">
-              <input type="email" id="registerEmail" placeholder="Email" autocomplete="username" required />
-              <img class="login-icons" src="../img/mail.png" alt="mail png" />
-            </div>
-          </div>
+        </div>
 
-            <div class="input-field">
-              <div class="login-input-wrapper">
-              <input type="password" id="registerPassword1" placeholder="Password" autocomplete="new-password" required />
-              <img
-                onclick="togglePasswordVisibility('registerPassword1', this, '../')"
-                class="login-icons"
-                src="../img/password_not_visible.png"
-                alt="mail png"
-              />
-            </div>
+        <div class="input-field">
+          <div class="login-input-wrapper">
+            <input type="password" id="registerPassword1" placeholder="Password" autocomplete="new-password" required />
+            <img onclick="togglePasswordVisibility('registerPassword1', this, '../')" class="login-icons"
+              src="../img/password_not_visible.png" alt="mail png" />
           </div>
+        </div>
 
-            <div class="input-field">
-              <div class="login-input-wrapper">
-              <input type="password" id="registerPassword2" placeholder="Confirm Password" autocomplete="new-password" required />
-              <img
-                onclick="togglePasswordVisibility('registerPassword2', this, '../')"
-                class="login-icons"
-                src="../img/password_not_visible.png"
-                alt="mail png"
-              />
-            </div>
+        <div class="input-field">
+          <div class="login-input-wrapper">
+            <input type="password" id="registerPassword2" placeholder="Confirm Password" autocomplete="new-password"
+              required />
+            <img onclick="togglePasswordVisibility('registerPassword2', this, '../')" class="login-icons"
+              src="../img/password_not_visible.png" alt="mail png" />
           </div>
-          <div class="privacy-accept">
-            <img
-              onmouseover="togglePrivacyBtn(event)"
-              onmouseout="togglePrivacyBtn(event)"
-              onclick="togglePrivacyBtn(event)"
-              id="acceptPrivacy"
-              src="../img/checkbox_unchecked_unhovered.png"
-              alt=""
-            />
-            <div class="privacy-line"><span>I accept the</span> <a class="privacy-policy" href="../templates/privacy_policy.html"> Privacy policy</a></div>
-          </div>
-          <div id="privacyDiscard">*Privacy policy must be accepted!</div>
-          <div class="signup-btn-wrapper"><button type="submit" class="signup-btn">Sign up</button></div>
-        </form>
-      </div>
-    </main>
-  </body>
+        </div>
+        <div class="privacy-accept">
+          <img onmouseover="togglePrivacyBtn(event)" onmouseout="togglePrivacyBtn(event)"
+            onclick="togglePrivacyBtn(event)" id="acceptPrivacy" src="../img/checkbox_unchecked_unhovered.png" alt="" />
+          <div class="privacy-line"><span>I accept the</span> <a class="privacy-policy"
+              href="../templates/privacy_policy.html"> Privacy policy</a></div>
+        </div>
+        <div id="privacyDiscard">*Privacy policy must be accepted!</div>
+        <!-- <div class="signup-btn-wrapper"><button type="submit" class="signup-btn">Sign up</button></div> -->
+      </form>
+      <!-- <div class="signup-btn-wrapper"> -->
+      <button type="submit" class="signup-btn">Sign up</button>
+      <!-- </div> -->
+
+    </div>
+  </main>
+
+  <footer class="log-in-footer">
+    <a href="./templates/privacy_policy.html" onclick="setViewerStateLocalStorage()" class="nav-button"> Privacy Policy
+    </a>
+    <a href="./templates/legal_notice.html" onclick="setViewerStateLocalStorage()" class="nav-button"> Legal Notice </a>
+  </footer>
+
+</body>
+
 </html>

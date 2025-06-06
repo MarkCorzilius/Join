@@ -1,0 +1,77 @@
+﻿@media (max-width: 1000px) {
+        .signup-join-logo {
+                width: 80px;
+        }
+
+
+}
+
+
+@media (max-width: 800px) {
+        .register-banner {
+                bottom: 20vh;
+                height: 50px;
+                width: 200px;
+        }
+
+
+        .signup-join-logo {
+                width: 70px;
+        }
+
+
+        .signup-main {
+                height: calc(100vh - 60px);
+        }
+
+
+        .signup-box {
+                height: 450px;
+                padding: 32px 16px;
+                margin: 100px 16px 0;
+        }
+
+
+        .log-in-footer {
+                height: 60px;
+        }
+
+
+}
+
+
+@media (max-width: 600px) {
+        .signup-join-logo {
+                width: 64px;
+        }
+
+
+}
+
+
+@media (max-width: 450px) {
+        .signup-join-logo {
+                width: 60px;
+        }
+
+
+        .signup-box {
+                width: 90%;
+                height: 400px;
+                padding: 32px 16px;
+                margin-top: 120px;
+                gap: 20px;
+        }
+
+
+        .signup-box form {
+                gap: 12px;
+        }
+
+
+        .input-field input {
+                height: 42px;
+        }
+
+
+}

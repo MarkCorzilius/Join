@@ -1,85 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Join - Login</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
 
-    <link rel="icon" type="image/x-icon" href="./img/join-logo.svg" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join - Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet" />
 
-    <link rel="stylesheet" href="./css/login.css" />
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="./css/register.css" />
-    <link rel="stylesheet" href="./css/login_responsive.css" />
+  <link rel="icon" type="image/x-icon" href="./img/join-logo.svg" />
 
-    <script src="./js/templates.warnings.js"></script>
-    <script src="./script.js"></script>
-    <script src="./js/login.js"></script>
-    <script src="./js/register.js"></script>
-    <script src="./js/summary.js"></script>
-    <script src="./js/database.js"></script>
-  </head>
+  <link rel="stylesheet" href="./css/login.css" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./css/register.css" />
+  <link rel="stylesheet" href="./css/login_responsive.css" />
 
-  <body class="log-in">
-    <div id="greetingOverlay" class="hidden">
-      <h2 id="logedInGreeting"></h2>
-      <h1 id="logedInUser"></h1>
+  <script src="./js/templates.warnings.js"></script>
+  <script src="./script.js"></script>
+  <script src="./js/login.js"></script>
+  <script src="./js/register.js"></script>
+  <script src="./js/summary.js"></script>
+  <script src="./js/database.js"></script>
+</head>
+
+<body class="log-in">
+  <div id="greetingOverlay" class="hidden">
+    <h2 id="logedInGreeting"></h2>
+    <h1 id="logedInUser"></h1>
+  </div>
+
+  <div id="warningOverlay" class="warning-overlay hidden" onclick="hideWarningOverlay()">
+    <div class="warning-dialog" id="warningDialog"></div>
+  </div>
+
+  <header class="log-in-header">
+    <div class="splash-logo-container">
+      <img class="logo-image" id="mainLogo" src="./img/join-logo.svg" alt="Join Logo" />
+      <img class="mobile-logo-image" id="mobileLogo" src="./img/join-logo-white.svg" alt="Join Mobile Logo" />
     </div>
 
-    <div id="warningOverlay" class="warning-overlay hidden" onclick="hideWarningOverlay()">
-      <div class="warning-dialog" id="warningDialog"></div>
+    <div class="signup-container">
+      <span>Not a Join user?</span>
+      <a href="./templates/register.html">Sign up</a>
     </div>
+  </header>
 
-    <header class="log-in-header">
-      <div class="splash-logo-container">
-        <img class="logo-image" id="mainLogo" src="./img/join-logo.svg" alt="Join Logo" />
-        <img class="mobile-logo-image" id="mobileLogo" src="./img/join-logo-white.svg" alt="Join Mobile Logo" />
-      </div>
-
-      <div class="signup-container">
-        <span>Not a Join user?</span>
-        <a href="./templates/register.html">Sign up</a>
-      </div>
-    </header>
-
-    <main class="log-in-main">
-      <div class="log-in-box">
-        <h2>Log in</h2>
-        <form onsubmit="addUser(); return false;">
-          <div class="inputs">
-            <div class="input-field">
-              <div class="login-input-wrapper">
-                <input type="email" id="loginEmail" placeholder="Email" autocomplete="username" required />
-                <img class="login-icons" src="./img/mail.png" alt="mail png" />
-              </div>
-            </div>
-            <div class="input-field">
-              <div class="login-input-wrapper">
-                <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password" required />
-                <img
-                  onclick="togglePasswordVisibility('loginPassword', this, './')"
-                  class="login-icons"
-                  src="./img/password_not_visible.png"
-                  alt="toggle visibility"
-                />
-              </div>
-            </div>
+  <main class="log-in-main">
+    <div class="log-in-box">
+      <h2>Log in</h2>
+      <form onsubmit="addUser(); return false;">
+        <div class="input-field">
+          <div class="login-input-wrapper">
+            <input type="email" id="loginEmail" placeholder="Email" autocomplete="username" required />
+            <img class="login-icons" src="./img/mail.png" alt="mail png" />
           </div>
-          <p class="wrong-data-alert" id="wrongDataAlert">Check your email and password</p>
-        </form>
-        <div class="buttons">
-          <button onclick="logIn(event)" type="submit" class="log-in-btn">Log in</button>
-          <button type="button" class="guest-btn" onclick="guestLogin()">Guest Log in</button>
         </div>
+        <div class="input-field">
+          <div class="login-input-wrapper">
+            <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password" required />
+            <img onclick="togglePasswordVisibility('loginPassword', this, './')" class="login-icons"
+              src="./img/password_not_visible.png" alt="toggle visibility" />
+          </div>
+        </div>
+        <p class="wrong-data-alert" id="wrongDataAlert">Check your email and password</p>
+      </form>
+      <div class="buttons">
+        <button onclick="logIn(event)" type="submit" class="log-in-btn">Log in</button>
+        <button type="button" class="guest-btn" onclick="guestLogin()">Guest Log in</button>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <footer class="log-in-footer">
-      <a href="./templates/privacy_policy.html" onclick="setViewerStateLocalStorage()" class="nav-button"> Privacy Policy </a>
-      <a href="./templates/legal_notice.html" onclick="setViewerStateLocalStorage()" class="nav-button"> Legal Notice </a>
-    </footer>
-  </body>
+  <footer class="log-in-footer">
+    <a href="./templates/privacy_policy.html" onclick="setViewerStateLocalStorage()" class="nav-button"> Privacy Policy
+    </a>
+    <a href="./templates/legal_notice.html" onclick="setViewerStateLocalStorage()" class="nav-button"> Legal Notice </a>
+  </footer>
+</body>
+
 </html>
