@@ -20,7 +20,7 @@ async function postData(path = "", data = {}) {
 async function putFirstIdForTasksAndContacts(path) {
   const key = await getData(path);
   if (!key) {
-    await putData(path, {id: 0});
+    await putData(path, 0);
   }
   return;
 }
@@ -33,7 +33,7 @@ async function getIdFromDataBase(path) {
   try {
     const key = await getData(path);
     if (!key) return 0;
-    contactId = key.id;
+    contactId = key;
     return contactId;
   } catch (error) {
     return 0;
