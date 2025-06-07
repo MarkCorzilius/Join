@@ -249,6 +249,7 @@ function handleEditBtnClick(overlay, boardAddTask) {
 function closeSubtaskInsert(event) {
   const input = document.getElementById('subtaskInput'); 
   if (event.target.id !== 'subtaskInput') {
+    if (!input) return;
     input.value = "";
     showMainBtn();
   }

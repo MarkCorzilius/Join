@@ -1,9 +1,9 @@
 ﻿
 
-async function taskDataStorage() {
+function taskDataStorage() {
   const { titleValue, descriptionValue, dateValue } = extractTaskValues();
   const dataSafe = {
-    id: await getIdFromDataBase("taskId"),
+    id: taskId,
     title: titleValue,
     description: descriptionValue,
     date: dateValue,
@@ -33,7 +33,8 @@ async function validateAndPostTask() {
     showWarningOverlay(taskDateInPastTemplate())
     return;
   }
-  const dataSafe = await taskDataStorage();
+  taskId = await getData("taskId");
+  const dataSafe = taskDataStorage();
   if (!restrictAddingTask()) return;
   await handlePostingTask(dataSafe);
   showTaskSuccessBanner();
