@@ -36,7 +36,7 @@ async function prepareBoardEnvironment() {
   markCurrentPage();
   ifGuestShowDropdownHelp();
   adjustInitialAfterLogin();
-  await putFirstIdForTasksAndContacts("taskId/")
+  await putFirstIdForTasksAndContacts("taskId")
 }
 
 

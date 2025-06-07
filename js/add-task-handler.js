@@ -3,7 +3,7 @@
 async function taskDataStorage() {
   const { titleValue, descriptionValue, dateValue } = extractTaskValues();
   const dataSafe = {
-    id: await getIdFromDataBase("taskId/"),
+    id: await getIdFromDataBase("taskId"),
     title: titleValue,
     description: descriptionValue,
     date: dateValue,
@@ -45,7 +45,7 @@ async function handlePostingTask(dataSafe) {
   const columnName = checkChosenColummn(columnNum);
   await postData(`board/${columnName}/`, dataSafe);
   taskId += 1;
-  await putIdToDataBase("taskId/", {id: taskId});
+  await putIdToDataBase("taskId", taskId);
   emptyTaskDocument();
   if (window.location.href.includes("task")) return;
   renderAllTasks();
