@@ -47,6 +47,7 @@ async function createTaskInBoardFireBase() {
     showWarningOverlay(taskMissingFieldsTemplate());
     return;
   }
+  taskId = await getData("taskId");
   const dataSafe = taskDataStorage();
   if (!restrictAddingTask()) {
     return;
@@ -79,9 +80,10 @@ async function checkContactsInitials(taskContacts, firebaseContactsArray) {
 
 
 async function handleCreatingTask(column, dataSafe) {
+  taskId = await getIdFromDataBase("taskId");
   await postData("board/" + column, dataSafe);
   taskId += 1;
-  localStorage.setItem("taskId", taskId.toString());
+  await putIdToDataBase("taskId", taskId);
   emptyTaskDocument();
   closeTaskOverlay();
   await renderAllTasks();

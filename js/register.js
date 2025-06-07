@@ -55,7 +55,10 @@ async function signUp(ev) {
     showWarningOverlay(emailExistsTemplate());
     return;
   }
-  if (!areAllFieldsFilled({ name, email, password, confirmPassword })) return;
+  if (!areAllFieldsFilled({ name, email, password, confirmPassword })) {
+    showWarningOverlay(incompleteFieldsTemplate());
+    return;
+  }
   if (!isRealEmail(email)) {
     showWarningOverlay(getEmailValidationTemplate());
     return;
@@ -79,11 +82,11 @@ async function handleSignUp({ name, email, password, confirmPassword }) {
   const initial = getInitials(name);
   const bg = getBackgroundForName(name);
   const icon = { initial, bg };
-  contactId = await getContactIdFromDataBase();
+  contactId = await getIdFromDataBase("contactId/");
   await putData(`ourUsers/${sanitizeEmail(email)}`, { name, email, password, icon, id: contactId });
   await putData(`contacts/${sanitizeEmail(email)}`, { name, email, icon, phone: "", id: contactId });
   contactId += 1;
-  await putContactIdToDataBase(contactId);
+  await putIdToDataBase("contactId/", contactId);
   emptyRegisterData();
 }
 

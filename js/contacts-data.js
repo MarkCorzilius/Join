@@ -84,32 +84,33 @@ const bgImages = [
 ];
 
 async function saveBasicContacts() {
+  contactId = await getIdFromDataBase("contactId");
   for (let i = 0; i < basicContacts.length; i++) {
     const contact = basicContacts[i];
     const safeKey = sanitizeEmail(contact.email);
     const path = "contacts/" + safeKey;
     const exists = await isDuplicateEmail(path);
     if (!exists) {
-      contact.id = await getContactIdFromDataBase();
+      contact.id = contactId;
       await putData(path, contact);
       contactId += 1;
     } else {
       continue;
     }
   }
-  await putContactIdToDataBase(contactId);
+  await putIdToDataBase("contactId", contactId);
 }
 
 
 async function saveContact({ nameValue, emailValue, phoneValue }) {
   const safeKey = sanitizeEmail(emailValue);
-  let contactId = await getContactIdFromDataBase();
+  contactId = await getIdFromDataBase("contactId");
   await handlePostingToDataBase({ nameValue, emailValue, phoneValue, contactId }, safeKey);
   closeAddContactOverlay();
   deleteValue();
   overlayForContactSuccesfullyCreated();
   contactId += 1;
-  await putContactIdToDataBase(contactId);
+  await putIdToDataBase("contactId", contactId);
 }
 
 

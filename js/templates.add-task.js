@@ -29,7 +29,7 @@ function subtaskTemplate(subtaskId, valueRef, subtaskClass) {
                                             <div class="template-subtask" id="subtaskTemplate${subtaskId}">
                           <div class="form-subtask-template task-active-state" id="taskNormalState${subtaskId}">
                            <div class="subtask-title">
-                             <p>ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢</p>
+                             <p>•</p>
                              <span id="subtaskTitle${subtaskId}" class="subtask-titles">${valueRef}</span>
                            </div>
                            <div class="control-subtask">

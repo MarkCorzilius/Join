@@ -33,6 +33,7 @@ async function validateAndPostTask() {
     showWarningOverlay(taskDateInPastTemplate())
     return;
   }
+  taskId = await getData("taskId");
   const dataSafe = taskDataStorage();
   if (!restrictAddingTask()) return;
   await handlePostingTask(dataSafe);
@@ -45,7 +46,7 @@ async function handlePostingTask(dataSafe) {
   const columnName = checkChosenColummn(columnNum);
   await postData(`board/${columnName}/`, dataSafe);
   taskId += 1;
-  localStorage.setItem("taskId", taskId.toString());
+  await putIdToDataBase("taskId", taskId);
   emptyTaskDocument();
   if (window.location.href.includes("task")) return;
   renderAllTasks();

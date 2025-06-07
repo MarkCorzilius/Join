@@ -25,10 +25,10 @@ function taskTemplate(task, initialsHTML) {
                     <div class="mobile-switch">
                       <button onclick="moveMobileTasks('back', ${encodeTask(
       task
-    )}, event, this)" class="mobile-switch-btn move-task-up" id="moveTaskUp">ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â½ back</button>
+    )}, event, this)" class="mobile-switch-btn move-task-up" id="moveTaskUp">back</button>
                       <button onclick="moveMobileTasks('forward', ${encodeTask(
       task
-    )}, event, this)" class="mobile-switch-btn move-task-down" id="moveTaskDown">ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â½ forward</button>
+    )}, event, this)" class="mobile-switch-btn move-task-down" id="moveTaskDown">forward</button>
                     </div>
                 </div>`;
 }

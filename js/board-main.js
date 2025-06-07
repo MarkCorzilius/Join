@@ -5,7 +5,7 @@ async function boardOnLoad() {
   document.querySelector(".spinner-overlay").style.display = "flex";
   try {
     await initializePageStructure();
-    prepareBoardEnvironment();
+    await prepareBoardEnvironment();
     await loadBoardTasks();
   } catch (error) {
     console.log("error in boardOnLoad:", error);
@@ -32,11 +32,11 @@ async function initializePageStructure() {
 }
 
 
-function prepareBoardEnvironment() {
+async function prepareBoardEnvironment() {
   markCurrentPage();
   ifGuestShowDropdownHelp();
   adjustInitialAfterLogin();
-  taskId = Number(localStorage.getItem("taskId")) || 0;
+  await putFirstIdForTasksAndContacts("taskId")
 }
 
 

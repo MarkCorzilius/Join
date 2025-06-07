@@ -3,10 +3,6 @@ let defaultContacts = [];
 let currentIndex = 0;
 const CHUNK_SIZE = 10;
 
-//
-// if no contacts ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“> show message: No contacts existing
-// if more contacts ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“> show  button & amount in ( )
-
 async function renderNextChunk(contactsContainer) {
   const container = document.getElementById('contactOptions');
   const nextChunk = defaultContacts.slice(currentIndex, currentIndex + CHUNK_SIZE);
