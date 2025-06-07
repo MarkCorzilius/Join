@@ -17,27 +17,23 @@ async function postData(path = "", data = {}) {
   return await response.json();
 }
 
-// if !contactId === create contactId = 0;
-//
-
-async function ifFirstContactCreateId0() {
-  const contactKey = await getData('contactId/');
-  if (!contactKey) {
-    await putData("contactId/",{id: 0});
+async function putFirstIdForTasksAndContacts(path) {
+  const key = await getData(path);
+  if (!key) {
+    await putData(path, {id: 0});
   }
   return;
 }
 
-async function putContactIdToDataBase(contactId) {
-  await putData("contactId/",{id: contactId});
+async function putIdToDataBase(path, id) {
+  await putData(path, id);
 }
 
-async function getContactIdFromDataBase() {
+async function getIdFromDataBase(path) {
   try {
-    const contactKey = await getData("contactId/");
-    if (!contactKey) return 0;
-    //contactId = contactKey.id + 1;
-    contactId = contactKey.id;
+    const key = await getData(path);
+    if (!key) return 0;
+    contactId = key.id;
     return contactId;
   } catch (error) {
     return 0;

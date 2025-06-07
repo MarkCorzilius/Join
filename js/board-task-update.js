@@ -80,8 +80,9 @@ async function checkContactsInitials(taskContacts, firebaseContactsArray) {
 
 async function handleCreatingTask(column, dataSafe) {
   await postData("board/" + column, dataSafe);
+  taskId = await getIdFromDataBase("taskId/");
+  await putIdToDataBase("taskId/", {id: taskId});
   taskId += 1;
-  localStorage.setItem("taskId", taskId.toString());
   emptyTaskDocument();
   closeTaskOverlay();
   await renderAllTasks();

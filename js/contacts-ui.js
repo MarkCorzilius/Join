@@ -23,7 +23,7 @@ async function initializeContactsPage() {
   try {
     markCurrentPage();
     ifGuestShowDropdownHelp();
-    await ifFirstContactCreateId0();
+    await putFirstIdForTasksAndContacts("contactId/");
     adjustInitialAfterLogin();
     await renderContacts();
     findUserEmail();

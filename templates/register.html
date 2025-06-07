@@ -45,7 +45,7 @@
         onmouseout="toggleSignupArrow(event)" class="signup-arrow" id="signupArrow" src="../img/signup_arrow.png"
         alt="" />
       <h2>Sign up</h2>
-      <form onsubmit="signUp(event)">
+      <form novalidate>
         <div class="input-field">
           <div class="login-input-wrapper">
             <input type="name" id="registerName" placeholder="Name" autocomplete="username" required />
@@ -85,7 +85,7 @@
         <!-- <div class="signup-btn-wrapper"><button type="submit" class="signup-btn">Sign up</button></div> -->
       </form>
       <!-- <div class="signup-btn-wrapper"> -->
-      <button type="submit" class="signup-btn">Sign up</button>
+      <button onclick="signUp(event)" type="submit" class="signup-btn">Sign up</button>
       <!-- </div> -->
 
     </div>

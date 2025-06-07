@@ -97,19 +97,19 @@ async function saveBasicContacts() {
       continue;
     }
   }
-  await putContactIdToDataBase(contactId);
+  await putIdToDataBase("contactId/", contactId);
 }
 
 
 async function saveContact({ nameValue, emailValue, phoneValue }) {
   const safeKey = sanitizeEmail(emailValue);
-  let contactId = await getContactIdFromDataBase();
+  let contactId = await getIdFromDataBase("contactId/");
   await handlePostingToDataBase({ nameValue, emailValue, phoneValue, contactId }, safeKey);
   closeAddContactOverlay();
   deleteValue();
   overlayForContactSuccesfullyCreated();
   contactId += 1;
-  await putContactIdToDataBase(contactId);
+  await putIdToDataBase("contactId/", contactId);
 }
 
 

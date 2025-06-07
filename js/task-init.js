@@ -4,7 +4,7 @@ async function taskPageOnLoad() {
   w3.includeHTML();
   try {
     await waitForSidebarAndHeader();
-    setupTaskPageEnvironment();
+    await setupTaskPageEnvironment();
     loadTaskPageData();
   } catch (error) {
     console.log("error in taskPageOnLoad()");
@@ -26,11 +26,11 @@ function waitForSidebarAndHeader() {
 }
 
 
-function setupTaskPageEnvironment() {
+async function setupTaskPageEnvironment() {
   markCurrentPage();
   ifGuestShowDropdownHelp();
   adjustInitialAfterLogin();
-  taskId = Number(localStorage.getItem("taskId")) || 0;
+  await putFirstIdForTasksAndContacts("taskId/");
 }
 
 

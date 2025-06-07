@@ -11,7 +11,6 @@
   `.trim();
 }
 
-
 function passwordsNotMatchTemplate() {
   return `
   <div class="email-warning">
@@ -24,7 +23,6 @@ function passwordsNotMatchTemplate() {
   `.trim();
 }
 
-
 function emailExistsTemplate() {
   return `
   <div class="email-warning">
@@ -35,7 +33,6 @@ function emailExistsTemplate() {
   </div>
   `.trim();
 }
-
 
 function invalidPhoneNumberTemplate() {
   return `
@@ -48,7 +45,6 @@ function invalidPhoneNumberTemplate() {
   </div>
   `.trim();
 }
-
 
 function getEmailValidationTemplate() {
   return `
@@ -65,7 +61,6 @@ function getEmailValidationTemplate() {
   `.trim();
 }
 
-
 function wrongEmailOrPasswordTemplate() {
   return `
   <div class="email-warning">
@@ -77,7 +72,6 @@ function wrongEmailOrPasswordTemplate() {
   </div>
   `.trim();
 }
-
 
 function taskMissingFieldsTemplate() {
   return `
@@ -92,7 +86,6 @@ function taskMissingFieldsTemplate() {
   `.trim();
 }
 
-
 function taskDateInPastTemplate() {
   return `
   <div class="email-warning">
@@ -105,7 +98,6 @@ function taskDateInPastTemplate() {
   `.trim();
 }
 
-
 function invalidNameTemplate() {
   return `
     <div class="email-warning">
@@ -113,6 +105,18 @@ function invalidNameTemplate() {
       <ul class="email-warning-list">
         <li>The name seems too short to be valid</li>
         <li>Please enter your full, real name</li>
+      </ul>
+    </div>
+    `.trim();
+}
+
+function incompleteFieldsTemplate() {
+  return `
+    <div class="email-warning">
+      <p class="email-warning-title">Some fields are missing:</p>
+      <ul class="email-warning-list">
+        <li>All fields must be filled out before submitting</li>
+        <li>Please complete the form to proceed</li>
       </ul>
     </div>
     `.trim();
