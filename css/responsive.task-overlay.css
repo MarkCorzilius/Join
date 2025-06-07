@@ -43,7 +43,7 @@
     .priority-button {
         gap: 4px;
         font-size: 16px;
-        width: 96px;
+        width: 112px;
         height: 48px;
         box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3) !important;
     }
@@ -131,10 +131,37 @@
 
 }
 
+@media (max-width: 1140px) {
+    .priority-button {
+        width: 98px;
+    }
+
+
+    .priority-buttons {
+        gap: 15px;
+    }
+
+    .task-txt {
+        font-size: 16px;
+    }
+
+
+    .priority-icon {
+        width: 18px;
+        height: auto;
+    }
+}
+
 
 @media (max-width: 1000px) {
     .question-blocks {
         flex-direction: column;
+    }
+
+
+    .priority-button {
+        width: 121px;
+        height: 48px;
     }
 
 

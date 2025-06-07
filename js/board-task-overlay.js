@@ -131,7 +131,8 @@ async function changeCurrTask() {
   if (!restrictAddingTask()) return;
   const taskUpdated = await handlePostingChangedTask(newTaskData);
   if (taskUpdated) {
-    closeTaskInfoOverlay();
+    openTaskInfoOverlay(currTask);
+    //closeTaskInfoOverlay();
   }
 }
 
@@ -164,6 +165,7 @@ function getUpdatedCategory() {
 
 function closeTaskOverlay() {
   const overlay = document.getElementById("createTaskInBoardOverlay");
+  overlay.innerHTML = "";
   overlay.style.display = "none";
   localStorage.removeItem("taskColumn");
 }
@@ -182,6 +184,14 @@ function openTaskOverlay(column) {
     currentColumn = column;
   }
   fetchContacts("contactOptions");
+}
+
+function ifMobileAddTaskLayout() {
+  const overlay = document.getElementById('overlayDialogBoard');
+  if (overlay && innerWidth <= 700) {
+    window.location.href = "../templates/add_task.html"
+  }
+  
 }
 
 
