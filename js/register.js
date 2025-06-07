@@ -43,6 +43,7 @@ function isPrivacyPolicyAccepted() {
 
 async function isExistingContact({ name, email, password, confirmPassword }) {
   const contacts = await getData("contacts/");
+  if (!contacts) return false;
   return Object.values(contacts).some((contact) => contact.email === email);
 }
 
@@ -78,11 +79,11 @@ async function handleSignUp({ name, email, password, confirmPassword }) {
   const initial = getInitials(name);
   const bg = getBackgroundForName(name);
   const icon = { initial, bg };
-  contactId = Number(localStorage.getItem("contactId"));
+  contactId = await getContactIdFromDataBase();
   await putData(`ourUsers/${sanitizeEmail(email)}`, { name, email, password, icon, id: contactId });
   await putData(`contacts/${sanitizeEmail(email)}`, { name, email, icon, phone: "", id: contactId });
   contactId += 1;
-  localStorage.setItem("contactId", contactId);
+  await putContactIdToDataBase(contactId);
   emptyRegisterData();
 }
 

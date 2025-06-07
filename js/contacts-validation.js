@@ -4,7 +4,7 @@
   if (!data) return false;
   for (const key in data) {
     if (data[key].email === emailValue) {
-      if (emailValue === currentContact.email) continue;
+      //if (emailValue === currentContact.email) continue;
       return true;
     }
   }
