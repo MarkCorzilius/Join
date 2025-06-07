@@ -15,8 +15,17 @@
 
 
     .priority-button {
-        width: 106px;
+        width: 108px;
         height: 50px;
+    }
+
+
+    .priority-buttons {
+        gap: 18px;
+    }
+
+    .task-txt {
+        font-size: 18px;
     }
 
 
@@ -70,10 +79,19 @@
 
 
     .priority-button {
-        width: 106px;
+        width: 102px;
         height: 50px;
     }
 
+
+    .priority-buttons {
+        gap: 8px;
+    }
+
+
+    .task-txt {
+        font-size: 16px;
+    }
 
     .add-task-footer {
         width: 850px;
@@ -92,11 +110,6 @@
 
     .category-options {
         width: 320px;
-    }
-
-
-    .priority-button {
-        width: 92px;
     }
 
 
@@ -214,6 +227,16 @@
     }
 
 
+    .priority-button {
+        width: 121px;
+        height: 41px;
+    }
+
+    .task-txt {
+        font-size: 16px;
+    }
+
+
     .subtask-template-edit-state {
         width: 100%;
     }
@@ -324,7 +347,12 @@
         gap: 4px;
         font-size: 16px;
         width: 96px;
-        height: 48px;
+        height: 41px;
+    }
+
+
+    .priority-buttons {
+        gap: 16px;
     }
 
 
@@ -368,7 +396,7 @@
 
 
     .priority-buttons {
-        gap: 4px;
+        gap: 16px;
     }
 
 

@@ -36,7 +36,7 @@ function animateSplash() {
 
 function guestLogin() {
   const guest = "Guest";
-  localStorage.setItem("user", JSON.stringify({ name: guest, email: "guest@example.com" }));
+  localStorage.setItem("user", JSON.stringify({ name: guest, email: "guest@example.com", id: "x" }));
 
   setTimeout(() => {
     window.location.href = "./templates/summary.html";

@@ -63,6 +63,7 @@ async function checkContactsInitials(taskContacts, firebaseContactsArray) {
   const userContacts = [];
   const otherContacts = [];
   const theUser = JSON.parse(localStorage.getItem("user"));
+
   for (const contact of taskContacts) {
     if (!contact || !contact.id) continue;
     const match = firebaseContactsArray.find((fc) => fc.id === contact.id);
