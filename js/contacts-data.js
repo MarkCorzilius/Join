@@ -90,26 +90,26 @@ async function saveBasicContacts() {
     const path = "contacts/" + safeKey;
     const exists = await isDuplicateEmail(path);
     if (!exists) {
-      contact.id = contactId;
+      contact.id = await getContactIdFromDataBase();
       await putData(path, contact);
       contactId += 1;
     } else {
       continue;
     }
   }
-  localStorage.setItem("contactId", contactId);
+  await putContactIdToDataBase(contactId);
 }
 
 
 async function saveContact({ nameValue, emailValue, phoneValue }) {
   const safeKey = sanitizeEmail(emailValue);
-  let contactId = Number(localStorage.getItem("contactId"));
+  let contactId = await getContactIdFromDataBase();
   await handlePostingToDataBase({ nameValue, emailValue, phoneValue, contactId }, safeKey);
   closeAddContactOverlay();
   deleteValue();
   overlayForContactSuccesfullyCreated();
   contactId += 1;
-  localStorage.setItem("contactId", contactId);
+  await putContactIdToDataBase(contactId);
 }
 
 

@@ -1,7 +1,7 @@
 ﻿const BASE_URL = "https://join-fce4c-default-rtdb.europe-west1.firebasedatabase.app/";
 
 let taskId = 0;
-let contactId = Number(localStorage.getItem("contactId")) || 0;
+let contactId = 0;
 
 const currentUser = JSON.parse(localStorage.getItem("user"));
 let userEmail = null;
@@ -17,12 +17,37 @@ async function postData(path = "", data = {}) {
   return await response.json();
 }
 
+// if !contactId === create contactId = 0;
+//
+
+async function ifFirstContactCreateId0() {
+  const contactKey = await getData('contactId/');
+  if (!contactKey) {
+    await putData("contactId/",{id: 0});
+  }
+  return;
+}
+
+async function putContactIdToDataBase(contactId) {
+  await putData("contactId/",{id: contactId});
+}
+
+async function getContactIdFromDataBase() {
+  try {
+    const contactKey = await getData("contactId/");
+    if (!contactKey) return 0;
+    //contactId = contactKey.id + 1;
+    contactId = contactKey.id;
+    return contactId;
+  } catch (error) {
+    return 0;
+  }
+}
 
 async function getData(path = "") {
   let response = await fetch(BASE_URL + path + ".json");
   return response.json();
 }
-
 
 async function putData(path = "", data = {}) {
   let response = await fetch(BASE_URL + path + ".json", {
@@ -35,7 +60,6 @@ async function putData(path = "", data = {}) {
   return await response.json();
 }
 
-
 async function deleteData(path = "") {
   let response = await fetch(BASE_URL + path + ".json", {
     method: "DELETE",
@@ -43,11 +67,9 @@ async function deleteData(path = "") {
   return await response.json();
 }
 
-
 function sanitizeEmail(email) {
   return email.replace(/[@.]/g, "_");
 }
-
 
 async function isDuplicateEmail(path = "") {
   const response = await fetch(BASE_URL + path + ".json");
@@ -55,12 +77,11 @@ async function isDuplicateEmail(path = "") {
   return data !== null;
 }
 
-
 async function findUserEmail() {
   const contacts = await getData("contacts/");
   if (!contacts) {
-    userEmail = '';
-    return
+    userEmail = "";
+    return;
   }
   for (const contact of Object.values(contacts)) {
     if (contact.id === currentUser.id) {
