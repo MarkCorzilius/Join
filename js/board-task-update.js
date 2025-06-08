@@ -65,7 +65,7 @@ async function checkContactsInitials(taskContacts, firebaseContactsArray) {
   const theUser = JSON.parse(localStorage.getItem("user"));
 
   for (const contact of taskContacts) {
-    if (!contact || !contact.id) continue;
+    if (!contact || contact.id === undefined || contact.id === null) continue;
     const match = firebaseContactsArray.find((fc) => fc.id === contact.id);
     if (!match) continue;
     if (contact.id === theUser.id) {
@@ -105,7 +105,7 @@ function returnContactTemplates(contacts, user) {
   const ifUser = ifUserAddYou(contacts, user);
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
-    if (contact === null) continue;
+    if (!contact) continue;
     templateHTML += `
           <div class="task-overlay-contact">
               <div style="background-image: url('${contact.bg}')" class="initial">${contact.initial}</div>

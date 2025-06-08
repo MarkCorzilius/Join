@@ -35,6 +35,7 @@ async function handleOpeningEditOverlay(task) {
 }
 
 
+
 function renderTaskDetails(task) {
   const title = document.getElementById("taskTitle");
   const description = document.getElementById("description");
@@ -131,8 +132,8 @@ async function changeCurrTask() {
   if (!restrictAddingTask()) return;
   const taskUpdated = await handlePostingChangedTask(newTaskData);
   if (taskUpdated) {
-    openTaskInfoOverlay(currTask);
-    //closeTaskInfoOverlay();
+    //openTaskInfoOverlay(currTask);
+    closeTaskInfoOverlay();
   }
 }
 

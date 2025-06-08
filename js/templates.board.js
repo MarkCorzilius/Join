@@ -244,7 +244,7 @@ function tasksDialogTemplate() {
 }
 
 
-function editTaskTemplate() {
+function editTaskTemplate(task) {
   return `<div onclick="closeDropdownsIfClickedOutside(event); closeSubtaskInsert(event); event.stopPropagation()" class="detailed-overlay" id="taskDetailedOverlay">
   <div class="leave-edit-icon-wrapper">
    <div onclick="closeTaskInfoOverlay()" class="leave-edit-icon">

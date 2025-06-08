@@ -44,7 +44,7 @@ async function fetchContacts(currentContainer) {
   defaultContacts = defaults;
   currentIndex = 0;
   await renderLoggedInUser(loggedIn, contactsContainer);
-  renderNextChunk(contactsContainer);
+  await renderNextChunk(contactsContainer);
 }
 
 
