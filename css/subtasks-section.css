@@ -120,7 +120,7 @@
 
 
 .subtask-titles {
-    font-size: clamp(12px, 2vw, 16px);
+    font-size: clamp(14px, 2vw, 16px);
     max-width: 90%;
     word-wrap: break-word;
     overflow-wrap: break-word;

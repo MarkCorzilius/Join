@@ -5,25 +5,42 @@ const CHUNK_SIZE = 10;
 
 async function renderNextChunk(contactsContainer) {
   const container = document.getElementById('contactOptions');
-  const nextChunk = defaultContacts.slice(currentIndex, currentIndex + CHUNK_SIZE);
-  const btn = document.getElementById("moreContactsContainer");
-  if (btn) btn.remove();
+  const nextChunk = getNextContactChunk();
+
+  removeMoreContactsButton();
   if (nextChunk.length === 0) return;
-  for (const user of nextChunk) {
+
+  await renderContactChunk(nextChunk, contactsContainer, container);
+  currentIndex += CHUNK_SIZE;
+  insertMoreContactsButtonIfNeeded(contactsContainer);
+}
+
+
+function getNextContactChunk() {
+  return defaultContacts.slice(currentIndex, currentIndex + CHUNK_SIZE);
+}
+
+
+async function renderContactChunk(chunk, contactsContainer, container) {
+  for (const user of chunk) {
     await renderDefaultUsers(user, contactsContainer);
     container.scrollTo({
       top: container.scrollHeight,
       behavior: "smooth"
     });
   }
-  currentIndex += CHUNK_SIZE;
+}
 
+
+function removeMoreContactsButton() {
+  const btn = document.getElementById("moreContactsContainer");
+  if (btn) btn.remove();
+}
+
+
+function insertMoreContactsButtonIfNeeded(contactsContainer) {
   if (currentIndex < defaultContacts.length) {
     contactsContainer.insertAdjacentHTML("beforeend", moreContactsBtnTemplate());
-  } else {
-    if (btn) {
-      btn.remove();
-    }
   }
 }
 

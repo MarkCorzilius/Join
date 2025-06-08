@@ -60,23 +60,40 @@ async function createTaskInBoardFireBase() {
 
 
 async function checkContactsInitials(taskContacts, firebaseContactsArray) {
-  const userContacts = [];
-  const otherContacts = [];
   const theUser = JSON.parse(localStorage.getItem("user"));
-
-  for (const contact of taskContacts) {
-    if (!contact || contact.id === undefined || contact.id === null) continue;
-    const match = firebaseContactsArray.find((fc) => fc.id === contact.id);
-    if (!match) continue;
-    if (contact.id === theUser.id) {
-      userContacts.push(contact);
-    } else {
-      otherContacts.push(contact);
-    }
-  }
+  const { userContacts, otherContacts } = separateUserAndOthers(
+    taskContacts,
+    firebaseContactsArray,
+    theUser.id
+  );
   const userTemplate = renderContacts(userContacts);
   const contactsTemplate = renderContacts(otherContacts);
   return userTemplate + contactsTemplate;
+}
+
+
+function separateUserAndOthers(taskContacts, firebaseContactsArray, userId) {
+  const userContacts = [];
+  const otherContacts = [];
+  for (const contact of taskContacts) {
+    if (!isValidContact(contact)) continue;
+    const match = findContactInFirebase(contact.id, firebaseContactsArray);
+    if (!match) continue;
+    contact.id === userId
+      ? userContacts.push(contact)
+      : otherContacts.push(contact);
+  }
+  return { userContacts, otherContacts };
+}
+
+
+function isValidContact(contact) {
+  return contact && contact.id !== undefined && contact.id !== null;
+}
+
+
+function findContactInFirebase(id, firebaseContactsArray) {
+  return firebaseContactsArray.find(fc => fc.id === id);
 }
 
 
