@@ -337,3 +337,10 @@ main,
 .grey-txt {
   color: #d1d1d1;
 }
+
+.truncate-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+}

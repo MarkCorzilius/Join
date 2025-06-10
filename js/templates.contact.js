@@ -18,7 +18,7 @@ function generateContactDetails(bg, initial, name, email, phone, id) {
         ${initial}
       </div>
       <div class="contact-edit">
-        <h2 id="detailName">${name}</h2>
+        <h2 class="truncate-text" id="detailName">${name}</h2>
         <div class="edit-or-delete">
           <button class="edit-btn" type="button" onclick="editContact('${name}', '${email}', '${phone}', '${initial}', '${bg}', ${id})">
             <span class="edit-icon-wrapper icon-left">
@@ -41,9 +41,8 @@ function generateContactDetails(bg, initial, name, email, phone, id) {
     <div class="email-phone">
       <p class="fontTwenty">Contact Information</p>
       <b class="fontTwenty">Email</b>
-      <p class="email" id="detailEmail">${email}</p>
+      <p class="email truncate-text" id="detailEmail">${email}</p>
       <b class="fontTwenty">Phone</b>
-      <p class="phone" id="detailPhone">${phone}</p>
     </div>
 
     <div class="mobile-more-container">

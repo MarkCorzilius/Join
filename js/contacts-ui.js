@@ -28,6 +28,7 @@ async function initializeContactsPage() {
     await renderContacts();
     findUserEmail();
     adjustHelpForMobile();
+    handleResizeView();
     window.addEventListener("resize", adjustHelpForMobile);
   } catch (error) {
     console.log("Error in initializeContactsPage()", error);

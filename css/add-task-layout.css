@@ -28,7 +28,7 @@
 
 .content-in-main {
   position: relative;
-  max-height: 800px;
+  max-height: 850px;
 }
 
 
@@ -71,7 +71,7 @@
   width: 1010px;
   position: absolute;
   z-index: 777;
-  bottom: 40px;
+  bottom: 0;
 }
 
 
