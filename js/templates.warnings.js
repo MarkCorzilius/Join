@@ -52,17 +52,10 @@ function invalidPhoneNumberTemplate() {
 
 function getEmailValidationTemplate() {
   return `
-  <div class="error-warning">
-    <div class="countdown">5</div>
-    <p class="email-warning-title">Email must meet the following requirements:</p>
-    <ul class="email-warning-list">
-      <li>Must contain exactly one "@" symbol</li>
-      <li>"@" must not be the first character</li>
-      <li>"@" must not appear more than once</li>
-      <li>Must contain at least one "." character</li>
-      <li>"." must not be the last character</li>
-    </ul>
-  </div>
+    <div class="error-warning">
+      <div class="countdown">5</div>
+      <p class="email-warning-title">Please enter a valid email address.</p>
+    </div>
   `.trim();
 }
 

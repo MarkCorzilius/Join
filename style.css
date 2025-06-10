@@ -318,6 +318,8 @@ main,
 
 .error-warning {
   position: relative;
+  padding: 10px;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -327,7 +329,7 @@ main,
 .countdown {
   position: absolute;
   top: 5px;
-  right: -50px;
+  right: 0px;
 
 }
 

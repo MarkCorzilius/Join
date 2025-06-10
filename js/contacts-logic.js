@@ -2,7 +2,10 @@
   event.stopPropagation()
   const { nameValue, emailValue, phoneValue } = await getNewContactData();
 
-  if (!inputsFilledOut({ nameValue, emailValue, phoneValue })) return;
+  if (!inputsFilledOut({ nameValue, emailValue, phoneValue })) {
+    showWarningOverlay(incompleteFieldsTemplate());
+    return;
+  }
 
   if ((await doesContactExists(emailValue))) {
     showWarningOverlay(emailExistsTemplate());
@@ -52,12 +55,18 @@ async function saveEditedContact(event) {
   const newName = document.getElementById("editName").value.trim();
   const newEmail = document.getElementById("editEmail").value.trim();
   const newPhone = document.getElementById("editPhone").value.trim();
-  console.log(currentContact)
+  if (!inputsFilledOut({ nameValue: newName, emailValue: newEmail, phoneValue: newPhone })) {
+    showWarningOverlay(incompleteFieldsTemplate());
+    return;
+  }
+
   if ((await doesContactExists(newEmail))) {
     showWarningOverlay(emailExistsTemplate());
     return;
   }
+
   if (!(await validateContactInputs(newEmail, newPhone, newName))) return;
+
   updateContactArray(newName, newEmail, newPhone);
   await updateEditedContactInFireBase(currentContact.email, { newName, newEmail, newPhone }, currentContact.id);
   await adjustChangedContactInTasks(putData);
