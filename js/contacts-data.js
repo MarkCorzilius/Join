@@ -123,7 +123,7 @@ async function handlePostingToDataBase({ nameValue, emailValue, phoneValue, cont
 
 
 function inputsFilledOut({ nameValue, emailValue, phoneValue }) {
-  if (nameValue == "" || emailValue == "" || phoneValue == "") {
+  if (nameValue === "" || emailValue === "" || phoneValue === "") {
     return false;
   } else {
     return true;

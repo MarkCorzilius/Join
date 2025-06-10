@@ -1,6 +1,7 @@
 ﻿function passwordWarningTemplate() {
   return `
-  <div class="email-warning">
+  <div class="error-warning">
+    <div class="countdown">5</div>
     <p class="email-warning-title">Password requirements:</p>
     <ul class="email-warning-list">
       <li>Password must contain at least 1 special character.</li>
@@ -13,7 +14,8 @@
 
 function passwordsNotMatchTemplate() {
   return `
-  <div class="email-warning">
+  <div class="error-warning">
+    <div class="countdown">5</div>
     <p class="email-warning-title">Password requirements:</p>
     <ul class="email-warning-list">
       <li>Passwords do not match</li>
@@ -25,7 +27,8 @@ function passwordsNotMatchTemplate() {
 
 function emailExistsTemplate() {
   return `
-  <div class="email-warning">
+  <div class="error-warning">
+    <div class="countdown">5</div>
     <p class="email-warning-title">Email already exists:</p>
     <ul class="email-warning-list">
       <li>Please use a different email address</li>
@@ -36,7 +39,8 @@ function emailExistsTemplate() {
 
 function invalidPhoneNumberTemplate() {
   return `
-  <div class="email-warning">
+  <div class="error-warning">
+    <div class="countdown">5</div>
     <p class="email-warning-title">Invalid phone number:</p>
     <ul class="email-warning-list">
       <li>The number must contain at least 7 digits</li>
@@ -48,22 +52,17 @@ function invalidPhoneNumberTemplate() {
 
 function getEmailValidationTemplate() {
   return `
-  <div class="email-warning">
-    <p class="email-warning-title">Email must meet the following requirements:</p>
-    <ul class="email-warning-list">
-      <li>Must contain exactly one "@" symbol</li>
-      <li>"@" must not be the first character</li>
-      <li>"@" must not appear more than once</li>
-      <li>Must contain at least one "." character</li>
-      <li>"." must not be the last character</li>
-    </ul>
-  </div>
+    <div class="error-warning">
+      <div class="countdown">5</div>
+      <p class="email-warning-title">Please enter a valid email address.</p>
+    </div>
   `.trim();
 }
 
 function wrongEmailOrPasswordTemplate() {
   return `
-  <div class="email-warning">
+  <div class="error-warning">
+    <div class="countdown">5</div>
     <p class="email-warning-title">Login error:</p>
     <ul class="email-warning-list">
       <li>Wrong email or password</li>
@@ -75,7 +74,8 @@ function wrongEmailOrPasswordTemplate() {
 
 function taskMissingFieldsTemplate() {
   return `
-  <div class="email-warning">
+  <div class="error-warning">
+    <div class="countdown">5</div>
     <p class="email-warning-title">Missing required fields:</p>
     <ul class="email-warning-list">
       <li>Title is required</li>
@@ -88,7 +88,8 @@ function taskMissingFieldsTemplate() {
 
 function taskDateInPastTemplate() {
   return `
-  <div class="email-warning">
+  <div class="error-warning">
+    <div class="countdown">5</div>
     <p class="email-warning-title">Invalid date selected:</p>
     <ul class="email-warning-list">
       <li>The selected due date is in the past</li>
@@ -100,7 +101,8 @@ function taskDateInPastTemplate() {
 
 function invalidNameTemplate() {
   return `
-    <div class="email-warning">
+    <div class="error-warning">
+      <div class="countdown">5</div>
       <p class="email-warning-title">Invalid name provided:</p>
       <ul class="email-warning-list">
         <li>The name seems too short to be valid</li>
@@ -112,7 +114,8 @@ function invalidNameTemplate() {
 
 function incompleteFieldsTemplate() {
   return `
-    <div class="email-warning">
+    <div class="error-warning">
+      <div class="countdown">5</div>
       <p class="email-warning-title">Some fields are missing:</p>
       <ul class="email-warning-list">
         <li>All fields must be filled out before submitting</li>

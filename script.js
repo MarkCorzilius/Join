@@ -144,12 +144,26 @@ function ifCategoryBoxOpen(event) {
 function showWarningOverlay(message) {
   const overlay = document.querySelector(".warning-overlay");
   const dialog = overlay.querySelector(".warning-dialog");
-  dialog.innerHTML = "";
   dialog.innerHTML = message;
   overlay.classList.replace("hidden", "show");
   setTimeout(() => dialog.classList.add("show"), 10);
+  const countdown = document.querySelector(".countdown");
+  countdownThenCloseOverlay(countdown);
 }
 
+function countdownThenCloseOverlay(countdown) {
+  let number = 5;
+  countdown.innerText = number;
+
+  const interval = setInterval(() => {
+    number--;
+    countdown.innerText = number;
+    if (number === 0) {
+      clearInterval(interval);
+      hideWarningOverlay();
+    }
+  }, 1000);
+}
 
 function hideWarningOverlay() {
   const overlay = document.querySelector(".warning-overlay");
