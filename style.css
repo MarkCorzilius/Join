@@ -266,11 +266,13 @@ main,
 
 
 .color-white {
-  color: white;}
+  color: white;
+}
 
 
 .hidden {
-  display: none;}
+  display: none;
+}
 
 
 .warning-overlay {
@@ -279,11 +281,13 @@ main,
   background: rgba(0, 0, 0, 0.1);
   align-items: center;
   justify-content: center;
-  z-index: 9999;}
+  z-index: 9999;
+}
 
 
 .warning-overlay.show {
-  display: flex;}
+  display: flex;
+}
 
 
 .warning-dialog {
@@ -302,19 +306,30 @@ main,
   border-left: 6px solid #b30000;
   transform: translateX(100%);
   opacity: 0;
-  transition: transform 0.75s ease, opacity 0.75s ease;}
+  transition: transform 0.75s ease, opacity 0.75s ease;
+}
 
 
 .warning-dialog.show {
   transform: translateX(0);
-  opacity: 1;}
+  opacity: 1;
+}
 
 
-.email-warning {
+.error-warning {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;}
+  flex-direction: column;
+}
+
+.countdown {
+  position: absolute;
+  top: 5px;
+  right: -50px;
+
+}
 
 
 .grey-txt {
