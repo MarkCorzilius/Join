@@ -224,4 +224,6 @@ function updateProgressBar(task) {
   }
   const progressBar = document.getElementById(`progressBar${task.id}`);
   progressBar.style.width = `${percentage}%`;
+  displayProgressBar(total, task.id);
 }
+

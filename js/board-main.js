@@ -108,6 +108,16 @@ async function renderTasksToContainer(tasks, container) {
 }
 
 
+function displayProgressBar(amount, taskId) {
+  const progressBar = document.getElementById(`progressSection${taskId}`);
+  if (amount === 0) {
+    progressBar.style.display = 'none';
+  } else {
+    progressBar.style.display = "flex";
+  }
+}
+
+
 async function visualizeTasks(tasks, firebaseContactsArray, container) {
   cleanTaskContacts(tasks, firebaseContactsArray);
   await renderTasksToContainer(tasks, container);
