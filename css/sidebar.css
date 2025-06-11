@@ -118,7 +118,7 @@
 
 .sidebar-footer a {
   color: rgb(168, 168, 168);
-  text-decoration: none;
+  /* text-decoration: none; */
   transition: color 0.2s ease-in-out, font-weight 0.2s ease-in-out;
 }
 
@@ -159,7 +159,7 @@
     height: 100px;
     padding: 0;
     /* display: flex; */
-    /* flex-direction: row; */
+    flex-direction: row;
     justify-content: center;
   }
 
@@ -189,9 +189,26 @@
   }
 
 
-  .sidebar-footer a {
+  .sidebar-footer {
+    flex-direction: row;
     display: none;
   }
+
+
+  .force-visible {
+    display: flex;
+  }
+
+
+  .sidebar-footer.force-visible {
+    display: flex !important;
+    /* flex-direction: column; */
+  }
+
+
+  /* .sidebar-footer a {
+    display: none;
+  } */
 
 
 }
