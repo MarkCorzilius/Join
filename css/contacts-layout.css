@@ -175,9 +175,10 @@
 .contact-info {
   height: calc(100vh - 80px);
   background-color: rgb(246, 247, 248);
-  padding: 80px 48px;
+  padding: 80px 30px;
   box-sizing: border-box;
   flex-direction: column;
+  width: 60%;
 }
 
 
