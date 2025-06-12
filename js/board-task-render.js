@@ -46,14 +46,35 @@ async function renderInitials(task) {
   return contactsHTML;
 }
 
+const contactsOffset = 2;
+let contactsStart = 0; 
 
 function renderContacts(contacts) {
   let templateHTML = "";
   if (!contacts) return templateHTML;
-  contacts.forEach((contact) => {
+  const end = Math.min((contactsStart + contactsOffset), contacts.length);
+  for (let i = 0; i < end; i++) {
+    const contact = contacts[i];
     templateHTML += `<div class="contact-initial" style="background-image: url('${contact.bg}'); background-size: cover; background-position: center;">
-          ${contact.initial}
-      </div>`;
-  });
+    ${contact.initial}
+</div>`;
+  }
+  //showContactsBubble(contacts);
   return templateHTML;
+}
+
+
+function showContactsBubble(contacts) {
+  const container = document.getElementById('contactsAssigned');
+  const contactsLeft = contacts.length - (contactsStart + contactsOffset);
+  const remainingCount = Math.max(contactsLeft, 0);
+  console.log(remainingCount);
+
+  const existingBubble = document.getElementById('moreContactsBubble');
+  if (existingBubble) {
+    existingBubble.remove();
+  }
+  if (remainingCount > 0) {
+    container.insertAdjacentHTML('beforeend', generateMoreContactsBubble(remainingCount));
+  }
 }

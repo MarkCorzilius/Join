@@ -31,6 +31,7 @@ async function setupTaskPageEnvironment() {
   ifGuestShowDropdownHelp();
   adjustInitialAfterLogin();
   await putFirstIdForTasksAndContacts("taskId/");
+  displayLegalNoticeAndPrivacyPolicy();
 }
 
 

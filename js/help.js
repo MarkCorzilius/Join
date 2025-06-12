@@ -29,6 +29,7 @@ function initializeHelpPageFeatures() {
   ifHelpPageNoHelpIcon();
   adjustHelpForMobile();
   window.addEventListener("resize", adjustHelpForMobile);
+  displayLegalNoticeAndPrivacyPolicy();
 }
 
 
