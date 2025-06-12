@@ -25,7 +25,7 @@ function taskTemplate(task, initialsHTML) {
                       <span class="tasks-done"> ${renderSubtasksDone(task)}/${renderSubtasksAmount(task)} Subtasks</span>
                     </div>
                     <div class="user-task-footer">
-                      <div class="contacts-assigned">${initialsHTML}</div>
+                      <div id="contactsAssigned${task.id}" class="contacts-assigned">${initialsHTML}</div>
                       <img class='priority-png' src="${renderPriorityIcon(task)}">
                     </div>
 

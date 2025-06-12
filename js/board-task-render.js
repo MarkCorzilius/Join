@@ -59,12 +59,13 @@ function renderContacts(contacts) {
     ${contact.initial}
 </div>`;
   }
-  showContactsBubble(contacts);
+  //showContactsBubble(contacts);
   return templateHTML;
 }
 
 
 function showContactsBubble(contacts) {
+  const container = document.getElementById('contactsAssigned');
   const contactsLeft = contacts.length - (contactsStart + contactsOffset);
   const remainingCount = Math.max(contactsLeft, 0);
   console.log(remainingCount);

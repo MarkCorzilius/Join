@@ -17,7 +17,6 @@
 function displayLegalNoticeAndPrivacyPolicy() {
   const footer = document.getElementById('sidebarFooter');
   const user = JSON.parse(localStorage.getItem('user'))
-  console.log(user);
   if (user.name === 'Viewer' && window.innerWidth <= 1000) {
     if (footer) {
       footer.style.display = 'flex';
