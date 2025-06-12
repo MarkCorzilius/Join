@@ -80,3 +80,12 @@ function moreContactsBtnTemplate() {
     </div>
   `;
 }
+
+
+function generateMoreContactsBubble(remainingCount) {
+  return `
+    <div onclick="showMoreChosenContacts()" id="moreContactsBubble" class="more-contacts-bubble">
+      +${remainingCount}
+    </div>
+  `;
+}

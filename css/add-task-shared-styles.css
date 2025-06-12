@@ -359,3 +359,27 @@
   padding: 10px 0px 10px;
   width: 100%;
 }
+
+
+.more-contacts-bubble {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #2A3647; /* Dark bubble */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  margin-left: 5px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  cursor: pointer;
+  box-sizing: border-box;
+  flex: auto 0 0;
+}
+
+
+.more-contacts-bubble:hover {
+  background-color: #3f516b;
+}

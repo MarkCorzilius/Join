@@ -3,6 +3,10 @@ let defaultContacts = [];
 let currentIndex = 0;
 const CHUNK_SIZE = 10;
 
+let startIndex = 0;
+const offsetIndex = 3;
+
+
 async function renderNextChunk(contactsContainer) {
   const container = document.getElementById('contactOptions');
   const nextChunk = getNextContactChunk();
@@ -190,14 +194,41 @@ function runIfNotSelected(checked, unchecked, initial, bg, name, contactId) {
   visualizeChosenContacts();
 }
 
+// onclick on + –> render 3 more
+// scroll to last
+
 
 function visualizeChosenContacts() {
   const container = document.getElementById("chosenContactsBox");
   container.innerHTML = "";
-  for (let i = 0; i < chosenContacts.length; i++) {
+  const end = Math.min(startIndex + offsetIndex, chosenContacts.length);
+  for (let i = 0; i < end; i++) {
     const contact = chosenContacts[i];
     container.innerHTML += generateBgAndInitialForChosenContactsBox(contact.bg, contact.initial);
   }
+  showBubble();
+}
+
+
+function showBubble() {
+  const container = document.getElementById('chosenContactsBox');
+  const remainingContacts = chosenContacts.length - (startIndex + offsetIndex);
+  const remainingCount = Math.max(remainingContacts, 0);
+  const existingBubble = document.getElementById('moreContactsBubble');
+  if (existingBubble) {
+    existingBubble.remove();
+  }
+  if (remainingCount > 0) {
+    container.insertAdjacentHTML('beforeend', generateMoreContactsBubble(remainingCount));
+  }
+}
+
+
+function showMoreChosenContacts() {
+  const container = document.getElementById('chosenContactsBox');
+  startIndex += offsetIndex;
+  visualizeChosenContacts();
+  container.scrollTo({left: container.scrollWidth, behavior: 'smooth'})
 }
 
 
@@ -252,6 +283,7 @@ function displayNoResultMessage(foundCounter) {
 
 
 function openContactAssignmentInput() {
+  startIndex = 0
   const closedRef = document.getElementById("closedState");
   const searchState = document.getElementById("searchState");
   const optionsRef = document.getElementById("contactOptions");
@@ -290,4 +322,6 @@ function closeContactAssignment() {
   wrapperRef.style.marginBottom = "0";
   container.style.display = "flex";
   document.querySelector(".content").style.overflow = "auto";
+  document.getElementById('chosenContactsBox').innerHTML = "";
+  visualizeChosenContacts();
 }

@@ -112,6 +112,7 @@ function togglePasswordVisibility(inputId, element, path) {
 function closeDropdownsIfClickedOutside(event) {
   ifContactsBoxOpen(event);
   ifCategoryBoxOpen(event);
+  
 }
 
 
