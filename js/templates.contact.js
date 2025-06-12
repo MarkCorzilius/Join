@@ -43,6 +43,7 @@ function generateContactDetails(bg, initial, name, email, phone, id) {
       <b class="fontTwenty">Email</b>
       <p class="email truncate-text" id="detailEmail">${email}</p>
       <b class="fontTwenty">Phone</b>
+      <p class="phone" id="detailPhone">${phone}</p>
     </div>
 
     <div class="mobile-more-container">
