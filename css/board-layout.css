@@ -141,7 +141,7 @@
 }
 
 
-.empty-column {
+.empty-column, .empty-search {
   height: 48px;
   width: 98%;
   border: 1px dotted rgba(168, 168, 168, 1);

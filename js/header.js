@@ -85,10 +85,14 @@ function ifGuestShowDropdownHelp() {
 async function adjustInitialAfterLogin() {
   const container = document.getElementById("userInitial");
   const user = JSON.parse(localStorage.getItem("user"));
-  if (!user) return;
-  container.classList.remove("d-none");
-  if (user.name === "Guest" || user.name === "Viewer") {
+  if (user.name === "Guest") {
     container.innerText = "G";
+    return;
+  }
+  if (user.name === "Viewer") {
+    document.getElementById('userInitial').style.display = "none";
+    document.querySelector('.help-icon').style.display = "none";
+
   } else {
     const initial = await searchForContactInitial(user.id);
     container.innerText = initial || "U";
