@@ -41,6 +41,7 @@
     .privacyPolicyMain {
         padding-left: 20px;
         padding-right: 30px;
+        height: calc(100vh - 180px);
     }
 
 
@@ -55,6 +56,15 @@
 
     .privacyPolicyMain {
         padding-right: 30px;
+    }
+
+
+}
+
+
+@media (max-width: 666px) {
+    .privacyPolicyMain {
+        height: calc(100vh - 160px);
     }
 
 

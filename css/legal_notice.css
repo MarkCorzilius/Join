@@ -29,6 +29,11 @@
 }
 
 
+.padding-bottom {
+    padding-bottom: 50px;
+}
+
+
 @media (min-width: 1920px) {
     .legalNoticeMain {
         max-width: 1920px;
@@ -42,6 +47,7 @@
     .legalNoticeMain {
         padding-left: 20px;
         padding-right: 30px;
+        height: calc(100vh - 180px);
     }
 
 
@@ -56,6 +62,15 @@
 
     .legalNoticeMain {
         padding-right: 30px;
+    }
+
+
+}
+
+
+@media (max-width: 666px) {
+    .legalNoticeMain {
+        height: calc(100vh - 160px);
     }
 
 
