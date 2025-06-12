@@ -1,6 +1,13 @@
 ﻿function emptyColumnTemplate(text) {
   return `                <div class="empty-column">
-                  <span>No tasks ${text}</span>
+                  <span>${text}</span>
+                </div>`;
+}
+
+
+function emptySearchColumnTemplate(text) {
+  return `                <div class="empty-search">
+                  <span>${text}</span>
                 </div>`;
 }
 
