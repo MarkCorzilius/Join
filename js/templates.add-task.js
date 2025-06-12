@@ -82,9 +82,9 @@ function moreContactsBtnTemplate() {
 }
 
 
-function generateMoreContactsBubble(remainingCount) {
+function generateMoreContactsBubble(remainingCount, currentClass) {
   return `
-    <div onclick="showMoreChosenContacts()" id="moreContactsBubble" class="more-contacts-bubble">
+    <div onclick="showMoreChosenContacts()" id="moreContactsBubble" class="${currentClass}">
       +${remainingCount}
     </div>
   `;

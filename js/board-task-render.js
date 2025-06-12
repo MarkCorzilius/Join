@@ -74,8 +74,6 @@ function showContactsBubble(contacts, id) {
     existingBubble.remove();
   }
   if (remainingCount > 0) {
-    container.insertAdjacentHTML('beforeend', generateMoreContactsBubble(remainingCount));
+    container.insertAdjacentHTML('beforeend', generateMoreContactsBubble(remainingCount, 'board-task-bubble'));
   }
 }
-
-//onclick

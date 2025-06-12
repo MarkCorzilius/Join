@@ -219,7 +219,7 @@ function showBubble() {
     existingBubble.remove();
   }
   if (remainingCount > 0) {
-    container.insertAdjacentHTML('beforeend', generateMoreContactsBubble(remainingCount));
+    container.insertAdjacentHTML('beforeend', generateMoreContactsBubble(remainingCount, 'add-task-bubble'));
   }
 }
 

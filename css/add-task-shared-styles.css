@@ -361,17 +361,29 @@
 }
 
 
-.more-contacts-bubble {
-  width: 32px;
-  height: 32px;
+.add-task-bubble {
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+}
+
+
+.board-task-bubble {
+  width: 22px;
+  height: 22px;
+  font-size: 10px;
+  pointer-events: none;
+}
+
+
+.add-task-bubble, .board-task-bubble {
   border-radius: 50%;
-  background-color: #2A3647; /* Dark bubble */
+  background-color: #2A3647;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 14px;
   margin-left: 5px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
   cursor: pointer;
@@ -380,6 +392,6 @@
 }
 
 
-.more-contacts-bubble:hover {
+.add-task-bubble:hover, .board-task-bubble:hover {
   background-color: #3f516b;
 }
