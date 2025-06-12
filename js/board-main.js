@@ -105,6 +105,7 @@ async function renderTasksToContainer(tasks, container) {
     const task = tasks[i];
     const initialsHTML = await renderInitials(task);
     container.innerHTML += taskTemplate(task, initialsHTML);
+    showContactsBubble(task.contacts, task.id);
     updateProgressBar(task);
   }
 }

@@ -211,6 +211,7 @@ async function adjustChangedContactInTasks(httpMethodFunc) {
   const board = await getData("board/");
   for (const [columnKey, tasks] of Object.entries(board)) {
     for (const [taskKey, task] of Object.entries(tasks)) {
+      if (!task.contacts) continue;
       for (const [contactKey, contact] of Object.entries(task.contacts)) {
         if (!contact) continue;
         if (currContactData.id === contact.id) {
