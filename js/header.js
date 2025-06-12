@@ -38,19 +38,48 @@ function closeMobileDropdown(dropdown) {
 }
 
 
+// function logout() {
+//   window.location.href = "../index.html";
+//   localStorage.removeItem("user");
+// }
+
+
 function logout() {
-  window.location.href = "../index.html";
   localStorage.removeItem("user");
+  window.location.href = "../index.html";
 }
+
+
+// function ifGuestShowDropdownHelp() {
+//   const user = JSON.parse(localStorage.getItem("user"));
+//   const btn = document.querySelector(".dropdown-help");
+//   if (user.name === "Guest" || user.name === "Viewer") {
+//     btn.classList.remove("d-none");
+//   }
+// }
 
 
 function ifGuestShowDropdownHelp() {
   const user = JSON.parse(localStorage.getItem("user"));
   const btn = document.querySelector(".dropdown-help");
-  if (user.name === "Guest" || user.name === "Viewer") {
+  if (user?.name === "Guest" || user?.name === "Viewer") {
     btn.classList.remove("d-none");
   }
 }
+
+
+// async function adjustInitialAfterLogin() {
+//   const container = document.getElementById("userInitial");
+//   const user = JSON.parse(localStorage.getItem("user"));
+//   if (user.name === "Guest" || user.name === "Viewer") {
+//     container.innerText = "G";
+//     return;
+//   } else {
+//     const initial = await searchForContactInitial(user.id);
+//     container.innerText = initial;
+//   }
+//   container.onclick = toggleInitialDropdown;
+// }
 
 
 async function adjustInitialAfterLogin() {
@@ -63,9 +92,10 @@ async function adjustInitialAfterLogin() {
   if (user.name === "Viewer") {
     document.getElementById('userInitial').style.display = "none";
     document.querySelector('.help-icon').style.display = "none";
+
   } else {
     const initial = await searchForContactInitial(user.id);
-    container.innerText = initial;
+    container.innerText = initial || "U";
   }
   container.onclick = toggleInitialDropdown;
 }

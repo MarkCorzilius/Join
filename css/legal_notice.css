@@ -1,6 +1,5 @@
 ﻿.legalNoticeMain {
     height: calc(100vh - 80px);
-    /* 80px z. B. fÃƒÆ’Ã‚Â¼r einen festen Header */
     overflow-y: auto;
     display: flex;
     justify-content: center;
@@ -8,6 +7,11 @@
     padding: 0 80px;
     font-size: 16px;
     font-weight: 400;
+}
+
+
+.legalNoticeMain section {
+    height: 100%;
 }
 
 

@@ -52,11 +52,11 @@ function initializeLegalNoticePage() {
 }
 
 
-function setViewSubtask() {
-  const user = JSON.stringify({ name: "Guest", email: "guest@example.com" });
-  localStorage.setItem(user);
-  showLegalNoticeAndPrivacyPolicy();
-}
+// function setViewSubtask() {
+//   const user = JSON.stringify({ name: "Guest", email: "guest@example.com" });
+//   localStorage.setItem(user);
+//   showLegalNoticeAndPrivacyPolicy();
+// }
 
 
 function markCurrentPage() {

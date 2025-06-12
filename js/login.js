@@ -104,7 +104,7 @@ async function getCurrentTime() {
 }
 
 
-function setViewerStateLocalStorage() {
-  const viewer = "Viewer";
-  localStorage.setItem("user", JSON.stringify({ name: viewer, email: "viewer@example.com" }));
-}
+// function setViewerStateLocalStorage() {
+//   const viewer = "Viewer";
+//   localStorage.setItem("user", JSON.stringify({ name: viewer, email: "viewer@example.com" }));
+// }
