@@ -38,6 +38,7 @@ async function prepareBoardEnvironment() {
   ifGuestShowDropdownHelp();
   adjustInitialAfterLogin();
   await putFirstIdForTasksAndContacts("taskId")
+  displayLegalNoticeAndPrivacyPolicy();
 }
 
 

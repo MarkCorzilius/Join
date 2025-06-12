@@ -30,6 +30,7 @@ async function initializeContactsPage() {
     adjustHelpForMobile();
     handleResizeView();
     window.addEventListener("resize", adjustHelpForMobile);
+    displayLegalNoticeAndPrivacyPolicy();
   } catch (error) {
     console.log("Error in initializeContactsPage()", error);
   }
