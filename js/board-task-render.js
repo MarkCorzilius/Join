@@ -69,7 +69,7 @@ function showContactsBubble(contacts, id) {
   const contactsLeft = contacts.length - (contactsStart + contactsOffset);
   const remainingCount = Math.max(contactsLeft, 0);
 
-  const existingBubble = document.getElementById('moreContactsBubble');
+  const existingBubble = container.querySelector('#moreContactsBubble');
   if (existingBubble) {
     existingBubble.remove();
   }
@@ -77,3 +77,5 @@ function showContactsBubble(contacts, id) {
     container.insertAdjacentHTML('beforeend', generateMoreContactsBubble(remainingCount));
   }
 }
+
+//onclick
