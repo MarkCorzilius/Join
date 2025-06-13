@@ -233,8 +233,6 @@
   width: 110px;
   border-radius: 50%;
   background-color: #ccc;
-  border: solid 2px white;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   margin-right: 20px;
   margin-left: 8px;
 }

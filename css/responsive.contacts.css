@@ -1,7 +1,7 @@
 ﻿.mobile-more-container {
   position: absolute;
   bottom: 14px;
-  right: 14px;
+  right: 0;
   cursor: pointer;
   display: none;
 }
@@ -25,9 +25,9 @@
 
 
 .mobile-actions {
-  position: absolute;
-  bottom: -16px;
-  right: -16px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
   width: 100px;
   border-radius: 16px 16px 0 16px;
   background-color: white;
@@ -150,6 +150,11 @@
   }
 
 
+  .overlay-add-avatar img {
+    margin: 0;
+  }
+
+
   .overlay-buttons {
     padding-top: 40px;
     display: flex;
@@ -242,6 +247,7 @@
     position: absolute;
     bottom: 130px;
     right: 30px;
+    right: 24px;
     border-radius: 50%;
     margin: 0;
     padding: 0;
@@ -330,11 +336,25 @@
   }
 
 
-  .btn-create-contact {
+  /* .btn-create-contact {
     width: 60%;
+  } */
+
+
+}
+
+
+@media (max-width: 600px) {
+  .btn-create-contact {
+    width: 65%;
   }
+}
 
 
+@media (max-width: 500px) {
+  .btn-create-contact {
+    width: 70%;
+  }
 }
 
 
@@ -344,6 +364,7 @@
   .contact-info {
     height: calc(100vh - 160px);
     overflow: auto;
+    padding: 0 16px;
   }
 
 
@@ -364,9 +385,20 @@
   }
 
 
-  .overlay-left,
+  .overlay-left {
+    padding: 24px 12px;
+    height: 40%;
+  }
+
+
   .overlay-right {
-    padding: 48px 12px 24px;
+    height: 60%;
+  }
+
+
+  .overlay-add-avatar img {
+    height: 80px;
+    width: 80px;
   }
 
 
@@ -381,18 +413,24 @@
 
 
   .add-contact-btn {
-    bottom: 100px;
+    bottom: 96px;
   }
 
 
   .mobile-more-container {
-    bottom: 4px;
+    bottom: 16px;
   }
 
 
-  .btn-create-contact {
+  .mobile-actions {
+    bottom: 95px;
+    right: 16px;
+  }
+
+
+  /* .btn-create-contact {
     width: 75%;
-  }
+  } */
 
 
   .contact-edit {
@@ -404,7 +442,22 @@
   .contact-detail-view.slide-in {
     transform: none !important;
     opacity: 1 !important;
+    margin-right: 8px;
   }
 
 
+}
+
+
+@media (max-width: 400px) {
+  .btn-create-contact {
+    width: 70%;
+  }
+}
+
+
+@media (max-width: 380px) {
+  .btn-create-contact {
+    width: 80%;
+  }
 }
