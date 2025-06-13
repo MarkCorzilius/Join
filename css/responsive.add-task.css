@@ -162,6 +162,10 @@
     }
 
 
+    .subtask-container {
+        max-height: 180px;
+    }
+
     .description-area {
         width: 85.2vw;
         resize: none;
@@ -189,7 +193,7 @@
 
 
     .subtask-section {
-        margin-bottom: 160px;
+        margin-bottom: 200px;
     }
 
 
@@ -263,7 +267,7 @@
     .mobile-warning {
         display: flex;
         margin-top: 60px;
-        margin-bottom: 20px;
+        margin-bottom: 0px;
     }
 
 

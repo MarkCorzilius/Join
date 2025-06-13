@@ -60,3 +60,8 @@ function clearBtnToBlue() {
   function clearBtnToBlack() {
     document.getElementById("clearBtn").src = "../img/close.png";
   }
+
+
+  function isSubtaskInputEmpty(input) {
+    const empty = input.value.trim() === "";
+  }
