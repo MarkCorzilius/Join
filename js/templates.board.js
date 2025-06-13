@@ -1,10 +1,20 @@
-﻿function emptyColumnTemplate(text) {
+﻿/**
+ * Returns HTML for an empty column message.
+ * @param {string} text - The message to display.
+ * @returns {string} HTML string
+ */
+function emptyColumnTemplate(text) {
   return `                <div class="empty-column">
                   <span>${text}</span>
                 </div>`;
 }
 
 
+/**
+ * Returns HTML for an empty search result message.
+ * @param {string} text - The message to display.
+ * @returns {string} HTML string
+ */
 function emptySearchColumnTemplate(text) {
   return `                <div class="empty-search">
                   <span>${text}</span>
@@ -12,6 +22,12 @@ function emptySearchColumnTemplate(text) {
 }
 
 
+/**
+ * Returns HTML for a single task card.
+ * @param {Object} task - Task object with details.
+ * @param {string} initialsHTML - HTML string of assigned contacts.
+ * @returns {string} HTML string
+ */
 function taskTemplate(task, initialsHTML) {
   return `                <div id="taskBody${task.id}" class="task-body" draggable="true" ondragstart="startDragging(${task.id}, event)" ondrag="dragMove(${task.id
     }, event)" ondragend="endDragging(${task.id}, event)" onclick="openTaskInfoOverlay(${encodeTask(task)})">
@@ -41,6 +57,12 @@ function taskTemplate(task, initialsHTML) {
 }
 
 
+/**
+ * Returns HTML for task detail overlay.
+ * @param {Object} task - Task object with details.
+ * @param {Array} user - List of user objects.
+ * @returns {string} HTML string
+ */
 function taskDetailTemplate(task, user) {
   return `     <div id="taskInfoDialog" onclick="event.stopPropagation()">
         <div class="task-overlay-info">
@@ -88,6 +110,10 @@ function taskDetailTemplate(task, user) {
 }
 
 
+/**
+ * Returns HTML for the task creation dialog.
+ * @returns {string} HTML string
+ */
 function tasksDialogTemplate() {
   return `      <div onclick="closeDropdownsIfClickedOutside(event); closeSubtaskInsert(event); event.stopPropagation()" id="overlayDialogBoard">
           <div class="content-in-main">
@@ -251,6 +277,11 @@ function tasksDialogTemplate() {
 }
 
 
+/**
+ * Returns the HTML string for rendering the edit task modal overlay.
+ * @param {Object} task - The task object to be edited.
+ * @returns {string} HTML string of the edit task template.
+ */
 function editTaskTemplate(task) {
   return `<div onclick="closeDropdownsIfClickedOutside(event); closeSubtaskInsert(event); event.stopPropagation()" class="detailed-overlay" id="taskDetailedOverlay">
   <div class="leave-edit-icon-wrapper">
@@ -389,6 +420,15 @@ function editTaskTemplate(task) {
 }
 
 
+/**
+ * Generates an HTML string for a subtask item template, including its icon and title.
+ * 
+ * @param {string} subtaskKey - A unique identifier for the subtask.
+ * @param {string} className - CSS class name(s) to apply to the subtask icon.
+ * @param {string} src - The source URL of the subtask icon image.
+ * @param {{ title: string }} subtask - The subtask object containing at least a title.
+ * @returns {string} An HTML string representing the subtask element.
+ */
 function subtasksTemplate(subtaskKey, className, src, subtask) {
   return `
             <div class="overlay-subtask-template">

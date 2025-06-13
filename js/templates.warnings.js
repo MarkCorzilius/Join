@@ -1,4 +1,8 @@
-﻿function passwordWarningTemplate() {
+﻿/**
+ * Returns a warning template for invalid password requirements.
+ * @returns {string} HTML string for password warning.
+ */
+function passwordWarningTemplate() {
   return `
   <div class="error-warning">
     <div class="countdown">5</div>
@@ -12,6 +16,10 @@
   `.trim();
 }
 
+/**
+ * Returns a warning template for mismatched passwords.
+ * @returns {string} HTML string for password mismatch warning.
+ */
 function passwordsNotMatchTemplate() {
   return `
   <div class="error-warning">
@@ -25,6 +33,11 @@ function passwordsNotMatchTemplate() {
   `.trim();
 }
 
+
+/**
+ * Returns a warning template when the entered email already exists.
+ * @returns {string} HTML string for email exists warning.
+ */
 function emailExistsTemplate() {
   return `
   <div class="error-warning">
@@ -37,6 +50,11 @@ function emailExistsTemplate() {
   `.trim();
 }
 
+
+/**
+ * Returns a warning template for an invalid phone number format.
+ * @returns {string} HTML string for phone number validation error.
+ */
 function invalidPhoneNumberTemplate() {
   return `
   <div class="error-warning">
@@ -50,6 +68,11 @@ function invalidPhoneNumberTemplate() {
   `.trim();
 }
 
+
+/**
+ * Returns a warning template for invalid email format.
+ * @returns {string} HTML string for email format error.
+ */
 function getEmailValidationTemplate() {
   return `
     <div class="error-warning">
@@ -59,6 +82,11 @@ function getEmailValidationTemplate() {
   `.trim();
 }
 
+
+/**
+ * Returns a warning template for login errors (wrong email/password).
+ * @returns {string} HTML string for login error message.
+ */
 function wrongEmailOrPasswordTemplate() {
   return `
   <div class="error-warning">
@@ -72,6 +100,11 @@ function wrongEmailOrPasswordTemplate() {
   `.trim();
 }
 
+
+/**
+ * Returns a warning template for missing task fields.
+ * @returns {string} HTML string for task validation error.
+ */
 function taskMissingFieldsTemplate() {
   return `
   <div class="error-warning">
@@ -86,6 +119,11 @@ function taskMissingFieldsTemplate() {
   `.trim();
 }
 
+
+/**
+ * Returns a warning template when a task due date is in the past.
+ * @returns {string} HTML string for past due date error.
+ */
 function taskDateInPastTemplate() {
   return `
   <div class="error-warning">
@@ -99,6 +137,11 @@ function taskDateInPastTemplate() {
   `.trim();
 }
 
+
+/**
+ * Returns a warning template for an invalid or incomplete name.
+ * @returns {string} HTML string for name validation error.
+ */
 function invalidNameTemplate() {
   return `
     <div class="error-warning">
@@ -112,6 +155,11 @@ function invalidNameTemplate() {
     `.trim();
 }
 
+
+/**
+ * Returns a warning template when not all fields are completed.
+ * @returns {string} HTML string for incomplete form fields.
+ */
 function incompleteFieldsTemplate() {
   return `
     <div class="error-warning">

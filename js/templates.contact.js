@@ -1,4 +1,10 @@
-﻿function generateContactHTML(c, vars) {
+﻿/**
+ * Generates HTML for a contact list item.
+ * @param {{ name: string, email: string, phone: string, id: number }} c - Contact data.
+ * @param {{ bg: string, initial: string }} vars - Background and initials for the avatar.
+ * @returns {string} HTML string for the contact item.
+ */
+function generateContactHTML(c, vars) {
   return `<div class="contact-item" onclick="openContactItem('${c.name}', '${c.email}', '${c.phone}', ${c.id}); contactItemClicked(this)">
   <div class="contact-initials" style="background-image:url('${vars.bg}'); background-size:cover; background-position:center;">
           ${vars.initial}
@@ -11,6 +17,16 @@
 }
 
 
+/**
+ * Generates detailed HTML view for a selected contact.
+ * @param {string} bg - Background image URL.
+ * @param {string} initial - Initials of the contact.
+ * @param {string} name - Contact's name.
+ * @param {string} email - Contact's email.
+ * @param {string} phone - Contact's phone number.
+ * @param {number} id - Contact ID.
+ * @returns {string} HTML string for the contact details view.
+ */
 function generateContactDetails(bg, initial, name, email, phone, id) {
   return `
     <div class="detail-avatar-name">
@@ -57,6 +73,16 @@ function generateContactDetails(bg, initial, name, email, phone, id) {
 }
 
 
+/**
+ * Generates HTML for mobile toggle buttons (edit/delete).
+ * @param {string} bg - Background image URL.
+ * @param {string} initial - Initials of the contact.
+ * @param {string} name - Contact's name.
+ * @param {string} email - Contact's email.
+ * @param {string} phone - Contact's phone number.
+ * @param {number} id - Contact ID.
+ * @returns {string} HTML string for mobile actions.
+ */
 function generateToggleMobileHTML(bg, initial, name, email, phone, id) {
   return `
     <button onclick="editContact('${name}', '${email}', '${phone}', '${initial}', '${bg}', ${id})">
@@ -69,6 +95,10 @@ function generateToggleMobileHTML(bg, initial, name, email, phone, id) {
 }
 
 
+/**
+ * Returns a message template when no contacts are found.
+ * @returns {string} HTML string for the "no contacts" message.
+ */
 function noContactsMessageTemplate() {
   return `
     <div class="no-contacts-found" id="noContactsFound">
