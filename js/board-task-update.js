@@ -1,4 +1,9 @@
-﻿async function handlePostingChangedTask(newTaskData) {
+﻿/**
+ * Updates an existing task on the board with new data.
+ * @param {Object} newTaskData - The updated task data.
+ * @returns {Promise<boolean>} - True if the task was updated, false otherwise.
+ */
+async function handlePostingChangedTask(newTaskData) {
   const rawBoard = await getData("board/");
   for (const [columnKey, tasks] of Object.entries(rawBoard)) {
     for (const [tasksKey, task] of Object.entries(tasks)) {
@@ -12,6 +17,11 @@
 }
 
 
+/**
+ * Renders detailed task information in an overlay for the current user.
+ * @param {Object} task - The task to display in detail.
+ * @returns {Promise<void>}
+ */
 async function renderDetailedTask(task) {
   const user = await findCurrentUser();
   const overlay = document.getElementById("taskInfoOverlay");
@@ -19,7 +29,10 @@ async function renderDetailedTask(task) {
   currTask = task;
 }
 
-
+/**
+ * Retrieves the current logged-in user details or returns "Guest" if user is a guest.
+ * @returns {Promise<Object|string|undefined>} - User object, "Guest", or undefined if not found.
+ */
 async function findCurrentUser() {
   const currUser = JSON.parse(localStorage.getItem("user"));
   const users = await getData("ourUsers/");
@@ -33,6 +46,10 @@ async function findCurrentUser() {
   }
 }
 
+
+/**
+ * Redirects to the add task page on window resize if overlay is open and screen width is below 700px.
+ */
 window.onresize = function handlePageRedirect() {
   const overlay = document.getElementById("createTaskInBoardOverlay");
   const isOVerlayOpen = overlay && overlay.style.display !== "none";
@@ -41,24 +58,47 @@ window.onresize = function handlePageRedirect() {
   }
 };
 
-async function createTaskInBoardFireBase() {
-  const column = checkTargetColumn();
+
+/**
+ * Prepares and validates task data before creation.
+ * @returns {Promise<{taskId: any, dataSafe: Object} | null>} - Returns task data if valid, otherwise null.
+ */
+async function prepareAndValidateTask() {
   if (!extractTaskValues()) {
     showWarningOverlay(taskMissingFieldsTemplate());
-    return;
+    return null;
   }
-  taskId = await getData("taskId");
+  const taskId = await getData("taskId");
   const dataSafe = taskDataStorage();
   if (!restrictAddingTask()) {
-    return;
-  } else {
-    await handleCreatingTask(column, dataSafe);
-    showTaskSuccessBanner();
-    chosenContacts = [];
+    return null;
   }
+  return { taskId, dataSafe };
 }
 
 
+/**
+ * Creates a task in the board after preparing and validating the data.
+ * @returns {Promise<void>}
+ */
+async function createTaskInBoardFireBase() {
+  const column = checkTargetColumn();
+  const preparedData = await prepareAndValidateTask();
+  if (!preparedData) return;
+
+  const { taskId, dataSafe } = preparedData;
+  await handleCreatingTask(column, dataSafe);
+  showTaskSuccessBanner();
+  chosenContacts = [];
+}
+
+
+/**
+ * Generates HTML for user and other contacts' initials in a task.
+ * @param {Array} taskContacts - Contacts assigned to the task.
+ * @param {Array} firebaseContactsArray - All contacts from Firebase.
+ * @returns {Promise<string>} - Combined HTML string of rendered contacts.
+ */
 async function checkContactsInitials(taskContacts, firebaseContactsArray) {
   const theUser = JSON.parse(localStorage.getItem("user"));
   const { userContacts, otherContacts } = separateUserAndOthers(
@@ -72,6 +112,13 @@ async function checkContactsInitials(taskContacts, firebaseContactsArray) {
 }
 
 
+/**
+ * Separates task contacts into the current user and other contacts.
+ * @param {Array} taskContacts - Contacts assigned to the task.
+ * @param {Array} firebaseContactsArray - All contacts from Firebase.
+ * @param {string|number} userId - Current user ID.
+ * @returns {{userContacts: Array, otherContacts: Array}} - Object with separated contacts.
+ */
 function separateUserAndOthers(taskContacts, firebaseContactsArray, userId) {
   const userContacts = [];
   const otherContacts = [];
@@ -87,16 +134,33 @@ function separateUserAndOthers(taskContacts, firebaseContactsArray, userId) {
 }
 
 
+/**
+ * Checks if a contact object is valid with a defined ID.
+ * @param {Object} contact - The contact to validate.
+ * @returns {boolean} - True if valid, false otherwise.
+ */
 function isValidContact(contact) {
   return contact && contact.id !== undefined && contact.id !== null;
 }
 
 
+/**
+ * Finds a contact by ID within the Firebase contacts array.
+ * @param {string|number} id - The contact ID to find.
+ * @param {Array} firebaseContactsArray - Array of contacts from Firebase.
+ * @returns {Object|undefined} - The matched contact or undefined if not found.
+ */
 function findContactInFirebase(id, firebaseContactsArray) {
   return firebaseContactsArray.find(fc => fc.id === id);
 }
 
 
+/**
+ * Creates a new task in the specified column and updates the task ID counter.
+ * @param {string} column - The column to add the task to.
+ * @param {Object} dataSafe - The task data to store.
+ * @returns {Promise<void>}
+ */
 async function handleCreatingTask(column, dataSafe) {
   taskId = await getIdFromDataBase("taskId");
   await postData("board/" + column, dataSafe);
@@ -108,6 +172,12 @@ async function handleCreatingTask(column, dataSafe) {
 }
 
 
+/**
+ * Generates combined HTML for user and other contacts of a task.
+ * @param {Object} task - The task containing contacts.
+ * @param {Object} user - The current user object.
+ * @returns {string} - Combined HTML string of contact templates.
+ */
 function loopTaskContacts(task, user) {
   const { defaultHTML, userHTML } = separateUserFromContacts(task, user);
   const defTempl = returnContactTemplates(userHTML, user);
@@ -116,23 +186,40 @@ function loopTaskContacts(task, user) {
 }
 
 
-function returnContactTemplates(contacts, user) {
-  let templateHTML = "";
-  if (!contacts) return;
-  const ifUser = ifUserAddYou(contacts, user);
-  for (let i = 0; i < contacts.length; i++) {
-    const contact = contacts[i];
-    if (!contact) continue;
-    templateHTML += `
-          <div class="task-overlay-contact">
-              <div style="background-image: url('${contact.bg}')" class="initial">${contact.initial}</div>
-              <p>${contact.name + ifUser}</p>
-          </div>`;
-  }
-  return templateHTML;
+/**
+ * Generates HTML for a single contact element.
+ * @param {Object} contact - The contact object.
+ * @param {string} suffix - Text to append after the contact name.
+ * @returns {string} - HTML string for the contact.
+ */
+function generateContactHTML(contact, suffix = "") {
+  if (!contact) return "";
+  return `
+    <div class="task-overlay-contact">
+      <div style="background-image: url('${contact.bg}')" class="initial">${contact.initial}</div>
+      <p>${contact.name + suffix}</p>
+    </div>`;
 }
 
 
+/**
+ * Generates HTML for an array of contacts with user-specific suffixes.
+ * @param {Array} contacts - Array of contact objects.
+ * @param {Object} user - The current user object.
+ * @returns {string} - Combined HTML string for all contacts.
+ */
+function returnContactTemplates(contacts, user) {
+  if (!contacts) return "";
+  const suffix = ifUserAddYou(contacts, user);
+  return contacts.map(contact => generateContactHTML(contact, suffix)).join("");
+}
+
+
+/**
+ * Generates HTML for a task's subtasks if any exist.
+ * @param {Object} task - The task containing subtasks.
+ * @returns {string} - HTML string of subtasks or empty string if none.
+ */
 function loopTaskSubtasks(task) {
   if (!task.subtasks || typeof task.subtasks !== "object") return "";
   if (Object.entries(task.subtasks).length === 0) return "";
@@ -140,6 +227,11 @@ function loopTaskSubtasks(task) {
 }
 
 
+/**
+ * Loops through a task's subtasks and generates their HTML representation.
+ * @param {Object} task - The task containing subtasks.
+ * @returns {string} - Combined HTML string of all subtasks.
+ */
 function handleLoopingSubtasks(task) {
   let templateHTML = "";
   for (const [subtaskKey, subtask] of Object.entries(task.subtasks)) {
@@ -150,6 +242,11 @@ function handleLoopingSubtasks(task) {
 }
 
 
+/**
+ * Determines the checkbox image and CSS class based on subtask state.
+ * @param {Object} subtask - The subtask object with a `state` property.
+ * @returns {{src: string, className: string}} - Image source and CSS class name.
+ */
 function renderCurrSubtaskState(subtask) {
   if (subtask.state === true) {
     return { src: `../img/checkbox_checked_unhovered.png`, className: "chosen" };
@@ -159,6 +256,12 @@ function renderCurrSubtaskState(subtask) {
 }
 
 
+/**
+ * Updates the subtask checkbox icon based on hover state and selection status.
+ * @param {boolean} [isHovered=false] - Whether the icon is being hovered.
+ * @param {HTMLImageElement} icon - The checkbox icon element.
+ * @param {string} subtaskKey - Key of the subtask being updated.
+ */
 function updateSubtaskIcon(isHovered = false, icon, subtaskKey) {
   const chosen = icon.classList.contains("chosen");
   if (chosen) {
@@ -170,6 +273,12 @@ function updateSubtaskIcon(isHovered = false, icon, subtaskKey) {
 }
 
 
+/**
+ * Updates the completion state of a subtask in Firebase based on checkbox status.
+ * @param {string} subtaskKey - The key of the subtask to update.
+ * @param {HTMLElement} icon - The checkbox icon element representing the subtask.
+ * @returns {Promise<void>}
+ */
 async function findChosenSubtasks(subtaskKey, icon) {
   if (!icon) return;
   const board = await getData("board/");
@@ -184,6 +293,12 @@ async function findChosenSubtasks(subtaskKey, icon) {
 }
 
 
+/**
+ * Toggles and updates a subtask icon based on user interaction events.
+ * @param {Event} event - The DOM event triggering the action.
+ * @param {HTMLElement} icon - The subtask checkbox icon element.
+ * @param {string} subtaskKey - The key of the subtask being interacted with.
+ */
 function toggleSubtaskIcon(event, icon, subtaskKey) {
   switch (event.type) {
     case "click":
@@ -203,6 +318,11 @@ function toggleSubtaskIcon(event, icon, subtaskKey) {
 }
 
 
+/**
+ * Counts how many subtasks are marked as done within a task.
+ * @param {Object} task - The task containing subtasks.
+ * @returns {number} - Number of completed subtasks.
+ */
 function renderSubtasksDone(task) {
   let trueTasks = 0;
   const subtasks = Object.values(task.subtasks || {});
@@ -215,6 +335,10 @@ function renderSubtasksDone(task) {
 }
 
 
+/**
+ * Updates the visual progress bar of a task based on completed subtasks.
+ * @param {Object} task - The task containing subtasks.
+ */
 function updateProgressBar(task) {
   const done = renderSubtasksDone(task);
   const total = renderSubtasksAmount(task);

@@ -247,7 +247,6 @@ function helpResetContacts(option, checked, unchecked) {
  * @returns {void} 
  */
 function styleChosenContact(element, initial, bg, name, contactId) {
-  console.log(bg)
   element.classList.toggle("selected-contact");
   const checked = element.querySelector(".checked");
   const unchecked = element.querySelector(".unchecked");
