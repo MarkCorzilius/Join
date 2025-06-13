@@ -1,6 +1,11 @@
 ﻿let nearestDate = null;
 const today = new Date();
 
+
+/**
+ * Initializes the summary page on load.
+ * Shows spinner, includes HTML, then initializes UI.
+ */
 async function summaryOnLoad() {
   showSpinner(true);
   w3.includeHTML();
@@ -15,11 +20,20 @@ async function summaryOnLoad() {
 }
 
 
+/**
+ * Toggles visibility of spinner overlay.
+ * @param {boolean} visible - Show spinner if true, hide if false.
+ */
 function showSpinner(visible) {
   document.querySelector(".spinner-overlay").style.display = visible ? "flex" : "none";
 }
 
 
+/**
+ * Returns a promise that resolves when sidebar and header are loaded.
+ * Polls DOM every 50ms.
+ * @returns {Promise<void>}
+ */
 function waitForInclude() {
   return new Promise((resolve) => {
     const checkExist = setInterval(() => {
@@ -32,6 +46,9 @@ function waitForInclude() {
 }
 
 
+/**
+ * Runs all UI initialization functions for the summary page.
+ */
 function initializeSummaryUI() {
   showGreetingOverlayAfterLogIn();
   updateGreeting("logedInGreeting", "logedInUser");
@@ -53,6 +70,10 @@ function initializeSummaryUI() {
 }
 
 
+/**
+ * Returns current hour as string.
+ * @returns {Promise<string>} Current hour (0-23).
+ */
 async function getCurrentTime() {
   const now = new Date();
   const hours = String(now.getHours());
@@ -60,12 +81,23 @@ async function getCurrentTime() {
 }
 
 
+/**
+ * Updates greeting text based on current hour.
+ * @param {string} userGreeting - ID of greeting container.
+ * @param {string} userName - ID of user name container.
+ */
 async function updateGreeting(userGreeting, userName) {
   const hour = await getCurrentTime();
   showCurrentGreeting(hour, userGreeting, userName);
 }
 
 
+/**
+ * Sets greeting message based on hour and user status.
+ * @param {string|number} hour - Current hour (0-23).
+ * @param {string} userGreeting - ID of greeting container.
+ * @param {string} userName - ID of user name container.
+ */
 function showCurrentGreeting(hour, userGreeting, userName) {
   const container = document.getElementById(userGreeting);
   let greeting;
@@ -85,6 +117,11 @@ function showCurrentGreeting(hour, userGreeting, userName) {
 }
 
 
+/**
+ * Adjusts greeting text if user is Guest or logged in.
+ * @param {string} userGreeting - ID of greeting container.
+ * @param {string} userName - ID of user name container.
+ */
 function checkIfGuest(userGreeting, userName) {
   if (!userGreeting || !userName) return;
   const user = JSON.parse(localStorage.getItem("user"));
@@ -100,15 +137,29 @@ function checkIfGuest(userGreeting, userName) {
 }
 
 
+/**
+ * Sets logged-in user's name in the greeting element.
+ * @param {{name: string}} user - User object.
+ * @param {string} userName - ID of user name container.
+ */
 function ifLoggedInUser(user, userName) {
   const greeting = document.getElementById(userName);
   greeting.innerText = user.name;
 }
 
+
+
+/**
+ * Updates greeting every minute.
+ */
 setInterval(() => {
   updateGreeting();
 }, 60 * 1000);
 
+
+/**
+ * Counts and displays number of To-Do tasks.
+ */
 async function findToDoAmount() {
   const container = document.getElementById("toDoAmount");
   const tasks = await getData("board/toDo/");
@@ -121,7 +172,9 @@ async function findToDoAmount() {
   }
 }
 
-
+/**
+ * Counts and displays number of Done tasks.
+ */
 async function findDoneAmount() {
   const container = document.getElementById("doneAmount");
   const tasks = await getData("board/done");
@@ -135,6 +188,9 @@ async function findDoneAmount() {
 }
 
 
+/**
+ * Counts and displays number of Urgent tasks across board.
+ */
 async function findUrgentTasksAmount() {
   const container = document.getElementById("urgentAmount");
   const board = await getData("board/");
@@ -147,6 +203,11 @@ async function findUrgentTasksAmount() {
 }
 
 
+/**
+ * Counts how many tasks have urgent priority.
+ * @param {object} board - Board object with tasks grouped by columns.
+ * @returns {number} Number of urgent tasks.
+ */
 function countUrgentTasks(board) {
   let count = 0;
   for (const tasks of Object.values(board)) {
@@ -160,6 +221,9 @@ function countUrgentTasks(board) {
 }
 
 
+/**
+ * Counts and displays number of In-Progress tasks.
+ */
 async function findTasksInProgressAmount() {
   const container = document.getElementById("inProgressAmount");
   const tasks = await getData("board/InProgress/");
@@ -173,6 +237,9 @@ async function findTasksInProgressAmount() {
 }
 
 
+/**
+ * Counts and displays number of Awaiting Feedback tasks.
+ */
 async function findAwaitingTasksAmount() {
   const container = document.getElementById("awaitAmount");
   const tasks = await getData("board/awaitFeedback/");
@@ -186,6 +253,9 @@ async function findAwaitingTasksAmount() {
 }
 
 
+/**
+ * Finds and displays the next urgent task deadline.
+ */
 async function findNextUrgentDeadline() {
   const container = document.getElementById("taskDeadline");
   const board = await getData("board/");
@@ -199,6 +269,11 @@ async function findNextUrgentDeadline() {
 }
 
 
+/**
+ * Iterates board to find the nearest urgent task deadline.
+ * Updates global nearestDate.
+ * @param {object} board - Board object with tasks.
+ */
 function iterateForNextUrgentTaskDate(board) {
   for (const [columnKey, tasks] of Object.entries(board)) {
     for (const [taskKey, task] of Object.entries(tasks)) {
@@ -213,7 +288,11 @@ function iterateForNextUrgentTaskDate(board) {
   }
 }
 
-
+/**
+ * Formats a date to a readable string or returns default message.
+ * @param {Date|null} date - Date to format.
+ * @returns {string} Formatted date or fallback text.
+ */
 function formatDate(date) {
   if (date === null) {
     document.getElementById("deadlineTxt").innerText = "";
@@ -230,6 +309,9 @@ function formatDate(date) {
 }
 
 
+/**
+ * Counts and displays total number of tasks across the board.
+ */
 async function findOverallTasksAmount() {
   const container = document.getElementById("tasksInBoard");
   let tasksCounter = 0;
@@ -247,6 +329,9 @@ async function findOverallTasksAmount() {
 }
 
 
+/**
+ * Shows a greeting overlay if user just logged in (from index page).
+ */
 async function showGreetingOverlayAfterLogIn() {
   if (document.referrer.includes("index")) {
     const overlay = document.getElementById("greetingOverlay");

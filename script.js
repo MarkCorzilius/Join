@@ -1,6 +1,11 @@
 ﻿let currOverlay = 1;
 const paths = ["summary.", "add_task", "board", "contacts", "help.html", "privacy_policy", "legal_notice"];
 
+
+/**
+ * Shows or hides the landscape mode warning on mobile devices.
+ * Toggles visibility if device is mobile and in landscape orientation.
+ */
 document.addEventListener("DOMContentLoaded", () => {
   const check = setInterval(() => {
     const warning = document.getElementById("landscapeWarning");
@@ -17,6 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+/**
+ * Loads external HTML snippets and initializes legal notice page.
+ * Handles errors in loading.
+ * @async
+ */
 async function showLegalNoticeAndPrivacyPolicy() {
   w3.includeHTML();
   try {
@@ -28,6 +38,10 @@ async function showLegalNoticeAndPrivacyPolicy() {
 }
 
 
+/**
+ * Waits until sidebar and header elements are loaded in DOM.
+ * @returns {Promise<void>} Resolves when sidebar and header are present.
+ */
 function waitForInclude() {
   return new Promise((resolve) => {
     const checkExist = setInterval(() => {
@@ -42,6 +56,10 @@ function waitForInclude() {
 }
 
 
+/**
+ * Initializes UI elements for legal notice page.
+ * Adjusts sidebar, marks page, sets up user help and privacy display.
+ */
 function initializeLegalNoticePage() {
   adjustSideBar();
   markCurrentPage();
@@ -49,16 +67,13 @@ function initializeLegalNoticePage() {
   adjustInitialAfterLogin();
   adjustHelpForMobile();
   window.addEventListener("resize", adjustHelpForMobile);
+  displayLegalNoticeAndPrivacyPolicy();
 }
 
 
-// function setViewSubtask() {
-//   const user = JSON.stringify({ name: "Guest", email: "guest@example.com" });
-//   localStorage.setItem(user);
-//   showLegalNoticeAndPrivacyPolicy();
-// }
-
-
+/**
+ * Adds "active" class to the navigation button corresponding to current path.
+ */
 function markCurrentPage() {
   const buttons = document.querySelectorAll(".nav-button");
   paths.forEach((path, index) => {
@@ -74,6 +89,9 @@ function markCurrentPage() {
 }
 
 
+/**
+ * Shows or hides help dropdown depending on window width.
+ */
 function adjustHelpForMobile() {
   const help = document.querySelector(".dropdown-help");
   if (window.innerWidth <= 1000) {
@@ -84,6 +102,10 @@ function adjustHelpForMobile() {
 }
 
 
+/**
+ * Determines CSS class for task overlay size based on current overlay state.
+ * @returns {string} The class name for the overlay size.
+ */
 function decideCurrentTaskOverlay() {
   switch (currOverlay) {
     case "boardAddTaskOverlay":
@@ -96,6 +118,12 @@ function decideCurrentTaskOverlay() {
 }
 
 
+/**
+ * Toggles visibility of password input and changes icon accordingly.
+ * @param {string} inputId - The id of the password input element.
+ * @param {HTMLElement} element - The toggle button/image element.
+ * @param {string} path - Path prefix for icon image sources.
+ */
 function togglePasswordVisibility(inputId, element, path) {
   const passwordInputId = document.getElementById(inputId);
   element.classList.toggle("visible");
@@ -109,6 +137,10 @@ function togglePasswordVisibility(inputId, element, path) {
 }
 
 
+/**
+ * Closes contact and category dropdowns if clicking outside of them.
+ * @param {MouseEvent} event - The click event.
+ */
 function closeDropdownsIfClickedOutside(event) {
   ifContactsBoxOpen(event);
   ifCategoryBoxOpen(event);
@@ -116,6 +148,10 @@ function closeDropdownsIfClickedOutside(event) {
 }
 
 
+/**
+ * Closes the contacts dropdown if open and click happened outside it.
+ * @param {MouseEvent} event - The click event.
+ */
 function ifContactsBoxOpen(event) {
   const box = document.querySelector(".dropdown-wrapper");
   const searchState = document.getElementById("searchState");
@@ -130,6 +166,10 @@ function ifContactsBoxOpen(event) {
 }
 
 
+/**
+ * Closes the category dropdown if open and click happened outside it.
+ * @param {MouseEvent} event - The click event.
+ */
 function ifCategoryBoxOpen(event) {
   const arrow = document.getElementById("categoryArrow");
   const section = document.querySelector(".category-btn-and-options");
@@ -142,6 +182,10 @@ function ifCategoryBoxOpen(event) {
 }
 
 
+/**
+ * Displays a warning overlay with the given message and a countdown timer.
+ * @param {string} message - The HTML content to show in the warning dialog.
+ */
 function showWarningOverlay(message) {
   const overlay = document.querySelector(".warning-overlay");
   const dialog = overlay.querySelector(".warning-dialog");
@@ -152,6 +196,11 @@ function showWarningOverlay(message) {
   countdownThenCloseOverlay(countdown);
 }
 
+
+/**
+ * Counts down from 5 seconds, updates overlay countdown, then closes it.
+ * @param {HTMLElement} countdown - The countdown display element.
+ */
 function countdownThenCloseOverlay(countdown) {
   let number = 5;
   countdown.innerText = number;
@@ -166,6 +215,10 @@ function countdownThenCloseOverlay(countdown) {
   }, 1000);
 }
 
+
+/**
+ * Hides the warning overlay with a fade-out animation.
+ */
 function hideWarningOverlay() {
   const overlay = document.querySelector(".warning-overlay");
   const dialog = overlay.querySelector(".warning-dialog");
@@ -174,6 +227,12 @@ function hideWarningOverlay() {
 }
 
 
+/**
+ * Checks if the password meets complexity requirements:
+ * At least 1 special char, 5 letters, and 3 numbers.
+ * @param {string} password - The password to validate.
+ * @returns {boolean} True if valid, false otherwise.
+ */
 function isPasswordValid(password) {
   const specialCharPattern = /[^a-zA-Z0-9]/g;
   const letterPattern = /[a-zA-Z]/g;
