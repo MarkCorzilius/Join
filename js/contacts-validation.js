@@ -74,3 +74,21 @@ function checkDotConditions(trimmed, domainPart) {
     !trimmed.includes("..")
   );
 }
+
+
+function validateContactData({ nameValue, emailValue, phoneValue }) {
+  if (!inputsFilledOut({ nameValue, emailValue, phoneValue })) {
+    showWarningOverlay(incompleteFieldsTemplate());
+    return false;
+  }
+  return true;
+}
+
+
+function validateEditedContactData({ newName, newEmail, newPhone }) {
+  if (!inputsFilledOut({ nameValue: newName, emailValue: newEmail, phoneValue: newPhone })) {
+    showWarningOverlay(incompleteFieldsTemplate());
+    return false;
+  }
+  return true;
+}

@@ -64,13 +64,9 @@ async function displayContactsByAlphabet() {
     return;
   }
   contactsArray.sort((a, b) => a.displayName.localeCompare(b.displayName));
-  const container = document.querySelector(".contacts-list");
+  const container = getContactsContainer();
   if (!container) return;
-  const groups = {};
-  contactsArray.forEach((c) => {
-    const letter = c.displayName[0].toUpperCase();
-    (groups[letter] = groups[letter] || []).push(c);
-  });
+  const groups = groupContactsByFirstLetter(contactsArray);
   renderGroupedContacts(container, groups);
 }
 

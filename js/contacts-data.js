@@ -245,3 +245,16 @@ function updateContactArray(newName, newEmail, newPhone) {
   contactsArray = contactsArray.filter((contact) => contact.email.toLowerCase() !== currentContact.email.toLowerCase());
   contactsArray.push({ email: newEmail, name: newName, phone: newPhone });
 }
+
+
+function getEditedContactData() {
+  const newName = document.getElementById("editName").value.trim();
+  const newEmail = document.getElementById("editEmail").value.trim();
+  const newPhone = document.getElementById("editPhone").value.trim();
+  return { newName, newEmail, newPhone };
+}
+
+
+function getContactsContainer() {
+  return document.querySelector(".contacts-list");
+}

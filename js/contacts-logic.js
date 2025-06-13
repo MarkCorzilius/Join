@@ -1,19 +1,23 @@
 ﻿async function saveNewContactToDataBase(event) {
-  event.stopPropagation()
-  const { nameValue, emailValue, phoneValue } = await getNewContactData();
+  event.stopPropagation();
+  const contactData = await getNewContactData();
+  if (!validateContactData(contactData)) return;
+  if (await contactAlreadyExists(contactData.emailValue)) return;
+  if (!(await validateContactInputs(
+    contactData.emailValue,
+    contactData.phoneValue,
+    contactData.nameValue
+  ))) return;
+  await saveContact(contactData);
+}
 
-  if (!inputsFilledOut({ nameValue, emailValue, phoneValue })) {
-    showWarningOverlay(incompleteFieldsTemplate());
-    return;
-  }
 
-  if ((await doesContactExists(emailValue))) {
+async function contactAlreadyExists(emailValue) {
+  if (await doesContactExists(emailValue)) {
     showWarningOverlay(emailExistsTemplate());
-    return;
+    return true;
   }
-  if (!(await validateContactInputs(emailValue, phoneValue, nameValue))) return;
-
-  await saveContact({ nameValue, emailValue, phoneValue });
+  return false;
 }
 
 
@@ -50,23 +54,21 @@ async function deleteContactForEdit() {
 
 
 async function saveEditedContact(event) {
-  event.stopPropagation()
+  event.stopPropagation();
   if (!currentContact) return;
-  const newName = document.getElementById("editName").value.trim();
-  const newEmail = document.getElementById("editEmail").value.trim();
-  const newPhone = document.getElementById("editPhone").value.trim();
-  if (!inputsFilledOut({ nameValue: newName, emailValue: newEmail, phoneValue: newPhone })) {
-    showWarningOverlay(incompleteFieldsTemplate());
-    return;
-  }
 
-  if ((await doesContactExists(newEmail))) {
-    showWarningOverlay(emailExistsTemplate());
-    return;
-  }
+  const editedData = getEditedContactData();
+  if (!validateEditedContactData(editedData)) return;
 
-  if (!(await validateContactInputs(newEmail, newPhone, newName))) return;
+  if (await contactAlreadyExists(editedData.newEmail)) return;
 
+  if (!(await validateContactInputs(editedData.newEmail, editedData.newPhone, editedData.newName))) return;
+
+  await processContactUpdate(editedData);
+}
+
+
+async function processContactUpdate({ newName, newEmail, newPhone }) {
   updateContactArray(newName, newEmail, newPhone);
   await updateEditedContactInFireBase(currentContact.email, { newName, newEmail, newPhone }, currentContact.id);
   await adjustChangedContactInTasks(putData);
@@ -108,4 +110,14 @@ function getInitials(name) {
     document.getElementById("contactName").value = "";
     document.getElementById("contactEmail").value = "";
     document.getElementById("contactPhone").value = "";
+  }
+
+
+  function groupContactsByFirstLetter(contacts) {
+    const groups = {};
+    contacts.forEach((c) => {
+      const letter = c.displayName[0].toUpperCase();
+      (groups[letter] = groups[letter] || []).push(c);
+    });
+    return groups;
   }
