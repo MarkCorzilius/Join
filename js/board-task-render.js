@@ -46,8 +46,6 @@ async function renderInitials(task) {
   return contactsHTML;
 }
 
-const contactsOffset = 2;
-let contactsStart = 0; 
 
 function renderContacts(contacts) {
   let templateHTML = "";
@@ -68,7 +66,6 @@ function showContactsBubble(contacts, id) {
   const container = document.getElementById(`contactsAssigned${id}`);
   const contactsLeft = contacts.length - (contactsStart + contactsOffset);
   const remainingCount = Math.max(contactsLeft, 0);
-
   const existingBubble = container.querySelector('#moreContactsBubble');
   if (existingBubble) {
     existingBubble.remove();

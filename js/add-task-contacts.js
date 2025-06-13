@@ -61,6 +61,11 @@ async function fetchContacts(currentContainer) {
     contactsContainer.innerHTML = getNoContactsTemplate();
     return;
   }
+  await sortAndRenderFetchedContacts(contacts, contactsContainer);
+}
+
+
+async function sortAndRenderFetchedContacts(contacts, contactsContainer) {
   const { loggedIn, defaults } = sortContacts(contacts);
   defaultContacts = defaults;
   currentIndex = 0;
@@ -194,9 +199,6 @@ function runIfNotSelected(checked, unchecked, initial, bg, name, contactId) {
   visualizeChosenContacts();
 }
 
-// onclick on + –> render 3 more
-// scroll to last
-
 
 function visualizeChosenContacts() {
   const container = document.getElementById("chosenContactsBox");
@@ -251,21 +253,25 @@ function deleteContactFromArray(initial, bg, name) {
 
 
 function searchForContacts() {
-  let foundCounter = 0;
   const input = document.getElementById("searchContacts").value.toLowerCase();
   const contacts = document.querySelectorAll(".option");
+  const foundCounter = showAndHideTasksWhileSearch(input, contacts)
+  displayNoResultMessage(foundCounter);
+}
+
+function showAndHideTasksWhileSearch(input, contacts) {
+  let count = 0;
   for (let i = 0; i < contacts.length; i++) {
     const name = contacts[i].querySelector(".contact-name").innerText.toLowerCase();
     if (name.includes(input)) {
       contacts[i].style.display = "flex";
-      foundCounter += 1;
+      count += 1;
     } else {
       contacts[i].style.display = "none";
     }
   }
-  displayNoResultMessage(foundCounter);
+  return count;
 }
-
 
 function displayNoResultMessage(foundCounter) {
   const container = document.getElementById("contactOptions");

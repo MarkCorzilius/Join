@@ -184,19 +184,24 @@ function showMainBtn() {
 
 function addSubtask() {
   const input = document.getElementById("subtaskInput");
+  if (isSubtaskInputEmpty(input)) return;
+
   const valueRef = input.value.trim();
   const outputDiv = document.getElementById("subtaskContainer");
-  if (valueRef.length === 0) {
-    input.focus();
-    return;
-  }
   const subtaskEditClass = decideCurrentTaskOverlay();
-  outputDiv.innerHTML += subtaskTemplate(subtaskId, valueRef, subtaskEditClass);
+
+  createAndAppendSubtask(outputDiv, subtaskId, valueRef, subtaskEditClass);
+  subtaskId += 1;
+  finalizeSubtaskInput(input);
+}
+
+
+function finalizeSubtaskInput(input) {
   input.value = "";
   scrollToCreatedSubtask();
-  subtaskId += 1;
   input.focus();
 }
+
 
 document.addEventListener("click", (e) => {
   const focusBtns = document.getElementById("focusBtns");

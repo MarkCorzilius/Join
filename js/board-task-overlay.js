@@ -132,7 +132,6 @@ async function changeCurrTask() {
   if (!restrictAddingTask()) return;
   const taskUpdated = await handlePostingChangedTask(newTaskData);
   if (taskUpdated) {
-    //openTaskInfoOverlay(currTask);
     closeTaskInfoOverlay();
   }
 }
@@ -192,7 +191,6 @@ function ifMobileAddTaskLayout() {
   if (overlay && innerWidth <= 700) {
     window.location.href = "../templates/add_task.html"
   }
-  
 }
 
 

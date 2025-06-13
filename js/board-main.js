@@ -1,6 +1,8 @@
 ﻿let disabled = false;
 let currentColumn = 0;
 let searching = false;
+const contactsOffset = 2;
+let contactsStart = 0; 
 
 async function boardOnLoad() {
   document.querySelector(".spinner-overlay").style.display = "flex";
@@ -87,14 +89,19 @@ function cleanTaskContacts(tasks, firebaseContactsArray) {
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
     if (task.contacts) {
-      for (const key in task.contacts) {
-        const contact = task.contacts[key];
-        if (!contact) continue;
-        const exists = firebaseContactsArray.find((fc) => fc.id === contact.id);
-        if (!exists) {
-          delete task.contacts[key];
-        }
-      }
+      filterOutMissingContacts(task.contacts, firebaseContactsArray)
+    }
+  }
+}
+
+
+function filterOutMissingContacts(contacts, firebaseContactsArray) {
+  for (const key in contacts) {
+    const contact = contacts[key];
+    if (!contact) continue;
+    const exists = firebaseContactsArray.find((fc) => fc.id === contact.id);
+    if (!exists) {
+      delete contacts[key];
     }
   }
 }
@@ -141,6 +148,7 @@ function bluredSearchContainer() {
   displayRightMessageIfColumnEmpty(searching);
 }
 
+
 function displayRightMessageIfColumnEmpty(searching) {
   const emptyColumnMessage = document.querySelectorAll('.empty-column');
   const emptySearchMessage = document.querySelectorAll('.empty-search');
@@ -149,6 +157,7 @@ function displayRightMessageIfColumnEmpty(searching) {
     switchEmptyMessages(emptyColumnMessage, emptySearchMessage, input);
   }
 }
+
 
 function switchEmptyMessages(emptyColumnMessage, emptySearchMessage, input) {
   if (emptySearchMessage && input.value === "") {
@@ -264,14 +273,12 @@ function hideTaskIfDontContainInput(tasks, input, foundCount) {
 function toggleTaskVisibility(task, input, foundCount) {
   const title = task.querySelector(".task-title").innerText.toLowerCase();
   const description = task.querySelector(".task-description").innerText.toLowerCase();
-
   if (title.includes(input) || description.includes(input)) {
     task.style.display = "flex";
     foundCount++;
   } else {
     task.style.display = "none";
   }
-
   return foundCount;
 }
 
@@ -294,19 +301,37 @@ function checkIfColumnHasVisibleTasks(column) {
 
 
 function showOrHideEmptyMessages(column, tasksFound) {
+  if (!tasksFound) {
+    showEmptySearchMessage(column);
+  } else {
+    hideEmptySearchMessage(column);
+    toggleEmptyColumnMessage(column);
+  }
+}
+
+
+function showEmptySearchMessage(column) {
   const emptySearchMessage = column.querySelector('.empty-search');
   const emptyColumnMessage = column.querySelector('.empty-column');
-  const taskElements = column.querySelectorAll('.task-body');
 
-  if (!tasksFound) {
-    if (!emptySearchMessage) {
-      if (emptyColumnMessage) emptyColumnMessage.style.display = 'none';
-      column.insertAdjacentHTML('beforeend', emptySearchColumnTemplate('No matches'));
-    }
-  } else {
-    if (emptySearchMessage) emptySearchMessage.remove();
-    if (emptyColumnMessage)
-      emptyColumnMessage.style.display = taskElements.length > 0 ? 'none' : 'flex';
+  if (!emptySearchMessage) {
+    if (emptyColumnMessage) emptyColumnMessage.style.display = 'none';
+    column.insertAdjacentHTML('beforeend', emptySearchColumnTemplate('No matches'));
+  }
+}
+
+
+function hideEmptySearchMessage(column) {
+  const emptySearchMessage = column.querySelector('.empty-search');
+  if (emptySearchMessage) emptySearchMessage.remove();
+}
+
+
+function toggleEmptyColumnMessage(column) {
+  const emptyColumnMessage = column.querySelector('.empty-column');
+  const taskElements = column.querySelectorAll('.task-body');
+  if (emptyColumnMessage) {
+    emptyColumnMessage.style.display = taskElements.length > 0 ? 'none' : 'flex';
   }
 }
 
