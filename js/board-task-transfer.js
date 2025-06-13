@@ -1,4 +1,10 @@
-﻿async function handleTaskTransfer(task, column) {
+﻿/**
+ * Handles the transfer of a task to a different column with loading indicator.
+ * @param {Object} task - The task to transfer.
+ * @param {string} column - The target column identifier.
+ * @returns {Promise<void>}
+ */
+async function handleTaskTransfer(task, column) {
   document.querySelector(".spinner-overlay").style.display = "flex";
   try {
     await iterateForTaskTransfer(task, column);
@@ -9,7 +15,12 @@
   }
 }
 
-
+/**
+ * Moves a task from its current column to a new column in the board data.
+ * @param {Object} task - The task to transfer.
+ * @param {string} column - The target column key.
+ * @returns {Promise<void>}
+ */
 async function iterateForTaskTransfer(task, column) {
   const board = await getData("board/");
   for (const [columnKey, tasks] of Object.entries(board)) {
@@ -22,7 +33,14 @@ async function iterateForTaskTransfer(task, column) {
   }
 }
 
-
+/**
+ * Moves a task between columns on mobile devices based on direction.
+ * @param {string} direction - Movement direction ("forward" or "back").
+ * @param {Object} task - The task to move.
+ * @param {Event} event - The event triggering the move.
+ * @param {HTMLElement} element - The related DOM element.
+ * @returns {Promise<void>}
+ */
 async function moveMobileTasks(direction, task, event, element) {
   event.stopPropagation();
   const currColumnName = await checkCurrColumnName(task.id);
@@ -39,6 +57,13 @@ async function moveMobileTasks(direction, task, event, element) {
 }
 
 
+/**
+ * Handles moving a task forward to the next column, disabling the element if moving to "done".
+ * @param {string} nextColumn - The target column key.
+ * @param {HTMLElement} element - The DOM element to modify.
+ * @param {Object} task - The task to transfer.
+ * @returns {Promise<void>}
+ */
 async function handleForwardCase(nextColumn, element, task) {
   if (nextColumn === "done") {
     element.classList.add("disabled");
@@ -50,6 +75,13 @@ async function handleForwardCase(nextColumn, element, task) {
 }
 
 
+/**
+ * Handles moving a task backward to the previous column, disabling the element if moving to "toDo".
+ * @param {string} prevColumn - The target column key.
+ * @param {HTMLElement} element - The DOM element to modify.
+ * @param {Object} task - The task to transfer.
+ * @returns {Promise<void>}
+ */
 async function handleBackCase(prevColumn, element, task) {
   if (prevColumn === "toDo") {
     element.classList.add("disabled");
@@ -61,6 +93,11 @@ async function handleBackCase(prevColumn, element, task) {
 }
 
 
+/**
+ * Finds the current column name of a task by its ID.
+ * @param {number|string} id - The task ID to search for.
+ * @returns {Promise<string|undefined>} - The column name or undefined if not found.
+ */
 async function checkCurrColumnName(id) {
   const board = await getData("board/");
   for (const [columnKey, tasks] of Object.entries(board)) {
@@ -73,6 +110,12 @@ async function checkCurrColumnName(id) {
 }
 
 
+/**
+ * Disables move buttons for tasks retrieved from the specified path.
+ * @param {string} course - Selector for the button to disable.
+ * @param {string} path - Firebase path to fetch tasks from.
+ * @returns {Promise<void>}
+ */
 async function disableMoveBtns(course, path) {
   const toDos = await getData(path);
   if (!toDos) return;
@@ -88,6 +131,12 @@ async function disableMoveBtns(course, path) {
 }
 
 
+/**
+ * Determines the next column name in the workflow after the current column.
+ * @param {string|number} id - Task ID (unused in function).
+ * @param {string} currColumnName - The current column name.
+ * @returns {Promise<string|undefined>} - The next column name or undefined if at end.
+ */
 async function checkNextColumnName(id, currColumnName) {
   const order = ["toDo", "InProgress", "awaitFeedback", "done"];
   const currColumnIndex = order.indexOf(currColumnName);
@@ -96,6 +145,12 @@ async function checkNextColumnName(id, currColumnName) {
 }
 
 
+/**
+ * Determines the previous column name in the workflow before the current column.
+ * @param {string|number} id - Task ID (unused in function).
+ * @param {string} currColumnName - The current column name.
+ * @returns {Promise<string|undefined>} - The previous column name or undefined if at start.
+ */
 async function checkPrevColumnName(id, currColumnName) {
   const order = ["toDo", "InProgress", "awaitFeedback", "done"];
   const currColumnIndex = order.indexOf(currColumnName);
