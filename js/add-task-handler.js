@@ -1,5 +1,8 @@
-﻿
-
+﻿/**
+ * Collects and packages all relevant task data into an object.
+ * 
+ * @returns {Object} An object containing task details including id, title, description, date, priority, contacts, category, and subtasks.
+ */
 function taskDataStorage() {
   const { titleValue, descriptionValue, dateValue } = extractTaskValues();
   const dataSafe = {
@@ -15,7 +18,12 @@ function taskDataStorage() {
   return dataSafe;
 }
 
-
+/**
+ * Disables the create task button, validates and posts the task asynchronously,
+ * and re-enables the button regardless of success or failure.
+ * 
+ * @returns {Promise<void>}
+ */
 async function getTaskData() {
   document.querySelector(".create-task-button").disabled = true;
   try {
@@ -27,7 +35,12 @@ async function getTaskData() {
   }
 }
 
-
+/**
+ * Validates task data, retrieves task ID, and posts the task if all conditions are met.
+ * Shows warning if task data is invalid and a success banner upon successful posting.
+ * 
+ * @returns {Promise<void>}
+ */
 async function validateAndPostTask() {
   if (!extractTaskValues()) {
     showWarningOverlay(taskDateInPastTemplate())
@@ -41,6 +54,13 @@ async function validateAndPostTask() {
 }
 
 
+/**
+ * Posts task data to the appropriate board column, updates the task ID,
+ * clears the task form, and refreshes the task UI if needed.
+ * 
+ * @param {Object} dataSafe – The task data object to post.
+ * @returns {Promise<void>}
+ */
 async function handlePostingTask(dataSafe) {
   const columnNum = localStorage.getItem("taskColumn");
   const columnName = checkChosenColummn(columnNum);
@@ -54,6 +74,11 @@ async function handlePostingTask(dataSafe) {
 }
 
 
+/**
+ * Finds the active priority button and returns its priority value.
+ * 
+ * @returns {string|null} The active priority ("medium", "urgent", "low") or null if none selected.
+ */
 function saveActivePriority() {
   const priorities = document.querySelectorAll(".priority-button");
   const active = Array.from(priorities).find((btn) => btn.classList.contains("active"));
@@ -62,6 +87,11 @@ function saveActivePriority() {
 }
 
 
+/**
+ * Returns the selected task category from the UI, or null if none selected.
+ * 
+ * @returns {string|null} The selected category name, or null if no valid category is chosen.
+ */
 function saveCategory() {
   const containerRef = document.getElementById("categoryChoiceInsert");
   if (containerRef.innerText !== "Select task category") {
@@ -74,6 +104,11 @@ function saveCategory() {
 }
 
 
+/**
+ * Collects and returns subtasks from the UI.
+ * 
+ * @returns {Object|null} An object of subtasks keyed by subtask ID, each with title and default state, or null if no subtasks found.
+ */
 function saveSubtasks() {
   const subtaskContainer = document.getElementById("subtaskContainer");
   const subtaskTitles = document.querySelectorAll(".subtask-titles");
@@ -90,6 +125,13 @@ function saveSubtasks() {
 }
 
 
+/**
+ * Sets the given button as the active priority and updates styles.
+ * 
+ * @param {HTMLButtonElement} button - The priority button to activate.
+ * @param {string} color - The background color to apply when active.
+ * @param {string|number} id - The identifier for the priority button (used in color change handler).
+ */
 function setActivePriority(button, color, id) {
   document.querySelectorAll(".priority-button").forEach((btn) => {
     btn.classList.remove("active");
@@ -103,6 +145,12 @@ function setActivePriority(button, color, id) {
 }
 
 
+/**
+ * Updates the priority icon colors based on the given id.
+ * Removes the highlight class from all icons and adds it to the matching one.
+ * 
+ * @param {string|number} id - The identifier of the priority icon to highlight.
+ */
 function changePriorityBtnColor(id) {
   const svgRef = document.querySelectorAll(".priority-icon");
   for (let i = 0; i < svgRef.length; i++) {
@@ -115,6 +163,10 @@ function changePriorityBtnColor(id) {
 }
 
 
+/**
+ * Resets priority buttons to default state with "medium" priority active.
+ * Sets styles for inactive buttons and highlights the medium priority button.
+ */
 function resetPriorityBtn() {
   const inactiveBtns = [document.getElementsByClassName("priority-button")[0], document.getElementsByClassName("priority-button")[2]];
   const medium = document.getElementsByClassName("priority-button")[1];
@@ -129,6 +181,10 @@ function resetPriorityBtn() {
 }
 
 
+/**
+ * Toggles visibility of the category options dropdown.
+ * Updates the arrow and container styling based on the open/closed state.
+ */
 function toggleCategoryOptions() {
   const arrow = document.getElementById("categoryArrow");
   const section = document.querySelector(".category-btn-and-options");
@@ -138,6 +194,13 @@ function toggleCategoryOptions() {
 }
 
 
+/**
+ * Updates UI elements based on whether the category options dropdown is open or closed.
+ * 
+ * @param {HTMLImageElement} arrow - The arrow image element indicating dropdown state.
+ * @param {HTMLElement} section - The container wrapping the category button and options.
+ * @param {HTMLElement} optionsRef - The category options container whose display is toggled.
+ */
 function isCategoryOptionsOpen(arrow, section, optionsRef) {
   if (optionsRef.style.display === "flex") {
     section.style.marginBottom = "100px";
@@ -154,6 +217,11 @@ function isCategoryOptionsOpen(arrow, section, optionsRef) {
 }
 
 
+/**
+ * Sets the selected category text in the UI and closes the category dropdown.
+ * 
+ * @param {HTMLElement} option – The clicked category option element.
+ */
 function chooseCategory(option) {
   const containerRef = document.getElementById("categoryChoiceInsert");
   const choice = option.innerText;
@@ -162,7 +230,10 @@ function chooseCategory(option) {
   toggleCategoryOptions();
 }
 
-
+/**
+ * Shows the subtask action buttons and focuses the subtask input field.
+ * Hides the main subtask button, shows the focused buttons, and sets the cursor to default.
+ */
 function showActionBtns() {
   const input = document.getElementById("subtaskInput");
   const focusBtns = document.getElementById("focusBtns");
@@ -174,6 +245,9 @@ function showActionBtns() {
 }
 
 
+/**
+ * Shows the main subtask button and hides the focused action buttons.
+ */
 function showMainBtn() {
   const focusBtns = document.getElementById("focusBtns");
   const mainBtn = document.getElementById("subtaskMainBtn");
@@ -182,6 +256,11 @@ function showMainBtn() {
 }
 
 
+/**
+ * Adds a new subtask from the input field to the subtask container.
+ * If the input is empty, it refocuses the input without adding.
+ * Resets the input field and scrolls to the newly created subtask.
+ */
 function addSubtask() {
   const input = document.getElementById("subtaskInput");
   const valueRef = input.value.trim();
@@ -199,6 +278,11 @@ function addSubtask() {
 }
 
 
+/**
+ * Listens for clicks on the document to detect clicks outside the subtask input area.
+ * If the focus buttons are visible and the click is outside the input wrapper,
+ * clears the input field and moves focus to the main subtask button.
+ */
 document.addEventListener("click", (e) => {
   const focusBtns = document.getElementById("focusBtns");
   const mainBtn = document.getElementById("subtaskMainBtn");
@@ -211,12 +295,19 @@ document.addEventListener("click", (e) => {
 });
 
 
+/**
+ * Scrolls the subtask container to the bottom to make the newly added subtask visible.
+ */
 function scrollToCreatedSubtask() {
   const container = document.getElementById("subtaskContainer");
   container.scrollTop = container.scrollHeight;
 }
 
-
+/**
+ * Resets all input fields and UI elements related to task creation to their default states.
+ * Clears task title, description, date, and subtask input fields.
+ * Also resets priority, category, subtasks, and contact selections.
+ */
 function emptyTaskDocument() {
   const title = document.getElementById("taskTitle");
   const description = document.getElementById("description");
@@ -233,17 +324,32 @@ function emptyTaskDocument() {
 }
 
 
+/**
+ * Resets the task category selection UI to its default state.
+ * Sets the category display text to "Select task category".
+ */
 function resetCategory() {
   document.getElementById("categoryChoiceInsert").innerText = "Select task category";
 }
 
 
+/**
+ * Clears all subtasks from the subtask container in the UI.
+ */
 function resetSubtasks() {
   const subtasks = document.getElementById("subtaskContainer");
   subtasks.innerHTML = "";
 }
 
 
+/**
+ * Checks the subtask input for Enter key press and handles adding or blurring input accordingly.
+ * 
+ * If the input value is non-empty and Enter is pressed, adds the subtask.
+ * If the input is empty and Enter is pressed, triggers blur behavior.
+ * 
+ * @param {KeyboardEvent} event - The keyboard event triggered by the user.
+ */
 function checkShiftSubtask(event) {
   const input = document.getElementById("subtaskInput");
   const value = input.value.trim();
@@ -259,6 +365,11 @@ function checkShiftSubtask(event) {
 }
 
 
+/**
+ * Blurs (removes focus from) the event target if the Enter key is pressed.
+ * 
+ * @param {KeyboardEvent} event - The keyboard event triggered by the user.
+ */
 function blurOnEnter(event) {
   if (event.key === "Enter") {
     event.target.blur();
@@ -266,6 +377,11 @@ function blurOnEnter(event) {
 }
 
 
+/**
+ * Deletes a subtask element from the DOM by its ID.
+ * 
+ * @param {number|string} subtaskId - The unique identifier of the subtask to delete.
+ */
 function deleteTask(subtaskId) {
   const task = document.getElementById("subtaskTemplate" + subtaskId);
   if (task) {
@@ -274,12 +390,20 @@ function deleteTask(subtaskId) {
 }
 
 
+/**
+ * Clears the subtask input field and shows the main subtask button.
+ */
 function emptySubtaskInput() {
   document.getElementById("subtaskInput").value = "";
   showMainBtn();
 }
 
 
+/**
+ * Switches a subtask from normal view mode to edit mode.
+ * 
+ * @param {number|string} subtaskId - The unique identifier of the subtask to edit.
+ */
 function editTask(subtaskId) {
   const subtask = document.getElementById("subtaskTemplate" + subtaskId);
   const taskNormalState = document.getElementById("taskNormalState" + subtaskId);
@@ -296,8 +420,12 @@ function editTask(subtaskId) {
 }
 
 
+/**
+ * Deletes the subtask element with the given ID from the DOM.
+ * 
+ * @param {number|string} subtaskId - The ID of the subtask to delete.
+ */
 function deleteSubtaskEditState(subtaskId) {
-  const delBtn = document.getElementById("deleteSubtaskEditState" + subtaskId);
   const task = document.getElementById("subtaskTemplate" + subtaskId);
   if (task) {
     task.remove();
@@ -305,6 +433,11 @@ function deleteSubtaskEditState(subtaskId) {
 }
 
 
+/**
+ * Updates the subtask title with the edited input value and exits edit mode.
+ * 
+ * @param {number|string} subtaskId - The ID of the subtask to update.
+ */
 function updateTask(subtaskId) {
   const activeTitle = document.getElementById("subtaskTitle" + subtaskId);
   const editTitle = document.getElementById("subtaskEditInput" + subtaskId);
@@ -316,6 +449,11 @@ function updateTask(subtaskId) {
 }
 
 
+/**
+ * Exits the edit mode of a subtask by toggling the display states of the normal and edit views.
+ * 
+ * @param {number|string} subtaskId - The ID of the subtask to exit edit mode.
+ */
 function exitSubtaskEditState(subtaskId) {
   const subtask = document.getElementById("subtaskTemplate" + subtaskId);
   const taskNormalState = document.getElementById("taskNormalState" + subtaskId);
@@ -327,6 +465,13 @@ function exitSubtaskEditState(subtaskId) {
 }
 
 
+/**
+ * Handles the Enter key event when editing a subtask.
+ * Updates the subtask if input is not empty; otherwise, deletes the subtask edit state.
+ * 
+ * @param {KeyboardEvent} event - The keyboard event triggered by pressing a key.
+ * @param {number|string} subtaskId - The ID of the subtask being edited.
+ */
 function postSubtaskOnEnter(event, subtaskId) {
   const taskInput = document.getElementById("subtaskEditInput" + subtaskId);
   if (event.key === "Enter" && taskInput.value.length !== 0) {
@@ -337,6 +482,12 @@ function postSubtaskOnEnter(event, subtaskId) {
 }
 
 
+/**
+ * Displays the task success banner by adding the 'visible' class,
+ * then removes the class after 1.5 seconds to hide the banner.
+ * 
+ * @returns {Promise<void>} A Promise that resolves after the banner is hidden.
+ */
 function showTaskSuccessBanner() {
     const banner = document.getElementById('createdTaskBanner');
     banner.classList.add('visible');
